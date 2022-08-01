@@ -1,0 +1,21 @@
+<?xml version = "1.0" encoding="Windows-1252" standalone="yes"?>
+<VFPData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="XML_TABLE_DBF_TYPES.xsd">
+	<xml_table_dbf_types>
+		<id>1</id>
+		<int>2</int>
+		<char>ÒÅÕÒ</char>
+		<charbin>001</charbin>
+		<currency>10.2100</currency>
+		<date>2002-05-01</date>
+		<datetime>2022-05-05T00:00:00</datetime>
+		<double>2022.01</double>
+		<float>3.20</float>
+		<logical>true</logical>
+		<memo><![CDATA[MEMO]]></memo>
+		<memobin><![CDATA[TUVNTzAwMDAx]]></memobin>
+		<numeric>67.11</numeric>
+		<varbinary>CwAB</varbinary>
+		<varchar>VARC</varchar>
+		<vcarcharb>VARCHARB</vcarcharb>
+	</xml_table_dbf_types>
+</VFPData>

@@ -1,0 +1,379 @@
+<?xml version = "1.0" encoding="utf-8" standalone="yes"?>
+<NTXData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="dclhead.xsd">
+    <dclhead>
+    	<num_ver>07.17.03<num_ver/>
+<data_ver>2019-09-01<data_ver/>
+<typ_dcl>  <typ_dcl/>
+<gugtk>False<gugtk/>
+<copy>False<copy/>
+<dcopy>None<dcopy/>
+<q_edit>0<q_edit/>
+<d_edit>None<d_edit/>
+<sol>0<sol/>
+<max_err>0<max_err/>
+<dd>None<dd/>
+<tm>        <tm/>
+<extrnl>MEE00900105                                                                     <extrnl/>
+<schet>                                                                                                                                                                <schet/>
+<stepctrl>                    <stepctrl/>
+<typ_dtc>1<typ_dtc/>
+<vid_ktc> <vid_ktc/>
+<frm_decl>1<frm_decl/>
+<stat> <stat/>
+<g071>10013160<g071/>
+<g072>2022-01-05<g072/>
+<g073>3002512<g073/>
+<g073_1>      <g073_1/>
+<ui_b_1>10013160<ui_b_1/>
+<ui_b_2>2022-01-05<ui_b_2/>
+<ui_b_3>3002512<ui_b_3/>
+<sds_srv>    <sds_srv/>
+<sds_num>18<sds_num/>
+<sds_cust>        <sds_cust/>
+<f_decl>1<f_decl/>
+<remotepay> <remotepay/>
+<rccncode>RU<rccncode/>
+<dpresent>None<dpresent/>
+<tpresent>        <tpresent/>
+<complectbl> <complectbl/>
+<g011>êî<g011/>
+<g012>  <g012/>
+<g0121>40<g0121/>
+<g0131>¥ä <g0131/>
+<g020>               <g020/>
+<g02_itn>             <g02_itn/>
+<g021>            <g021/>
+<g022>                                                                                                                                                      <g022/>
+<g023post>         <g023post/>
+<g0231>  <g0231/>
+<g0231c>   <g0231c/>
+<g0231n>                                        <g0231n/>
+<g023subd>                                                  <g023subd/>
+<g023city>                                   <g023city/>
+<g023street>                                                  <g023street/>
+<g023build>                                                  <g023build/>
+<g023>                                                                                <g023/>
+<g024b>     <g024b/>
+<g024n>          <g024n/>
+<g024in>            <g024in/>
+<g027>         <g027/>
+<g0281>       <g0281/>
+<g0281a>                         <g0281a/>
+<g02821>           <g02821/>
+<g02822>                         <g02822/>
+<g02823>                                                                                                                                                      <g02823/>
+<g0283>None<g0283/>
+<g022a>                                                                                                                                                      <g022a/>
+<g027a>         <g027a/>
+<g023apost>         <g023apost/>
+<g0231a>  <g0231a/>
+<g0231an>                                        <g0231an/>
+<g023asubd>                                                  <g023asubd/>
+<g023acity>                                   <g023acity/>
+<g023astree>                                                  <g023astree/>
+<g023abuild>                                                  <g023abuild/>
+<g029> <g029/>
+<g02e14> <g02e14/>
+<g032>3<g032/>
+<g040>0<g040/>
+<g04>0<g04/>
+<g05>5<g05/>
+<g06>0<g06/>
+<g07>   <g07/>
+<g080>1045011656084  <g080/>
+<g08_itn>             <g08_itn/>
+<g081>5075018950  <g081/>
+<g082>ÄÄÄ "ïâ ¥ïàèÆÉÄìêèæ Éôæ"                                                                                                                              <g082/>
+<g083post>         <g083post/>
+<g0831>  <g0831/>
+<g0831c>   <g0831c/>
+<g0831a>                                        <g0831a/>
+<g083subd>                                                  <g083subd/>
+<g083city>                                   <g083city/>
+<g083street>                                                  <g083street/>
+<g083build>                                                  <g083build/>
+<g083>                                                                                <g083/>
+<g084b>     <g084b/>
+<g087>997150001<g087/>
+<g0881>       <g0881/>
+<g0881a>                         <g0881a/>
+<g08821>           <g08821/>
+<g08822>                         <g08822/>
+<g08823>                                                                                                                                                      <g08823/>
+<g0883>None<g0883/>
+<g089> <g089/>
+<g082a>                                                                                                                                                      <g082a/>
+<g087a>         <g087a/>
+<g083apost>         <g083apost/>
+<g0831aa>  <g0831aa/>
+<g0831an>                                        <g0831an/>
+<g083asubd>                                                  <g083asubd/>
+<g083acity>                                   <g083acity/>
+<g083astree>                                                  <g083astree/>
+<g083abuild>                                                  <g083abuild/>
+<g08e14> <g08e14/>
+<g090>1045011656084  <g090/>
+<g09_itn>             <g09_itn/>
+<g091>5075018950  <g091/>
+<g092>ÄÄÄ "ïâ ¥ïàèÆÉÄìêèæ Éôæ"                                                                                                                              <g092/>
+<g092a>                                                                                                                                                      <g092a/>
+<g093post>         <g093post/>
+<g0931>  <g0931/>
+<g0931n>                                        <g0931n/>
+<g093subd>                                                  <g093subd/>
+<g093city>                                   <g093city/>
+<g093street>                                                  <g093street/>
+<g093build>                                                  <g093build/>
+<g093apost>         <g093apost/>
+<g0931a>  <g0931a/>
+<g0931an>                                        <g0931an/>
+<g093asubd>                                                  <g093asubd/>
+<g093acity>                                   <g093acity/>
+<g093astree>                                                  <g093astree/>
+<g093abuild>                                                  <g093abuild/>
+<g093>                                                                                <g093/>
+<g093a>                                                                                <g093a/>
+<g094b>     <g094b/>
+<g097>997150001<g097/>
+<g097a>         <g097a/>
+<g0981>       <g0981/>
+<g0981a>                         <g0981a/>
+<g09821>           <g09821/>
+<g09822>                         <g09822/>
+<g09823>                                                                                                                                                      <g09823/>
+<g0983>None<g0983/>
+<g09e14> <g09e14/>
+<g11>SG<g11/>
+<g11c>   <g11c/>
+<g12>41120110.14<g12/>
+<g121>RUB<g121/>
+<g12k>0.00<g12k/>
+<g13>        <g13/>
+<g140>1045011656084  <g140/>
+<g14_itn>             <g14_itn/>
+<g141>5075018950  <g141/>
+<g142>ÄÄÄ "ïâ ¥ïàèÆÉÄìêèæ Éôæ"                                                                                                                              <g142/>
+<g142a>                                                                                                                                                      <g142a/>
+<g143post>143160   <g143post/>
+<g1431>RU<g1431/>
+<g1431n>ÉÄææêƒ                                  <g1431n/>
+<g143subd>îÄæèÄéæèÇƒ ÄüïÇæÆ£                                <g143subd/>
+<g143city>â.Ä.Éôçæèêë                        <g143city/>
+<g143street>ÆàÉ.îêìæèÄà ÿÄææà,èî 86-ë                         <g143street/>
+<g143build>9                                                 <g143build/>
+<aeorowner> <aeorowner/>
+<aeocntry>  <aeocntry/>
+<aeonum>                                                  <aeonum/>
+<aeokind> <aeokind/>
+<aeoregcod>   <aeoregcod/>
+<g143>                                                                                <g143/>
+<g143apost>         <g143apost/>
+<g1431a>  <g1431a/>
+<g1431an>                                        <g1431an/>
+<g143asubd>                                                  <g143asubd/>
+<g143acity>                                   <g143acity/>
+<g143astree>                                                  <g143astree/>
+<g143abuild>                                                  <g143abuild/>
+<g143a>                                                                                <g143a/>
+<g144b>     <g144b/>
+<g147>997150001<g147/>
+<g147a>         <g147a/>
+<g1481>       <g1481/>
+<g1481a>                         <g1481a/>
+<g14821>           <g14821/>
+<g14822>                         <g14822/>
+<g14823>                                                                                                                                                      <g14823/>
+<g1483>None<g1483/>
+<g15>                                        <g15/>
+<g15a>  <g15a/>
+<g15ac>   <g15ac/>
+<g160> <g160/>
+<g16a>CN<g16a/>
+<g16>èêÆÇë                                   <g16/>
+<g161>  <g161/>
+<g17a>RU<g17a/>
+<g17ac>   <g17ac/>
+<g17b>ÉÄææêƒ                                  <g17b/>
+<g180>0<g180/>
+<g182>  <g182/>
+<g19>0<g19/>
+<g202>DAP<g202/>
+<g2021>èÉàèÿêìÄ                                          <g2021/>
+<g203>                                                                                                                                                                                                                                                          <g203/>
+<g210>0<g210/>
+<g212>  <g212/>
+<g221>USD<g221/>
+<g221c>   <g221c/>
+<g222>553488.64<g222/>
+<g222k>0.00<g222k/>
+<g23>74.2926<g23/>
+<g230>2022-01-05<g230/>
+<g231>0.0000<g231/>
+<g24>   <g24/>
+<g270>  <g270/>
+<g27_itn>             <g27_itn/>
+<g2710> <g2710/>
+<g271>             <g271/>
+<g27>                                        <g27/>
+<g2711>None<g2711/>
+<g2712>        <g2712/>
+<g2810> <g2810/>
+<g2811> <g2811/>
+<g28gtd_1>        <g28gtd_1/>
+<g28gtd_2>None<g28gtd_2/>
+<g28gtd_3>       <g28gtd_3/>
+<g281>                                                                      <g281/>
+<g28zajmb>                                                                      <g28zajmb/>
+<g281d>None<g281d/>
+<g281dd>None<g281dd/>
+<g2831>  <g2831/>
+<g284>                                                  <g284/>
+<g284d>None<g284d/>
+<g284dd>None<g284dd/>
+<g28_itn>             <g28_itn/>
+<g28okpo>          <g28okpo/>
+<g28inn>            <g28inn/>
+<g281oth>                              <g281oth/>
+<g28zajmn>                                                  <g28zajmn/>
+<g282>                                                                      <g282/>
+<g28211> <g28211/>
+<g28212>00<g28212/>
+<g28221>010<g28221/>
+<g28222> <g28222/>
+<g28230> <g28230/>
+<g2823>None<g2823/>
+<g28240> <g28240/>
+<g2824>None<g2824/>
+<g2825>   <g2825/>
+<g30_itn>             <g30_itn/>
+<g300>21<g300/>
+<g3010>2<g3010/>
+<g30aeoown> <g30aeoown/>
+<g30aeocntr>  <g30aeocntr/>
+<g301>10013/031/ü                                       <g301/>
+<g30aeokind> <g30aeokind/>
+<g30aeorcod>   <g30aeorcod/>
+<g3011>None<g3011/>
+<g30>10013/031/ü                                       <g30/>
+<g30d>None<g30d/>
+<g30post>108810   <g30post/>
+<g30a>RU<g30a/>
+<g30an>ÉÄææêƒ                                  <g30an/>
+<g30subd>îÄæèéÇ                                            <g30subd/>
+<g30city>Å. îÇÉôÿèêìæèÄà,ä.èÉàèÿêìÄ         <g30city/>
+<g30street>ÆàÉîêìÇï£ì¢ë ÅÉÄàçä,æÆÉ.3                         <g30street/>
+<g30build>                                                  <g30build/>
+<g30lname>                                                                                                                                                      <g30lname/>
+<g3012>10013180<g3012/>
+<g30121>RU<g30121/>
+<g30122>                                                  <g30122/>
+<g4910> <g4910/>
+<g491>                              <g491/>
+<g492>None<g492/>
+<g500>               <g500/>
+<g50_itn>             <g50_itn/>
+<g5011>                                                                                <g5011/>
+<g5012>                                                                                <g5012/>
+<g5023>                                                                                <g5023/>
+<g5033>                                                                                <g5033/>
+<g504>            <g504/>
+<g507>         <g507/>
+<g5081>  <g5081/>
+<g5081a>      <g5081a/>
+<g50821>           <g50821/>
+<g50822>                         <g50822/>
+<g50823>                                                                                <g50823/>
+<g5083>None<g5083/>
+<g54_itn>             <g54_itn/>
+<g5410>3<g5410/>
+<g541>0066/08       <g541/>
+<g541d>2018-11-28<g541d/>
+<g5411>15082017                                          <g5411/>
+<g5411d>2017-08-15<g5411d/>
+<g5411aid>                                                  <g5411aid/>
+<g5411adid>                                                  <g5411adid/>
+<g5411modid>          <g5411modid/>
+<g5411doc>     <g5411doc/>
+<prprov541> <prprov541/>
+<pretype541> <pretype541/>
+<prevnum541>                                                  <prevnum541/>
+<g541_inn>5032080262  <g541_inn/>
+<g541_kpp>503201001<g541_kpp/>
+<g542>2022-01-05<g542/>
+<g542t>        <g542t/>
+<g5441>ÆôÉèêìÇ                                                                                                                                               <g5441/>
+<g5441nm>îÇÉêƒ                                                                                                                                                 <g5441nm/>
+<g5441mdnm>ÇïàèæÇìäÉÄéìÇ                                                                                                                                         <g5441mdnm/>
+<g5442>8495926-53-98                                     <g5442/>
+<g5443>äÄéàÉàììÄæÆ£                                                                                                                                                                                                                                              <g5443/>
+<g5444>ìÆü-ï/ä-30                                        <g5444/>
+<g5445>2021-07-28<g5445/>
+<g544aid>                                                  <g544aid/>
+<g544adid>                                                  <g544adid/>
+<g544modid>          <g544modid/>
+<g544doc>     <g544doc/>
+<prprov544> <prprov544/>
+<pretype544> <pretype544/>
+<prevnum544>                                                  <prevnum544/>
+<g5446>2022-07-28<g5446/>
+<g5447>éàä.æÅàû.ÅÄ ÆÇî.ÄöÄÉîïàìê₧                        <g5447/>
+<g5451>RU01001<g5451/>
+<g5451a>ÅÇæÉö                    <g5451a/>
+<g54521>46 13      <g54521/>
+<g54522>189282                   <g54522/>
+<g54523>ÆÅ ⁿ3 Äôöîæ ÉÄææêê ÅÄ îÄæè.Äüï. ÅÄ ìÇÉÄ-öÄîêìæèÄîô É-ìô                                                                                               <g54523/>
+<g5453>2013-09-05<g5453/>
+<g545aid>                                                  <g545aid/>
+<g545adid>                                                  <g545adid/>
+<g545modid>          <g545modid/>
+<g545doc>     <g545doc/>
+<prprov545> <prprov545/>
+<pretype545> <pretype545/>
+<prevnum545>                                                  <prevnum545/>
+<gd0>10<gd0/>
+<gd1>2022-01-05<gd1/>
+<gd11>17:36:27<gd11/>
+<gd2>1101<gd2/>
+<gd00>                                                                                                                                                                                                                                                          <gd00/>
+<gd01>                                                                                                                                                                                                                                                          <gd01/>
+<gddf>None<gddf/>
+<recplatv>4<recplatv/>
+<recslotm>0<recslotm/>
+<rectrans>1<rectrans/>
+<recsumpp>23<recsumpp/>
+<recpasp>0<recpasp/>
+<recusl>0<recusl/>
+<pprr>0.00<pprr/>
+<pprv>0.00<pprv/>
+<pposh>0.00<pposh/>
+<pnal>0.00<pnal/>
+<gnuser>                                        <gnuser/>
+<flduser>                                        <flduser/>
+<nrelise>          <nrelise/>
+<kodtop>   <kodtop/>
+<g071top>        <g071top/>
+<g072top>None<g072top/>
+<g073top>       <g073top/>
+<typdtop>  <typdtop/>
+<numdtop>                                                  <numdtop/>
+<datdtop>None<datdtop/>
+<fiotop>                                        <fiotop/>
+<dattop>None<dattop/>
+<dmodify>2022-01-10<dmodify/>
+<tmodify>10:17:00<tmodify/>
+<edoc_guid>                                <edoc_guid/>
+<edoc_id>0<edoc_id/>
+<ed_procid>                                    <ed_procid/>
+<val_contr> <val_contr/>
+<ps_contr> <ps_contr/>
+<p_status1>2<p_status1/>
+<p_status2>0<p_status2/>
+<ed_ididkmp>                                    <ed_ididkmp/>
+<ed_idid>                                    <ed_idid/>
+<ed_ididcnt>                                    <ed_ididcnt/>
+<ed_ididftc>                                    <ed_ididftc/>
+<xmlvers>          <xmlvers/>
+<typed>  <typed/>
+
+    </dclhead>
+</NTXData>

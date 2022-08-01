@@ -1,0 +1,2429 @@
+<?xml version = "1.0" encoding="utf-8" standalone="yes"?>
+        <xsd:schema id="NTXData" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:sql="urn:schemas-microsoft-com:mapping-schema">
+        	<xsd:element name="NTXData" msdata:IsDataSet="true" sql:is-constant="1">
+        		<xsd:complexType>
+        			<xsd:sequence>
+        				<xsd:element name="DclHead" sql:relation="DclHead" minOccurs="0" maxOccurs="unbounded">
+        					<xsd:complexType>
+        						<xsd:sequence>
+                                    <xsd:element name="NUM_VER">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="8"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="DATA_VER" type="xsd:date"/>
+							<xsd:element name="TYP_DCL">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="GUGTK" type="xsd:boolean"/>
+							<xsd:element name="COPY" type="xsd:boolean"/>
+							<xsd:element name="DCOPY" type="xsd:date"/>
+							<xsd:element name="Q_EDIT">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:decimal">
+								<xsd:totalDigits value="2"/>
+								<xsd:fractionDigits value="0"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="D_EDIT" type="xsd:date"/>
+							<xsd:element name="SOL">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:decimal">
+								<xsd:totalDigits value="2"/>
+								<xsd:fractionDigits value="0"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="MAX_ERR">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:decimal">
+								<xsd:totalDigits value="1"/>
+								<xsd:fractionDigits value="0"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="DD" type="xsd:date"/>
+							<xsd:element name="TM">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="8"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="EXTRNL">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="80"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="SCHET">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="160"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="STEPCTRL">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="20"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="TYP_DTC">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="VID_KTC">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="FRM_DECL">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="STAT">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G071">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="8"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G072" type="xsd:date"/>
+							<xsd:element name="G073">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="7"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G073_1">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="6"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="UI_B_1">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="8"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="UI_B_2" type="xsd:date"/>
+							<xsd:element name="UI_B_3">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="7"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="SDS_SRV">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="4"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="SDS_NUM">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:decimal">
+								<xsd:totalDigits value="10"/>
+								<xsd:fractionDigits value="0"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="SDS_CUST">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="8"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="F_DECL">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="REMOTEPAY">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="RCCNCODE">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="DPRESENT" type="xsd:date"/>
+							<xsd:element name="TPRESENT">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="8"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="COMPLECTBL">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G011">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G012">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G0121">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G0131">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="3"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G020">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="15"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G02_ITN">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="13"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G021">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="12"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G022">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="150"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G023POST">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="9"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G0231">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G0231C">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="3"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G0231N">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="40"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G023SUBD">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G023CITY">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="35"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G023STREET">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G023BUILD">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G023">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="80"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G024B">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="5"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G024N">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="10"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G024IN">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="12"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G027">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="9"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G0281">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="7"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G0281A">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="25"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G02821">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="11"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G02822">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="25"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G02823">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="150"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G0283" type="xsd:date"/>
+							<xsd:element name="G022A">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="150"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G027A">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="9"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G023APOST">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="9"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G0231A">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G0231AN">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="40"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G023ASUBD">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G023ACITY">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="35"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G023ASTREE">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G023ABUILD">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G029">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G02E14">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G032">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:decimal">
+								<xsd:totalDigits value="5"/>
+								<xsd:fractionDigits value="0"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G040">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:decimal">
+								<xsd:totalDigits value="5"/>
+								<xsd:fractionDigits value="0"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G04">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:decimal">
+								<xsd:totalDigits value="7"/>
+								<xsd:fractionDigits value="0"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G05">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:decimal">
+								<xsd:totalDigits value="5"/>
+								<xsd:fractionDigits value="0"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G06">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:decimal">
+								<xsd:totalDigits value="8"/>
+								<xsd:fractionDigits value="0"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G07">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="3"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G080">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="15"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G08_ITN">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="13"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G081">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="12"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G082">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="150"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G083POST">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="9"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G0831">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G0831C">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="3"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G0831A">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="40"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G083SUBD">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G083CITY">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="35"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G083STREET">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G083BUILD">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G083">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="80"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G084B">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="5"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G087">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="9"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G0881">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="7"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G0881A">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="25"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G08821">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="11"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G08822">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="25"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G08823">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="150"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G0883" type="xsd:date"/>
+							<xsd:element name="G089">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G082A">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="150"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G087A">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="9"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G083APOST">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="9"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G0831AA">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G0831AN">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="40"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G083ASUBD">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G083ACITY">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="35"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G083ASTREE">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G083ABUILD">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G08E14">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G090">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="15"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G09_ITN">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="13"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G091">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="12"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G092">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="150"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G092A">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="150"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G093POST">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="9"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G0931">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G0931N">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="40"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G093SUBD">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G093CITY">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="35"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G093STREET">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G093BUILD">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G093APOST">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="9"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G0931A">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G0931AN">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="40"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G093ASUBD">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G093ACITY">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="35"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G093ASTREE">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G093ABUILD">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G093">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="80"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G093A">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="80"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G094B">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="5"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G097">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="9"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G097A">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="9"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G0981">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="7"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G0981A">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="25"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G09821">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="11"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G09822">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="25"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G09823">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="150"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G0983" type="xsd:date"/>
+							<xsd:element name="G09E14">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G11">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G11C">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="3"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G12">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:decimal">
+								<xsd:totalDigits value="16"/>
+								<xsd:fractionDigits value="2"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G121">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="3"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G12K">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:decimal">
+								<xsd:totalDigits value="16"/>
+								<xsd:fractionDigits value="2"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G13">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="8"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G140">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="15"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G14_ITN">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="13"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G141">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="12"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G142">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="150"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G142A">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="150"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G143POST">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="9"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G1431">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G1431N">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="40"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G143SUBD">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G143CITY">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="35"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G143STREET">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G143BUILD">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="AEOROWNER">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="AEOCNTRY">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="AEONUM">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="AEOKIND">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="AEOREGCOD">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="3"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G143">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="80"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G143APOST">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="9"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G1431A">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G1431AN">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="40"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G143ASUBD">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G143ACITY">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="35"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G143ASTREE">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G143ABUILD">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G143A">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="80"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G144B">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="5"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G147">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="9"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G147A">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="9"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G1481">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="7"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G1481A">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="25"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G14821">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="11"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G14822">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="25"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G14823">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="150"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G1483" type="xsd:date"/>
+							<xsd:element name="G15">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="40"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G15A">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G15AC">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="3"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G160">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G16A">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G16">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="40"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G161">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G17A">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G17AC">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="3"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G17B">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="40"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G180">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:decimal">
+								<xsd:totalDigits value="5"/>
+								<xsd:fractionDigits value="0"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G182">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G19">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G202">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="3"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G2021">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G203">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="250"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G210">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:decimal">
+								<xsd:totalDigits value="5"/>
+								<xsd:fractionDigits value="0"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G212">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G221">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="3"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G221C">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="3"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G222">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:decimal">
+								<xsd:totalDigits value="16"/>
+								<xsd:fractionDigits value="2"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G222K">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:decimal">
+								<xsd:totalDigits value="16"/>
+								<xsd:fractionDigits value="2"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G23">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:decimal">
+								<xsd:totalDigits value="10"/>
+								<xsd:fractionDigits value="4"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G230" type="xsd:date"/>
+							<xsd:element name="G231">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:decimal">
+								<xsd:totalDigits value="10"/>
+								<xsd:fractionDigits value="4"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G24">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="3"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G270">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G27_ITN">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="13"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G2710">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G271">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="13"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G27">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="40"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G2711" type="xsd:date"/>
+							<xsd:element name="G2712">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="8"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G2810">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G2811">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G28GTD_1">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="8"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G28GTD_2" type="xsd:date"/>
+							<xsd:element name="G28GTD_3">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="7"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G281">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="70"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G28ZAJMB">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="70"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G281D" type="xsd:date"/>
+							<xsd:element name="G281DD" type="xsd:date"/>
+							<xsd:element name="G2831">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G284">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G284D" type="xsd:date"/>
+							<xsd:element name="G284DD" type="xsd:date"/>
+							<xsd:element name="G28_ITN">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="13"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G28OKPO">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="10"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G28INN">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="12"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G281OTH">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="30"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G28ZAJMN">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G282">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="70"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G28211">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G28212">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G28221">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="3"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G28222">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G28230">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G2823" type="xsd:date"/>
+							<xsd:element name="G28240">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G2824" type="xsd:date"/>
+							<xsd:element name="G2825">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="3"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G30_ITN">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="13"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G300">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G3010">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G30AEOOWN">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G30AEOCNTR">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G301">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G30AEOKIND">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G30AEORCOD">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="3"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G3011" type="xsd:date"/>
+							<xsd:element name="G30">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G30D" type="xsd:date"/>
+							<xsd:element name="G30POST">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="9"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G30A">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G30AN">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="40"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G30SUBD">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G30CITY">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="35"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G30STREET">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G30BUILD">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G30LNAME">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="150"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G3012">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="8"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G30121">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G30122">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G4910">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G491">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="30"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G492" type="xsd:date"/>
+							<xsd:element name="G500">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="15"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G50_ITN">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="13"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G5011">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="80"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G5012">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="80"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G5023">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="80"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G5033">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="80"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G504">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="12"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G507">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="9"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G5081">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G5081A">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="6"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G50821">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="11"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G50822">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="25"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G50823">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="80"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G5083" type="xsd:date"/>
+							<xsd:element name="G54_ITN">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="13"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G5410">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G541">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="14"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G541D" type="xsd:date"/>
+							<xsd:element name="G5411">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G5411D" type="xsd:date"/>
+							<xsd:element name="G5411AID">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G5411ADID">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G5411MODID">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="10"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G5411DOC">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="5"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="PRPROV541">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="PRETYPE541">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="PREVNUM541">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G541_INN">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="12"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G541_KPP">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="9"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G542" type="xsd:date"/>
+							<xsd:element name="G542T">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="8"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G5441">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="150"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G5441NM">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="150"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G5441MDNM">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="150"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G5442">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G5443">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="250"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G5444">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G5445" type="xsd:date"/>
+							<xsd:element name="G544AID">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G544ADID">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G544MODID">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="10"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G544DOC">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="5"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="PRPROV544">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="PRETYPE544">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="PREVNUM544">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G5446" type="xsd:date"/>
+							<xsd:element name="G5447">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G5451">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="7"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G5451A">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="25"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G54521">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="11"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G54522">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="25"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G54523">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="150"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G5453" type="xsd:date"/>
+							<xsd:element name="G545AID">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G545ADID">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G545MODID">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="10"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G545DOC">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="5"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="PRPROV545">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="PRETYPE545">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="PREVNUM545">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="GD0">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="GD1" type="xsd:date"/>
+							<xsd:element name="GD11">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="8"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="GD2">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="4"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="GD00">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="250"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="GD01">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="250"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="GDDF" type="xsd:date"/>
+							<xsd:element name="RECPLATV">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:decimal">
+								<xsd:totalDigits value="8"/>
+								<xsd:fractionDigits value="0"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="RECSLOTM">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:decimal">
+								<xsd:totalDigits value="8"/>
+								<xsd:fractionDigits value="0"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="RECTRANS">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:decimal">
+								<xsd:totalDigits value="8"/>
+								<xsd:fractionDigits value="0"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="RECSUMPP">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:decimal">
+								<xsd:totalDigits value="8"/>
+								<xsd:fractionDigits value="0"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="RECPASP">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:decimal">
+								<xsd:totalDigits value="8"/>
+								<xsd:fractionDigits value="0"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="RECUSL">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:decimal">
+								<xsd:totalDigits value="8"/>
+								<xsd:fractionDigits value="0"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="PPRR">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:decimal">
+								<xsd:totalDigits value="11"/>
+								<xsd:fractionDigits value="2"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="PPRV">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:decimal">
+								<xsd:totalDigits value="11"/>
+								<xsd:fractionDigits value="2"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="PPOSH">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:decimal">
+								<xsd:totalDigits value="11"/>
+								<xsd:fractionDigits value="2"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="PNAL">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:decimal">
+								<xsd:totalDigits value="11"/>
+								<xsd:fractionDigits value="2"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="GNUSER">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="40"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="FLDUSER">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="40"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="NRELISE">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="10"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="KODTOP">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="3"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G071TOP">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="8"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="G072TOP" type="xsd:date"/>
+							<xsd:element name="G073TOP">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="7"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="TYPDTOP">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="NUMDTOP">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="DATDTOP" type="xsd:date"/>
+							<xsd:element name="FIOTOP">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="40"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="DATTOP" type="xsd:date"/>
+							<xsd:element name="DMODIFY" type="xsd:date"/>
+							<xsd:element name="TMODIFY">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="8"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="EDOC_GUID">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="32"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="EDOC_ID">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:decimal">
+								<xsd:totalDigits value="19"/>
+								<xsd:fractionDigits value="0"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="ED_PROCID">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="36"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="VAL_CONTR">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="PS_CONTR">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="P_STATUS1">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:decimal">
+								<xsd:totalDigits value="2"/>
+								<xsd:fractionDigits value="0"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="P_STATUS2">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:decimal">
+								<xsd:totalDigits value="2"/>
+								<xsd:fractionDigits value="0"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="ED_IDIDKMP">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="36"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="ED_IDID">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="36"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="ED_IDIDCNT">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="36"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="ED_IDIDFTC">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="36"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="XMLVERS">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="10"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							<xsd:element name="TYPED">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+							</xsd:sequence>
+        					</xsd:complexType>
+        				</xsd:element>
+        			</xsd:sequence>
+        			<xsd:anyAttribute namespace="http://www.w3.org/XML/1998/namespace" processContents="lax"/>
+        		</xsd:complexType>
+        	</xsd:element>
+        </xsd:schema>

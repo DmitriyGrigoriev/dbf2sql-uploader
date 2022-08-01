@@ -1,0 +1,115 @@
+<?xml version = "1.0" encoding="Windows-1252" standalone="yes"?>
+<xsd:schema id="VFPData" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:sql="urn:schemas-microsoft-com:mapping-schema">
+	<xsd:element name="VFPData" msdata:IsDataSet="true" sql:is-constant="1">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="xml_table_dbf_types" sql:relation="xml_table_dbf_types" minOccurs="0" maxOccurs="unbounded">
+					<xsd:complexType>
+						<xsd:sequence>
+
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+			<xsd:anyAttribute namespace="http://www.w3.org/XML/1998/namespace" processContents="lax"/>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>
+
+
+
+<?xml version = "1.0" encoding="Windows-1252" standalone="yes"?>
+<xsd:schema id="VFPData" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:sql="urn:schemas-microsoft-com:mapping-schema">
+	<xsd:element name="VFPData" msdata:IsDataSet="true" sql:is-constant="1">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="xml_table_dbf_types" sql:relation="xml_table_dbf_types" minOccurs="0" maxOccurs="unbounded">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="id" type="xsd:int"/>
+							<xsd:element name="int" type="xsd:int"/>
+							<xsd:element name="char">
+								<xsd:simpleType>
+									<xsd:restriction base="xsd:string">
+										<xsd:maxLength value="10"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:element>
+							<xsd:element name="charbin">
+								<xsd:simpleType>
+									<xsd:restriction base="xsd:string">
+										<xsd:maxLength value="10"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:element>
+							<xsd:element name="currency">
+								<xsd:simpleType>
+									<xsd:restriction base="xsd:decimal">
+										<xsd:totalDigits value="19"/>
+										<xsd:fractionDigits value="4"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:element>
+							<xsd:element name="date" type="xsd:date"/>
+							<xsd:element name="datetime" type="xsd:dateTime" sql:datatype="dateTime"/>
+							<xsd:element name="double" type="xsd:double"/>
+							<xsd:element name="float">
+								<xsd:simpleType>
+									<xsd:restriction base="xsd:decimal">
+										<xsd:totalDigits value="9"/>
+										<xsd:fractionDigits value="2"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:element>
+							<xsd:element name="logical" type="xsd:boolean"/>
+							<xsd:element name="memo">
+								<xsd:simpleType>
+									<xsd:restriction base="xsd:string">
+										<xsd:maxLength value="2147483647"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:element>
+							<xsd:element name="memobin">
+								<xsd:simpleType>
+									<xsd:restriction base="xsd:base64Binary">
+										<xsd:maxLength value="2147483647"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:element>
+							<xsd:element name="numeric">
+								<xsd:simpleType>
+									<xsd:restriction base="xsd:decimal">
+										<xsd:totalDigits value="9"/>
+										<xsd:fractionDigits value="2"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:element>
+							<xsd:element name="varbinary">
+								<xsd:simpleType>
+									<xsd:restriction base="xsd:base64Binary">
+										<xsd:maxLength value="10"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:element>
+							<xsd:element name="varchar">
+								<xsd:simpleType>
+									<xsd:restriction base="xsd:string">
+										<xsd:maxLength value="10"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:element>
+							<xsd:element name="vcarcharb">
+								<xsd:simpleType>
+									<xsd:restriction base="xsd:string">
+										<xsd:maxLength value="10"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+			<xsd:anyAttribute namespace="http://www.w3.org/XML/1998/namespace" processContents="lax"/>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>
