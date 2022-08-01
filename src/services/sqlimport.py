@@ -5,7 +5,9 @@ from django.db import models
 from django.apps import apps
 from import_export import resources
 from src.services.base.baseimport import BaseImport
+from src.services.updatelocal import SQLLocalFts
 from src.config import settings
+
 
 logger = logging.getLogger(__name__)
 
@@ -31,17 +33,19 @@ class SQLImport(BaseImport):
     def __init__(self, source_connection_name: str, source_table_name: str,
                  dest_connection_name: str, dest_table_name: str, logger=None
                  ) -> None:
+        self.source_table_name = source_table_name
+        self.dest_table_name = dest_table_name
 
         ###########################################################################
         # First setting connection and then attach using_db to source model
         ###########################################################################
-        self.source_model = self.get_model_class(settings.EXPORT_MODULE, 'models', source_table_name)
+        self.source_model = self.get_model_class(settings.EXPORT_MODULE, 'models', self.source_table_name)
         self.source_connection_name = source_connection_name
 
         ###########################################################################
         # First setting connection and then attach using_db to destination model
         ###########################################################################
-        self.dest_model = self.get_model_class(settings.IMPORT_MODULE, 'models', dest_table_name)
+        self.dest_model = self.get_model_class(settings.IMPORT_MODULE, 'models', self.dest_table_name)
         self.dest_connection_name = dest_connection_name
 
         self.headers = self._get_exported_headers()
@@ -88,11 +92,33 @@ class SQLImport(BaseImport):
                 resource = self._create_resource_instance()
                 resource.import_data(dataset)
 
+                # Update LocalFts
+                self.after_import(
+                    source_connection_name=self.source_connection_name,
+                    source_table_name=self.source_table_name,
+                    dest_connection_name=self.dest_connection_name,
+                    dest_table_name=self.dest_table_name,
+                    logger=self.logger
+                )
+
         except Exception as e:
             logger.exception(e)
             raise e
 
         return self._reccount
+
+
+    def after_import(self, source_connection_name: str, source_table_name: str,
+                 dest_connection_name: str, dest_table_name: str, logger=logger
+                 ) -> None:
+
+        return SQLLocalFts(
+            source_connection_name=source_connection_name,
+            source_table_name=source_table_name,
+            dest_connection_name=dest_connection_name,
+            dest_table_name=dest_table_name,
+            logger=logger
+        ).start_import()
 
 
     def _transform_raw_select(self, start: int, raw_sql: str) -> str:

@@ -233,6 +233,7 @@ EXPORT_MODULE = 'src.apps.dbfexport'
 IMPORT_MODULE = 'src.apps.sqlimport'
 RESOURCE_MODULE_NAME = 'resources'
 INSTALLED_RESOURCE_APPS = [IMPORT_MODULE, EXPORT_MODULE,]
+CONNECTION_FTS = 'localfts'
 BATCH_SIZE = 10000
 ONE_HOUR = 3600000
 ################################################################################
