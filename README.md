@@ -1,6 +1,6 @@
 Это чистый шаблон Django проекта, с которым можно быстро начать разработку. В шаблон входит конфиг Systemd, nginx, gunicorn.
 
-[Видео](https://www.youtube.com/watch?v=uXTZMurM0FY)
+# [Видео](https://www.youtube.com/watch?v=uXTZMurM0FY)
 
 Установка представляет собой просто указание Python интерпретатора и названия домена, запустите:
 
