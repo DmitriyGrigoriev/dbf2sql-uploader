@@ -17,6 +17,10 @@ app_label = "core"
 
 logger = logging.getLogger(__name__)
 
+DEFAULT_ENGINE = 'django.db.backends.sqlite3'
+DBF_ENGINE = 'src.db.connection.advantage'
+MSSQL_ENGINE = 'mssql'
+
 
 class ImportTablesManager(models.Manager):
     def tables_for_import(self, connection_pull_pk):
@@ -169,22 +173,18 @@ class ConnectSet(DefaultModel):
 
 class ConnectWrapper(DefaultModel):
     """Store data source info like as connection string"""
-    DEFAULT_ENGINE = 'django.db.backends.sqlite3'
-    DBF_ENGINE = 'src.db.connection.advantage'
-    MSSQL_ENGINE = 'mssql'
-
     CONNECTOR_ENGINE = (
-        (DEFAULT_ENGINE, _('SQLite')),
+        # (DEFAULT_ENGINE, _('SQLite')),
         (DBF_ENGINE, _('DBF')),
         (MSSQL_ENGINE, _('MSSQL')),
     )
-    conname = models.CharField(_('Connect name'), max_length=128, blank=False, unique=True)
+    conname = models.CharField(_('Connect name'), max_length=128, blank=False, unique=True, validators=[validate_slug])
     slug_name = models.SlugField(max_length=150)
     engine = models.CharField(_('Select engine'), max_length=200,
                                  choices=CONNECTOR_ENGINE, default=MSSQL_ENGINE, blank=False)
     description = models.TextField(_('Description'), max_length=200, blank=True)
     is_active = models.BooleanField(_('Active'), default=True)
-    name = models.CharField(max_length=250, verbose_name=_('NAME'), blank=False, validators=[validate_slug])
+    name = models.CharField(max_length=250, verbose_name=_('NAME'), blank=False)
     options = models.TextField()
     user = models.CharField(max_length=50, blank=True)
     password = models.CharField(max_length=100, blank=True)
