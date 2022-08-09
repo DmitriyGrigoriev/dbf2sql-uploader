@@ -17,7 +17,7 @@ class DclHead(BaseModel):
         # managed = False
         # db_table = 'dclhead'
 
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     num_ver = models.CharField(max_length=8, blank=True, null=True)
@@ -394,7 +394,7 @@ class DclHead(BaseModel):
 
 class AktsHead(BaseModel):
     """Abstract model AktHead.dbf"""
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
 
@@ -417,7 +417,7 @@ class AktsHead(BaseModel):
 
 
 class AktsMess(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     g32 = models.IntegerField(default=0, blank=True, null=True)
@@ -450,7 +450,7 @@ class AktsPath(BaseModel):
     edoc_guid = models.CharField(max_length=36, blank=True, null=True)
     msg_guid = models.CharField(max_length=36, blank=True, null=True)
     path_guid = models.CharField(max_length=36, blank=True, null=True)
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     version = models.IntegerField(default=0, blank=True, null=True)
@@ -470,7 +470,7 @@ class AktsPath(BaseModel):
 
 
 class CntOto(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     pr_dtc = models.CharField(max_length=1, blank=True, null=True)
@@ -487,7 +487,7 @@ class CntOto(BaseModel):
 
 
 class Cvc(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     k542 = models.DateField(blank=True, null=True)
@@ -515,7 +515,7 @@ class Cvc(BaseModel):
 
 
 class Dclamnum(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     g32 = models.IntegerField(default=0, blank=True, null=True)
@@ -535,7 +535,7 @@ class Dclamnum(BaseModel):
 
 
 class Dclavtmb(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     g32 = models.IntegerField(default=0, blank=True, null=True)
@@ -571,7 +571,7 @@ class Dclavtmb(BaseModel):
 
 
 class Dclcont(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     g32 = models.IntegerField(default=0, blank=True, null=True)
@@ -658,7 +658,7 @@ class Dclcrdts(BaseModel):
     udvvoz = models.CharField(max_length=10, blank=True, null=True)
     datud = models.DateField(blank=True, null=True)
     lnpu = models.CharField(max_length=4, blank=True, null=True)
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     ctamogr = models.CharField(max_length=3, blank=True, null=True)
@@ -712,7 +712,7 @@ class Dclcrdts(BaseModel):
 
 
 class Dcldinf2(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     g32 = models.IntegerField(default=0, blank=True, null=True)
@@ -736,7 +736,7 @@ class Dcldinf2(BaseModel):
 
 
 class Dcldinfo(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     g32 = models.IntegerField(default=0, blank=True, null=True)
@@ -763,7 +763,7 @@ class Dcldinfo(BaseModel):
 
 
 class Dcldog(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     g32 = models.IntegerField(default=0, blank=True, null=True)
@@ -783,7 +783,7 @@ class Dcldog(BaseModel):
 
 
 class Dcldoga(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     g32 = models.IntegerField(default=0, blank=True, null=True)
@@ -803,7 +803,7 @@ class Dcldoga(BaseModel):
 
 
 class Dcldogt(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     g32 = models.IntegerField(default=0, blank=True, null=True)
@@ -836,7 +836,7 @@ class Dcldogt(BaseModel):
 
 
 class Dclkmp(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     g32 = models.IntegerField(default=0, blank=True, null=True)
@@ -861,7 +861,7 @@ class Dclkmp(BaseModel):
 
 
 class Dclkmpk(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     g32 = models.IntegerField(default=0, blank=True, null=True)
@@ -888,7 +888,7 @@ class Dclkmpk(BaseModel):
 
 
 class Dcllistd(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     tlist = models.IntegerField(default=0, blank=True, null=True)
@@ -934,7 +934,7 @@ class Dcllistd(BaseModel):
 
 
 class Dcllisth(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     hlist = models.IntegerField(default=0, blank=True, null=True)
@@ -965,7 +965,7 @@ class Dcllisth(BaseModel):
 
 
 class Dcllistl(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     tlist = models.IntegerField(default=0, blank=True, null=True)
@@ -995,7 +995,7 @@ class Dcllistl(BaseModel):
 
 
 class Dclpasp(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     g2810 = models.CharField(max_length=1, blank=True, null=True)
@@ -1017,7 +1017,7 @@ class Dclpasp(BaseModel):
 
 
 class Dclpk(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     g32 = models.IntegerField(default=0, blank=True, null=True)
@@ -1037,7 +1037,7 @@ class Dclpk(BaseModel):
 
 
 class Dclplat2(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     g32 = models.IntegerField(default=0, blank=True, null=True)
@@ -1089,7 +1089,7 @@ class Dclplat2(BaseModel):
 
 
 class Dclplatr(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     g32 = models.IntegerField(default=0, blank=True, null=True)
@@ -1142,7 +1142,7 @@ class Dclplatr(BaseModel):
 
 
 class Dclplatv(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     gb0 = models.CharField(max_length=1, blank=True, null=True)
@@ -1169,7 +1169,7 @@ class Dclplatv(BaseModel):
 
 
 class Dclpredd(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     g32 = models.IntegerField(default=0, blank=True, null=True)
@@ -1198,7 +1198,7 @@ class Dclpredd(BaseModel):
 
 
 class Dclquerd(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     quer = models.IntegerField(default=0, blank=True, null=True)
@@ -1231,7 +1231,7 @@ class Dclquerd(BaseModel):
 
 
 class Dclquerh(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     quer = models.IntegerField(default=0, blank=True, null=True)
@@ -1268,7 +1268,7 @@ class Dclquerh(BaseModel):
 
 
 class Dclquern(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     quer = models.IntegerField(default=0, blank=True, null=True)
@@ -1286,7 +1286,7 @@ class Dclquern(BaseModel):
 
 
 class Dclrinfo(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     g32 = models.IntegerField(default=0, blank=True, null=True)
@@ -1314,7 +1314,7 @@ class Dclrinfo(BaseModel):
 
 
 class Dclriska(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     g32 = models.IntegerField(default=0, blank=True, null=True)
@@ -1342,7 +1342,7 @@ class Dclriska(BaseModel):
 
 
 class Dclriskb(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     g32 = models.IntegerField(default=0, blank=True, null=True)
@@ -1371,7 +1371,7 @@ class Dclriskb(BaseModel):
 
 
 class Dclriskc(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     g32 = models.IntegerField(default=0, blank=True, null=True)
@@ -1396,7 +1396,7 @@ class Dclriskc(BaseModel):
 
 
 class Dclriskd(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     g32 = models.IntegerField(default=0, blank=True, null=True)
@@ -1423,7 +1423,7 @@ class Dclriskd(BaseModel):
 
 
 class Dclriskm(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     g32 = models.IntegerField(default=0, blank=True, null=True)
@@ -1463,7 +1463,7 @@ class Dclriskm(BaseModel):
 
 
 class Dclriskp(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     num_pp = models.IntegerField(default=0, blank=True, null=True)
@@ -1488,7 +1488,7 @@ class Dclriskp(BaseModel):
 
 
 class Dclrsinf(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     g32 = models.IntegerField(default=0, blank=True, null=True)
@@ -1514,7 +1514,7 @@ class Dclrsinf(BaseModel):
 
 
 class Dclrsk93(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     g32 = models.IntegerField(default=0, blank=True, null=True)
@@ -1547,7 +1547,7 @@ class Dclrsk93(BaseModel):
 
 
 class Dclrsmpr(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     g32 = models.IntegerField(default=0, blank=True, null=True)
@@ -1572,7 +1572,7 @@ class Dclrsmpr(BaseModel):
 
 
 class Dclrsnfi(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     g32 = models.IntegerField(default=0, blank=True, null=True)
@@ -1598,7 +1598,7 @@ class Dclrsnfi(BaseModel):
 
 
 class Dclslotm(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     ngr = models.CharField(max_length=2, blank=True, null=True)
@@ -1649,7 +1649,7 @@ class Dclslotm(BaseModel):
 
 
 class Dclsltov(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     g32 = models.IntegerField(default=0, blank=True, null=True)
@@ -1695,7 +1695,7 @@ class Dclsltov(BaseModel):
 
 
 class Dclsumpp(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     gb1 = models.CharField(max_length=4, blank=True, null=True)
@@ -1727,7 +1727,7 @@ class Dclsumpp(BaseModel):
 
 
 class Dcltcim(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     g32 = models.IntegerField(default=0, blank=True, null=True)
@@ -1746,7 +1746,7 @@ class Dcltcim(BaseModel):
 
 
 class Dcltechd(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     g32 = models.IntegerField(default=0, blank=True, null=True)
@@ -1804,7 +1804,7 @@ class Dcltechd(BaseModel):
 
 
 class Dclterms(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     g32 = models.IntegerField(default=0, blank=True, null=True)
@@ -1823,7 +1823,7 @@ class Dclterms(BaseModel):
 
 
 class Dcltois(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     g32 = models.IntegerField(default=0, blank=True, null=True)
@@ -1843,7 +1843,7 @@ class Dcltois(BaseModel):
 
 
 class Dcltov2(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     type_info = models.CharField(max_length=1, blank=True, null=True)
@@ -1897,7 +1897,7 @@ class Dcltov2(BaseModel):
 
 
 class Dcltovar(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     g02_itn = models.CharField(max_length=13, blank=True, null=True)
@@ -2050,7 +2050,7 @@ class Dcltovar(BaseModel):
 
 
 class Dcltovg(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     g32 = models.IntegerField(default=0, blank=True, null=True)
@@ -2107,7 +2107,7 @@ class Dcltovg(BaseModel):
 
 
 class Dcltovg2(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     g32 = models.IntegerField(default=0, blank=True, null=True)
@@ -2141,7 +2141,7 @@ class Dcltovg2(BaseModel):
 
 
 class Dcltovs(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     g32 = models.IntegerField(default=0, blank=True, null=True)
@@ -2160,7 +2160,7 @@ class Dcltovs(BaseModel):
 
 
 class Dcltovs2(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     g32 = models.IntegerField(default=0, blank=True, null=True)
@@ -2181,7 +2181,7 @@ class Dcltovs2(BaseModel):
 
 
 class Dcltrans(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     ngr = models.CharField(max_length=2, blank=True, null=True)
@@ -2214,7 +2214,7 @@ class Dcltrans(BaseModel):
 
 
 class Dclusl(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     gu01 = models.IntegerField(default=0, blank=True, null=True)
@@ -2238,7 +2238,7 @@ class Dclusl(BaseModel):
 
 
 class Dcluslt(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     g32 = models.IntegerField(default=0, blank=True, null=True)
@@ -2264,7 +2264,7 @@ class Dcluslt(BaseModel):
 
 
 class Dclvrsk(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     g32 = models.IntegerField(default=0, blank=True, null=True)
@@ -2299,7 +2299,7 @@ class Dclvrsk(BaseModel):
 
 
 class Dk1(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     k21 = models.IntegerField(default=0, blank=True, null=True)
@@ -2345,7 +2345,7 @@ class Dk1(BaseModel):
 
 
 class Dk2(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     g32 = models.IntegerField(default=0, blank=True, null=True)
@@ -2359,7 +2359,7 @@ class Dk2(BaseModel):
 
 
 class DkPp(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     okpo = models.CharField(max_length=10, blank=True, null=True)
@@ -2397,7 +2397,7 @@ class DkPp(BaseModel):
 
 
 class Dkisch(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     g32 = models.IntegerField(default=0, blank=True, null=True)
@@ -2444,7 +2444,7 @@ class Dkisch(BaseModel):
 
 
 class Dkkupl(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     gb0 = models.CharField(max_length=1, blank=True, null=True)
@@ -2461,7 +2461,7 @@ class Dkkupl(BaseModel):
 
 
 class Dkoprp(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     gb0 = models.CharField(max_length=1, blank=True, null=True)
@@ -2482,7 +2482,7 @@ class Dkoprp(BaseModel):
 
 
 class Dkpeni(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     gb1 = models.CharField(max_length=4, blank=True, null=True)
@@ -2499,7 +2499,7 @@ class Dkpeni(BaseModel):
 
 
 class Dtcddtc(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     num_pp = models.IntegerField(default=0, blank=True, null=True)
@@ -2525,7 +2525,7 @@ class Dtcddtc(BaseModel):
 
 
 class Dtcdinfo(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     num_pp = models.IntegerField(default=0, blank=True, null=True)
@@ -2554,7 +2554,7 @@ class Dtcdinfo(BaseModel):
 
 
 class Dtchead(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     num_pp = models.IntegerField(default=0, blank=True, null=True)
@@ -2711,7 +2711,7 @@ class Dtchead(BaseModel):
 
 
 class Dtcslotm(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     num_pp = models.IntegerField(default=0, blank=True, null=True)
@@ -2734,7 +2734,7 @@ class Dtcslotm(BaseModel):
 
 
 class Dtcsscv(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     num_pp = models.IntegerField(default=0, blank=True, null=True)
@@ -2756,7 +2756,7 @@ class Dtcsscv(BaseModel):
 
 
 class Dtcsstc(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     num_pp = models.IntegerField(default=0, blank=True, null=True)
@@ -2853,7 +2853,7 @@ class Dtcsstc(BaseModel):
 
 
 class Ktcavtmb(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     k32 = models.IntegerField(default=0, blank=True, null=True)
@@ -2885,7 +2885,7 @@ class Ktcavtmb(BaseModel):
 
 
 class Ktcdinfo(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     k32 = models.IntegerField(default=0, blank=True, null=True)
@@ -2914,7 +2914,7 @@ class Ktcdinfo(BaseModel):
 
 
 class Ktcdokiz(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     k32 = models.IntegerField(default=0, blank=True, null=True)
@@ -2960,7 +2960,7 @@ class Ktcdokiz(BaseModel):
 
 
 class Ktchead(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     k0131 = models.CharField(max_length=2, blank=True, null=True)
@@ -3021,7 +3021,7 @@ class Ktchead(BaseModel):
 
 
 class Ktcpk(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     k32 = models.IntegerField(default=0, blank=True, null=True)
@@ -3043,7 +3043,7 @@ class Ktcpk(BaseModel):
 
 
 class Ktcplbiz(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     kb0 = models.CharField(max_length=1, blank=True, null=True)
@@ -3066,7 +3066,7 @@ class Ktcplbiz(BaseModel):
 
 
 class Ktcpltiz(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     k32 = models.IntegerField(default=0, blank=True, null=True)
@@ -3121,7 +3121,7 @@ class Ktcpltiz(BaseModel):
 
 
 class Ktcslotm(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     kc_01 = models.CharField(max_length=1, blank=True, null=True)
@@ -3148,7 +3148,7 @@ class Ktcslotm(BaseModel):
 
 
 class Ktcsltov(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     k32 = models.IntegerField(default=0, blank=True, null=True)
@@ -3176,7 +3176,7 @@ class Ktcsltov(BaseModel):
 
 
 class Ktcsumpp(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     k32 = models.IntegerField(default=0, blank=True, null=True)
@@ -3212,7 +3212,7 @@ class Ktcsumpp(BaseModel):
 
 
 class Ktcterms(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     k32 = models.IntegerField(default=0, blank=True, null=True)
@@ -3233,7 +3233,7 @@ class Ktcterms(BaseModel):
 
 
 class Ktctovg(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     k32 = models.IntegerField(default=0, blank=True, null=True)
@@ -3267,7 +3267,7 @@ class Ktctovg(BaseModel):
 
 
 class Ktctoviz(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     typ_ktc = models.IntegerField(default=0, blank=True, null=True)
@@ -3314,7 +3314,7 @@ class Ktctoviz(BaseModel):
 
 
 class Ktctovs(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     k32 = models.IntegerField(default=0, blank=True, null=True)
@@ -3335,7 +3335,7 @@ class Ktctovs(BaseModel):
 
 
 class Ktdamnum(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     num_pp = models.IntegerField(default=0, blank=True, null=True)
@@ -3356,7 +3356,7 @@ class Ktdamnum(BaseModel):
 
 
 class Ktdavtmb(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     num_pp = models.IntegerField(default=0, blank=True, null=True)
@@ -3393,7 +3393,7 @@ class Ktdavtmb(BaseModel):
 
 
 class Ktdcont(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     num_pp = models.IntegerField(default=0, blank=True, null=True)
@@ -3413,7 +3413,7 @@ class Ktdcont(BaseModel):
 
 
 class Ktddinf2(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     num_pp = models.IntegerField(default=0, blank=True, null=True)
@@ -3437,7 +3437,7 @@ class Ktddinf2(BaseModel):
 
 
 class Ktddinfo(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     num_pp = models.IntegerField(default=0, blank=True, null=True)
@@ -3465,7 +3465,7 @@ class Ktddinfo(BaseModel):
 
 
 class Ktdhead(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     num_pp = models.IntegerField(default=0, blank=True, null=True)
@@ -3780,7 +3780,7 @@ class Ktdhead(BaseModel):
 
 
 class Ktdpasp(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     num_pp = models.IntegerField(default=0, blank=True, null=True)
@@ -3802,7 +3802,7 @@ class Ktdpasp(BaseModel):
 
 
 class Ktdpk(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     num_pp = models.IntegerField(default=0, blank=True, null=True)
@@ -3823,7 +3823,7 @@ class Ktdpk(BaseModel):
 
 
 class Ktdplbiz(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     num_pp = models.IntegerField(default=0, blank=True, null=True)
@@ -3850,7 +3850,7 @@ class Ktdplbiz(BaseModel):
 
 
 class Ktdpltiz(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     num_pp = models.IntegerField(default=0, blank=True, null=True)
@@ -3906,7 +3906,7 @@ class Ktdpltiz(BaseModel):
 
 
 class Ktdpredd(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     num_pp = models.IntegerField(default=0, blank=True, null=True)
@@ -3936,7 +3936,7 @@ class Ktdpredd(BaseModel):
 
 
 class Ktdslotm(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     num_pp = models.IntegerField(default=0, blank=True, null=True)
@@ -3965,7 +3965,7 @@ class Ktdslotm(BaseModel):
 
 
 class Ktdsltov(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     num_pp = models.IntegerField(default=0, blank=True, null=True)
@@ -3994,7 +3994,7 @@ class Ktdsltov(BaseModel):
 
 
 class Ktdsumpp(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     num_pp = models.IntegerField(default=0, blank=True, null=True)
@@ -4027,7 +4027,7 @@ class Ktdsumpp(BaseModel):
 
 
 class Ktdtcim(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     num_pp = models.IntegerField(default=0, blank=True, null=True)
@@ -4047,7 +4047,7 @@ class Ktdtcim(BaseModel):
 
 
 class Ktdtechd(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     num_pp = models.IntegerField(default=0, blank=True, null=True)
@@ -4102,7 +4102,7 @@ class Ktdtechd(BaseModel):
 
 
 class Ktdterms(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     num_pp = models.IntegerField(default=0, blank=True, null=True)
@@ -4122,7 +4122,7 @@ class Ktdterms(BaseModel):
 
 
 class Ktdtois(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     num_pp = models.IntegerField(default=0, blank=True, null=True)
@@ -4143,7 +4143,7 @@ class Ktdtois(BaseModel):
 
 
 class Ktdtov2(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     num_pp = models.IntegerField(default=0, blank=True, null=True)
@@ -4188,7 +4188,7 @@ class Ktdtov2(BaseModel):
 
 
 class Ktdtovar(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     num_pp = models.IntegerField(default=0, blank=True, null=True)
@@ -4298,7 +4298,7 @@ class Ktdtovar(BaseModel):
 
 
 class Ktdtovg(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     num_pp = models.IntegerField(default=0, blank=True, null=True)
@@ -4356,7 +4356,7 @@ class Ktdtovg(BaseModel):
 
 
 class Ktdtovg2(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     num_pp = models.IntegerField(default=0, blank=True, null=True)
@@ -4390,7 +4390,7 @@ class Ktdtovg2(BaseModel):
 
 
 class Ktdtovs(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     num_pp = models.IntegerField(default=0, blank=True, null=True)
@@ -4410,7 +4410,7 @@ class Ktdtovs(BaseModel):
 
 
 class Ktdtovs2(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     num_pp = models.IntegerField(default=0, blank=True, null=True)
@@ -4431,7 +4431,7 @@ class Ktdtovs2(BaseModel):
 
 
 class Ktdtrans(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     num_pp = models.IntegerField(default=0, blank=True, null=True)
@@ -4463,7 +4463,7 @@ class Ktdtrans(BaseModel):
 
 
 class Ktduslt(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     num_pp = models.IntegerField(default=0, blank=True, null=True)
@@ -4490,7 +4490,7 @@ class Ktduslt(BaseModel):
 
 
 class Oupavtmb(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     k32 = models.IntegerField(default=0, blank=True, null=True)
@@ -4523,7 +4523,7 @@ class Oupavtmb(BaseModel):
 
 
 class Oupdinfo(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     k32 = models.IntegerField(default=0, blank=True, null=True)
@@ -4552,7 +4552,7 @@ class Oupdinfo(BaseModel):
 
 
 class Oupdokiz(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     k32 = models.IntegerField(default=0, blank=True, null=True)
@@ -4596,7 +4596,7 @@ class Oupdokiz(BaseModel):
 
 
 class Ouphead(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     k032 = models.IntegerField(default=0, blank=True, null=True)
@@ -4658,7 +4658,7 @@ class Ouphead(BaseModel):
 
 
 class Ouppk(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     k32 = models.IntegerField(default=0, blank=True, null=True)
@@ -4680,7 +4680,7 @@ class Ouppk(BaseModel):
 
 
 class Oupplbiz(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     kb0 = models.CharField(max_length=1, blank=True, null=True)
@@ -4703,7 +4703,7 @@ class Oupplbiz(BaseModel):
 
 
 class Ouppltiz(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     k32 = models.IntegerField(default=0, blank=True, null=True)
@@ -4760,7 +4760,7 @@ class Ouppltiz(BaseModel):
 
 
 class Oupslotm(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     kc_01 = models.CharField(max_length=1, blank=True, null=True)
@@ -4787,7 +4787,7 @@ class Oupslotm(BaseModel):
 
 
 class Oupsltov(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     k32 = models.IntegerField(default=0, blank=True, null=True)
@@ -4815,7 +4815,7 @@ class Oupsltov(BaseModel):
 
 
 class Oupsumpp(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     k32 = models.IntegerField(default=0, blank=True, null=True)
@@ -4851,7 +4851,7 @@ class Oupsumpp(BaseModel):
 
 
 class Oupterms(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     k32 = models.IntegerField(default=0, blank=True, null=True)
@@ -4872,7 +4872,7 @@ class Oupterms(BaseModel):
 
 
 class Ouptovg(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     k32 = models.IntegerField(default=0, blank=True, null=True)
@@ -4908,7 +4908,7 @@ class Ouptovg(BaseModel):
 
 
 class Ouptoviz(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     typ_ktc = models.IntegerField(default=0, blank=True, null=True)
@@ -4982,7 +4982,7 @@ class Ouptoviz(BaseModel):
 
 
 class Ouptovs(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     k32 = models.IntegerField(default=0, blank=True, null=True)
@@ -5003,7 +5003,7 @@ class Ouptovs(BaseModel):
 
 
 class Proterr(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     marked = models.CharField(max_length=1, blank=True, null=True)
@@ -5044,7 +5044,7 @@ class Proterr(BaseModel):
 
 class Protprim(BaseModel):
     plat = models.IntegerField(default=0, blank=True, null=True)
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     ntov = models.IntegerField(default=0, blank=True, null=True)
@@ -5066,7 +5066,7 @@ class Protprim(BaseModel):
 
 
 class PzkErr(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     npp = models.CharField(max_length=5, blank=True, null=True)
@@ -5094,7 +5094,7 @@ class PzkErr(BaseModel):
 
 
 class PzkHead(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     type_td = models.CharField(max_length=2, blank=True, null=True)
@@ -5116,7 +5116,7 @@ class PzkHead(BaseModel):
 
 
 class PzkRsn(BaseModel):
-    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # g071 = models.CharField(max_length=8, blank=True, null=True)
     g072 = models.DateField(blank=True, null=True)
     g073 = models.CharField(max_length=7, blank=True, null=True)
     npp_err = models.CharField(max_length=5, blank=True, null=True)
