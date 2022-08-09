@@ -3,6 +3,10 @@ from django import template
 register = template.Library()
 
 
+def check_database(request, form, change):
+    pass
+
+
 @register.inclusion_tag('admin/core/custom_submit_line.html', takes_context=True)
 def custom_submit_row(context):
     """
@@ -12,6 +16,7 @@ def custom_submit_row(context):
     change = context['change']
     is_popup = context['is_popup']
     save_as = context['save_as']
+
     ctx = {
         'opts': opts,
         'show_delete_link': (
@@ -31,3 +36,4 @@ def custom_submit_row(context):
     if context.get('original') is not None:
         ctx['original'] = context['original']
     return ctx
+
