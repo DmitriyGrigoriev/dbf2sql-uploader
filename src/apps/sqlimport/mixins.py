@@ -32,6 +32,7 @@ class ExtResource:
 class ExtSourceFields(models.Model):
     """Extending sql import table by additional fields"""
     uid = models.AutoField(primary_key=True)
+    g071 = models.CharField(max_length=8, blank=True, null=True)
     # uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     database = models.CharField(max_length=50, blank=True, null=True)
     g07x = models.CharField(max_length=23, blank=True, null=True)
