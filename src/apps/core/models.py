@@ -112,11 +112,20 @@ class ImportTablesManager(models.Manager):
 
 
 class ImportTables(DefaultModel):
+    class Meta:
+        db_table = 'import_tables'
+        # Add verbose name
+        verbose_name = '3. Pipeline table'
+
+    def __str__(self):
+        return f"{self.connects}: {self.source_table} -> {self.dest_table}"
+
+
     connects = models.ForeignKey(
         to='ConnectSet',
         related_name='connect_sets',
         on_delete=models.DO_NOTHING,
-        verbose_name=_('Select conection set')
+        verbose_name=_('Select conection')
     )
     source_table = models.CharField(max_length=50,
         verbose_name=_('Export table')
@@ -131,11 +140,6 @@ class ImportTables(DefaultModel):
 
     tables = ImportTablesManager()
 
-    class Meta:
-        db_table = 'import_tables'
-
-    def __str__(self):
-        return f"{self.connects}: {self.source_table} -> {self.dest_table}"
 
 
 class ConnectSetManager(models.Manager):
@@ -166,6 +170,9 @@ class ConnectSet(DefaultModel):
 
     class Meta:
         db_table = 'connect_set'
+        # Add verbose name
+        verbose_name = '2. Pipeline'
+
 
     def __str__(self):
         return self.name
@@ -223,7 +230,8 @@ class ConnectWrapper(DefaultModel):
                 fields=["engine","name"], name="unique_database_name"
             )
         ]
-
+        # Add verbose name
+        verbose_name = '1. Connection list'
 
     def __str__(self):
         return self.conname
