@@ -61,7 +61,7 @@ class BaseImport:
                 (name, candidate)
                 for name, candidate in inspect.getmembers(mod, inspect.isclass)
                 if (
-                        issubclass(candidate, base_class) and candidate is not base_class
+                        issubclass(candidate, base_class) and candidate is not base_class and candidate._meta.abstract == False
                 )
             ]
 
