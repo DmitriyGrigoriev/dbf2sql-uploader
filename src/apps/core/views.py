@@ -1,9 +1,8 @@
 from django.urls import reverse
 from django.contrib import messages
 from django.http import HttpResponseRedirect
-from src.services.base.baseimport import BaseImport
 from .models import ConnectSet, ImportTables
-from src.config import settings
+
 
 
 from src.apps.core.tasks import (
@@ -37,22 +36,6 @@ from src.apps.core.tasks import (
 # Delete	{{ app_label }}_{{ model_name }}_delete	object_id
 # Change	{{ app_label }}_{{ model_name }}_change	object_id
 
-def create_or_update_import_tables_list(request, object_pk):
-    import_class = BaseImport()
-    table_list = import_class.get_list_tables_from_model_class(settings.EXPORT_MODULE, 'models')
-    poll = ConnectSet.consets.record(pk=object_pk)
-
-    for table in table_list:
-        ImportTables.tables.update_or_create(
-            source_table=table.upper(),
-            dest_table=f"T{table.upper()}",
-            connects_id=poll.pk
-        )
-    messages.success(request, f'The import tables list {poll.name} has successfully added!')
-    # reverse('admin:<yourapp>_<yourmodel>_change', args=[object_pk])
-    return HttpResponseRedirect(
-       reverse('admin:core_importtables_change', args=[object_pk])
-    )
 
 
 def run_import_for_single_table(request, table_pk):
