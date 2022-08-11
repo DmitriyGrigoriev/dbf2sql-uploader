@@ -1,4 +1,0 @@
-sqlimport.TDclavtmb: (models.E004) 'id' can only be used as a field name if the field also sets 'primary_key=True'.
-sqlimport.TKtcavtmb: (models.E004) 'id' can only be used as a field name if the field also sets 'primary_key=True'.
-sqlimport.TKtdavtmb: (models.E004) 'id' can only be used as a field name if the field also sets 'primary_key=True'.
-sqlimport.TOupavtmb: (models.E004) 'id' can only be used as a field name if the field also sets 'primary_key=True'.
