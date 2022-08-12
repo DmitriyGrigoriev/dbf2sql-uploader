@@ -8,19 +8,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 env = environ.Env()
 # reading .env file ~/projects/broker/config/.env
 environ.Env.read_env(BASE_DIR + '/config/.env' )
-# ------------------------------------------------------------------------------
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#debug
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.bool('DEBUG')
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env.str('SECRET_KEY')
-# DOMAINS ----------------------------------------------------------------------
-DOMAIN = env.str('DOMAIN')
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', )
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
-
+# ------------------------------------------------------------------------------
 # APP CONFIGURATION
 # ------------------------------------------------------------------------------
 DJANGO_APPS = [
@@ -35,7 +26,6 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     'django_dramatiq',
     'import_export',
-    # 'services',
 ]
 
 LOCAL_APPS = [
@@ -217,9 +207,9 @@ MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
 MEDIA_URL = '/media/'
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'assets')
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 
-# STATICFILES_DIRS = (os.path.join(PROJECT_ROOT, 'assets'),)
+# STATICFILES_DIRS = (os.path.join(PROJECT_ROOT, 'static'),)
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
