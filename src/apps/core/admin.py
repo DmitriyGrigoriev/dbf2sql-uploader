@@ -141,10 +141,27 @@ class ConnectWrapperAdmin(admin.ModelAdmin):
     validate_form = None
 
     list_display = ('conname', 'engine', 'is_active')
+    fieldsets = (
+        (None, {
+            'fields': ('conname', 'engine', 'description', 'is_active',),
+            'classes': ('predefined',)
+        }),
+        ('Database', {
+            'fields': ('name', 'options',)
+        }),
+        ('Security', {
+            'fields': ('user', 'password', 'host', 'port'),
+            'classes': ('security_fieldset',)
+        }),
+    )
     exclude = ['slug_name',]
+    save_as = True
     save_on_top = True
 
     form = ConnectWrapperForm
+
+    class Media:
+        js = ('dropdown/js/base.js',)
 
     # change_form_template = 'admin/core/custom_change_form.html'
 
@@ -163,6 +180,10 @@ class ConnectWrapperAdmin(admin.ModelAdmin):
     def delete_model(self, request, obj):
         self.validate_class.drop_database()
         super(ConnectWrapperAdmin, self).delete_model(request, obj)
+
+    # def get_changeform_initial_data(self, request):
+    #     initial = super(ConnectWrapperAdmin, self).get_changeform_initial_data(request)
+    #     return initial
 
 
     # def response_change(self, request, obj):
