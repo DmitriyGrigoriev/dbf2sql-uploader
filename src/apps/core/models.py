@@ -192,7 +192,7 @@ class ConnectWrapper(DefaultModel):
     description = models.TextField(_('Description'), max_length=200, blank=True)
     is_active = models.BooleanField(_('Active'), default=True)
     name = models.CharField(max_length=250, verbose_name=_('NAME'), blank=False)
-    options = models.TextField()
+    options = models.TextField(verbose_name=_('Connect options'))
     user = models.CharField(max_length=50, blank=True)
     password = models.CharField(max_length=100, blank=True)
     host = models.CharField(verbose_name=_('HOST'), max_length=100, blank=True, validators=[validate_ipv4_address])
