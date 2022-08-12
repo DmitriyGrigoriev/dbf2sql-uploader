@@ -1,15 +1,15 @@
 from django import forms
-from django.contrib.admin import widgets
+# from django.contrib.admin import widgets
 from .models import ConnectWrapper
 
 class ConnectWrapperForm(forms.ModelForm):
+    engine = forms.Select(choices=ConnectWrapper.CONNECTOR_ENGINE)
+    password = forms.CharField(widget=forms.PasswordInput(render_value=True))
 
     class Meta:
         model = ConnectWrapper
         exclude = ['slug_name',]
-        # widgets = {
-        #     "name": widgets.AdminTextareaWidget(),
-        # }
+
 
 # from import_export.forms import ConfirmImportForm, ImportForm
 
