@@ -71,10 +71,9 @@ class ConnectSetAdmin(admin.ModelAdmin):
     )
     save_on_top = True
 
-    def save_form(self, request, form, change):
-        if not change:
-            self.create_or_update_import_tables_list(request=request, object_pk=request.resolver_match.kwargs['object_id'])
-        return super(ConnectSetAdmin, self).save_form(request, form, change)
+    def save_model(self, request, obj, form, change):
+        super(ConnectSetAdmin, self).save_model(request, obj, form, change)
+        self.create_or_update_import_tables_list(request=request, object_pk=obj.pk)
 
 
     @admin.display(description=_('Import'))
