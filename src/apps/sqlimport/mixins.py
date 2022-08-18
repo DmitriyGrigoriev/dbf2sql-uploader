@@ -26,7 +26,7 @@ class ExtResource:
             row['g07x'] = g07x
 
         if self.database is not None:
-            row['database'] = self.database
+            row['src'] = self.database
 
 
 class ExtSourceFields(models.Model):
