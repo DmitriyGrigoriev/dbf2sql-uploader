@@ -104,7 +104,7 @@ class SQLConnectValidator(ConnectBaseValidator):
     def _connection_params(self):
         success = True
         cleaned_data = self.form.cleaned_data
-        connection_params = {} if not self.engine else settings.DATABASES[self.connection_id]
+        connection_params = {} if not self.change else settings.DATABASES[self.connection_id]
         try:
             connection_params["ENGINE"] = cleaned_data['engine']
             connection_params["NAME"] = 'tempdb'  # need database name for connection
@@ -159,7 +159,7 @@ class DBFConnectValidator(ConnectBaseValidator):
     def _connection_params(self):
         success = True
         cleaned_data = self.form.cleaned_data
-        connection_params = {} if not self.engine else settings.DATABASES[self.connection_id]
+        connection_params = {} if not self.change else settings.DATABASES[self.connection_id]
         try:
             connection_params["ENGINE"] = cleaned_data['engine']
             connection_params["NAME"] = cleaned_data['name']

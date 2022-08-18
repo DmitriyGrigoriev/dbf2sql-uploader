@@ -124,7 +124,8 @@ class ImportTables(DefaultModel):
     connects = models.ForeignKey(
         to='ConnectSet',
         related_name='connect_sets',
-        on_delete=models.DO_NOTHING,
+        on_delete=models.SET_NULL,
+        null=True,
         verbose_name=_('Select conection')
     )
     source_table = models.CharField(max_length=50,
