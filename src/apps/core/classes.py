@@ -64,26 +64,6 @@ class ConnectBaseValidator:
 
     def _connection_params(self):
         raise NotImplementedError('subclasses of ConnectBaseValidator must provide a _connection_params() method')
-        success = True
-        cleaned_data = self.form.cleaned_data
-        try:
-            if not self.change:
-                connection_params= {}
-                connection_params["ENGINE"] = cleaned_data['engine']
-                connection_params["NAME"] = 'tempdb' # need database name for connection
-                # connection_params["NAME"] = 'tempdb' if not change else form_cleaned_data['name'] # need database name for connection
-                connection_params["USER"] = cleaned_data['user']
-                connection_params["PASSWORD"] = cleaned_data['password']
-                connection_params["HOST"] = cleaned_data['host']
-                connection_params["PORT"] = cleaned_data['port']
-                connection_params["OPTIONS"] = json.loads(cleaned_data['options'].replace("'", "\""))
-
-                settings.DATABASES[self.connection_id] = connection_params
-            else:
-                settings.DATABASES[self.connection_id]["NAME"] = 'tempdb'
-        except Exception as e:
-            success = False
-        return success
 
 
 class SQLConnectValidator(ConnectBaseValidator):
@@ -104,7 +84,7 @@ class SQLConnectValidator(ConnectBaseValidator):
     def _connection_params(self):
         success = True
         cleaned_data = self.form.cleaned_data
-        connection_params = {} if not self.change else settings.DATABASES[self.connection_id]
+        connection_params = {} if not self.connection_id in settings.DATABASES else settings.DATABASES[self.connection_id]
         try:
             connection_params["ENGINE"] = cleaned_data['engine']
             connection_params["NAME"] = 'tempdb'  # need database name for connection
@@ -114,8 +94,7 @@ class SQLConnectValidator(ConnectBaseValidator):
             connection_params["PORT"] = cleaned_data['port']
             connection_params["OPTIONS"] = json.loads(cleaned_data['options'].replace("'", "\""))
 
-            if not self.change:
-                settings.DATABASES[self.connection_id] = connection_params
+            settings.DATABASES[self.connection_id] = connection_params
 
         except Exception as e:
             success = False
@@ -159,7 +138,7 @@ class DBFConnectValidator(ConnectBaseValidator):
     def _connection_params(self):
         success = True
         cleaned_data = self.form.cleaned_data
-        connection_params = {} if not self.change else settings.DATABASES[self.connection_id]
+        connection_params = {} if not self.connection_id in settings.DATABASES else settings.DATABASES[self.connection_id]
         try:
             connection_params["ENGINE"] = cleaned_data['engine']
             connection_params["NAME"] = cleaned_data['name']
@@ -169,8 +148,7 @@ class DBFConnectValidator(ConnectBaseValidator):
             connection_params["PORT"] = cleaned_data['port']
             connection_params["OPTIONS"] = json.loads(cleaned_data['options'].replace("'", "\""))
 
-            if not self.change:
-                settings.DATABASES[self.connection_id] = connection_params
+            settings.DATABASES[self.connection_id] = connection_params
 
         except Exception as e:
             success = False
