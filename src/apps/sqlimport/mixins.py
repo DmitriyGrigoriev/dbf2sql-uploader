@@ -34,7 +34,7 @@ class ExtSourceFields(models.Model):
     uid = models.AutoField(primary_key=True)
     g071 = models.CharField(max_length=8, blank=True, null=True)
     # uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    database = models.CharField(max_length=50, blank=True, null=True)
+    src = models.CharField(max_length=50, blank=True, null=True)
     g07x = models.CharField(max_length=23, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
