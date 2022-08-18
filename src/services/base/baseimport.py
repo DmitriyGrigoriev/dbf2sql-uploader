@@ -61,7 +61,8 @@ class BaseImport:
                 (name, candidate)
                 for name, candidate in inspect.getmembers(mod, inspect.isclass)
                 if (
-                        issubclass(candidate, base_class) and candidate is not base_class and candidate._meta.abstract == False
+                        issubclass(candidate, base_class) and candidate is not base_class \
+                        and True if not hasattr(candidate, '_meta.abstract') else candidate._meta.abstract == False
                 )
             ]
 
