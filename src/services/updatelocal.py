@@ -105,7 +105,7 @@ class SQLLocalFts(BaseImport):
         """
         # Delete all table records where field src=self.database
         try:
-            model.__class__.objects.using(self.dest_connection.alias).filter(src=self.database).delete()
+            model.__class__.objects.using(self.dest_connection.alias).filter(database=self.database).delete()
         except Exception as e:
             logger.exception(e)
             raise e
