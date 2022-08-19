@@ -175,6 +175,7 @@ class DatabaseWrapper(BaseDatabaseWrapper):
             cstr_parts['DRIVER'] = driver
 
         cstr_parts['SERVER'] = 'NotTheServer'
+        cstr_parts['ServerTypes'] = '1'
         cstr_parts['DefaultType'] = 'Clipper'
         cstr_parts['AdvantageLocking'] = 'OFF'
         cstr_parts['Locking'] = 'Record'
@@ -236,7 +237,7 @@ class DatabaseWrapper(BaseDatabaseWrapper):
 
         while conn is None:
             try:
-                conn = Database.connect(connstr, **args)
+                conn = Database.connect(connstr, autocommit=True, **args)
             except Exception as e:
                 # for error_number in self._transient_error_numbers:
                 #     if error_number in e.args[1]:
