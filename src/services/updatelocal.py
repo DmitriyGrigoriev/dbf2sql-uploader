@@ -97,9 +97,15 @@ class SQLLocalFts(BaseImport):
 
 
     def _delete_mark_database_records(self, model: models) -> bool:
-        # Delete all table records where field database=self.database
+        """
+        Delete record where src field equal source DBF data directory name
+
+        :param model: Destination model (MSSQL Server table)
+        :return: True
+        """
+        # Delete all table records where field src=self.database
         try:
-            model.__class__.objects.using(self.dest_connection.alias).filter(database=self.database).delete()
+            model.__class__.objects.using(self.dest_connection.alias).filter(src=self.database).delete()
         except Exception as e:
             logger.exception(e)
             raise e
@@ -107,7 +113,13 @@ class SQLLocalFts(BaseImport):
         return True
 
 
-    def _get_source_database_id(self):
+    def _get_source_database_id(self) -> str:
+        """
+        Extract dir from settings.DATABASES[][NAME]
+        Return "NAME": "\\192.168.0.122\BASES\GTD_2022_LG"
+
+        :return: DBF data directory name
+        """
         try:
             return self.get_databases_item_value(
                 alias=self.source_connection_name,
