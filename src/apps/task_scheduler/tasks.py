@@ -1,7 +1,6 @@
 import logging
 # import time
 import dramatiq
-# from datetime import datetime
 from src.apps.task_scheduler.cron import cron
 from src.apps.core.models import ConnectSet, ImportTables
 from src.apps.core.tasks import process_database_import
