@@ -84,7 +84,7 @@ class SQLLocalFts(BaseImport):
         dest_database_name = settings.DATABASES[settings.CONNECTION_FTS]["NAME"]
         source_database_name = settings.DATABASES[self.source_connection_name]['NAME']
         table_name = self.source_model._meta.db_table
-        insert = f"INSERT INTO [{dest_database_name}].[dbo].[{table_name}] WITH(NOLOCK) "
+        insert = f"INSERT INTO [{dest_database_name}].[dbo].[{table_name}] "
         fields = ""
         for f in fields_set:
             fields += f"[{f}], "
