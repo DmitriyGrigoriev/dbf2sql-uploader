@@ -29,12 +29,12 @@ logging.getLogger("pika").setLevel(logging.WARNING)
 #     time.sleep(5)
 #     logging.warning('Task is ended')
 
-
-# @cron("10 * * * *")  # Run once 10 minutes
 @cron("*/10 * * * *")  # Run once 10 minutes
 @dramatiq.actor()
 def select_tables_for_imports():
     """Just do reimport it data from DBF tables if they have  changed last write date time"""
+    # https://linuxize.com/post/cron-jobs-every-5-10-15-minutes/
+
     data_polls = ConnectSet.consets.allowed_for_import()
     for data in data_polls:
         params = ImportTables.tables.tables_import_list(data.pk)
