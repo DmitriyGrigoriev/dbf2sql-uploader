@@ -31,7 +31,7 @@ logging.getLogger("pika").setLevel(logging.WARNING)
 
 
 # @cron("10 * * * *")  # Run once 10 minutes
-@cron("* * * * *")  # Run once 10 minutes
+@cron("10 * * * *")  # Run once 10 minutes
 @dramatiq.actor()
 def select_tables_for_imports():
     """Just do reimport it data from DBF tables if they have  changed last write date time"""
