@@ -54,13 +54,16 @@ def run_import_for_single_table(request, table_pk):
     )
 
 
-def run_import_for_database(request, poll_pk):
+def run_import_for_database(request, poll_pk)-> HttpResponseRedirect:
     t_list = ImportTables.tables.tables_import_list(poll_pk)
-
-    process_database_import(t_list)
-
     poll_name = ConnectSet.consets.record(pk=poll_pk).name
-    messages.info(request, f'Process import data from {poll_name} is running!')
+
+    if len(t_list)>0:
+        process_database_import(t_list)
+        messages.info(request, f'Process import data from {poll_name} is running!')
+    else:
+        messages.info(request, f'No needs import data from {poll_name} it\'s up to date!')
+
     return HttpResponseRedirect(
        reverse('admin:core_connectset_changelist')
     )
