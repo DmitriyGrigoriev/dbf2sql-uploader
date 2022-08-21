@@ -1,10 +1,15 @@
 # import uuid
+from hashlib import sha256
 from django.db import models
 from import_export.instance_loaders import CachedInstanceLoader
 from src.config import settings
 
 class ExtResource:
     database = None
+    dest_connection = None
+
+    hash_field_name = 'hash'
+    hash_field_value = None
 
     class Meta:
         use_bulk = True
@@ -28,6 +33,17 @@ class ExtResource:
         if self.database is not None:
             row['database'] = self.database
 
+        # Calculate row hash
+        self.hash_field_value = sha256(repr(row.values()).encode('utf8')).hexdigest().encode('utf-8').decode('utf-8')
+        row[self.hash_field_name] = self.hash_field_value
+
+    # def skip_row(self, instance, original):
+    #     skip = self.dest_connection.cursor().execute(
+    #         f"SELECT [{self.hash_field_name}] FROM [{instance._meta.model_name}] WHERE [{self.hash_field_name}] = '{self.hash_field_value}'"
+    #     ).fetchone()[0]
+    #     return bool(skip)
+        #return super(ExtResource, self).skip_row(instance, original)
+
 
 class ExtSourceFields(models.Model):
     """Extending sql import table by additional fields"""
@@ -36,6 +52,7 @@ class ExtSourceFields(models.Model):
     # uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     database = models.CharField(max_length=50, blank=True, null=True)
     g07x = models.CharField(max_length=23, blank=True, null=True)
+    hash = models.CharField(max_length=64, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:

@@ -155,6 +155,7 @@ class SQLImport(BaseImport):
                 alias=self.source_connection_name,
                 key='NAME'
             ).lower()
+            res_model.dest_connection = self.dest_connection
         except AttributeError:
             pass
         return res_model
@@ -206,7 +207,9 @@ class SQLImport(BaseImport):
     def _delete_all_imported_records(self, model: models)-> bool:
         # clearing down existing objects
         try:
-            model.__class__.objects.using(self.dest_connection.alias).all().delete()
+            sql = f"TRUNCATE TABLE {model._meta.db_table}"
+            self.dest_connection.cursor().execute(sql)
+            # model.__class__.objects.using(self.dest_connection.alias).all().delete()
         except Exception as e:
             logger.exception(e)
             raise e

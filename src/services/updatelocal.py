@@ -33,7 +33,11 @@ class SQLLocalFts(BaseImport):
         """Process importing data from DBF to SQL Server"""
         try:
             self._delete_mark_database_records(model=self.dest_model)
-            sql = self._create_insert_sql()
+            # delete records
+            sql = self._create_delete_statement()
+            self._execute_query(sql)
+            # insert records
+            sql = self._create_insert_statement()
             self._execute_query(sql)
 
         except Exception as e:
@@ -78,20 +82,44 @@ class SQLLocalFts(BaseImport):
         #self.source_connection
         return self.source_connection.cursor().execute(row_sql)
 
-
-    def _create_insert_sql(self):
+    def _get_sql_fields_list(self)-> str:
         fields_set = [f.name for f in self.source_model._meta.fields if f.name != self.source_model._meta.pk.name]
-        dest_database_name = settings.DATABASES[settings.CONNECTION_FTS]["NAME"]
-        source_database_name = settings.DATABASES[self.source_connection_name]['NAME']
-        table_name = self.source_model._meta.db_table
-        insert = f"INSERT INTO [{dest_database_name}].[dbo].[{table_name}] "
         fields = ""
         for f in fields_set:
             fields += f"[{f}], "
         # remove 2 last symbols
         result = fields[0:-2]
+        return result
 
-        sql = f"{insert} ({result}) SELECT {result} FROM [{source_database_name}].[dbo].[{table_name}]"
+    def _get_real_database_name(self):
+        return settings.DATABASES[self.source_connection_name]['NAME']
+
+    def _get_real_localfts_name(self):
+        return settings.DATABASES[settings.CONNECTION_FTS]["NAME"]
+
+    def _get_real_table_name(self):
+        return self.source_model._meta.db_table
+
+    def _create_insert_statement(self):
+        dest_database_name = self._get_real_localfts_name()
+        source_database_name = self._get_real_database_name()
+        table_name = self._get_real_table_name()
+        insert = f"INSERT INTO [{dest_database_name}].[dbo].[{table_name}] "
+        where = f" WHERE [hash] NOT IN (SELECT [hash] FROM [{dest_database_name}].[dbo].[{table_name}])"
+        fields = self._get_sql_fields_list()
+
+        sql = f"{insert} ({fields}) SELECT {fields} FROM [{source_database_name}].[dbo].[{table_name}] {where}"
+
+        return sql
+
+
+    def _create_delete_statement(self):
+        dest_database_name = self._get_real_localfts_name()
+        source_database_name = self._get_real_database_name()
+        table_name = self._get_real_table_name()
+        where = f" WHERE [hash] NOT IN (SELECT [hash] FROM [{source_database_name}].[dbo].[{table_name}])"
+
+        sql = f"DELETE FROM [{dest_database_name}].[dbo].[{table_name}] {where}"
 
         return sql
 
