@@ -29,7 +29,7 @@ class ImportTablesManager(models.Manager):
             connects__enabled=True,
             uploadable=True).all()
 
-    def tables_import_list(self, poll_pk):
+    def tables_import_list(self, poll_pk)-> list:
         """Return list of tables which have file last write time different from imported last time"""
         connection_poll = ConnectSet.consets.record(pk=poll_pk)
         source_connection_name = connection_poll.source_conection.slug_name
