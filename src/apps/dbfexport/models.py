@@ -1,4 +1,3 @@
-# from django.db import models
 from .base.models import (
     DclHead, AktsHead, AktsMess, AktsPath, CntOto,
     Cvc, Dclamnum, Dclavtmb, Dclcont, Dclcrdts,
@@ -27,7 +26,7 @@ from .base.models import (
     Ouptoviz, Ouptovs, Proterr, Protprim, PzkErr,
     PzkHead, PzkRsn,
 )
-from .mixins import ExtBase, ExtBaseG32, ExtBaseK32
+from src.apps.common.mixins import ExtBase, ExtBaseG32, ExtBaseK32
 
 
 class DclHead(ExtBase, DclHead):

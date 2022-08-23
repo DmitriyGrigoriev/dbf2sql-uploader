@@ -150,9 +150,15 @@ class ConnectSetManager(models.Manager):
     def allowed_for_import(self):
         return self.filter(enabled=True).all()
 
-
 class ConnectSet(DefaultModel):
+    PIPE_TYPE = (
+        ('DBF', _('import from DBF')),
+        ('ARM', _('import from Doc2Sql')),
+    )
+
     name = models.CharField(max_length=100)
+    type = models.CharField(_('Select import type'), max_length=200,
+                                 choices=PIPE_TYPE, default='DBF', blank=False)
     source_conection = models.ForeignKey(
         to='ConnectWrapper',
         related_name='source_conection',

@@ -37,7 +37,7 @@ class ImportTablesAdmin(admin.ModelAdmin):
     )
     list_filter = ('connects__name',)
     search_fields = ('source_table',)
-    list_editable = ('uploadable',)
+    # list_editable = ('uploadable',)
     # save_on_top = True
 
     def has_add_permission(self, request):
@@ -113,13 +113,17 @@ class ConnectSetAdmin(admin.ModelAdmin):
 
     def create_or_update_import_tables_list(self, request, object_pk, *args, **kwargs):
         import_class = BaseImport()
-        table_list = import_class.get_list_tables_from_model_class(settings.EXPORT_MODULE, 'models')
         poll = ConnectSet.consets.record(pk=object_pk)
+        prefix = settings.PIPE_MODULES[poll.type]['table_prefix']
+
+        table_list = import_class.get_list_tables_from_model_class(
+            settings.PIPE_MODULES[poll.type]['export'], 'models'
+        )
 
         for table in table_list:
             ImportTables.tables.update_or_create(
                 source_table=table.upper(),
-                dest_table=f"T{table.upper()}",
+                dest_table=f"{prefix}{table.upper()}",
                 connects_id=poll.pk
             )
         messages.success(request, f'The import tables list for {poll.name} connection has successfully added!')

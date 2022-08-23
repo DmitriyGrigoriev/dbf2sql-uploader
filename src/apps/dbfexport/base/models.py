@@ -3,7 +3,8 @@ from django.db import models
 
 class BaseModel(models.Model):
     """Base import model"""
-    is_global = False
+    # settings.PIPE_MODULES['DBF']
+    type = 'DBF'
 
     class Meta:
         abstract = True

@@ -1,5 +1,8 @@
 from import_export.resources import ModelResource
-from . import mixins
+from src.apps.common import mixins
+#####################################################################################
+# import models for DBF
+#####################################################################################
 from .models import (
     TDclHead, TAktsHead, TAktsMess, TAktsPath, TCntOto,
     TCvc, TDclamnum, TDclavtmb, TDclcont, TDclcrdts,
@@ -24,39 +27,18 @@ from .models import (
     TKtdtov2, TKtdtovar, TKtdtovg, TKtdtovg2, TKtdtovs,
     TKtdtovs2, TKtdtrans, TKtduslt, TOupavtmb, TOupdinfo,
     TOupdokiz, TOuphead, TOuppk, TOupplbiz, TOuppltiz,
-    TOupslotm, TOupslotm, TOupsltov, TOupsumpp, TOupterms,
-    TOuptovg, TOuptoviz, TOuptovs, TProterr, TProtprim,
-    TPzkErr, TPzkHead, TPzkRsn,
+    TOupslotm, TOupsltov, TOupsumpp, TOupterms, TOuptovg,
+    TOuptoviz, TOuptovs, TProterr, TProtprim, TPzkErr,
+    TPzkHead, TPzkRsn,
 )
-
-# from .models import (
-#     TDclHead, TAktsHead, TAktsMess, TAktsPath, TCntOto,
-#     TCvc, TDclamnum,  TDclcont, TDclcrdts,
-#     TDcldinf2, TDcldinfo, TDcldog, TDcldoga, TDcldogt,
-#     TDclkmp, TDclkmpk, TDcllistd, TDcllisth, TDcllistl,
-#     TDclpasp, TDclpk, TDclplat2, TDclplatr, TDclplatv,
-#     TDclpredd, TDclquerd, TDclquerh, TDclquern, TDclrinfo,
-#     TDclriska, TDclriskb, TDclriskc, TDclriskd, TDclriskm,
-#     TDclriskp, TDclrsinf, TDclrsk93, TDclrsmpr, TDclrsnfi,
-#     TDclslotm, TDclsltov, TDclsumpp, TDcltcim, TDcltechd,
-#     TDclterms, TDcltois, TDcltov2, TDcltovar, TDcltovg,
-#     TDcltovg2, TDcltovs, TDcltovs2, TDcltrans, TDclusl,
-#     TDcluslt, TDclvrsk, TDk1, TDk2, TDkPp, TDkisch, TDkkupl,
-#     TDkoprp, TDkpeni, TDtcddtc, TDtcdinfo, TDtchead,
-#     TDtcslotm, TDtcsscv, TDtcsstc,  TKtcdinfo,
-#     TKtcdokiz, TKtchead, TKtcpk, TKtcplbiz, TKtcpltiz,
-#     TKtcslotm, TKtcsltov, TKtcsumpp, TKtcterms, TKtctovg,
-#     TKtctoviz, TKtctovs, TKtdamnum,  TKtdcont,
-#     TKtddinf2, TKtddinfo, TKtdhead, TKtdpasp, TKtdpk,
-#     TKtdplbiz, TKtdpltiz, TKtdpredd, TKtdslotm, TKtdsltov,
-#     TKtdsumpp, TKtdtcim, TKtdtechd, TKtdterms, TKtdtois,
-#     TKtdtov2, TKtdtovar, TKtdtovg, TKtdtovg2, TKtdtovs,
-#     TKtdtovs2, TKtdtrans, TKtduslt, TOupdinfo,
-#     TOupdokiz, TOuphead, TOuppk, TOupplbiz, TOuppltiz,
-#     TOupslotm, TOupslotm, TOupsltov, TOupsumpp, TOupterms,
-#     TOuptovg, TOuptoviz, TOuptovs, TProterr, TProtprim,
-#     TPzkErr, TPzkHead, TPzkRsn,
-# )
+#####################################################################################
+# import models for Doc2SQL
+#####################################################################################
+from .models import (
+    TDclDop48, TKtdCrdts, TKtdDog, TKtdDoga,
+    TKtdDogt, TKtdDogt, TKtdKmp, TKtdKmpk,
+    TKtdPlatr, TKtdPlatv,
+)
 
 class DclHeadResource(mixins.ExtResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
@@ -707,6 +689,55 @@ class PzkRsnResource(mixins.ExtResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TPzkRsn
 
+#####################################################################################
+# import models for Doc2SQL
+#####################################################################################
+class DclDop48Resource(mixins.ExtResource, ModelResource):
+    class Meta(mixins.ExtResource.Meta):
+        model = TDclDop48
+
+
+class KtdCrdtsResource(mixins.ExtResource, ModelResource):
+    class Meta(mixins.ExtResource.Meta):
+        model = TKtdCrdts
+
+
+class KtdDogResource(mixins.ExtResource, ModelResource):
+    class Meta(mixins.ExtResource.Meta):
+        model = TKtdDog
+
+
+class KtdDogaResource(mixins.ExtResource, ModelResource):
+    class Meta(mixins.ExtResource.Meta):
+        model = TKtdDoga
+
+
+class KtdDogtResource(mixins.ExtResource, ModelResource):
+    class Meta(mixins.ExtResource.Meta):
+        model = TKtdDogt
+
+
+class KtdKmpResource(mixins.ExtResource, ModelResource):
+    class Meta(mixins.ExtResource.Meta):
+        model = TKtdKmp
+
+
+class KtdKmpkResource(mixins.ExtResource, ModelResource):
+    class Meta(mixins.ExtResource.Meta):
+        model = TKtdKmpk
+
+
+class KtdPlatrResource(mixins.ExtResource, ModelResource):
+    class Meta(mixins.ExtResource.Meta):
+        model = TKtdPlatr
+
+
+class KtdPlatvResource(mixins.ExtResource, ModelResource):
+    class Meta(mixins.ExtResource.Meta):
+        model = TKtdPlatv
+
+
+# Script for generate resourse classes
 # c = (
 #     'TDclHead', 'TAktsHead', 'TAktsMess', 'TAktsPath', 'TCntOto',
 #     'TCvc', 'TDclamnum', 'TDclavtmb', 'TDclcont', 'TDclcrdts',

@@ -20,10 +20,14 @@ class SQLLocalFts(BaseImport):
         self.source_table_name = source_table_name
         self.dest_table_name = dest_table_name
 
-        self.source_model = self.get_model_class(settings.IMPORT_MODULE, 'models', self.dest_table_name)
+        self.source_model = self.get_model_class(
+            settings.PIPE_MODULES['DBF']['import'], 'models', self.dest_table_name
+        )
         self.source_connection_name = dest_connection_name
 
-        self.dest_model = self.get_model_class(settings.IMPORT_MODULE, 'models', self.dest_table_name)
+        self.dest_model = self.get_model_class(
+            settings.PIPE_MODULES['DBF']['import'], 'models', self.dest_table_name
+        )
         self.dest_connection_name = settings.CONNECTION_FTS
 
         self.database = self._get_source_database_id()

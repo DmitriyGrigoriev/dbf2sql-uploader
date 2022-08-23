@@ -39,22 +39,25 @@ class SQLImport(BaseImport):
         ###########################################################################
         # First setting connection and then attach using_db to source model
         ###########################################################################
-        self.source_model = self.get_model_class(settings.EXPORT_MODULE, 'models', self.source_table_name)
+        self.source_model = self.get_model_class(
+            settings.PIPE_MODULES['DBF']['export'], 'models', self.source_table_name
+        )
         self.source_connection_name = source_connection_name
 
         ###########################################################################
         # First setting connection and then attach using_db to destination model
         ###########################################################################
-        self.dest_model = self.get_model_class(settings.IMPORT_MODULE, 'models', self.dest_table_name)
+        self.dest_model = self.get_model_class(
+            settings.PIPE_MODULES['DBF']['import'], 'models', self.dest_table_name
+        )
         self.dest_connection_name = dest_connection_name
 
         self.headers = self._get_exported_headers()
 
-        # self.resources = self.populate(installed_apps=settings.INSTALLED_RESOURCE_APPS)
         self.resources = dict(
             self.get_list_classes(
-                settings.IMPORT_MODULE,
-                settings.RESOURCE_MODULE_NAME,
+                settings.PIPE_MODULES['DBF']['import'], # import module
+                settings.PIPE_MODULES['DBF']['resource'], # resource module
                 resources.ModelResource
             )
         )
@@ -275,53 +278,3 @@ class SQLImport(BaseImport):
         return self._dest_connection_name
 
     dest_connection_name = property(get_dest_connection_name, set_dest_connection_name)
-
-
-# class Resource:
-#
-#     def __init__(self, installed_apps=()):
-#         if installed_apps is None :
-#             raise RuntimeError("You must supply an installed_apps argument.")
-#
-#         # Mapping of labels to AppConfig instances for installed apps.
-#         self.res_models = {}
-#
-#     def populate(self, installed_apps=None):
-#
-#         for entry in installed_apps:
-#             # If import_module succeeds, entry points to the resource app module.
-#             try:
-#                 app_module = import_module(entry)
-#             except Exception as e:
-#                 logger.exception(e)
-#                 raise e
-#
-#             if module_has_submodule(app_module, RESOURCE_MODULE_NAME):
-#                 mod_path = "%s.%s" % (entry, RESOURCE_MODULE_NAME)
-#                 mod = import_module(mod_path)
-#                 # Check if there's exactly one AppConfig candidate,
-#                 # excluding those that explicitly define default = False.
-#                 res_models = [
-#                     (name, candidate)
-#                     for name, candidate in inspect.getmembers(mod, inspect.isclass)
-#                     if (
-#                             issubclass(candidate, ModelResource)
-#                             and candidate is not ModelResource
-#                     )
-#                 ]
-#                 self.res_models = dict(res_models)
-#
-#         return  self.res_models
-#
-#         #     if isinstance(entry, ResourceConfig):
-#         #         app_config = entry
-#         #     else:
-#         #         app_config = ResourceConfig.create(entry)
-#         #     if app_config._meta.model.lower() in self.app_configs:
-#         #         raise ImproperlyConfigured(
-#         #             "Resource tables aren't unique, "
-#         #             "duplicates: %s" % app_config.label
-#         #         )
-#         #
-#         #     self.app_configs[app_config._meta.model.lower()] = app_config
-#         #     app_config.apps = self

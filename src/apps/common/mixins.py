@@ -1,10 +1,14 @@
-# import uuid
-from hashlib import sha256
 from django.db import models
+
+from hashlib import sha256
 from import_export.instance_loaders import CachedInstanceLoader
 from src.config import settings
 
+################################################################
+# Mixin extend resource model and add some additional fields
+################################################################
 class ExtResource:
+    """Extend resource model"""
     database = None
     dest_connection = None
 
@@ -15,7 +19,7 @@ class ExtResource:
         use_bulk = True
         batch_size = settings.BATCH_SIZE
         skip_unchanged = True
-        #skip_diff = True
+        # skip_diff = True
         # This flag can speed up imports
         # Cannot be used when performing updates
         # force_init_instance = True
@@ -43,6 +47,46 @@ class ExtResource:
     #     ).fetchone()[0]
     #     return bool(skip)
         #return super(ExtResource, self).skip_row(instance, original)
+
+
+
+class ExtBase(models.Model):
+    """Extending base model table by additional fields"""
+    g071 = models.CharField(max_length=8, primary_key=True)
+
+    class Meta:
+            abstract = True
+            managed = False
+            unique_together = (('g071', 'g072', 'g073'),)
+
+
+class ExtBaseDocNum(models.Model):
+    """Extending base model table by additional fields"""
+    docnum = models.CharField(db_column='DocNum', max_length=23, primary_key=True)
+
+    class Meta:
+            abstract = True
+            managed = False
+
+
+class ExtBaseG32(models.Model):
+    """Extending base model table by additional fields"""
+    g071 = models.CharField(max_length=8, primary_key=True)
+
+    class Meta:
+            abstract = True
+            managed = False
+            unique_together = (('g071', 'g072', 'g073', 'g32'),)
+
+
+class ExtBaseK32(models.Model):
+    """Extending base model table by additional fields"""
+    g071 = models.CharField(max_length=8, primary_key=True)
+
+    class Meta:
+            abstract = True
+            managed = False
+            unique_together = (('g071', 'g072', 'g073', 'k32'),)
 
 
 class ExtSourceFields(models.Model):

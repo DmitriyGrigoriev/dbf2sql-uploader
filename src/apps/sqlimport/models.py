@@ -1,6 +1,7 @@
-from django.db import models
-from django.utils.text import slugify
-from django.utils.translation import gettext_lazy as _
+#from django.utils.translation import gettext_lazy as _
+#####################################################################################
+# add models from DBF
+#####################################################################################
 from src.apps.dbfexport.base.models import (
     DclHead, AktsHead, AktsMess, AktsPath, CntOto,
     Cvc, Dclamnum, Dclavtmb, Dclcont, Dclcrdts,
@@ -29,9 +30,19 @@ from src.apps.dbfexport.base.models import (
     Ouptovg, Ouptoviz, Ouptovs, Proterr, Protprim,
     PzkErr, PzkHead, PzkRsn
 )
-from .mixins import ExtSourceFields
+#####################################################################################
+# add models from ARM Doc2SQL
+#####################################################################################
+from src.apps.armexport.base.models import (
+    Dbrdop48, Ktdcrdts, Ktddog, Ktddoga, Ktddogt,
+    Ktdkmp, Ktdkmpk, Ktdplatr, Ktdplatv,
+)
+from src.apps.common.mixins import ExtSourceFields
 
 
+#####################################################################################
+# Models: import from DBF
+#####################################################################################
 class TDclHead(DclHead, ExtSourceFields):
     class Meta:
         db_table = 'tdclhead'
@@ -675,6 +686,55 @@ class TPzkHead(PzkHead, ExtSourceFields):
 class TPzkRsn(PzkRsn, ExtSourceFields):
     class Meta:
         db_table = 'tpzk_rsn'
+
+#####################################################################################
+# Models: import from Doc2SQL
+#####################################################################################
+class TDclDop48(Dbrdop48, ExtSourceFields):
+    class Meta:
+        db_table = 'tdcldop48'
+
+
+class TKtdCrdts(Ktdcrdts, ExtSourceFields):
+    class Meta:
+        db_table = 'tktdcrdts'
+
+
+class TKtdDog(Ktddog, ExtSourceFields):
+    class Meta:
+        db_table = 'tktddog'
+
+
+class TKtdDoga(Ktddoga, ExtSourceFields):
+    class Meta:
+        db_table = 'tktddoga'
+
+
+class TKtdDogt(Ktddogt, ExtSourceFields):
+    class Meta:
+        db_table = 'tktddogt'
+
+
+class TKtdKmp(Ktdkmp, ExtSourceFields):
+    class Meta:
+        db_table = 'tktdkmp'
+
+
+class TKtdKmpk(Ktdkmpk, ExtSourceFields):
+    class Meta:
+        db_table = 'tktdkmpk'
+
+
+class TKtdPlatr(Ktdplatr, ExtSourceFields):
+    class Meta:
+        db_table = 'tktdplatr'
+
+
+class TKtdPlatv(Ktdplatv, ExtSourceFields):
+    class Meta:
+        db_table = 'tktdplatv'
+
+
 
 # Create your models here.
 # class TDbf(models.Model):

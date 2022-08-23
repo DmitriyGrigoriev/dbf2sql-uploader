@@ -32,6 +32,8 @@ LOCAL_APPS = [
     'src.apps.core.apps.CoreConfig',
     'src.apps.sqlimport.apps.SqlimportConfig',
     'src.apps.dbfexport.apps.DbfexportConfig',
+    'src.apps.armimport.apps.ArmimportConfig',
+    'src.apps.armexport.apps.ArmexportConfig',
     'src.apps.task_scheduler.apps.TaskSchedulerConfig',
 ]
 
@@ -112,6 +114,28 @@ DATABASES = {
                     "extra_params": "TrustServerCertificate=Yes; Trusted_Connection=Yes",
                     },
     },
+    "arm_edh": {
+        "ENGINE": "mssql",
+        "NAME": "arm_edh1",
+        "USER": None,
+        "PASSWORD": None,
+        "HOST": f"{DOMAIN}",
+        "PORT": "1433",
+        "OPTIONS": {"driver": "SQL Server Native Client 11.0",
+                    "extra_params": "TrustServerCertificate=Yes; Trusted_Connection=Yes",
+                    },
+    },
+    "arm_test": {
+        "ENGINE": "mssql",
+        "NAME": "arm_test",
+        "USER": None,
+        "PASSWORD": None,
+        "HOST": f"{DOMAIN}",
+        "PORT": "1433",
+        "OPTIONS": {"driver": "SQL Server Native Client 11.0",
+                    "extra_params": "TrustServerCertificate=Yes; Trusted_Connection=Yes",
+                    },
+    },
     # 'default': {
     #     'ENGINE': 'django.db.backends.sqlite3',
     #     'NAME': os.path.join(DATABASE_DIR, 'uploader.db'),
@@ -120,14 +144,15 @@ DATABASES = {
     "dbf_2022_lg": {
         "ENGINE": "src.db.connection.advantage",
         # "NAME": "E:\\MyDocuments\\FoxProProjects\\Bastion\\BASE\\GTD_2022_LG\\GTD_2022_LG.add",
-        "NAME": f"\\\\{DOMAIN}\\FTSBASES\\TEST",
-        # "NAME": f"\\\\{DOMAIN}\\FTSBASES\\GTD_2022_BOROD",
+        # "NAME": "\\\\10.1.0.12\\K\\softland\\BASE\\GTD_2022_BOROD",
+        # "NAME": f"\\\\{DOMAIN}\\FTSBASES\\TEST",
+        "NAME": f"\\\\{DOMAIN}\\FTSBASES\\GTD_2022_BOROD",
         "USER": "",
         "PASSWORD": "",
         # "AUTOCOMMIT": True,
         "OPTIONS": {"driver": "Advantage StreamlineSQL ODBC",
                     "setdecoding": {"encoding": "cp866"},
-                    "extra_params": "TrimTrailingSpace=True"
+                    "extra_params": "ServerTypes=1;"
                     },
         # "OPTIONS": {"dsn": "Clipper",},
         # "OPTIONS": {"driver": "Advantage ODBC Driver",
@@ -217,13 +242,24 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
 ################################################################################
-# Path to the connection module for customs data sources
+# SECTION: export / import
 ################################################################################
+# Path to the connection module for customs data sources
 CONNECTION_MODULE = 'src.db.connection.connects'
-EXPORT_MODULE = 'src.apps.dbfexport'
-IMPORT_MODULE = 'src.apps.sqlimport'
-RESOURCE_MODULE_NAME = 'resources'
-INSTALLED_RESOURCE_APPS = [IMPORT_MODULE, EXPORT_MODULE,]
+PIPE_MODULES = {
+    'DBF': {
+        'export': 'src.apps.dbfexport',
+        'import': 'src.apps.sqlimport',
+        'resource': 'resources', # module: resources.py
+        'table_prefix': 'T'
+    },
+    'ARM': {
+        'export': 'src.apps.armexport',
+        'import': 'src.apps.armimport',
+        'resource': 'resources', # module: resources.py
+        'table_prefix': ''
+    },
+}
 CONNECTION_FTS = 'localfts'
 BATCH_SIZE = 10000
 ONE_HOUR = 3600000
