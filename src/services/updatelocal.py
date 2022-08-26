@@ -8,10 +8,10 @@ logger = logging.getLogger(__name__)
 
 class SQLLocalFts(BaseImport):
     delete_imported_records = True
-    _source_connection_name = None
-    _dest_connection_name = None
-    _source_model = None
-    _dest_model = None
+    # _source_connection_name = None
+    # _dest_connection_name = None
+    # _source_model = None
+    # _dest_model = None
 
 
     def __init__(self, source_connection_name: str, source_table_name: str,
@@ -51,41 +51,6 @@ class SQLLocalFts(BaseImport):
         return True
 
 
-    # setter
-    def set_source_connection_name(self, value):
-        self._source_connection_name = value
-        if self.source_model:
-            self.source_model._meta.model.objects._db = self._source_connection_name
-
-        self.source_connection = self.get_connection_by_alias(self.source_connection_name)
-
-
-    #getter
-    def get_source_connection_name(self):
-        return self._source_connection_name
-
-    source_connection_name = property(get_source_connection_name, set_source_connection_name)
-
-    # setter
-    def set_dest_connection_name(self, value: str):
-        self._dest_connection_name = value
-        if self.dest_model:
-            self.dest_model._meta.model.objects._db = self._dest_connection_name
-
-        self.dest_connection = self.get_connection_by_alias(self.dest_connection_name)
-
-    #getter
-    def get_dest_connection_name(self):
-        return self._dest_connection_name
-
-    dest_connection_name = property(get_dest_connection_name, set_dest_connection_name)
-
-
-    def _execute_query(self, row_sql: str)-> list:
-        """Return rows by executing query SELECT * from dbf_model"""
-        #self.source_connection
-        return self.source_connection.cursor().execute(row_sql)
-
     def _get_sql_fields_list(self)-> str:
         fields_set = [f.name for f in self.source_model._meta.fields if f.name != self.source_model._meta.pk.name]
         fields = ""
@@ -95,14 +60,6 @@ class SQLLocalFts(BaseImport):
         result = fields[0:-2]
         return result
 
-    def _get_real_database_name(self):
-        return settings.DATABASES[self.source_connection_name]['NAME']
-
-    def _get_real_localfts_name(self):
-        return settings.DATABASES[settings.CONNECTION_FTS]["NAME"]
-
-    def _get_real_table_name(self):
-        return self.source_model._meta.db_table
 
     def _create_insert_statement(self):
         dest_database_name = self._get_real_localfts_name()
@@ -143,22 +100,6 @@ class SQLLocalFts(BaseImport):
             raise e
 
         return True
-
-
-    def _get_source_database_id(self) -> str:
-        """
-        Extract dir from settings.DATABASES[][NAME]
-        Return "NAME": "\\192.168.0.122\BASES\GTD_2022_LG"
-
-        :return: DBF data directory name
-        """
-        try:
-            return self.get_databases_item_value(
-                alias=self.source_connection_name,
-                key='NAME'
-            ).lower()
-        except AttributeError:
-            raise
 
 
 

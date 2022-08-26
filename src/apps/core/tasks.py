@@ -4,11 +4,12 @@ import dramatiq
 from dramatiq.rate_limits import ConcurrentRateLimiter
 from dramatiq.rate_limits.backends import RedisBackend
 
+import dataclasses
 from src.config import settings
-from src.services.dataclasses import ImportInfo
+from src.apps.common.dataclasses import ImportInfo
 # from django_dramatiq.models import Task
 from src.services.sqlimport import SQLImport
-from src.apps.core.models import ImportTables, ConnectSet
+from src.apps.core.models import ImportTables
 
 
 @dramatiq.actor
@@ -23,10 +24,20 @@ def identity(x):
 
 
 def process_database_import(params: ImportInfo):
+    # dataclass:ImportInfo
+    # ----------------------------
+    # table_pk: int,
+    # object_pk: int,
+    # source_connection_name: str,
+    # source_table_name: str,
+    # dest_connection_name: str,
+    # dest_table_name: str,
+    # type: str
+    # -----------------------------
     for p in params:
-        kwargs = ImportTables.tables.get_kwargs(table_pk=p.table_pk)
+        # kwargs = ImportTables.tables.get_kwargs(table_pk=p.table_pk)
         process_import.send_with_options(
-            kwargs=kwargs,
+            kwargs=dataclasses.asdict(p),
             # args=(object_pk, source_connection_name, source_table, dest_connection_name, dest_table),
             on_failure=print_error,
             on_success=update_last_write_if_success_result,
@@ -44,6 +55,7 @@ def process_import(
     # source_table_name: str,
     # dest_connection_name: str,
     # dest_table_name: str,
+    # type: str
     global result
     result = 0
     try:

@@ -36,8 +36,8 @@ from .models import (
 #####################################################################################
 from .models import (
     TDclDop48, TKtdCrdts, TKtdDog, TKtdDoga,
-    TKtdDogt, TKtdDogt, TKtdKmp, TKtdKmpk,
-    TKtdPlatr, TKtdPlatv,
+    TKtdDogt, TKtdKmp, TKtdKmpk, TKtdPlatr,
+    TKtdPlatv,
 )
 
 class DclHeadResource(mixins.ExtResource, ModelResource):

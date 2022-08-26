@@ -9,6 +9,7 @@ from src.config import settings
 ################################################################
 class ExtResource:
     """Extend resource model"""
+    type = 'RESOURCE'
     database = None
     dest_connection = None
 
@@ -30,8 +31,9 @@ class ExtResource:
 
     def before_import_row(self, row, row_number=None, **kwargs):
         if 'g071' in row and 'g072' in row and 'g073' in row:
-            year, mounth, day = row['g072'].split('-')
-            g07x = f"{row['g071']}/{day + mounth + year[2:]}/{row['g073']}"
+            # year, mounth, day = g072.split('-')
+            # g07x = f"{row['g071']}/{day + mounth + year[2:]}/{row['g073']}"
+            g07x = f"{row['g071']}/{row['g072'].strftime('%d%m%y')}/{row['g073']}"
             row['g07x'] = g07x
 
         if self.database is not None:

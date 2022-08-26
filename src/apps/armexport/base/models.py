@@ -136,7 +136,7 @@ class Avtomove(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'AVTOMOVE'
+        # db_table = 'AVTOMOVE'
 
 
 class Dbramnum(BaseModel):
@@ -152,7 +152,7 @@ class Dbramnum(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'DBRAMNUM'
+        # db_table = 'DBRAMNUM'
 
 
 class Dbravtmb(BaseModel):
@@ -183,7 +183,7 @@ class Dbravtmb(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'DBRAVTMB'
+        # db_table = 'DBRAVTMB'
 
 
 class Dbrcont(BaseModel):
@@ -202,7 +202,7 @@ class Dbrcont(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'DBRCONT'
+        # db_table = 'DBRCONT'
 
 
 class Dbrcrdts(BaseModel):
@@ -325,7 +325,7 @@ class Dbrcrdts(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'DBRCRDTS'
+        # db_table = 'DBRCRDTS'
 
 
 class Dbrdinf2(BaseModel):
@@ -346,7 +346,7 @@ class Dbrdinf2(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'DBRDINF2'
+        # db_table = 'DBRDINF2'
 
 
 class Dbrdinfo(BaseModel):
@@ -369,7 +369,7 @@ class Dbrdinfo(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'DBRDINFO'
+        # db_table = 'DBRDINFO'
 
 
 class Dbrdog(BaseModel):
@@ -385,7 +385,7 @@ class Dbrdog(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'DBRDOG'
+        # db_table = 'DBRDOG'
 
 
 class Dbrdoga(BaseModel):
@@ -402,7 +402,7 @@ class Dbrdoga(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'DBRDOGA'
+        # db_table = 'DBRDOGA'
 
 
 class Dbrdogt(BaseModel):
@@ -431,7 +431,7 @@ class Dbrdogt(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'DBRDOGT'
+        # db_table = 'DBRDOGT'
 
 
 class Dbrdop48(BaseModel):
@@ -450,7 +450,7 @@ class Dbrdop48(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'DBRDOP48'
+        # db_table = 'DBRDOP48'
 
 
 class Dbrhead(BaseModel):
@@ -818,7 +818,7 @@ class Dbrhead(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'DBRHEAD'
+        # db_table = 'DBRHEAD'
 
 
 class Dbrkmp(BaseModel):
@@ -839,7 +839,7 @@ class Dbrkmp(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'DBRKMP'
+        # db_table = 'DBRKMP'
 
 
 class Dbrkmpk(BaseModel):
@@ -862,7 +862,7 @@ class Dbrkmpk(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'DBRKMPK'
+        # db_table = 'DBRKMPK'
 
 
 class Dbrpasp(BaseModel):
@@ -879,7 +879,7 @@ class Dbrpasp(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'DBRPASP'
+        # db_table = 'DBRPASP'
 
 
 class Dbrpk(BaseModel):
@@ -895,7 +895,7 @@ class Dbrpk(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'DBRPK'
+        # db_table = 'DBRPK'
 
 
 class Dbrplatr(BaseModel):
@@ -948,7 +948,7 @@ class Dbrplatr(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'DBRPLATR'
+        # db_table = 'DBRPLATR'
 
 
 class Dbrplatv(BaseModel):
@@ -978,7 +978,7 @@ class Dbrplatv(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'DBRPLATV'
+        # db_table = 'DBRPLATV'
 
 
 class Dbrpredd(BaseModel):
@@ -1007,7 +1007,7 @@ class Dbrpredd(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'DBRPREDD'
+        # db_table = 'DBRPREDD'
 
 
 class Dbrsumpp(BaseModel):
@@ -1039,7 +1039,7 @@ class Dbrsumpp(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'DBRSUMPP'
+        # db_table = 'DBRSUMPP'
 
 
 class Dbrtechd(BaseModel):
@@ -1092,7 +1092,7 @@ class Dbrtechd(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'DBRTECHD'
+        # db_table = 'DBRTECHD'
 
 
 class Dbrterms(BaseModel):
@@ -1111,7 +1111,7 @@ class Dbrterms(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'DBRTERMS'
+        # db_table = 'DBRTERMS'
 
 
 class Dbrtov2(BaseModel):
@@ -1167,7 +1167,7 @@ class Dbrtov2(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'DBRTOV2'
+        # db_table = 'DBRTOV2'
 
 
 class Dbrtovar(BaseModel):
@@ -1317,7 +1317,7 @@ class Dbrtovar(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'DBRTOVAR'
+        # db_table = 'DBRTOVAR'
 
 
 class Dbrtovg(BaseModel):
@@ -1370,7 +1370,7 @@ class Dbrtovg(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'DBRTOVG'
+        # db_table = 'DBRTOVG'
 
 
 class Dbrtovg2(BaseModel):
@@ -1404,7 +1404,7 @@ class Dbrtovg2(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'DBRTOVG2'
+        # db_table = 'DBRTOVG2'
 
 
 class Dbrtovs(BaseModel):
@@ -1423,7 +1423,7 @@ class Dbrtovs(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'DBRTOVS'
+        # db_table = 'DBRTOVS'
 
 
 class Dbrtovs2(BaseModel):
@@ -1444,7 +1444,7 @@ class Dbrtovs2(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'DBRTOVS2'
+        # db_table = 'DBRTOVS2'
 
 
 class Dbrtrans(BaseModel):
@@ -1477,7 +1477,7 @@ class Dbrtrans(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'DBRTRANS'
+        # db_table = 'DBRTRANS'
 
 
 class Dbruslt(BaseModel):
@@ -1503,7 +1503,7 @@ class Dbruslt(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'DBRUSLT'
+        # db_table = 'DBRUSLT'
 
 
 class Dcllistd(BaseModel):
@@ -1538,7 +1538,7 @@ class Dcllistd(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'DCLLISTD'
+        # db_table = 'DCLLISTD'
 
 
 class Dcllisth(BaseModel):
@@ -1568,7 +1568,7 @@ class Dcllisth(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'DCLLISTH'
+        # db_table = 'DCLLISTH'
 
 
 class Dcllistl(BaseModel):
@@ -1600,7 +1600,7 @@ class Dcllistl(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'DCLLISTL'
+        # db_table = 'DCLLISTL'
 
 
 class Dclquerd(BaseModel):
@@ -1623,7 +1623,7 @@ class Dclquerd(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'DCLQUERD'
+        # db_table = 'DCLQUERD'
 
 
 class Dclquerh(BaseModel):
@@ -1654,7 +1654,7 @@ class Dclquerh(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'DCLQUERH'
+        # db_table = 'DCLQUERH'
 
 
 class Docsfiles(BaseModel):
@@ -1665,7 +1665,7 @@ class Docsfiles(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'DocsFiles'
+        # db_table = 'DocsFiles'
 
 
 class Kbravtmb(BaseModel):
@@ -1697,7 +1697,7 @@ class Kbravtmb(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'KBRAVTMB'
+        # db_table = 'KBRAVTMB'
 
 
 class Kbrdinfo(BaseModel):
@@ -1726,7 +1726,7 @@ class Kbrdinfo(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'KBRDINFO'
+        # db_table = 'KBRDINFO'
 
 
 class Kbrdokiz(BaseModel):
@@ -1772,7 +1772,7 @@ class Kbrdokiz(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'KBRDOKIZ'
+        # db_table = 'KBRDOKIZ'
 
 
 class Kbrhead(BaseModel):
@@ -1828,7 +1828,7 @@ class Kbrhead(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'KBRHEAD'
+        # db_table = 'KBRHEAD'
 
 
 class Kbrpk(BaseModel):
@@ -1850,7 +1850,7 @@ class Kbrpk(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'KBRPK'
+        # db_table = 'KBRPK'
 
 
 class Kbrplbiz(BaseModel):
@@ -1873,7 +1873,7 @@ class Kbrplbiz(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'KBRPLBIZ'
+        # db_table = 'KBRPLBIZ'
 
 
 class Kbrpltiz(BaseModel):
@@ -1929,7 +1929,7 @@ class Kbrpltiz(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'KBRPLTIZ'
+        # db_table = 'KBRPLTIZ'
 
 
 class Kbrsumpp(BaseModel):
@@ -1964,7 +1964,7 @@ class Kbrsumpp(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'KBRSUMPP'
+        # db_table = 'KBRSUMPP'
 
 
 class Kbrterms(BaseModel):
@@ -1985,7 +1985,7 @@ class Kbrterms(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'KBRTERMS'
+        # db_table = 'KBRTERMS'
 
 
 class Kbrtovg(BaseModel):
@@ -2019,7 +2019,7 @@ class Kbrtovg(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'KBRTOVG'
+        # db_table = 'KBRTOVG'
 
 
 class Kbrtoviz(BaseModel):
@@ -2075,7 +2075,7 @@ class Kbrtoviz(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'KBRTOVIZ'
+        # db_table = 'KBRTOVIZ'
 
 
 class Kbrtovs(BaseModel):
@@ -2096,7 +2096,7 @@ class Kbrtovs(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'KBRTOVS'
+        # db_table = 'KBRTOVS'
 
 
 class Ktdamnum(BaseModel):
@@ -2112,7 +2112,7 @@ class Ktdamnum(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'KTDAMNUM'
+        # db_table = 'KTDAMNUM'
 
 
 class Ktdavtmb(BaseModel):
@@ -2143,7 +2143,7 @@ class Ktdavtmb(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'KTDAVTMB'
+        # db_table = 'KTDAVTMB'
 
 
 class Ktdcont(BaseModel):
@@ -2162,7 +2162,7 @@ class Ktdcont(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'KTDCONT'
+        # db_table = 'KTDCONT'
 
 
 class Ktdcrdts(BaseModel):
@@ -2285,7 +2285,7 @@ class Ktdcrdts(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'KTDCRDTS'
+        # db_table = 'KTDCRDTS'
 
 
 class Ktddinf2(BaseModel):
@@ -2306,7 +2306,7 @@ class Ktddinf2(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'KTDDINF2'
+        # db_table = 'KTDDINF2'
 
 
 class Ktddinfo(BaseModel):
@@ -2329,7 +2329,7 @@ class Ktddinfo(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'KTDDINFO'
+        # db_table = 'KTDDINFO'
 
 
 class Ktddog(BaseModel):
@@ -2345,7 +2345,7 @@ class Ktddog(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'KTDDOG'
+        # db_table = 'KTDDOG'
 
 
 class Ktddoga(BaseModel):
@@ -2362,7 +2362,7 @@ class Ktddoga(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'KTDDOGA'
+        # db_table = 'KTDDOGA'
 
 
 class Ktddogt(BaseModel):
@@ -2391,7 +2391,7 @@ class Ktddogt(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'KTDDOGT'
+        # db_table = 'KTDDOGT'
 
 
 class Ktdhead(BaseModel):
@@ -2759,7 +2759,7 @@ class Ktdhead(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'KTDHEAD'
+        # db_table = 'KTDHEAD'
 
 
 class Ktdkmp(BaseModel):
@@ -2780,7 +2780,7 @@ class Ktdkmp(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'KTDKMP'
+        # db_table = 'KTDKMP'
 
 
 class Ktdkmpk(BaseModel):
@@ -2803,7 +2803,7 @@ class Ktdkmpk(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'KTDKMPK'
+        # db_table = 'KTDKMPK'
 
 
 class Ktdpasp(BaseModel):
@@ -2820,7 +2820,7 @@ class Ktdpasp(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'KTDPASP'
+        # db_table = 'KTDPASP'
 
 
 class Ktdpk(BaseModel):
@@ -2836,7 +2836,7 @@ class Ktdpk(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'KTDPK'
+        # db_table = 'KTDPK'
 
 
 class Ktdplatr(BaseModel):
@@ -2889,7 +2889,7 @@ class Ktdplatr(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'KTDPLATR'
+        # db_table = 'KTDPLATR'
 
 
 class Ktdplatv(BaseModel):
@@ -2919,7 +2919,7 @@ class Ktdplatv(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'KTDPLATV'
+        # db_table = 'KTDPLATV'
 
 
 class Ktdpredd(BaseModel):
@@ -2948,7 +2948,7 @@ class Ktdpredd(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'KTDPREDD'
+        # db_table = 'KTDPREDD'
 
 
 class Ktdsumpp(BaseModel):
@@ -2980,7 +2980,7 @@ class Ktdsumpp(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'KTDSUMPP'
+        # db_table = 'KTDSUMPP'
 
 
 class Ktdtechd(BaseModel):
@@ -3033,7 +3033,7 @@ class Ktdtechd(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'KTDTECHD'
+        # db_table = 'KTDTECHD'
 
 
 class Ktdterms(BaseModel):
@@ -3052,7 +3052,7 @@ class Ktdterms(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'KTDTERMS'
+        # db_table = 'KTDTERMS'
 
 
 class Ktdtov2(BaseModel):
@@ -3108,7 +3108,7 @@ class Ktdtov2(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'KTDTOV2'
+        # db_table = 'KTDTOV2'
 
 
 class Ktdtovar(BaseModel):
@@ -3258,7 +3258,7 @@ class Ktdtovar(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'KTDTOVAR'
+        # db_table = 'KTDTOVAR'
 
 
 class Ktdtovg(BaseModel):
@@ -3311,7 +3311,7 @@ class Ktdtovg(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'KTDTOVG'
+        # db_table = 'KTDTOVG'
 
 
 class Ktdtovg2(BaseModel):
@@ -3345,7 +3345,7 @@ class Ktdtovg2(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'KTDTOVG2'
+        # db_table = 'KTDTOVG2'
 
 
 class Ktdtovs(BaseModel):
@@ -3364,7 +3364,7 @@ class Ktdtovs(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'KTDTOVS'
+        # db_table = 'KTDTOVS'
 
 
 class Ktdtrans(BaseModel):
@@ -3397,7 +3397,7 @@ class Ktdtrans(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'KTDTRANS'
+        # db_table = 'KTDTRANS'
 
 
 class Ktduslt(BaseModel):
@@ -3423,7 +3423,7 @@ class Ktduslt(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'KTDUSLT'
+        # db_table = 'KTDUSLT'
 
 
 class Psm(BaseModel):
@@ -3497,7 +3497,7 @@ class Psm(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'PSM'
+        # db_table = 'PSM'
 
 
 class RegTi(BaseModel):
@@ -3534,7 +3534,7 @@ class RegTi(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'REG_TI'
+        # db_table = 'REG_TI'
 
 
 class Sbrddtc(BaseModel):
@@ -3550,7 +3550,7 @@ class Sbrddtc(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'SBRDDTC'
+        # db_table = 'SBRDDTC'
 
 
 class Sbrdinfo(BaseModel):
@@ -3579,7 +3579,7 @@ class Sbrdinfo(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'SBRDINFO'
+        # db_table = 'SBRDINFO'
 
 
 class Sbrhead(BaseModel):
@@ -3717,7 +3717,7 @@ class Sbrhead(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'SBRHEAD'
+        # db_table = 'SBRHEAD'
 
 
 class Sbrsscv(BaseModel):
@@ -3735,7 +3735,7 @@ class Sbrsscv(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'SBRSSCV'
+        # db_table = 'SBRSSCV'
 
 
 class Sbrsstc(BaseModel):
@@ -3823,7 +3823,7 @@ class Sbrsstc(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'SBRSSTC'
+        # db_table = 'SBRSSTC'
 
 
 class Version(BaseModel):
@@ -3833,4 +3833,4 @@ class Version(BaseModel):
 
     class Meta:
         abstract = True
-        db_table = 'Version'
+        # db_table = 'Version'

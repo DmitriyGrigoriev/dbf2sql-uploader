@@ -8,7 +8,7 @@ from django.utils.text import slugify
 from .base.models import DefaultModel
 from django.utils.translation import gettext_lazy as _
 from src.config import settings
-from src.services.dataclasses import ImportInfo
+from src.apps.common.dataclasses import ImportInfo
 from django_dramatiq.models import Task
 
 # Create your models here.
@@ -29,8 +29,22 @@ class ImportTablesManager(models.Manager):
             connects__enabled=True,
             uploadable=True).all()
 
-    def tables_import_list(self, poll_pk)-> list:
-        """Return list of tables which have file last write time different from imported last time"""
+    def tables_import_info_list(self, poll_pk) -> ImportInfo:
+        """
+        Return list of tables which have file last write time different from imported last time
+
+        :param poll_pk:
+        :return ImportInfo:
+                -----------------------------
+                table_pk: int,
+                object_pk: int,
+                source_connection_name: str,
+                source_table_name: str,
+                dest_connection_name: str,
+                dest_table_name: str,
+                type: str
+                ------------------------------
+        """
         connection_poll = ConnectSet.consets.record(pk=poll_pk)
         source_connection_name = connection_poll.source_conection.slug_name
         dest_connection_name = connection_poll.dest_conection.slug_name
@@ -42,7 +56,8 @@ class ImportTablesManager(models.Manager):
                 t.source_table,
                 dest_connection_name,
                 t.dest_table,
-                connection_poll.source_conection.name
+                connection_poll.source_conection.name,
+                connection_poll.type # import type: DBF / ARM
             )
             for t in ImportTables.tables.tables_for_import(connection_poll.pk) \
             if self.dbf_last_write(connection_poll.source_conection.name, t.source_table) != t.last_write
@@ -50,18 +65,36 @@ class ImportTablesManager(models.Manager):
         ]
         return t_list
 
-    def get_kwargs(self, table_pk) -> dict:
+
+    def table_import_info(self, table_pk) -> ImportInfo:
         """Fill kwargs dict by data"""
-        table = ImportTables.tables.filter(pk=table_pk).get()
-        kwargs={
-            "table_pk": table.pk,
-            "poll_pk": table.connects.pk,
-            "source_connection_name": table.connects.source_conection.slug_name,
-            "source_table_name": table.source_table,
-            "dest_connection_name": table.connects.dest_conection.slug_name,
-            "dest_table_name": table.dest_table
-        }
-        return kwargs
+        t = ImportTables.tables.filter(pk=table_pk).get()
+        t_list = [
+            ImportInfo(
+                t.pk,
+                t.connects.pk,
+                t.connects.source_conection.slug_name,
+                t.source_table,
+                t.connects.dest_conection.slug_name,
+                t.dest_table,
+                t.dest_table,
+                t.connects.type # import type: DBF / ARM
+            )
+        ]
+        return t_list
+
+    # def get_kwargs(self, table_pk) -> dict:
+    #     """Fill kwargs dict by data"""
+    #     table = ImportTables.tables.filter(pk=table_pk).get()
+    #     kwargs={
+    #         "table_pk": table.pk,
+    #         "poll_pk": table.connects.pk,
+    #         "source_connection_name": table.connects.source_conection.slug_name,
+    #         "source_table_name": table.source_table,
+    #         "dest_connection_name": table.connects.dest_conection.slug_name,
+    #         "dest_table_name": table.dest_table
+    #     }
+    #     return kwargs
 
     # def current_task_status(self, message_id) -> str or None:
     #     return Task.tasks.filter(pk=message_id).get().status if message_id else None

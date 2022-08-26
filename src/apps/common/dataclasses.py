@@ -10,6 +10,5 @@ class ImportInfo:
     dest_connection_name: str
     dest_table_name: str
     data_directory: str
-    # file_last_write: datetime
-    # last_wrire: datetime
+    type: str
 
