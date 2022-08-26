@@ -132,7 +132,7 @@ class Avtomove(BaseModel):
     list_col = models.CharField(db_column='LIST_COL', max_length=43, blank=True, null=True)  # Field name made lowercase.
     kpp = models.CharField(db_column='KPP', max_length=9, blank=True, null=True)  # Field name made lowercase.
     z_address = models.CharField(db_column='Z_ADDRESS', max_length=150, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=23, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=23, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -148,7 +148,7 @@ class Dbramnum(BaseModel):
     numstart = models.IntegerField(db_column='NUMSTART', blank=True, null=True)  # Field name made lowercase.
     numend = models.IntegerField(db_column='NUMEND', blank=True, null=True)  # Field name made lowercase.
     kolvoam = models.IntegerField(db_column='KOLVOAM', blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -175,7 +175,7 @@ class Dbravtmb(BaseModel):
     emergency = models.CharField(db_column='EMERGENCY', max_length=50, blank=True, null=True)  # Field name made lowercase.
     prim = models.CharField(db_column='PRIM', max_length=50, blank=True, null=True)  # Field name made lowercase.
     probeg = models.DecimalField(db_column='PROBEG', max_digits=17, decimal_places=6, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
     pricev = models.CharField(db_column='PRICEV', max_length=3, blank=True, null=True)  # Field name made lowercase.
     maxpower1 = models.DecimalField(db_column='MAXPOWER1', max_digits=17, decimal_places=6, blank=True, null=True)  # Field name made lowercase.
     maxpower2 = models.DecimalField(db_column='MAXPOWER2', max_digits=17, decimal_places=6, blank=True, null=True)  # Field name made lowercase.
@@ -198,7 +198,7 @@ class Dbrcont(BaseModel):
     dmodify = models.DateTimeField(db_column='DMODIFY', blank=True, null=True)  # Field name made lowercase.
     tmodify = models.CharField(db_column='TMODIFY', max_length=8, blank=True, null=True)  # Field name made lowercase.
     p_edoc_id = models.DecimalField(db_column='P_EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -312,7 +312,7 @@ class Dbrcrdts(BaseModel):
     yc_status = models.CharField(db_column='YC_STATUS', max_length=1, blank=True, null=True)  # Field name made lowercase.
     yc_tpo = models.CharField(db_column='YC_TPO', max_length=26, blank=True, null=True)  # Field name made lowercase.
     yc_matter = models.CharField(db_column='YC_MATTER', max_length=2, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
     kateg3 = models.CharField(db_column='KATEG3', max_length=3, blank=True, null=True)  # Field name made lowercase.
     epts = models.CharField(db_column='EPTS', max_length=15, blank=True, null=True)  # Field name made lowercase.
     tipdvname = models.CharField(db_column='TIPDVNAME', max_length=50, blank=True, null=True)  # Field name made lowercase.
@@ -342,7 +342,7 @@ class Dbrdinf2(BaseModel):
     text1 = models.CharField(db_column='TEXT1', max_length=250, blank=True, null=True)  # Field name made lowercase.
     text2 = models.CharField(db_column='TEXT2', max_length=50, blank=True, null=True)  # Field name made lowercase.
     nzp = models.SmallIntegerField(db_column='NZP', blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -365,7 +365,7 @@ class Dbrdinfo(BaseModel):
     kolvo = models.DecimalField(db_column='KOLVO', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
     code_edi = models.CharField(db_column='CODE_EDI', max_length=3, blank=True, null=True)  # Field name made lowercase.
     name_edi = models.CharField(db_column='NAME_EDI', max_length=17, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -381,7 +381,7 @@ class Dbrdog(BaseModel):
     dogd = models.DateTimeField(db_column='DOGD', blank=True, null=True)  # Field name made lowercase.
     pasp = models.CharField(db_column='PASP', max_length=25, blank=True, null=True)  # Field name made lowercase.
     paspbank = models.CharField(db_column='PASPBANK', max_length=70, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -398,7 +398,7 @@ class Dbrdoga(BaseModel):
     dogaddn = models.CharField(db_column='DOGADDN', max_length=50, blank=True, null=True)  # Field name made lowercase.
     dogaddd = models.DateTimeField(db_column='DOGADDD', blank=True, null=True)  # Field name made lowercase.
     dogaddt = models.CharField(db_column='DOGADDT', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -427,7 +427,7 @@ class Dbrdogt(BaseModel):
     prmeas = models.CharField(db_column='PRMEAS', max_length=3, blank=True, null=True)  # Field name made lowercase.
     prtot = models.DecimalField(db_column='PRTOT', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
     prtotval = models.CharField(db_column='PRTOTVAL', max_length=3, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -446,7 +446,7 @@ class Dbrdop48(BaseModel):
     dmodify = models.DateTimeField(db_column='DMODIFY', blank=True, null=True)  # Field name made lowercase.
     tmodify = models.CharField(db_column='TMODIFY', max_length=8, blank=True, null=True)  # Field name made lowercase.
     p_edoc_id = models.DecimalField(db_column='P_EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -767,7 +767,7 @@ class Dbrhead(BaseModel):
     drv523 = models.CharField(db_column='DRV523', max_length=150, blank=True, null=True)  # Field name made lowercase.
     drv53 = models.DateTimeField(db_column='DRV53', blank=True, null=True)  # Field name made lowercase.
     act_tp = models.CharField(db_column='ACT_TP', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
     g023build = models.CharField(db_column='G023BUILD', max_length=50, blank=True, null=True)  # Field name made lowercase.
     g023abuild = models.CharField(db_column='G023ABUILD', max_length=50, blank=True, null=True)  # Field name made lowercase.
     g083build = models.CharField(db_column='G083BUILD', max_length=50, blank=True, null=True)  # Field name made lowercase.
@@ -835,7 +835,7 @@ class Dbrkmp(BaseModel):
     kmppr = models.DecimalField(db_column='KMPPR', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
     kmpprval = models.CharField(db_column='KMPPRVAL', max_length=3, blank=True, null=True)  # Field name made lowercase.
     kmpqk = models.IntegerField(db_column='KMPQK', blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -858,7 +858,7 @@ class Dbrkmpk(BaseModel):
     kmpqmain = models.DecimalField(db_column='KMPQMAIN', max_digits=19, decimal_places=6, blank=True, null=True)  # Field name made lowercase.
     kmppr = models.DecimalField(db_column='KMPPR', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
     kmpprval = models.CharField(db_column='KMPPRVAL', max_length=3, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -875,7 +875,7 @@ class Dbrpasp(BaseModel):
     pasp0 = models.CharField(db_column='PASP0', max_length=1, blank=True, null=True)  # Field name made lowercase.
     pasp1 = models.CharField(db_column='PASP1', max_length=25, blank=True, null=True)  # Field name made lowercase.
     pasp1dd = models.DateTimeField(db_column='PASP1DD', blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -891,7 +891,7 @@ class Dbrpk(BaseModel):
     pkvid = models.CharField(db_column='PKVID', max_length=2, blank=True, null=True)  # Field name made lowercase.
     pkkolvo = models.IntegerField(db_column='PKKOLVO', blank=True, null=True)  # Field name made lowercase.
     pkinf = models.CharField(db_column='PKINF', max_length=150, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -943,7 +943,7 @@ class Dbrplatr(BaseModel):
     p_edoc_id = models.DecimalField(db_column='P_EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
     g476 = models.DecimalField(db_column='G476', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
     g4761 = models.CharField(db_column='G4761', max_length=3, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
     g4723 = models.CharField(db_column='G4723', max_length=3, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
@@ -973,7 +973,7 @@ class Dbrplatv(BaseModel):
     gb6 = models.DecimalField(db_column='GB6', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
     gb61 = models.CharField(db_column='GB61', max_length=3, blank=True, null=True)  # Field name made lowercase.
     gb7 = models.DecimalField(db_column='GB7', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
     g48doccode = models.CharField(db_column='G48DOCCODE', max_length=5, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
@@ -1000,7 +1000,7 @@ class Dbrpredd(BaseModel):
     dmodify = models.DateTimeField(db_column='DMODIFY', blank=True, null=True)  # Field name made lowercase.
     tmodify = models.CharField(db_column='TMODIFY', max_length=8, blank=True, null=True)  # Field name made lowercase.
     p_edoc_id = models.DecimalField(db_column='P_EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
     g33 = models.CharField(db_column='G33', max_length=10, blank=True, null=True)  # Field name made lowercase.
     prevnumtyp = models.CharField(db_column='PREVNUMTYP', max_length=1, blank=True, null=True)  # Field name made lowercase.
     g40_31 = models.CharField(db_column='G40_31', max_length=2, blank=True, null=True)  # Field name made lowercase.
@@ -1035,7 +1035,7 @@ class Dbrsumpp(BaseModel):
     dmodify = models.DateTimeField(db_column='DMODIFY', blank=True, null=True)  # Field name made lowercase.
     tmodify = models.CharField(db_column='TMODIFY', max_length=8, blank=True, null=True)  # Field name made lowercase.
     p_edoc_id = models.DecimalField(db_column='P_EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -1082,7 +1082,7 @@ class Dbrtechd(BaseModel):
     dmodify = models.DateTimeField(db_column='DMODIFY', blank=True, null=True)  # Field name made lowercase.
     tmodify = models.CharField(db_column='TMODIFY', max_length=8, blank=True, null=True)  # Field name made lowercase.
     ed_id = models.CharField(db_column='ED_ID', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
     prevnumtyp = models.CharField(db_column='PREVNUMTYP', max_length=1, blank=True, null=True)  # Field name made lowercase.
     prevnumdoc = models.CharField(db_column='PREVNUMDOC', max_length=50, blank=True, null=True)  # Field name made lowercase.
     recordid = models.CharField(db_column='RECORDID', max_length=36, blank=True, null=True)  # Field name made lowercase.
@@ -1107,7 +1107,7 @@ class Dbrterms(BaseModel):
     dmodify = models.DateTimeField(db_column='DMODIFY', blank=True, null=True)  # Field name made lowercase.
     tmodify = models.CharField(db_column='TMODIFY', max_length=8, blank=True, null=True)  # Field name made lowercase.
     p_edoc_id = models.DecimalField(db_column='P_EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -1163,7 +1163,7 @@ class Dbrtov2(BaseModel):
     dmodify = models.DateTimeField(db_column='DMODIFY', blank=True, null=True)  # Field name made lowercase.
     tmodify = models.CharField(db_column='TMODIFY', max_length=8, blank=True, null=True)  # Field name made lowercase.
     p_edoc_id = models.DecimalField(db_column='P_EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -1298,7 +1298,7 @@ class Dbrtovar(BaseModel):
     p_edoc_id = models.DecimalField(db_column='P_EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
     g020 = models.CharField(db_column='G020', max_length=15, blank=True, null=True)  # Field name made lowercase.
     g42c = models.CharField(db_column='G42C', max_length=3, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
     g023build = models.CharField(db_column='G023BUILD', max_length=50, blank=True, null=True)  # Field name made lowercase.
     g35zpk = models.DecimalField(db_column='G35ZPK', max_digits=19, decimal_places=6, blank=True, null=True)  # Field name made lowercase.
     g38zpk = models.DecimalField(db_column='G38ZPK', max_digits=19, decimal_places=6, blank=True, null=True)  # Field name made lowercase.
@@ -1347,7 +1347,7 @@ class Dbrtovg(BaseModel):
     dmodify = models.DateTimeField(db_column='DMODIFY', blank=True, null=True)  # Field name made lowercase.
     tmodify = models.CharField(db_column='TMODIFY', max_length=8, blank=True, null=True)  # Field name made lowercase.
     p_edoc_id = models.DecimalField(db_column='P_EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
     g31place = models.CharField(db_column='G31PLACE', max_length=250, blank=True, null=True)  # Field name made lowercase.
     length = models.DecimalField(db_column='LENGTH', max_digits=19, decimal_places=6, blank=True, null=True)  # Field name made lowercase.
     width = models.DecimalField(db_column='WIDTH', max_digits=19, decimal_places=6, blank=True, null=True)  # Field name made lowercase.
@@ -1400,7 +1400,7 @@ class Dbrtovg2(BaseModel):
     dmodify = models.DateTimeField(db_column='DMODIFY', blank=True, null=True)  # Field name made lowercase.
     tmodify = models.CharField(db_column='TMODIFY', max_length=8, blank=True, null=True)  # Field name made lowercase.
     p_edoc_id = models.DecimalField(db_column='P_EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -1419,7 +1419,7 @@ class Dbrtovs(BaseModel):
     dmodify = models.DateTimeField(db_column='DMODIFY', blank=True, null=True)  # Field name made lowercase.
     tmodify = models.CharField(db_column='TMODIFY', max_length=8, blank=True, null=True)  # Field name made lowercase.
     p_edoc_id = models.DecimalField(db_column='P_EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -1440,7 +1440,7 @@ class Dbrtovs2(BaseModel):
     dmodify = models.DateTimeField(db_column='DMODIFY', blank=True, null=True)  # Field name made lowercase.
     tmodify = models.CharField(db_column='TMODIFY', max_length=8, blank=True, null=True)  # Field name made lowercase.
     p_edoc_id = models.DecimalField(db_column='P_EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -1472,7 +1472,7 @@ class Dbrtrans(BaseModel):
     dmodify = models.DateTimeField(db_column='DMODIFY', blank=True, null=True)  # Field name made lowercase.
     tmodify = models.CharField(db_column='TMODIFY', max_length=8, blank=True, null=True)  # Field name made lowercase.
     p_edoc_id = models.DecimalField(db_column='P_EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
     tipts3 = models.CharField(db_column='TIPTS3', max_length=3, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
@@ -1499,7 +1499,7 @@ class Dbruslt(BaseModel):
     dmodify = models.DateTimeField(db_column='DMODIFY', blank=True, null=True)  # Field name made lowercase.
     tmodify = models.CharField(db_column='TMODIFY', max_length=8, blank=True, null=True)  # Field name made lowercase.
     p_edoc_id = models.DecimalField(db_column='P_EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -1534,7 +1534,7 @@ class Dcllistd(BaseModel):
     lineid = models.CharField(db_column='LINEID', max_length=38, blank=True, null=True)  # Field name made lowercase.
     sernum = models.CharField(db_column='SERNUM', max_length=3, blank=True, null=True)  # Field name made lowercase.
     sersign = models.CharField(db_column='SERSIGN', max_length=1, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -1564,7 +1564,7 @@ class Dcllisth(BaseModel):
     tmodify = models.CharField(db_column='TMODIFY', max_length=8, blank=True, null=True)  # Field name made lowercase.
     p_edoc_id = models.DecimalField(db_column='P_EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
     g140 = models.CharField(db_column='G140', max_length=15, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -1596,7 +1596,7 @@ class Dcllistl(BaseModel):
     p_edoc_id = models.DecimalField(db_column='P_EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
     l42 = models.CharField(db_column='L42', max_length=50, blank=True, null=True)  # Field name made lowercase.
     l46 = models.DateTimeField(db_column='L46', blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -1619,7 +1619,7 @@ class Dclquerd(BaseModel):
     dmodify = models.DateTimeField(db_column='DMODIFY', blank=True, null=True)  # Field name made lowercase.
     tmodify = models.CharField(db_column='TMODIFY', max_length=8, blank=True, null=True)  # Field name made lowercase.
     p_edoc_id = models.DecimalField(db_column='P_EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -1650,7 +1650,7 @@ class Dclquerh(BaseModel):
     dmodify = models.DateTimeField(db_column='DMODIFY', blank=True, null=True)  # Field name made lowercase.
     tmodify = models.CharField(db_column='TMODIFY', max_length=8, blank=True, null=True)  # Field name made lowercase.
     p_edoc_id = models.DecimalField(db_column='P_EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -1659,7 +1659,7 @@ class Dclquerh(BaseModel):
 
 class Docsfiles(BaseModel):
     id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=255)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=255)  # Field name made lowercase.
     filename = models.CharField(db_column='FileName', max_length=255, blank=True, null=True)  # Field name made lowercase.
     blob = models.BinaryField(db_column='Blob', blank=True, null=True)  # Field name made lowercase.
 
@@ -1693,7 +1693,7 @@ class Kbravtmb(BaseModel):
     dmodify = models.DateTimeField(db_column='DMODIFY', blank=True, null=True)  # Field name made lowercase.
     tmodify = models.CharField(db_column='TMODIFY', max_length=8, blank=True, null=True)  # Field name made lowercase.
     p_edoc_id = models.DecimalField(db_column='P_EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=34, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=34, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -1722,7 +1722,7 @@ class Kbrdinfo(BaseModel):
     dmodify = models.DateTimeField(db_column='DMODIFY', blank=True, null=True)  # Field name made lowercase.
     tmodify = models.CharField(db_column='TMODIFY', max_length=8, blank=True, null=True)  # Field name made lowercase.
     p_edoc_id = models.DecimalField(db_column='P_EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=58, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=58, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -1768,7 +1768,7 @@ class Kbrdokiz(BaseModel):
     dmodify = models.DateTimeField(db_column='DMODIFY', blank=True, null=True)  # Field name made lowercase.
     tmodify = models.CharField(db_column='TMODIFY', max_length=8, blank=True, null=True)  # Field name made lowercase.
     p_edoc_id = models.DecimalField(db_column='P_EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=58, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=58, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -1824,7 +1824,7 @@ class Kbrhead(BaseModel):
     dmodify = models.DateTimeField(db_column='DMODIFY', blank=True, null=True)  # Field name made lowercase.
     tmodify = models.CharField(db_column='TMODIFY', max_length=8, blank=True, null=True)  # Field name made lowercase.
     p_edoc_id = models.DecimalField(db_column='P_EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=58, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=58, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -1846,7 +1846,7 @@ class Kbrpk(BaseModel):
     dmodify = models.DateTimeField(db_column='DMODIFY', blank=True, null=True)  # Field name made lowercase.
     tmodify = models.CharField(db_column='TMODIFY', max_length=8, blank=True, null=True)  # Field name made lowercase.
     p_edoc_id = models.DecimalField(db_column='P_EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=58, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=58, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -1869,7 +1869,7 @@ class Kbrplbiz(BaseModel):
     dmodify = models.DateTimeField(db_column='DMODIFY', blank=True, null=True)  # Field name made lowercase.
     tmodify = models.CharField(db_column='TMODIFY', max_length=8, blank=True, null=True)  # Field name made lowercase.
     p_edoc_id = models.DecimalField(db_column='P_EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=58, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=58, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -1925,7 +1925,7 @@ class Kbrpltiz(BaseModel):
     p_edoc_id = models.DecimalField(db_column='P_EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
     pdoc = models.CharField(db_column='PDOC', max_length=50, blank=True, null=True)  # Field name made lowercase.
     pdate = models.DateTimeField(db_column='PDATE', blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=58, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=58, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -1960,7 +1960,7 @@ class Kbrsumpp(BaseModel):
     dmodify = models.DateTimeField(db_column='DMODIFY', blank=True, null=True)  # Field name made lowercase.
     tmodify = models.CharField(db_column='TMODIFY', max_length=8, blank=True, null=True)  # Field name made lowercase.
     p_edoc_id = models.DecimalField(db_column='P_EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=34, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=34, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -1981,7 +1981,7 @@ class Kbrterms(BaseModel):
     dmodify = models.DateTimeField(db_column='DMODIFY', blank=True, null=True)  # Field name made lowercase.
     tmodify = models.CharField(db_column='TMODIFY', max_length=8, blank=True, null=True)  # Field name made lowercase.
     p_edoc_id = models.DecimalField(db_column='P_EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=58, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=58, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -2015,7 +2015,7 @@ class Kbrtovg(BaseModel):
     dmodify = models.DateTimeField(db_column='DMODIFY', blank=True, null=True)  # Field name made lowercase.
     tmodify = models.CharField(db_column='TMODIFY', max_length=8, blank=True, null=True)  # Field name made lowercase.
     p_edoc_id = models.DecimalField(db_column='P_EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=58, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=58, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -2071,7 +2071,7 @@ class Kbrtoviz(BaseModel):
     dmodify = models.DateTimeField(db_column='DMODIFY', blank=True, null=True)  # Field name made lowercase.
     tmodify = models.CharField(db_column='TMODIFY', max_length=8, blank=True, null=True)  # Field name made lowercase.
     p_edoc_id = models.DecimalField(db_column='P_EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=58, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=58, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -2092,7 +2092,7 @@ class Kbrtovs(BaseModel):
     dmodify = models.DateTimeField(db_column='DMODIFY', blank=True, null=True)  # Field name made lowercase.
     tmodify = models.CharField(db_column='TMODIFY', max_length=8, blank=True, null=True)  # Field name made lowercase.
     p_edoc_id = models.DecimalField(db_column='P_EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=34, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=34, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -2108,7 +2108,7 @@ class Ktdamnum(BaseModel):
     numstart = models.IntegerField(db_column='NUMSTART', blank=True, null=True)  # Field name made lowercase.
     numend = models.IntegerField(db_column='NUMEND', blank=True, null=True)  # Field name made lowercase.
     kolvoam = models.IntegerField(db_column='KOLVOAM', blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -2135,7 +2135,7 @@ class Ktdavtmb(BaseModel):
     emergency = models.CharField(db_column='EMERGENCY', max_length=50, blank=True, null=True)  # Field name made lowercase.
     prim = models.CharField(db_column='PRIM', max_length=50, blank=True, null=True)  # Field name made lowercase.
     probeg = models.DecimalField(db_column='PROBEG', max_digits=17, decimal_places=6, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
     pricev = models.CharField(db_column='PRICEV', max_length=3, blank=True, null=True)  # Field name made lowercase.
     maxpower1 = models.DecimalField(db_column='MAXPOWER1', max_digits=17, decimal_places=6, blank=True, null=True)  # Field name made lowercase.
     maxpower2 = models.DecimalField(db_column='MAXPOWER2', max_digits=17, decimal_places=6, blank=True, null=True)  # Field name made lowercase.
@@ -2158,7 +2158,7 @@ class Ktdcont(BaseModel):
     dmodify = models.DateTimeField(db_column='DMODIFY', blank=True, null=True)  # Field name made lowercase.
     tmodify = models.CharField(db_column='TMODIFY', max_length=8, blank=True, null=True)  # Field name made lowercase.
     p_edoc_id = models.DecimalField(db_column='P_EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -2272,7 +2272,7 @@ class Ktdcrdts(BaseModel):
     yc_status = models.CharField(db_column='YC_STATUS', max_length=1, blank=True, null=True)  # Field name made lowercase.
     yc_tpo = models.CharField(db_column='YC_TPO', max_length=26, blank=True, null=True)  # Field name made lowercase.
     yc_matter = models.CharField(db_column='YC_MATTER', max_length=2, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
     kateg3 = models.CharField(db_column='KATEG3', max_length=3, blank=True, null=True)  # Field name made lowercase.
     epts = models.CharField(db_column='EPTS', max_length=15, blank=True, null=True)  # Field name made lowercase.
     tipdvname = models.CharField(db_column='TIPDVNAME', max_length=50, blank=True, null=True)  # Field name made lowercase.
@@ -2302,7 +2302,7 @@ class Ktddinf2(BaseModel):
     text1 = models.CharField(db_column='TEXT1', max_length=250, blank=True, null=True)  # Field name made lowercase.
     text2 = models.CharField(db_column='TEXT2', max_length=50, blank=True, null=True)  # Field name made lowercase.
     nzp = models.SmallIntegerField(db_column='NZP', blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -2325,7 +2325,7 @@ class Ktddinfo(BaseModel):
     kolvo = models.DecimalField(db_column='KOLVO', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
     code_edi = models.CharField(db_column='CODE_EDI', max_length=3, blank=True, null=True)  # Field name made lowercase.
     name_edi = models.CharField(db_column='NAME_EDI', max_length=17, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -2341,7 +2341,7 @@ class Ktddog(BaseModel):
     dogd = models.DateTimeField(db_column='DOGD', blank=True, null=True)  # Field name made lowercase.
     pasp = models.CharField(db_column='PASP', max_length=25, blank=True, null=True)  # Field name made lowercase.
     paspbank = models.CharField(db_column='PASPBANK', max_length=70, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -2358,7 +2358,7 @@ class Ktddoga(BaseModel):
     dogaddn = models.CharField(db_column='DOGADDN', max_length=50, blank=True, null=True)  # Field name made lowercase.
     dogaddd = models.DateTimeField(db_column='DOGADDD', blank=True, null=True)  # Field name made lowercase.
     dogaddt = models.CharField(db_column='DOGADDT', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -2387,7 +2387,7 @@ class Ktddogt(BaseModel):
     prmeas = models.CharField(db_column='PRMEAS', max_length=3, blank=True, null=True)  # Field name made lowercase.
     prtot = models.DecimalField(db_column='PRTOT', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
     prtotval = models.CharField(db_column='PRTOTVAL', max_length=3, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -2708,7 +2708,7 @@ class Ktdhead(BaseModel):
     drv523 = models.CharField(db_column='DRV523', max_length=150, blank=True, null=True)  # Field name made lowercase.
     drv53 = models.DateTimeField(db_column='DRV53', blank=True, null=True)  # Field name made lowercase.
     act_tp = models.CharField(db_column='ACT_TP', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
     g023build = models.CharField(db_column='G023BUILD', max_length=50, blank=True, null=True)  # Field name made lowercase.
     g023abuild = models.CharField(db_column='G023ABUILD', max_length=50, blank=True, null=True)  # Field name made lowercase.
     g083build = models.CharField(db_column='G083BUILD', max_length=50, blank=True, null=True)  # Field name made lowercase.
@@ -2776,7 +2776,7 @@ class Ktdkmp(BaseModel):
     kmppr = models.DecimalField(db_column='KMPPR', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
     kmpprval = models.CharField(db_column='KMPPRVAL', max_length=3, blank=True, null=True)  # Field name made lowercase.
     kmpqk = models.IntegerField(db_column='KMPQK', blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -2799,7 +2799,7 @@ class Ktdkmpk(BaseModel):
     kmpqmain = models.DecimalField(db_column='KMPQMAIN', max_digits=19, decimal_places=6, blank=True, null=True)  # Field name made lowercase.
     kmppr = models.DecimalField(db_column='KMPPR', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
     kmpprval = models.CharField(db_column='KMPPRVAL', max_length=3, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -2816,7 +2816,7 @@ class Ktdpasp(BaseModel):
     pasp0 = models.CharField(db_column='PASP0', max_length=1, blank=True, null=True)  # Field name made lowercase.
     pasp1 = models.CharField(db_column='PASP1', max_length=25, blank=True, null=True)  # Field name made lowercase.
     pasp1dd = models.DateTimeField(db_column='PASP1DD', blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -2832,7 +2832,7 @@ class Ktdpk(BaseModel):
     pkvid = models.CharField(db_column='PKVID', max_length=2, blank=True, null=True)  # Field name made lowercase.
     pkkolvo = models.IntegerField(db_column='PKKOLVO', blank=True, null=True)  # Field name made lowercase.
     pkinf = models.CharField(db_column='PKINF', max_length=150, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -2884,7 +2884,7 @@ class Ktdplatr(BaseModel):
     p_edoc_id = models.DecimalField(db_column='P_EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
     g476 = models.DecimalField(db_column='G476', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
     g4761 = models.CharField(db_column='G4761', max_length=3, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
     g4723 = models.CharField(db_column='G4723', max_length=3, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
@@ -2914,7 +2914,7 @@ class Ktdplatv(BaseModel):
     gb6 = models.DecimalField(db_column='GB6', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
     gb61 = models.CharField(db_column='GB61', max_length=3, blank=True, null=True)  # Field name made lowercase.
     gb7 = models.DecimalField(db_column='GB7', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
     g48doccode = models.CharField(db_column='G48DOCCODE', max_length=5, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
@@ -2941,7 +2941,7 @@ class Ktdpredd(BaseModel):
     dmodify = models.DateTimeField(db_column='DMODIFY', blank=True, null=True)  # Field name made lowercase.
     tmodify = models.CharField(db_column='TMODIFY', max_length=8, blank=True, null=True)  # Field name made lowercase.
     p_edoc_id = models.DecimalField(db_column='P_EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
     g33 = models.CharField(db_column='G33', max_length=10, blank=True, null=True)  # Field name made lowercase.
     prevnumtyp = models.CharField(db_column='PREVNUMTYP', max_length=1, blank=True, null=True)  # Field name made lowercase.
     g40_31 = models.CharField(db_column='G40_31', max_length=2, blank=True, null=True)  # Field name made lowercase.
@@ -2976,7 +2976,7 @@ class Ktdsumpp(BaseModel):
     dmodify = models.DateTimeField(db_column='DMODIFY', blank=True, null=True)  # Field name made lowercase.
     tmodify = models.CharField(db_column='TMODIFY', max_length=8, blank=True, null=True)  # Field name made lowercase.
     p_edoc_id = models.DecimalField(db_column='P_EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -3023,7 +3023,7 @@ class Ktdtechd(BaseModel):
     dmodify = models.DateTimeField(db_column='DMODIFY', blank=True, null=True)  # Field name made lowercase.
     tmodify = models.CharField(db_column='TMODIFY', max_length=8, blank=True, null=True)  # Field name made lowercase.
     ed_id = models.CharField(db_column='ED_ID', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
     prevnumtyp = models.CharField(db_column='PREVNUMTYP', max_length=1, blank=True, null=True)  # Field name made lowercase.
     prevnumdoc = models.CharField(db_column='PREVNUMDOC', max_length=50, blank=True, null=True)  # Field name made lowercase.
     recordid = models.CharField(db_column='RECORDID', max_length=36, blank=True, null=True)  # Field name made lowercase.
@@ -3048,7 +3048,7 @@ class Ktdterms(BaseModel):
     dmodify = models.DateTimeField(db_column='DMODIFY', blank=True, null=True)  # Field name made lowercase.
     tmodify = models.CharField(db_column='TMODIFY', max_length=8, blank=True, null=True)  # Field name made lowercase.
     p_edoc_id = models.DecimalField(db_column='P_EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -3104,7 +3104,7 @@ class Ktdtov2(BaseModel):
     dmodify = models.DateTimeField(db_column='DMODIFY', blank=True, null=True)  # Field name made lowercase.
     tmodify = models.CharField(db_column='TMODIFY', max_length=8, blank=True, null=True)  # Field name made lowercase.
     p_edoc_id = models.DecimalField(db_column='P_EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -3239,7 +3239,7 @@ class Ktdtovar(BaseModel):
     p_edoc_id = models.DecimalField(db_column='P_EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
     g020 = models.CharField(db_column='G020', max_length=15, blank=True, null=True)  # Field name made lowercase.
     g42c = models.CharField(db_column='G42C', max_length=3, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
     g023build = models.CharField(db_column='G023BUILD', max_length=50, blank=True, null=True)  # Field name made lowercase.
     g35zpk = models.DecimalField(db_column='G35ZPK', max_digits=19, decimal_places=6, blank=True, null=True)  # Field name made lowercase.
     g38zpk = models.DecimalField(db_column='G38ZPK', max_digits=19, decimal_places=6, blank=True, null=True)  # Field name made lowercase.
@@ -3288,7 +3288,7 @@ class Ktdtovg(BaseModel):
     dmodify = models.DateTimeField(db_column='DMODIFY', blank=True, null=True)  # Field name made lowercase.
     tmodify = models.CharField(db_column='TMODIFY', max_length=8, blank=True, null=True)  # Field name made lowercase.
     p_edoc_id = models.DecimalField(db_column='P_EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
     g31place = models.CharField(db_column='G31PLACE', max_length=250, blank=True, null=True)  # Field name made lowercase.
     length = models.DecimalField(db_column='LENGTH', max_digits=19, decimal_places=6, blank=True, null=True)  # Field name made lowercase.
     width = models.DecimalField(db_column='WIDTH', max_digits=19, decimal_places=6, blank=True, null=True)  # Field name made lowercase.
@@ -3341,7 +3341,7 @@ class Ktdtovg2(BaseModel):
     dmodify = models.DateTimeField(db_column='DMODIFY', blank=True, null=True)  # Field name made lowercase.
     tmodify = models.CharField(db_column='TMODIFY', max_length=8, blank=True, null=True)  # Field name made lowercase.
     p_edoc_id = models.DecimalField(db_column='P_EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -3360,7 +3360,7 @@ class Ktdtovs(BaseModel):
     dmodify = models.DateTimeField(db_column='DMODIFY', blank=True, null=True)  # Field name made lowercase.
     tmodify = models.CharField(db_column='TMODIFY', max_length=8, blank=True, null=True)  # Field name made lowercase.
     p_edoc_id = models.DecimalField(db_column='P_EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -3392,7 +3392,7 @@ class Ktdtrans(BaseModel):
     dmodify = models.DateTimeField(db_column='DMODIFY', blank=True, null=True)  # Field name made lowercase.
     tmodify = models.CharField(db_column='TMODIFY', max_length=8, blank=True, null=True)  # Field name made lowercase.
     p_edoc_id = models.DecimalField(db_column='P_EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
     tipts3 = models.CharField(db_column='TIPTS3', max_length=3, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
@@ -3419,7 +3419,7 @@ class Ktduslt(BaseModel):
     dmodify = models.DateTimeField(db_column='DMODIFY', blank=True, null=True)  # Field name made lowercase.
     tmodify = models.CharField(db_column='TMODIFY', max_length=8, blank=True, null=True)  # Field name made lowercase.
     p_edoc_id = models.DecimalField(db_column='P_EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -3493,7 +3493,7 @@ class Psm(BaseModel):
     kabina = models.CharField(db_column='KABINA', max_length=40, blank=True, null=True)  # Field name made lowercase.
     list_col = models.CharField(db_column='LIST_COL', max_length=43, blank=True, null=True)  # Field name made lowercase.
     kpp = models.CharField(db_column='KPP', max_length=9, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=23, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=23, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -3530,7 +3530,7 @@ class RegTi(BaseModel):
     subcntry = models.CharField(db_column='SUBCNTRY', max_length=35, blank=True, null=True)  # Field name made lowercase.
     city = models.CharField(db_column='CITY', max_length=35, blank=True, null=True)  # Field name made lowercase.
     street = models.CharField(db_column='STREET', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=15, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=15, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -3546,7 +3546,7 @@ class Sbrddtc(BaseModel):
     npoz = models.CharField(db_column='NPOZ', max_length=3, blank=True, null=True)  # Field name made lowercase.
     numrec = models.SmallIntegerField(db_column='NUMREC', blank=True, null=True)  # Field name made lowercase.
     text1 = models.CharField(db_column='TEXT1', max_length=250, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=28, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=28, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
@@ -3570,7 +3570,7 @@ class Sbrdinfo(BaseModel):
     dmodify = models.DateTimeField(db_column='DMODIFY', blank=True, null=True)  # Field name made lowercase.
     tmodify = models.CharField(db_column='TMODIFY', max_length=8, blank=True, null=True)  # Field name made lowercase.
     p_edoc_id = models.DecimalField(db_column='P_EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=28, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=28, blank=True, null=True)  # Field name made lowercase.
     addinfcode = models.CharField(db_column='ADDINFCODE', max_length=1, blank=True, null=True)  # Field name made lowercase.
     dt071 = models.CharField(db_column='DT071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     dt072 = models.DateTimeField(db_column='DT072', blank=True, null=True)  # Field name made lowercase.
@@ -3704,7 +3704,7 @@ class Sbrhead(BaseModel):
     tmodify = models.CharField(db_column='TMODIFY', max_length=8, blank=True, null=True)  # Field name made lowercase.
     p_edoc_id = models.DecimalField(db_column='P_EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
     guid = models.CharField(db_column='GUID', max_length=38, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=28, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=28, blank=True, null=True)  # Field name made lowercase.
     d012build = models.CharField(db_column='D012BUILD', max_length=50, blank=True, null=True)  # Field name made lowercase.
     d011abuild = models.CharField(db_column='D011ABUILD', max_length=50, blank=True, null=True)  # Field name made lowercase.
     d02a2build = models.CharField(db_column='D02A2BUILD', max_length=50, blank=True, null=True)  # Field name made lowercase.
@@ -3730,7 +3730,7 @@ class Sbrsscv(BaseModel):
     valsum = models.DecimalField(db_column='VALSUM', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
     valkod = models.CharField(db_column='VALKOD', max_length=3, blank=True, null=True)  # Field name made lowercase.
     valkurs = models.FloatField(db_column='VALKURS', blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=28, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=28, blank=True, null=True)  # Field name made lowercase.
     valdate = models.DateTimeField(db_column='VALDATE', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
@@ -3813,7 +3813,7 @@ class Sbrsstc(BaseModel):
     d_cod4 = models.CharField(db_column='D_COD4', max_length=4, blank=True, null=True)  # Field name made lowercase.
     d_brutto = models.DecimalField(db_column='D_BRUTTO', max_digits=19, decimal_places=6, blank=True, null=True)  # Field name made lowercase.
     d_netto = models.DecimalField(db_column='D_NETTO', max_digits=19, decimal_places=6, blank=True, null=True)  # Field name made lowercase.
-    docnum = models.CharField(db_column='DocNum', max_length=28, blank=True, null=True)  # Field name made lowercase.
+    # docnum = models.CharField(db_column='DocNum', max_length=28, blank=True, null=True)  # Field name made lowercase.
     valdat = models.DateTimeField(db_column='VALDAT', blank=True, null=True)  # Field name made lowercase.
     tamst_kodv = models.CharField(db_column='TAMST_KODV', max_length=3, blank=True, null=True)  # Field name made lowercase.
     tamst_kurs = models.FloatField(db_column='TAMST_KURS', blank=True, null=True)  # Field name made lowercase.
