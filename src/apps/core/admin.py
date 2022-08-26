@@ -62,6 +62,8 @@ class ImportTablesAdmin(admin.ModelAdmin):
 
 
 class ConnectSetAdmin(admin.ModelAdmin):
+    validate_form = None
+
     list_display = (
         'source_conection',
         'dest_conection',
@@ -70,6 +72,24 @@ class ConnectSetAdmin(admin.ModelAdmin):
         'run_import'
     )
     save_on_top = True
+
+    def save_form(self, request, form, change):
+        # Check connections
+        type = form.cleaned_data['type']
+        list_pk = [pk for pk in [form.cleaned_data['source_conection'].pk, form.cleaned_data['dest_conection'].pk]]
+
+        for connect_pk in list_pk:
+            connect = ConnectWrapper.objects.filter(pk=connect_pk).get()
+
+            if connect.engine == MSSQL_ENGINE:
+                self.validate_form = SQLConnectValidator(request, connect, change, type)
+            else:
+                self.validate_form = DBFConnectValidator(request, connect, change, type)
+
+            self.validate_form.validate()
+
+        return super(ConnectSetAdmin, self).save_form(request, form, change)
+
 
     def save_model(self, request, obj, form, change):
         super(ConnectSetAdmin, self).save_model(request, obj, form, change)
@@ -141,7 +161,7 @@ class ConnectSetAdmin(admin.ModelAdmin):
 
 
 class ConnectWrapperAdmin(admin.ModelAdmin):
-    validate_form = None
+    # validate_form = None
 
     list_display = ('conname', 'engine', 'is_active')
     fieldsets = (
@@ -170,12 +190,12 @@ class ConnectWrapperAdmin(admin.ModelAdmin):
 
 
     def save_form(self, request, form, change):
-        if form.cleaned_data["engine"] == MSSQL_ENGINE:
-            self.validate_form = SQLConnectValidator(request, form, change)
-        else:
-            self.validate_form = DBFConnectValidator(request, form, change)
-
-        self.validate_form.validate()
+        # if form.cleaned_data["engine"] == MSSQL_ENGINE:
+        #     self.validate_form = SQLConnectValidator(request, form, change)
+        # else:
+        #     self.validate_form = DBFConnectValidator(request, form, change)
+        #
+        # self.validate_form.validate()
 
         return super(ConnectWrapperAdmin, self).save_form(request, form, change)
 

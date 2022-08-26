@@ -14,13 +14,14 @@ class ConnectBaseValidator:
     _error = False
     conn_wrapper = ConnectWrapper()
 
-    def __init__(self, request, form, change):
+    def __init__(self, request, connect, change, type):
         self.request = request
-        self.form = form
+        self.connect = connect
         self.change = change
+        self.type = type
         self.connection_id = self.get_slug_name()
-        self.database_name = form.cleaned_data['name']
-        self.engine = form.cleaned_data['engine']
+        self.database_name = self.connect.name
+        self.engine = self.connect.engine
 
 
     def validate(self):
@@ -28,7 +29,8 @@ class ConnectBaseValidator:
 
 
     def get_slug_name(self):
-        return self.conn_wrapper.get_slug_name(conname=self.form.cleaned_data['conname']).lower()
+        return self.connect.slug_name.lower()
+        # return self.conn_wrapper.get_slug_name(conname=self.form.cleaned_data['conname']).lower()
 
 
     def get_database_name(self):
@@ -83,16 +85,16 @@ class SQLConnectValidator(ConnectBaseValidator):
 
     def _connection_params(self):
         success = True
-        cleaned_data = self.form.cleaned_data
+        # cleaned_data = self.form.cleaned_data
         connection_params = {} if not self.connection_id in settings.DATABASES else settings.DATABASES[self.connection_id]
         try:
-            connection_params["ENGINE"] = cleaned_data['engine']
+            connection_params["ENGINE"] = self.engine
             connection_params["NAME"] = 'tempdb'  # need database name for connection
-            connection_params["USER"] = cleaned_data['user']
-            connection_params["PASSWORD"] = cleaned_data['password']
-            connection_params["HOST"] = cleaned_data['host']
-            connection_params["PORT"] = cleaned_data['port']
-            connection_params["OPTIONS"] = json.loads(cleaned_data['options'].replace("'", "\""))
+            connection_params["USER"] = self.connect.user
+            connection_params["PASSWORD"] = self.connect.password
+            connection_params["HOST"] = self.connect.host
+            connection_params["PORT"] = self.connect.port
+            connection_params["OPTIONS"] = json.loads(self.connect.options.replace("'", "\""))
 
             settings.DATABASES[self.connection_id] = connection_params
 
@@ -116,9 +118,12 @@ class SQLConnectValidator(ConnectBaseValidator):
             cursor.execute('CREATE DATABASE "%s" ' % (self.get_database_name()))
         # Replace "tempdb" database name to real name
         settings.DATABASES[self.connection_id]["NAME"] = self.database_name
-        call_command('migrate', 'sqlimport', database=self.connection_id,
-                     interactive=False, verbosity=0)
-
+        if self.type == 'ARM':
+            call_command('migrate', 'armimport', database=self.connection_id,
+                         interactive=False, verbosity=0)
+        else:
+            call_command('migrate', 'sqlimport', database=self.connection_id,
+                         interactive=False, verbosity=0)
 
 
 class DBFConnectValidator(ConnectBaseValidator):
@@ -137,16 +142,16 @@ class DBFConnectValidator(ConnectBaseValidator):
 
     def _connection_params(self):
         success = True
-        cleaned_data = self.form.cleaned_data
+        # cleaned_data = self.form.cleaned_data
         connection_params = {} if not self.connection_id in settings.DATABASES else settings.DATABASES[self.connection_id]
         try:
-            connection_params["ENGINE"] = cleaned_data['engine']
-            connection_params["NAME"] = cleaned_data['name']
-            connection_params["USER"] = cleaned_data['user']
-            connection_params["PASSWORD"] = cleaned_data['password']
-            connection_params["HOST"] = cleaned_data['host']
-            connection_params["PORT"] = cleaned_data['port']
-            connection_params["OPTIONS"] = json.loads(cleaned_data['options'].replace("'", "\""))
+            connection_params["ENGINE"] = self.connect.engine
+            connection_params["NAME"] = self.connect.name
+            connection_params["USER"] = self.connect.user
+            connection_params["PASSWORD"] = self.connect.password
+            connection_params["HOST"] = self.connect.host
+            connection_params["PORT"] = self.connect.port
+            connection_params["OPTIONS"] = json.loads(self.connect.options.replace("'", "\""))
 
             settings.DATABASES[self.connection_id] = connection_params
 
