@@ -140,7 +140,7 @@ class Avtomove(BaseModel):
 
 
 class Dbramnum(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g32 = models.IntegerField(db_column='G32', blank=True, null=True)  # Field name made lowercase.
@@ -156,7 +156,7 @@ class Dbramnum(BaseModel):
 
 
 class Dbravtmb(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g32 = models.IntegerField(db_column='G32', blank=True, null=True)  # Field name made lowercase.
@@ -187,7 +187,7 @@ class Dbravtmb(BaseModel):
 
 
 class Dbrcont(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g32 = models.IntegerField(db_column='G32', blank=True, null=True)  # Field name made lowercase.
@@ -273,7 +273,7 @@ class Dbrcrdts(BaseModel):
     udvvoz = models.CharField(db_column='UDVVOZ', max_length=10, blank=True, null=True)  # Field name made lowercase.
     datud = models.DateTimeField(db_column='DATUD', blank=True, null=True)  # Field name made lowercase.
     lnpu = models.CharField(db_column='LNPU', max_length=4, blank=True, null=True)  # Field name made lowercase.
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     tamogr = models.CharField(db_column='TAMOGR', max_length=250, blank=True, null=True)  # Field name made lowercase.
@@ -329,7 +329,7 @@ class Dbrcrdts(BaseModel):
 
 
 class Dbrdinf2(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g32 = models.IntegerField(db_column='G32', blank=True, null=True)  # Field name made lowercase.
@@ -350,7 +350,7 @@ class Dbrdinf2(BaseModel):
 
 
 class Dbrdinfo(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g32 = models.IntegerField(db_column='G32', blank=True, null=True)  # Field name made lowercase.
@@ -373,7 +373,7 @@ class Dbrdinfo(BaseModel):
 
 
 class Dbrdog(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g32 = models.IntegerField(db_column='G32', blank=True, null=True)  # Field name made lowercase.
@@ -389,7 +389,7 @@ class Dbrdog(BaseModel):
 
 
 class Dbrdoga(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g32 = models.IntegerField(db_column='G32', blank=True, null=True)  # Field name made lowercase.
@@ -406,7 +406,7 @@ class Dbrdoga(BaseModel):
 
 
 class Dbrdogt(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g32 = models.IntegerField(db_column='G32', blank=True, null=True)  # Field name made lowercase.
@@ -435,7 +435,7 @@ class Dbrdogt(BaseModel):
 
 
 class Dbrdop48(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     gb1 = models.CharField(db_column='GB1', max_length=4, blank=True, null=True)  # Field name made lowercase.
@@ -472,7 +472,7 @@ class Dbrhead(BaseModel):
     typ_dtc = models.CharField(db_column='TYP_DTC', max_length=1, blank=True, null=True)  # Field name made lowercase.
     vid_ktc = models.CharField(db_column='VID_KTC', max_length=1, blank=True, null=True)  # Field name made lowercase.
     stat = models.CharField(db_column='STAT', max_length=1, blank=True, null=True)  # Field name made lowercase.
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     ui_b_1 = models.CharField(db_column='UI_B_1', max_length=8, blank=True, null=True)  # Field name made lowercase.
@@ -822,7 +822,7 @@ class Dbrhead(BaseModel):
 
 
 class Dbrkmp(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g32 = models.IntegerField(db_column='G32', blank=True, null=True)  # Field name made lowercase.
@@ -843,7 +843,7 @@ class Dbrkmp(BaseModel):
 
 
 class Dbrkmpk(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g32 = models.IntegerField(db_column='G32', blank=True, null=True)  # Field name made lowercase.
@@ -866,7 +866,7 @@ class Dbrkmpk(BaseModel):
 
 
 class Dbrpasp(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g2810 = models.CharField(db_column='G2810', max_length=1, blank=True, null=True)  # Field name made lowercase.
@@ -883,7 +883,7 @@ class Dbrpasp(BaseModel):
 
 
 class Dbrpk(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g32 = models.IntegerField(db_column='G32', blank=True, null=True)  # Field name made lowercase.
@@ -899,7 +899,7 @@ class Dbrpk(BaseModel):
 
 
 class Dbrplatr(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g32 = models.IntegerField(db_column='G32', blank=True, null=True)  # Field name made lowercase.
@@ -952,7 +952,7 @@ class Dbrplatr(BaseModel):
 
 
 class Dbrplatv(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     gb0 = models.CharField(db_column='GB0', max_length=1, blank=True, null=True)  # Field name made lowercase.
@@ -982,7 +982,7 @@ class Dbrplatv(BaseModel):
 
 
 class Dbrpredd(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g32 = models.IntegerField(db_column='G32', blank=True, null=True)  # Field name made lowercase.
@@ -1011,7 +1011,7 @@ class Dbrpredd(BaseModel):
 
 
 class Dbrsumpp(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     gb1 = models.CharField(db_column='GB1', max_length=4, blank=True, null=True)  # Field name made lowercase.
@@ -1043,7 +1043,7 @@ class Dbrsumpp(BaseModel):
 
 
 class Dbrtechd(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g32 = models.IntegerField(db_column='G32', blank=True, null=True)  # Field name made lowercase.
@@ -1096,7 +1096,7 @@ class Dbrtechd(BaseModel):
 
 
 class Dbrterms(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g32 = models.IntegerField(db_column='G32', blank=True, null=True)  # Field name made lowercase.
@@ -1115,7 +1115,7 @@ class Dbrterms(BaseModel):
 
 
 class Dbrtov2(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     type_info = models.CharField(db_column='TYPE_INFO', max_length=1, blank=True, null=True)  # Field name made lowercase.
@@ -1171,7 +1171,7 @@ class Dbrtov2(BaseModel):
 
 
 class Dbrtovar(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g02_itn = models.CharField(db_column='G02_ITN', max_length=13, blank=True, null=True)  # Field name made lowercase.
@@ -1321,7 +1321,7 @@ class Dbrtovar(BaseModel):
 
 
 class Dbrtovg(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g32 = models.IntegerField(db_column='G32', blank=True, null=True)  # Field name made lowercase.
@@ -1374,7 +1374,7 @@ class Dbrtovg(BaseModel):
 
 
 class Dbrtovg2(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g32 = models.IntegerField(db_column='G32', blank=True, null=True)  # Field name made lowercase.
@@ -1408,7 +1408,7 @@ class Dbrtovg2(BaseModel):
 
 
 class Dbrtovs(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g32 = models.IntegerField(db_column='G32', blank=True, null=True)  # Field name made lowercase.
@@ -1427,7 +1427,7 @@ class Dbrtovs(BaseModel):
 
 
 class Dbrtovs2(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g32 = models.IntegerField(db_column='G32', blank=True, null=True)  # Field name made lowercase.
@@ -1448,7 +1448,7 @@ class Dbrtovs2(BaseModel):
 
 
 class Dbrtrans(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     ngr = models.CharField(db_column='NGR', max_length=2, blank=True, null=True)  # Field name made lowercase.
@@ -1481,7 +1481,7 @@ class Dbrtrans(BaseModel):
 
 
 class Dbruslt(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g32 = models.IntegerField(db_column='G32', blank=True, null=True)  # Field name made lowercase.
@@ -1507,7 +1507,7 @@ class Dbruslt(BaseModel):
 
 
 class Dcllistd(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     tlist = models.SmallIntegerField(db_column='TLIST', blank=True, null=True)  # Field name made lowercase.
@@ -1542,7 +1542,7 @@ class Dcllistd(BaseModel):
 
 
 class Dcllisth(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     hlist = models.SmallIntegerField(db_column='HLIST', blank=True, null=True)  # Field name made lowercase.
@@ -1572,7 +1572,7 @@ class Dcllisth(BaseModel):
 
 
 class Dcllistl(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     tlist = models.SmallIntegerField(db_column='TLIST', blank=True, null=True)  # Field name made lowercase.
@@ -1604,7 +1604,7 @@ class Dcllistl(BaseModel):
 
 
 class Dclquerd(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     quer = models.SmallIntegerField(db_column='QUER', blank=True, null=True)  # Field name made lowercase.
@@ -1627,7 +1627,7 @@ class Dclquerd(BaseModel):
 
 
 class Dclquerh(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     quer = models.SmallIntegerField(db_column='QUER', blank=True, null=True)  # Field name made lowercase.
@@ -1669,7 +1669,7 @@ class Docsfiles(BaseModel):
 
 
 class Kbravtmb(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     k32 = models.IntegerField(db_column='K32', blank=True, null=True)  # Field name made lowercase.
@@ -1701,7 +1701,7 @@ class Kbravtmb(BaseModel):
 
 
 class Kbrdinfo(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     k32 = models.IntegerField(db_column='K32', blank=True, null=True)  # Field name made lowercase.
@@ -1730,7 +1730,7 @@ class Kbrdinfo(BaseModel):
 
 
 class Kbrdokiz(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     k32 = models.IntegerField(db_column='K32', blank=True, null=True)  # Field name made lowercase.
@@ -1776,7 +1776,7 @@ class Kbrdokiz(BaseModel):
 
 
 class Kbrhead(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     k032 = models.IntegerField(db_column='K032', blank=True, null=True)  # Field name made lowercase.
@@ -1832,7 +1832,7 @@ class Kbrhead(BaseModel):
 
 
 class Kbrpk(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     k32 = models.IntegerField(db_column='K32', blank=True, null=True)  # Field name made lowercase.
@@ -1854,7 +1854,7 @@ class Kbrpk(BaseModel):
 
 
 class Kbrplbiz(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     kb0 = models.CharField(db_column='KB0', max_length=1, blank=True, null=True)  # Field name made lowercase.
@@ -1877,7 +1877,7 @@ class Kbrplbiz(BaseModel):
 
 
 class Kbrpltiz(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     k32 = models.IntegerField(db_column='K32', blank=True, null=True)  # Field name made lowercase.
@@ -1933,7 +1933,7 @@ class Kbrpltiz(BaseModel):
 
 
 class Kbrsumpp(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     k32 = models.IntegerField(db_column='K32', blank=True, null=True)  # Field name made lowercase.
@@ -1968,7 +1968,7 @@ class Kbrsumpp(BaseModel):
 
 
 class Kbrterms(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     k32 = models.IntegerField(db_column='K32', blank=True, null=True)  # Field name made lowercase.
@@ -1989,7 +1989,7 @@ class Kbrterms(BaseModel):
 
 
 class Kbrtovg(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     k32 = models.IntegerField(db_column='K32', blank=True, null=True)  # Field name made lowercase.
@@ -2023,7 +2023,7 @@ class Kbrtovg(BaseModel):
 
 
 class Kbrtoviz(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     typ_ktc = models.SmallIntegerField(db_column='TYP_KTC', blank=True, null=True)  # Field name made lowercase.
@@ -2079,7 +2079,7 @@ class Kbrtoviz(BaseModel):
 
 
 class Kbrtovs(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     k32 = models.IntegerField(db_column='K32', blank=True, null=True)  # Field name made lowercase.
@@ -2100,7 +2100,7 @@ class Kbrtovs(BaseModel):
 
 
 class Ktdamnum(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g32 = models.IntegerField(db_column='G32', blank=True, null=True)  # Field name made lowercase.
@@ -2116,7 +2116,7 @@ class Ktdamnum(BaseModel):
 
 
 class Ktdavtmb(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g32 = models.IntegerField(db_column='G32', blank=True, null=True)  # Field name made lowercase.
@@ -2147,7 +2147,7 @@ class Ktdavtmb(BaseModel):
 
 
 class Ktdcont(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g32 = models.IntegerField(db_column='G32', blank=True, null=True)  # Field name made lowercase.
@@ -2233,7 +2233,7 @@ class Ktdcrdts(BaseModel):
     udvvoz = models.CharField(db_column='UDVVOZ', max_length=10, blank=True, null=True)  # Field name made lowercase.
     datud = models.DateTimeField(db_column='DATUD', blank=True, null=True)  # Field name made lowercase.
     lnpu = models.CharField(db_column='LNPU', max_length=4, blank=True, null=True)  # Field name made lowercase.
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     tamogr = models.CharField(db_column='TAMOGR', max_length=250, blank=True, null=True)  # Field name made lowercase.
@@ -2289,7 +2289,7 @@ class Ktdcrdts(BaseModel):
 
 
 class Ktddinf2(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g32 = models.IntegerField(db_column='G32', blank=True, null=True)  # Field name made lowercase.
@@ -2310,7 +2310,7 @@ class Ktddinf2(BaseModel):
 
 
 class Ktddinfo(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g32 = models.IntegerField(db_column='G32', blank=True, null=True)  # Field name made lowercase.
@@ -2333,7 +2333,7 @@ class Ktddinfo(BaseModel):
 
 
 class Ktddog(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g32 = models.IntegerField(db_column='G32', blank=True, null=True)  # Field name made lowercase.
@@ -2349,7 +2349,7 @@ class Ktddog(BaseModel):
 
 
 class Ktddoga(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g32 = models.IntegerField(db_column='G32', blank=True, null=True)  # Field name made lowercase.
@@ -2366,7 +2366,7 @@ class Ktddoga(BaseModel):
 
 
 class Ktddogt(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g32 = models.IntegerField(db_column='G32', blank=True, null=True)  # Field name made lowercase.
@@ -2413,7 +2413,7 @@ class Ktdhead(BaseModel):
     typ_dtc = models.CharField(db_column='TYP_DTC', max_length=1, blank=True, null=True)  # Field name made lowercase.
     vid_ktc = models.CharField(db_column='VID_KTC', max_length=1, blank=True, null=True)  # Field name made lowercase.
     stat = models.CharField(db_column='STAT', max_length=1, blank=True, null=True)  # Field name made lowercase.
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     ui_b_1 = models.CharField(db_column='UI_B_1', max_length=8, blank=True, null=True)  # Field name made lowercase.
@@ -2763,7 +2763,7 @@ class Ktdhead(BaseModel):
 
 
 class Ktdkmp(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g32 = models.IntegerField(db_column='G32', blank=True, null=True)  # Field name made lowercase.
@@ -2784,7 +2784,7 @@ class Ktdkmp(BaseModel):
 
 
 class Ktdkmpk(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g32 = models.IntegerField(db_column='G32', blank=True, null=True)  # Field name made lowercase.
@@ -2807,7 +2807,7 @@ class Ktdkmpk(BaseModel):
 
 
 class Ktdpasp(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g2810 = models.CharField(db_column='G2810', max_length=1, blank=True, null=True)  # Field name made lowercase.
@@ -2824,7 +2824,7 @@ class Ktdpasp(BaseModel):
 
 
 class Ktdpk(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g32 = models.IntegerField(db_column='G32', blank=True, null=True)  # Field name made lowercase.
@@ -2840,7 +2840,7 @@ class Ktdpk(BaseModel):
 
 
 class Ktdplatr(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g32 = models.IntegerField(db_column='G32', blank=True, null=True)  # Field name made lowercase.
@@ -2893,7 +2893,7 @@ class Ktdplatr(BaseModel):
 
 
 class Ktdplatv(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     gb0 = models.CharField(db_column='GB0', max_length=1, blank=True, null=True)  # Field name made lowercase.
@@ -2923,7 +2923,7 @@ class Ktdplatv(BaseModel):
 
 
 class Ktdpredd(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g32 = models.IntegerField(db_column='G32', blank=True, null=True)  # Field name made lowercase.
@@ -2952,7 +2952,7 @@ class Ktdpredd(BaseModel):
 
 
 class Ktdsumpp(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     gb1 = models.CharField(db_column='GB1', max_length=4, blank=True, null=True)  # Field name made lowercase.
@@ -2984,7 +2984,7 @@ class Ktdsumpp(BaseModel):
 
 
 class Ktdtechd(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g32 = models.IntegerField(db_column='G32', blank=True, null=True)  # Field name made lowercase.
@@ -3037,7 +3037,7 @@ class Ktdtechd(BaseModel):
 
 
 class Ktdterms(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g32 = models.IntegerField(db_column='G32', blank=True, null=True)  # Field name made lowercase.
@@ -3056,7 +3056,7 @@ class Ktdterms(BaseModel):
 
 
 class Ktdtov2(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     type_info = models.CharField(db_column='TYPE_INFO', max_length=1, blank=True, null=True)  # Field name made lowercase.
@@ -3112,7 +3112,7 @@ class Ktdtov2(BaseModel):
 
 
 class Ktdtovar(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g02_itn = models.CharField(db_column='G02_ITN', max_length=13, blank=True, null=True)  # Field name made lowercase.
@@ -3262,7 +3262,7 @@ class Ktdtovar(BaseModel):
 
 
 class Ktdtovg(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g32 = models.IntegerField(db_column='G32', blank=True, null=True)  # Field name made lowercase.
@@ -3315,7 +3315,7 @@ class Ktdtovg(BaseModel):
 
 
 class Ktdtovg2(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g32 = models.IntegerField(db_column='G32', blank=True, null=True)  # Field name made lowercase.
@@ -3349,7 +3349,7 @@ class Ktdtovg2(BaseModel):
 
 
 class Ktdtovs(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g32 = models.IntegerField(db_column='G32', blank=True, null=True)  # Field name made lowercase.
@@ -3368,7 +3368,7 @@ class Ktdtovs(BaseModel):
 
 
 class Ktdtrans(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     ngr = models.CharField(db_column='NGR', max_length=2, blank=True, null=True)  # Field name made lowercase.
@@ -3401,7 +3401,7 @@ class Ktdtrans(BaseModel):
 
 
 class Ktduslt(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g32 = models.IntegerField(db_column='G32', blank=True, null=True)  # Field name made lowercase.
@@ -3538,7 +3538,7 @@ class RegTi(BaseModel):
 
 
 class Sbrddtc(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     num_pp = models.SmallIntegerField(db_column='NUM_PP', blank=True, null=True)  # Field name made lowercase.
@@ -3554,7 +3554,7 @@ class Sbrddtc(BaseModel):
 
 
 class Sbrdinfo(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     num_pp = models.SmallIntegerField(db_column='NUM_PP', blank=True, null=True)  # Field name made lowercase.
@@ -3583,7 +3583,7 @@ class Sbrdinfo(BaseModel):
 
 
 class Sbrhead(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     num_pp = models.SmallIntegerField(db_column='NUM_PP', blank=True, null=True)  # Field name made lowercase.
@@ -3721,7 +3721,7 @@ class Sbrhead(BaseModel):
 
 
 class Sbrsscv(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     num_pp = models.SmallIntegerField(db_column='NUM_PP', blank=True, null=True)  # Field name made lowercase.
@@ -3739,7 +3739,7 @@ class Sbrsscv(BaseModel):
 
 
 class Sbrsstc(BaseModel):
-    g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
     num_pp = models.SmallIntegerField(db_column='NUM_PP', blank=True, null=True)  # Field name made lowercase.
