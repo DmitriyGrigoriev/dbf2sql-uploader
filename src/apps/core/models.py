@@ -236,7 +236,7 @@ class ConnectWrapper(DefaultModel):
     user = models.CharField(max_length=50, blank=True)
     password = models.CharField(max_length=100, blank=True)
     host = models.CharField(verbose_name=_('HOST'), max_length=100, blank=True)
-    port = models.PositiveIntegerField(verbose_name=_('PORT'), blank=True, default=0)
+    port = models.PositiveIntegerField(verbose_name=_('PORT'), blank=True, null=True)
 
     # options = models.ForeignKey(
     #     to='ConnectPropertyWrapper',

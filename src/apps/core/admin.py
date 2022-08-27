@@ -14,7 +14,7 @@ from src.config import settings
 
 from .models import ConnectWrapper, ConnectSet, ImportTables, MSSQL_ENGINE
 from .forms import ConnectWrapperForm
-from .classes import SQLConnectValidator, DBFConnectValidator
+from .validators import SQLConnectValidator, DBFConnectValidator
 
 # Register your models here.
 

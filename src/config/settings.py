@@ -125,11 +125,13 @@ DATABASES = {
                     "extra_params": "TrustServerCertificate=Yes; Trusted_Connection=Yes",
                     },
     },
-    "arm_test": {
+    "gtd_arm_test": {
         "ENGINE": "mssql",
+        # "NAME": "gtd_0_arm_2022_dbk1",
         "NAME": "gtd_arm_2022",
         "USER": None,
         "PASSWORD": None,
+        # "HOST": "dbk1.ntbroker.ru\s2005",
         "HOST": f"{DOMAIN}",
         "PORT": "1433",
         "OPTIONS": {"driver": "SQL Server Native Client 11.0",
@@ -141,7 +143,7 @@ DATABASES = {
     #     'NAME': os.path.join(DATABASE_DIR, 'uploader.db'),
     #     "OPTIONS": {"timeout": 10},
     # },
-    "dbf_2022_lg": {
+    "dbf_2022_borod_test": {
         "ENGINE": "src.db.connection.advantage",
         # "NAME": "E:\\MyDocuments\\FoxProProjects\\Bastion\\BASE\\GTD_2022_LG\\GTD_2022_LG.add",
         # "NAME": "\\\\10.1.0.12\\K\\softland\\BASE\\GTD_2022_BOROD",

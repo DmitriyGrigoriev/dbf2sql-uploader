@@ -89,7 +89,7 @@ class SQLConnectValidator(ConnectBaseValidator):
         connection_params = {} if not self.connection_id in settings.DATABASES else settings.DATABASES[self.connection_id]
         try:
             connection_params["ENGINE"] = self.engine
-            connection_params["NAME"] = 'tempdb'  # need database name for connection
+            connection_params["NAME"] = None  # need database name for connection
             connection_params["USER"] = self.connect.user
             connection_params["PASSWORD"] = self.connect.password
             connection_params["HOST"] = self.connect.host
