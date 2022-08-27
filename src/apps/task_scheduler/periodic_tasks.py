@@ -2,7 +2,7 @@ import os
 from datetime import datetime
 import logging
 
-from .tasks import process_user_stats
+# from .tasks import process_user_stats
 
 
 def periodically_run_job():

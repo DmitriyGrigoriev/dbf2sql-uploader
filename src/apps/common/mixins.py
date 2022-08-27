@@ -31,8 +31,6 @@ class ExtResource:
 
     def before_import_row(self, row, row_number=None, **kwargs):
         if 'g071' in row and 'g072' in row and 'g073' in row:
-            # year, mounth, day = g072.split('-')
-            # g07x = f"{row['g071']}/{day + mounth + year[2:]}/{row['g073']}"
             g07x = f"{row['g071']}/{row['g072'].strftime('%d%m%y')}/{row['g073']}"
             row['g07x'] = g07x
 
@@ -60,15 +58,6 @@ class ExtBase(models.Model):
             abstract = True
             managed = False
             unique_together = (('g071', 'g072', 'g073'),)
-
-
-class ExtBaseDocNum(models.Model):
-    """Extending base model table by additional fields"""
-    docnum = models.CharField(db_column='DocNum', max_length=23, primary_key=True)
-
-    class Meta:
-            abstract = True
-            managed = False
 
 
 class ExtBaseG32(models.Model):
@@ -107,3 +96,34 @@ class ExtSourceFields(models.Model):
             models.Index(fields=['g07x']),
             models.Index(fields=['hash']),
         ]
+
+##################################################################################
+# SECTION: ARM Doc2Sql mixins
+##################################################################################
+class ExtBaseDocNum(models.Model):
+    """Extending base model table by additional fields"""
+    docnum = models.CharField(db_column='DocNum', max_length=23, primary_key=True)
+    g071 = models.CharField(max_length=8)
+
+    class Meta:
+            abstract = True
+            managed = False
+
+
+class ExtArmFields(ExtSourceFields):
+    docnum = models.CharField(db_column='DocNum', max_length=23)
+
+    class Meta:
+        abstract = True
+
+
+class ExtNonUniqHash(ExtArmFields):
+    """Extending sql import table by additional fields"""
+    hash = models.CharField(max_length=64, blank=False, null=True)
+
+    class Meta:
+        abstract = True
+        # indexes = [
+        #     models.Index(fields=['g07x']),
+        #     models.Index(fields=['hash']),
+        # ]

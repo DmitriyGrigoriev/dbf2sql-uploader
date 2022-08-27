@@ -9,6 +9,7 @@ from src.config import settings
 from src.apps.common.dataclasses import ImportInfo
 # from django_dramatiq.models import Task
 from src.services.sqlimport import SQLImport
+from src.services.armimport import ARMImport
 from src.apps.core.models import ImportTables
 
 
@@ -68,13 +69,23 @@ def process_import(
             # print(f'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
             # print(f'{settings.DATABASES}')
             # print(f'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
-            result = SQLImport(
-                source_connection_name=kwargs.pop('source_connection_name'),
-                source_table_name=kwargs.pop('source_table_name'),
-                dest_connection_name=kwargs.pop('dest_connection_name'),
-                dest_table_name=kwargs.pop('dest_table_name'),
-                logger=process_import.logger
-            ).start_import()
+            if type == 'DBF':
+                result = SQLImport(
+                    source_connection_name=kwargs.pop('source_connection_name'),
+                    source_table_name=kwargs.pop('source_table_name'),
+                    dest_connection_name=kwargs.pop('dest_connection_name'),
+                    dest_table_name=kwargs.pop('dest_table_name'),
+                    logger=process_import.logger
+                ).start_import()
+            else:
+                # type == 'ARM'
+                result = ARMImport(
+                    source_connection_name=kwargs.pop('source_connection_name'),
+                    source_table_name=kwargs.pop('source_table_name'),
+                    dest_connection_name=kwargs.pop('dest_connection_name'),
+                    dest_table_name=kwargs.pop('dest_table_name'),
+                    logger=process_import.logger
+                ).start_import()
     except dramatiq.RateLimitExceeded:
         # process_import.logger.info('############ dramatiq.RateLimitExceeded ###########')
         raise dramatiq.RateLimitExceeded('############ dramatiq.RateLimitExceeded ###########')

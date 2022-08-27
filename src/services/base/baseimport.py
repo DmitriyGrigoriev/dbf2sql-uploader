@@ -109,7 +109,7 @@ class BaseImport:
 
     def _get_exported_headers(self) -> list:
         """Return fields list from model"""
-        return [field.attname for field in self.source_model._meta.fields]
+        return [field.attname.lower() for field in self.source_model._meta.fields]
 
 
     def _get_imported_headers(self) -> list:
