@@ -60,7 +60,9 @@ class ImportTablesManager(models.Manager):
                 connection_poll.type # import type: DBF / ARM
             )
             for t in ImportTables.tables.tables_for_import(connection_poll.pk) \
-            if self.dbf_last_write(connection_poll.source_conection.name, t.source_table) != t.last_write
+            if self.get_last_write(
+                connection_poll.source_conection.name, t.source_table, connection_poll.type
+            ) != t.last_write
                 # and self.approved_task_status(t.message_id)
         ]
         return t_list
@@ -103,11 +105,15 @@ class ImportTablesManager(models.Manager):
     #     status = self.current_task_status(message_id)
     #     return True if status == STATUS_DONE or status is None else False
 
-    def dbf_last_write(self, data_directory, file_name)-> datetime:
-        fname = f"{data_directory}{file_name}.DBF"
-        last_write = None
-        if os.path.isfile(fname):
-            last_write = datetime.fromtimestamp(os.path.getmtime(fname), tz=timezone.utc)
+    def get_last_write(self, data_directory, file_name, type)-> datetime:
+        if type == 'DBF':
+            fname = f"{data_directory}{file_name}.DBF"
+            last_write = None
+            if os.path.isfile(fname):
+                last_write = datetime.fromtimestamp(os.path.getmtime(fname), tz=timezone.utc)
+        else:
+            last_write = datetime.today()
+
         return last_write
 
     def update_last_import_date(self, message_data, result):
@@ -116,28 +122,38 @@ class ImportTablesManager(models.Manager):
         kwargs = message_data['kwargs']
         table_pk = kwargs['table_pk']
         message_id = message_data['message_id']
+        type = kwargs['type']
+        source_connection_name = kwargs['source_connection_name']
         source_databases = databases[kwargs['source_connection_name']]
 
         print("################################################################################")
         print(f"############ Message id {message_id} is success ########")
         print("################################################################################")
-        #logger.info(f"############ Received message Id: {message_id} ############")
+
+        record_to_update = ImportTables.tables.filter(pk=table_pk)
 
         if source_databases:
             data_directory = source_databases["NAME"]
             source_table = f"{kwargs['source_table_name']}"
-            # Get last write file date
-            last_write = self.dbf_last_write(data_directory, source_table)
-            print("################################################################################")
-            print(f"#### File {data_directory}{source_table}.DBF last write was at {last_write}  ####")
-            print("################################################################################")
-            record_to_update = ImportTables.tables.filter(pk=table_pk)
+            if type == 'DBF':
+                # Get last write file date
+                last_write = self.get_last_write(data_directory, source_table, type)
+                print("################################################################################")
+                print(f"#### Success import from file {data_directory}{source_table}.DBF : last write was at {last_write}  ####")
+                print("################################################################################")
+            else:
+                last_write = datetime.today()
+                print("################################################################################")
+                print(f"#### Success import from database {source_connection_name} : last write was at {last_write}  ####")
+                print("################################################################################")
+
             if last_write:
                 # last_write = datetime.fromtimestamp(last_write_time, tz=pytz.timezone(settings.TIME_ZONE)).strftime('%Y-%m-%d %H:%M:%S')
                 record_to_update.update(last_write=last_write)
+
             if result:
                 print("#########################################################")
-                print(f"############ Has been imported {result} records ########")
+                print(f"############# {result} records has been imported #######")
                 print("#########################################################")
                 record_to_update.update(upload_record=result)
             # Update import_table redis message id

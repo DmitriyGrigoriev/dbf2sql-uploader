@@ -136,17 +136,21 @@ class ConnectSetAdmin(admin.ModelAdmin):
         poll = ConnectSet.consets.record(pk=object_pk)
         prefix = settings.PIPE_MODULES[poll.type]['table_prefix']
 
-        table_list = import_class.get_list_tables_from_model_class(
-            settings.PIPE_MODULES[poll.type]['export'], 'models'
-        )
+        if len(ImportTables.tables.filter(connects=object_pk).all()) == 0:
 
-        for table in table_list:
-            ImportTables.tables.update_or_create(
-                source_table=table.upper(),
-                dest_table=f"{prefix}{table.upper()}",
-                connects_id=poll.pk
+            table_list = import_class.get_list_tables_from_model_class(
+                settings.PIPE_MODULES[poll.type]['export'], 'models'
             )
-        messages.success(request, f'The import tables list for {poll.name} connection has successfully added!')
+
+            for table in table_list:
+                ImportTables.tables.update_or_create(
+                    source_table=table.upper(),
+                    dest_table=f"{prefix}{table.upper()}",
+                    connects_id=poll.pk
+                )
+            messages.success(request, f'The import tables list for {poll.name} connection has successfully added!')
+        else:
+            messages.warning(request, f'The {poll.name} connection has already tables list for import')
         # reverse('admin:<yourapp>_<yourmodel>_change', args=[object_pk])
         # Page	URL name	Parameters
         # Changelist	{{ app_label }}_{{ model_name }}_changelist

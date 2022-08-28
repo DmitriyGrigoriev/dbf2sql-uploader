@@ -49,7 +49,9 @@ class ExtResource:
         #return super(ExtResource, self).skip_row(instance, original)
 
 
-
+##################################################################################
+# SECTION: DBF export mixins
+##################################################################################
 class ExtBase(models.Model):
     """Extending base model table by additional fields"""
     g071 = models.CharField(max_length=8, primary_key=True)
@@ -80,6 +82,9 @@ class ExtBaseK32(models.Model):
             unique_together = (('g071', 'g072', 'g073', 'k32'),)
 
 
+##################################################################################
+# SECTION: DBF import mixins
+##################################################################################
 class ExtSourceFields(models.Model):
     """Extending sql import table by additional fields"""
     uid = models.AutoField(primary_key=True)
@@ -88,6 +93,7 @@ class ExtSourceFields(models.Model):
     database = models.CharField(max_length=50, blank=True, null=True)
     g07x = models.CharField(max_length=23, blank=True, null=True)
     hash = models.CharField(max_length=64, blank=False, null=True, unique=True)
+    docnum = models.CharField(db_column='DocNum', max_length=23) # import from Doxc2sql
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -98,18 +104,8 @@ class ExtSourceFields(models.Model):
         ]
 
 ##################################################################################
-# SECTION: ARM Doc2Sql mixins
+# SECTION: ARM Doc2Sql import mixins
 ##################################################################################
-class ExtBaseDocNum(models.Model):
-    """Extending base model table by additional fields"""
-    docnum = models.CharField(db_column='DocNum', max_length=23, primary_key=True)
-    g071 = models.CharField(max_length=8)
-
-    class Meta:
-            abstract = True
-            managed = False
-
-
 class ExtArmFields(ExtSourceFields):
     docnum = models.CharField(db_column='DocNum', max_length=23)
 
@@ -127,3 +123,15 @@ class ExtNonUniqHash(ExtArmFields):
         #     models.Index(fields=['g07x']),
         #     models.Index(fields=['hash']),
         # ]
+
+##################################################################################
+# SECTION: ARM Doc2Sql export mixins
+##################################################################################
+class ExtBaseDocNum(models.Model):
+    """Extending base model table by additional fields"""
+    docnum = models.CharField(db_column='DocNum', max_length=23, primary_key=True)
+    g071 = models.CharField(max_length=8)
+
+    class Meta:
+            abstract = True
+            managed = False

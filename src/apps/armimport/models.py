@@ -9,7 +9,7 @@ from src.apps.armexport.base.models import (
     Sbrddtc, Sbrdinfo, Sbrhead, Sbrsscv, Sbrsstc,
     Kbravtmb, Kbrdinfo, Kbrdokiz, Kbrhead,
     Kbrpk, Kbrplbiz, Kbrpltiz, Kbrsumpp, Kbrterms,
-    Kbrtovg, Kbrtoviz, Kbrtovs, Ktdavtmb,
+    Kbrtovg, Kbrtoviz, Kbrtovs, Ktdavtmb, Ktdamnum,
     Ktdcont, Ktdcrdts, Ktddinf2, Ktddinfo, Ktddog,
     Ktddoga, Ktddogt, Ktdhead, Ktdkmp, Ktdkmpk,
     Ktdpasp, Ktdpk, Ktdplatr, Ktdplatv, Ktdpredd,
@@ -276,6 +276,11 @@ class TKtcTovs(Kbrtovs, ExtArmFields):
 class TKtdAvtmb(Ktdavtmb, ExtArmFields):
     class Meta:
         db_table = 'ktdavtmb'
+
+
+class TKtdAmnum(Ktdamnum, ExtArmFields):
+    class Meta:
+        db_table = 'ktdamnum'
 
 
 class TKtdCont(Ktdcont, ExtArmFields):
