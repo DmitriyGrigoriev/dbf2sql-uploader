@@ -46,13 +46,14 @@ class ImportTablesAdmin(admin.ModelAdmin):
 
     @admin.display(description=_('Import'))
     def run_import(self, obj):
-        url = reverse('run-import-for-single-table', kwargs={'table_pk': obj.pk})
-        return mark_safe(f'<a href="{url}" class="historylink">Run</a>')
+        if obj.uploadable:
+            url = reverse('run-import-for-single-table', kwargs={'table_pk': obj.pk})
+            return mark_safe(f'<a href="{url}" class="historylink">Run</a>')
 
 
     @admin.display(description=_('Task status'))
     def show_result(self, obj):
-        status = _('Unknown')
+        status = _('Unknown') if obj.uploadable else None
         if obj.message_id:
             result = Task.tasks.filter(pk=obj.message_id).get()
             if result:

@@ -1,4 +1,3 @@
-# import time
 import redis
 import dramatiq
 from dramatiq.rate_limits import ConcurrentRateLimiter
@@ -47,7 +46,8 @@ def process_database_import(params: ImportInfo):
 
 @dramatiq.actor(max_retries=0, time_limit=settings.ONE_HOUR*3)
 def process_import(
-        *args,
+        *,
+        args=None,
         **kwargs
 ) -> int:
     # table_pk: int,
@@ -59,9 +59,15 @@ def process_import(
     # type: str
     global result
     result = 0
+    table_pk = kwargs['table_pk']
     try:
+        # Clear all indicators before start task
+        ImportTables.tables.filter(pk=table_pk).update(
+            message_id=None,
+            upload_record=0
+        )
         backend = RedisBackend(url=settings.DRAMATIQ_REDIS_URL)
-        DISTRIBUTED_MUTEX = ConcurrentRateLimiter(backend, f"distributed-mutex-{kwargs['table_pk']}", limit=1)
+        DISTRIBUTED_MUTEX = ConcurrentRateLimiter(backend, f"distributed-mutex-{table_pk}", limit=1)
         # {'table_pk': 132, 'poll_pk': 1, 'source_connection_name': 'dbf_borodki_2022', 'source_table_name': 'PZK_RSN',
         #  'dest_connection_name': 'dbf_borodki_2022', 'dest_table_name': 'TPZK_RSN'}
         with DISTRIBUTED_MUTEX.acquire():
