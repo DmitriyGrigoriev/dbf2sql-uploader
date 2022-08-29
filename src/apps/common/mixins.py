@@ -92,7 +92,8 @@ class ExtSourceFields(models.Model):
     # uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     database = models.CharField(max_length=50, blank=True, null=True)
     g07x = models.CharField(max_length=23, blank=True, null=True)
-    hash = models.CharField(max_length=64, blank=False, null=True, unique=True)
+    hash = models.CharField(max_length=64, blank=False, null=True,)
+    # hash = models.CharField(max_length=64, blank=False, null=True, unique=True)
     docnum = models.CharField(db_column='DocNum', max_length=23) # import from Doxc2sql
     created_at = models.DateTimeField(auto_now_add=True)
 

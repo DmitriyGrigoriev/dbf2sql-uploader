@@ -203,7 +203,7 @@ class TDtcHead(Sbrhead, ExtArmFields):
         db_table = 'dtchead'
 
 
-class TDtcSscv(Sbrsscv, ExtNonUniqHash):
+class TDtcSscv(Sbrsscv, ExtArmFields):
     class Meta:
         db_table = 'dtcsscv'
 
