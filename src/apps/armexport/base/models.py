@@ -23,8 +23,8 @@ class Avtomove(BaseModel):
     shassi = models.CharField(db_column='SHASSI', max_length=40, blank=True, null=True)  # Field name made lowercase.
     kuzov = models.CharField(db_column='KUZOV', max_length=40, blank=True, null=True)  # Field name made lowercase.
     zvet = models.CharField(db_column='ZVET', max_length=3, blank=True, null=True)  # Field name made lowercase.
-    powerls = models.FloatField(db_column='POWERLS', blank=True, null=True)  # Field name made lowercase.
-    powerkw = models.FloatField(db_column='POWERKW', blank=True, null=True)  # Field name made lowercase.
+    powerls = models.FloatField(default=0.00, db_column='POWERLS', blank=True, null=True)  # Field name made lowercase.
+    powerkw = models.FloatField(default=0.00, db_column='POWERKW', blank=True, null=True)  # Field name made lowercase.
     obdvig = models.IntegerField(db_column='OBDVIG', blank=True, null=True)  # Field name made lowercase.
     tipdv = models.CharField(db_column='TIPDV', max_length=2, blank=True, null=True)  # Field name made lowercase.
     maxmass = models.IntegerField(db_column='MAXMASS', blank=True, null=True)  # Field name made lowercase.
@@ -108,7 +108,7 @@ class Avtomove(BaseModel):
     num_ts = models.SmallIntegerField(db_column='NUM_TS', blank=True, null=True)  # Field name made lowercase.
     kol_ntp = models.SmallIntegerField(db_column='KOL_NTP', blank=True, null=True)  # Field name made lowercase.
     dep_tpo = models.CharField(db_column='DEP_TPO', max_length=26, blank=True, null=True)  # Field name made lowercase.
-    sum_dep = models.FloatField(db_column='SUM_DEP', blank=True, null=True)  # Field name made lowercase.
+    sum_dep = models.FloatField(default=0.00, db_column='SUM_DEP', blank=True, null=True)  # Field name made lowercase.
     pred_dkd = models.CharField(db_column='PRED_DKD', max_length=23, blank=True, null=True)  # Field name made lowercase.
     f_stoim = models.DecimalField(default=0.00, db_column='F_STOIM', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
     kod_val = models.CharField(db_column='KOD_VAL', max_length=3, blank=True, null=True)  # Field name made lowercase.
@@ -227,8 +227,8 @@ class Dbrcrdts(BaseModel):
     emergency = models.CharField(db_column='EMERGENCY', max_length=50, blank=True, null=True)  # Field name made lowercase.
     zvet = models.CharField(db_column='ZVET', max_length=3, blank=True, null=True)  # Field name made lowercase.
     listcol = models.CharField(db_column='LISTCOL', max_length=43, blank=True, null=True)  # Field name made lowercase.
-    powerls = models.FloatField(db_column='POWERLS', blank=True, null=True)  # Field name made lowercase.
-    powerkw = models.FloatField(db_column='POWERKW', blank=True, null=True)  # Field name made lowercase.
+    powerls = models.FloatField(default=0.00, db_column='POWERLS', blank=True, null=True)  # Field name made lowercase.
+    powerkw = models.FloatField(default=0.00, db_column='POWERKW', blank=True, null=True)  # Field name made lowercase.
     obdvig = models.IntegerField(db_column='OBDVIG', blank=True, null=True)  # Field name made lowercase.
     tipdv = models.CharField(db_column='TIPDV', max_length=2, blank=True, null=True)  # Field name made lowercase.
     viddvig = models.CharField(db_column='VIDDVIG', max_length=2, blank=True, null=True)  # Field name made lowercase.
@@ -317,8 +317,8 @@ class Dbrcrdts(BaseModel):
     epts = models.CharField(db_column='EPTS', max_length=15, blank=True, null=True)  # Field name made lowercase.
     tipdvname = models.CharField(db_column='TIPDVNAME', max_length=50, blank=True, null=True)  # Field name made lowercase.
     fuel = models.CharField(db_column='FUEL', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    powerls2 = models.FloatField(db_column='POWERLS2', blank=True, null=True)  # Field name made lowercase.
-    powerkw2 = models.FloatField(db_column='POWERKW2', blank=True, null=True)  # Field name made lowercase.
+    powerls2 = models.FloatField(default=0.00, db_column='POWERLS2', blank=True, null=True)  # Field name made lowercase.
+    powerkw2 = models.FloatField(default=0.00, db_column='POWERKW2', blank=True, null=True)  # Field name made lowercase.
     tipdv2 = models.CharField(db_column='TIPDV2', max_length=2, blank=True, null=True)  # Field name made lowercase.
     tipdvname2 = models.CharField(db_column='TIPDVNAME2', max_length=50, blank=True, null=True)  # Field name made lowercase.
     fuel2 = models.CharField(db_column='FUEL2', max_length=50, blank=True, null=True)  # Field name made lowercase.
@@ -626,7 +626,7 @@ class Dbrhead(BaseModel):
     g212 = models.CharField(db_column='G212', max_length=2, blank=True, null=True)  # Field name made lowercase.
     g221 = models.CharField(db_column='G221', max_length=3, blank=True, null=True)  # Field name made lowercase.
     g222 = models.DecimalField(default=0.00, db_column='G222', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
-    g23 = models.FloatField(db_column='G23', blank=True, null=True)  # Field name made lowercase.
+    g23 = models.FloatField(default=0.00, db_column='G23', blank=True, null=True)  # Field name made lowercase.
     g230 = models.DateTimeField(db_column='G230', blank=True, null=True)  # Field name made lowercase.
     g270 = models.CharField(db_column='G270', max_length=2, blank=True, null=True)  # Field name made lowercase.
     g27_itn = models.CharField(db_column='G27_ITN', max_length=13, blank=True, null=True)  # Field name made lowercase.
@@ -908,34 +908,34 @@ class Dbrplatr(BaseModel):
     g471npp = models.SmallIntegerField(db_column='G471NPP', blank=True, null=True)  # Field name made lowercase.
     g472 = models.DecimalField(default=0.00, db_column='G472', max_digits=19, decimal_places=6, blank=True, null=True)  # Field name made lowercase.
     g4721 = models.CharField(db_column='G4721', max_length=3, blank=True, null=True)  # Field name made lowercase.
-    g473 = models.FloatField(db_column='G473', blank=True, null=True)  # Field name made lowercase.
+    g473 = models.FloatField(default=0.00, db_column='G473', blank=True, null=True)  # Field name made lowercase.
     g4731 = models.CharField(db_column='G4731', max_length=1, blank=True, null=True)  # Field name made lowercase.
     g4732 = models.CharField(db_column='G4732', max_length=3, blank=True, null=True)  # Field name made lowercase.
     g4733 = models.CharField(db_column='G4733', max_length=3, blank=True, null=True)  # Field name made lowercase.
-    g4734 = models.FloatField(db_column='G4734', blank=True, null=True)  # Field name made lowercase.
+    g4734 = models.FloatField(default=0.00, db_column='G4734', blank=True, null=True)  # Field name made lowercase.
     npp = models.SmallIntegerField(db_column='NPP', blank=True, null=True)  # Field name made lowercase.
     g474 = models.DecimalField(default=0.00, db_column='G474', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
     g4741 = models.CharField(db_column='G4741', max_length=3, blank=True, null=True)  # Field name made lowercase.
     g475 = models.CharField(db_column='G475', max_length=2, blank=True, null=True)  # Field name made lowercase.
     g473z1_2 = models.CharField(db_column='G473Z1_2', max_length=1, blank=True, null=True)  # Field name made lowercase.
-    g473_2 = models.FloatField(db_column='G473_2', blank=True, null=True)  # Field name made lowercase.
+    g473_2 = models.FloatField(default=0.00, db_column='G473_2', blank=True, null=True)  # Field name made lowercase.
     g4731_2 = models.CharField(db_column='G4731_2', max_length=1, blank=True, null=True)  # Field name made lowercase.
     g4732_2 = models.CharField(db_column='G4732_2', max_length=3, blank=True, null=True)  # Field name made lowercase.
     g4733_2 = models.CharField(db_column='G4733_2', max_length=3, blank=True, null=True)  # Field name made lowercase.
-    g4734_2 = models.FloatField(db_column='G4734_2', blank=True, null=True)  # Field name made lowercase.
+    g4734_2 = models.FloatField(default=0.00, db_column='G4734_2', blank=True, null=True)  # Field name made lowercase.
     g473z1_3 = models.CharField(db_column='G473Z1_3', max_length=1, blank=True, null=True)  # Field name made lowercase.
-    g473_3 = models.FloatField(db_column='G473_3', blank=True, null=True)  # Field name made lowercase.
+    g473_3 = models.FloatField(default=0.00, db_column='G473_3', blank=True, null=True)  # Field name made lowercase.
     g4731_3 = models.CharField(db_column='G4731_3', max_length=1, blank=True, null=True)  # Field name made lowercase.
     g4732_3 = models.CharField(db_column='G4732_3', max_length=3, blank=True, null=True)  # Field name made lowercase.
     g4733_3 = models.CharField(db_column='G4733_3', max_length=3, blank=True, null=True)  # Field name made lowercase.
-    g4734_3 = models.FloatField(db_column='G4734_3', blank=True, null=True)  # Field name made lowercase.
+    g4734_3 = models.FloatField(default=0.00, db_column='G4734_3', blank=True, null=True)  # Field name made lowercase.
     g473z2_2 = models.SmallIntegerField(db_column='G473Z2_2', blank=True, null=True)  # Field name made lowercase.
     g4730 = models.DateTimeField(db_column='G4730', blank=True, null=True)  # Field name made lowercase.
     g4740 = models.DateTimeField(db_column='G4740', blank=True, null=True)  # Field name made lowercase.
     g47_nd = models.SmallIntegerField(db_column='G47_ND', blank=True, null=True)  # Field name made lowercase.
     g47_ns = models.SmallIntegerField(db_column='G47_NS', blank=True, null=True)  # Field name made lowercase.
     g47_nm = models.SmallIntegerField(db_column='G47_NM', blank=True, null=True)  # Field name made lowercase.
-    g47_tr = models.FloatField(db_column='G47_TR', blank=True, null=True)  # Field name made lowercase.
+    g47_tr = models.FloatField(default=0.00, db_column='G47_TR', blank=True, null=True)  # Field name made lowercase.
     g47_g40 = models.IntegerField(db_column='G47_G40', blank=True, null=True)  # Field name made lowercase.
     nzp = models.DecimalField(default=0.00, db_column='NZP', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
     dmodify = models.DateTimeField(db_column='DMODIFY', blank=True, null=True)  # Field name made lowercase.
@@ -959,7 +959,7 @@ class Dbrplatv(BaseModel):
     gb1 = models.CharField(db_column='GB1', max_length=4, blank=True, null=True)  # Field name made lowercase.
     gb2 = models.DecimalField(default=0.00, db_column='GB2', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
     gb3 = models.CharField(db_column='GB3', max_length=3, blank=True, null=True)  # Field name made lowercase.
-    gb4 = models.FloatField(db_column='GB4', blank=True, null=True)  # Field name made lowercase.
+    gb4 = models.FloatField(default=0.00, db_column='GB4', blank=True, null=True)  # Field name made lowercase.
     gb5 = models.CharField(db_column='GB5', max_length=2, blank=True, null=True)  # Field name made lowercase.
     iret = models.SmallIntegerField(db_column='IRET', blank=True, null=True)  # Field name made lowercase.
     g48 = models.DateTimeField(db_column='G48', blank=True, null=True)  # Field name made lowercase.
@@ -1303,7 +1303,7 @@ class Dbrtovar(BaseModel):
     g35zpk = models.DecimalField(default=0.00, db_column='G35ZPK', max_digits=19, decimal_places=6, blank=True, null=True)  # Field name made lowercase.
     g38zpk = models.DecimalField(default=0.00, db_column='G38ZPK', max_digits=19, decimal_places=6, blank=True, null=True)  # Field name made lowercase.
     g42curr = models.CharField(db_column='G42CURR', max_length=3, blank=True, null=True)  # Field name made lowercase.
-    g42rate = models.FloatField(db_column='G42RATE', blank=True, null=True)  # Field name made lowercase.
+    g42rate = models.FloatField(default=0.00, db_column='G42RATE', blank=True, null=True)  # Field name made lowercase.
     g46zpk = models.DecimalField(default=0.00, db_column='G46ZPK', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
     g31_dti = models.DecimalField(default=0.00, db_column='G31_DTI', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
     g34_2c = models.CharField(db_column='G34_2C', max_length=2, blank=True, null=True)  # Field name made lowercase.
@@ -1685,7 +1685,7 @@ class Kbravtmb(BaseModel):
     kabina = models.CharField(db_column='KABINA', max_length=40, blank=True, null=True)  # Field name made lowercase.
     nsh = models.CharField(db_column='NSH', max_length=40, blank=True, null=True)  # Field name made lowercase.
     ndv = models.CharField(db_column='NDV', max_length=40, blank=True, null=True)  # Field name made lowercase.
-    prim = models.FloatField(db_column='PRIM', blank=True, null=True)  # Field name made lowercase.
+    prim = models.FloatField(default=0.00, db_column='PRIM', blank=True, null=True)  # Field name made lowercase.
     probeg = models.IntegerField(db_column='PROBEG', blank=True, null=True)  # Field name made lowercase.
     nblktc1 = models.CharField(db_column='NBLKTC1', max_length=8, blank=True, null=True)  # Field name made lowercase.
     nblktc1p = models.CharField(db_column='NBLKTC1P', max_length=8, blank=True, null=True)  # Field name made lowercase.
@@ -1788,7 +1788,7 @@ class Kbrhead(BaseModel):
     k203 = models.CharField(db_column='K203', max_length=250, blank=True, null=True)  # Field name made lowercase.
     k221 = models.CharField(db_column='K221', max_length=3, blank=True, null=True)  # Field name made lowercase.
     k222 = models.DecimalField(default=0.00, db_column='K222', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
-    k23 = models.FloatField(db_column='K23', blank=True, null=True)  # Field name made lowercase.
+    k23 = models.FloatField(default=0.00, db_column='K23', blank=True, null=True)  # Field name made lowercase.
     k230 = models.DateTimeField(db_column='K230', blank=True, null=True)  # Field name made lowercase.
     k54_itn = models.CharField(db_column='K54_ITN', max_length=13, blank=True, null=True)  # Field name made lowercase.
     k5410 = models.CharField(db_column='K5410', max_length=1, blank=True, null=True)  # Field name made lowercase.
@@ -1886,11 +1886,11 @@ class Kbrpltiz(BaseModel):
     k471npp = models.SmallIntegerField(db_column='K471NPP', blank=True, null=True)  # Field name made lowercase.
     k472 = models.DecimalField(default=0.00, db_column='K472', max_digits=19, decimal_places=6, blank=True, null=True)  # Field name made lowercase.
     k4721 = models.CharField(db_column='K4721', max_length=3, blank=True, null=True)  # Field name made lowercase.
-    k473 = models.FloatField(db_column='K473', blank=True, null=True)  # Field name made lowercase.
+    k473 = models.FloatField(default=0.00, db_column='K473', blank=True, null=True)  # Field name made lowercase.
     k4731 = models.CharField(db_column='K4731', max_length=1, blank=True, null=True)  # Field name made lowercase.
     k4732 = models.CharField(db_column='K4732', max_length=3, blank=True, null=True)  # Field name made lowercase.
     k4733 = models.CharField(db_column='K4733', max_length=3, blank=True, null=True)  # Field name made lowercase.
-    k4734 = models.FloatField(db_column='K4734', blank=True, null=True)  # Field name made lowercase.
+    k4734 = models.FloatField(default=0.00, db_column='K4734', blank=True, null=True)  # Field name made lowercase.
     kpp = models.SmallIntegerField(db_column='KPP', blank=True, null=True)  # Field name made lowercase.
     k474 = models.DecimalField(default=0.00, db_column='K474', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
     k4741 = models.CharField(db_column='K4741', max_length=3, blank=True, null=True)  # Field name made lowercase.
@@ -1898,17 +1898,17 @@ class Kbrpltiz(BaseModel):
     k476 = models.DecimalField(default=0.00, db_column='K476', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
     k4761 = models.CharField(db_column='K4761', max_length=3, blank=True, null=True)  # Field name made lowercase.
     k473z1_2 = models.CharField(db_column='K473Z1_2', max_length=1, blank=True, null=True)  # Field name made lowercase.
-    k473_2 = models.FloatField(db_column='K473_2', blank=True, null=True)  # Field name made lowercase.
+    k473_2 = models.FloatField(default=0.00, db_column='K473_2', blank=True, null=True)  # Field name made lowercase.
     k4731_2 = models.CharField(db_column='K4731_2', max_length=1, blank=True, null=True)  # Field name made lowercase.
     k4732_2 = models.CharField(db_column='K4732_2', max_length=3, blank=True, null=True)  # Field name made lowercase.
     k4733_2 = models.CharField(db_column='K4733_2', max_length=3, blank=True, null=True)  # Field name made lowercase.
-    k4734_2 = models.FloatField(db_column='K4734_2', blank=True, null=True)  # Field name made lowercase.
+    k4734_2 = models.FloatField(default=0.00, db_column='K4734_2', blank=True, null=True)  # Field name made lowercase.
     k473z1_3 = models.CharField(db_column='K473Z1_3', max_length=1, blank=True, null=True)  # Field name made lowercase.
-    k473_3 = models.FloatField(db_column='K473_3', blank=True, null=True)  # Field name made lowercase.
+    k473_3 = models.FloatField(default=0.00, db_column='K473_3', blank=True, null=True)  # Field name made lowercase.
     k4731_3 = models.CharField(db_column='K4731_3', max_length=1, blank=True, null=True)  # Field name made lowercase.
     k4732_3 = models.CharField(db_column='K4732_3', max_length=3, blank=True, null=True)  # Field name made lowercase.
     k4733_3 = models.CharField(db_column='K4733_3', max_length=3, blank=True, null=True)  # Field name made lowercase.
-    k4734_3 = models.FloatField(db_column='K4734_3', blank=True, null=True)  # Field name made lowercase.
+    k4734_3 = models.FloatField(default=0.00, db_column='K4734_3', blank=True, null=True)  # Field name made lowercase.
     k473z2_2 = models.SmallIntegerField(db_column='K473Z2_2', blank=True, null=True)  # Field name made lowercase.
     k477 = models.DecimalField(default=0.00, db_column='K477', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
     k4730 = models.DateTimeField(db_column='K4730', blank=True, null=True)  # Field name made lowercase.
@@ -1916,7 +1916,7 @@ class Kbrpltiz(BaseModel):
     k47_nd = models.SmallIntegerField(db_column='K47_ND', blank=True, null=True)  # Field name made lowercase.
     k47_ns = models.SmallIntegerField(db_column='K47_NS', blank=True, null=True)  # Field name made lowercase.
     k47_nm = models.SmallIntegerField(db_column='K47_NM', blank=True, null=True)  # Field name made lowercase.
-    k47_tr = models.FloatField(db_column='K47_TR', blank=True, null=True)  # Field name made lowercase.
+    k47_tr = models.FloatField(default=0.00, db_column='K47_TR', blank=True, null=True)  # Field name made lowercase.
     nblktc1 = models.CharField(db_column='NBLKTC1', max_length=32, blank=True, null=True)  # Field name made lowercase.
     nblktc1p = models.CharField(db_column='NBLKTC1P', max_length=32, blank=True, null=True)  # Field name made lowercase.
     nzp = models.DecimalField(default=0.00, db_column='NZP', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
@@ -2187,8 +2187,8 @@ class Ktdcrdts(BaseModel):
     emergency = models.CharField(db_column='EMERGENCY', max_length=50, blank=True, null=True)  # Field name made lowercase.
     zvet = models.CharField(db_column='ZVET', max_length=3, blank=True, null=True)  # Field name made lowercase.
     listcol = models.CharField(db_column='LISTCOL', max_length=43, blank=True, null=True)  # Field name made lowercase.
-    powerls = models.FloatField(db_column='POWERLS', blank=True, null=True)  # Field name made lowercase.
-    powerkw = models.FloatField(db_column='POWERKW', blank=True, null=True)  # Field name made lowercase.
+    powerls = models.FloatField(default=0.00, db_column='POWERLS', blank=True, null=True)  # Field name made lowercase.
+    powerkw = models.FloatField(default=0.00, db_column='POWERKW', blank=True, null=True)  # Field name made lowercase.
     obdvig = models.IntegerField(db_column='OBDVIG', blank=True, null=True)  # Field name made lowercase.
     tipdv = models.CharField(db_column='TIPDV', max_length=2, blank=True, null=True)  # Field name made lowercase.
     viddvig = models.CharField(db_column='VIDDVIG', max_length=2, blank=True, null=True)  # Field name made lowercase.
@@ -2277,8 +2277,8 @@ class Ktdcrdts(BaseModel):
     epts = models.CharField(db_column='EPTS', max_length=15, blank=True, null=True)  # Field name made lowercase.
     tipdvname = models.CharField(db_column='TIPDVNAME', max_length=50, blank=True, null=True)  # Field name made lowercase.
     fuel = models.CharField(db_column='FUEL', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    powerls2 = models.FloatField(db_column='POWERLS2', blank=True, null=True)  # Field name made lowercase.
-    powerkw2 = models.FloatField(db_column='POWERKW2', blank=True, null=True)  # Field name made lowercase.
+    powerls2 = models.FloatField(default=0.00, db_column='POWERLS2', blank=True, null=True)  # Field name made lowercase.
+    powerkw2 = models.FloatField(default=0.00, db_column='POWERKW2', blank=True, null=True)  # Field name made lowercase.
     tipdv2 = models.CharField(db_column='TIPDV2', max_length=2, blank=True, null=True)  # Field name made lowercase.
     tipdvname2 = models.CharField(db_column='TIPDVNAME2', max_length=50, blank=True, null=True)  # Field name made lowercase.
     fuel2 = models.CharField(db_column='FUEL2', max_length=50, blank=True, null=True)  # Field name made lowercase.
@@ -2567,7 +2567,7 @@ class Ktdhead(BaseModel):
     g212 = models.CharField(db_column='G212', max_length=2, blank=True, null=True)  # Field name made lowercase.
     g221 = models.CharField(db_column='G221', max_length=3, blank=True, null=True)  # Field name made lowercase.
     g222 = models.DecimalField(default=0.00, db_column='G222', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
-    g23 = models.FloatField(db_column='G23', blank=True, null=True)  # Field name made lowercase.
+    g23 = models.FloatField(default=0.00, db_column='G23', blank=True, null=True)  # Field name made lowercase.
     g230 = models.DateTimeField(db_column='G230', blank=True, null=True)  # Field name made lowercase.
     g270 = models.CharField(db_column='G270', max_length=2, blank=True, null=True)  # Field name made lowercase.
     g27_itn = models.CharField(db_column='G27_ITN', max_length=13, blank=True, null=True)  # Field name made lowercase.
@@ -2849,34 +2849,34 @@ class Ktdplatr(BaseModel):
     g471npp = models.SmallIntegerField(db_column='G471NPP', blank=True, null=True)  # Field name made lowercase.
     g472 = models.DecimalField(default=0.00, db_column='G472', max_digits=19, decimal_places=6, blank=True, null=True)  # Field name made lowercase.
     g4721 = models.CharField(db_column='G4721', max_length=3, blank=True, null=True)  # Field name made lowercase.
-    g473 = models.FloatField(db_column='G473', blank=True, null=True)  # Field name made lowercase.
+    g473 = models.FloatField(default=0.00, db_column='G473', blank=True, null=True)  # Field name made lowercase.
     g4731 = models.CharField(db_column='G4731', max_length=1, blank=True, null=True)  # Field name made lowercase.
     g4732 = models.CharField(db_column='G4732', max_length=3, blank=True, null=True)  # Field name made lowercase.
     g4733 = models.CharField(db_column='G4733', max_length=3, blank=True, null=True)  # Field name made lowercase.
-    g4734 = models.FloatField(db_column='G4734', blank=True, null=True)  # Field name made lowercase.
+    g4734 = models.FloatField(default=0.00, db_column='G4734', blank=True, null=True)  # Field name made lowercase.
     npp = models.SmallIntegerField(db_column='NPP', blank=True, null=True)  # Field name made lowercase.
     g474 = models.DecimalField(default=0.00, db_column='G474', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
     g4741 = models.CharField(db_column='G4741', max_length=3, blank=True, null=True)  # Field name made lowercase.
     g475 = models.CharField(db_column='G475', max_length=2, blank=True, null=True)  # Field name made lowercase.
     g473z1_2 = models.CharField(db_column='G473Z1_2', max_length=1, blank=True, null=True)  # Field name made lowercase.
-    g473_2 = models.FloatField(db_column='G473_2', blank=True, null=True)  # Field name made lowercase.
+    g473_2 = models.FloatField(default=0.00, db_column='G473_2', blank=True, null=True)  # Field name made lowercase.
     g4731_2 = models.CharField(db_column='G4731_2', max_length=1, blank=True, null=True)  # Field name made lowercase.
     g4732_2 = models.CharField(db_column='G4732_2', max_length=3, blank=True, null=True)  # Field name made lowercase.
     g4733_2 = models.CharField(db_column='G4733_2', max_length=3, blank=True, null=True)  # Field name made lowercase.
-    g4734_2 = models.FloatField(db_column='G4734_2', blank=True, null=True)  # Field name made lowercase.
+    g4734_2 = models.FloatField(default=0.00, db_column='G4734_2', blank=True, null=True)  # Field name made lowercase.
     g473z1_3 = models.CharField(db_column='G473Z1_3', max_length=1, blank=True, null=True)  # Field name made lowercase.
-    g473_3 = models.FloatField(db_column='G473_3', blank=True, null=True)  # Field name made lowercase.
+    g473_3 = models.FloatField(default=0.00, db_column='G473_3', blank=True, null=True)  # Field name made lowercase.
     g4731_3 = models.CharField(db_column='G4731_3', max_length=1, blank=True, null=True)  # Field name made lowercase.
     g4732_3 = models.CharField(db_column='G4732_3', max_length=3, blank=True, null=True)  # Field name made lowercase.
     g4733_3 = models.CharField(db_column='G4733_3', max_length=3, blank=True, null=True)  # Field name made lowercase.
-    g4734_3 = models.FloatField(db_column='G4734_3', blank=True, null=True)  # Field name made lowercase.
+    g4734_3 = models.FloatField(default=0.00, db_column='G4734_3', blank=True, null=True)  # Field name made lowercase.
     g473z2_2 = models.SmallIntegerField(db_column='G473Z2_2', blank=True, null=True)  # Field name made lowercase.
     g4730 = models.DateTimeField(db_column='G4730', blank=True, null=True)  # Field name made lowercase.
     g4740 = models.DateTimeField(db_column='G4740', blank=True, null=True)  # Field name made lowercase.
     g47_nd = models.SmallIntegerField(db_column='G47_ND', blank=True, null=True)  # Field name made lowercase.
     g47_ns = models.SmallIntegerField(db_column='G47_NS', blank=True, null=True)  # Field name made lowercase.
     g47_nm = models.SmallIntegerField(db_column='G47_NM', blank=True, null=True)  # Field name made lowercase.
-    g47_tr = models.FloatField(db_column='G47_TR', blank=True, null=True)  # Field name made lowercase.
+    g47_tr = models.FloatField(default=0.00, db_column='G47_TR', blank=True, null=True)  # Field name made lowercase.
     g47_g40 = models.IntegerField(db_column='G47_G40', blank=True, null=True)  # Field name made lowercase.
     nzp = models.DecimalField(default=0.00, db_column='NZP', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
     dmodify = models.DateTimeField(db_column='DMODIFY', blank=True, null=True)  # Field name made lowercase.
@@ -2900,7 +2900,7 @@ class Ktdplatv(BaseModel):
     gb1 = models.CharField(db_column='GB1', max_length=4, blank=True, null=True)  # Field name made lowercase.
     gb2 = models.DecimalField(default=0.00, db_column='GB2', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
     gb3 = models.CharField(db_column='GB3', max_length=3, blank=True, null=True)  # Field name made lowercase.
-    gb4 = models.FloatField(db_column='GB4', blank=True, null=True)  # Field name made lowercase.
+    gb4 = models.FloatField(default=0.00, db_column='GB4', blank=True, null=True)  # Field name made lowercase.
     gb5 = models.CharField(db_column='GB5', max_length=2, blank=True, null=True)  # Field name made lowercase.
     iret = models.SmallIntegerField(db_column='IRET', blank=True, null=True)  # Field name made lowercase.
     g48 = models.DateTimeField(db_column='G48', blank=True, null=True)  # Field name made lowercase.
@@ -3244,7 +3244,7 @@ class Ktdtovar(BaseModel):
     g35zpk = models.DecimalField(default=0.00, db_column='G35ZPK', max_digits=19, decimal_places=6, blank=True, null=True)  # Field name made lowercase.
     g38zpk = models.DecimalField(default=0.00, db_column='G38ZPK', max_digits=19, decimal_places=6, blank=True, null=True)  # Field name made lowercase.
     g42curr = models.CharField(db_column='G42CURR', max_length=3, blank=True, null=True)  # Field name made lowercase.
-    g42rate = models.FloatField(db_column='G42RATE', blank=True, null=True)  # Field name made lowercase.
+    g42rate = models.FloatField(default=0.00, db_column='G42RATE', blank=True, null=True)  # Field name made lowercase.
     g46zpk = models.DecimalField(default=0.00, db_column='G46ZPK', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
     g31_dti = models.DecimalField(default=0.00, db_column='G31_DTI', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
     g34_2c = models.CharField(db_column='G34_2C', max_length=2, blank=True, null=True)  # Field name made lowercase.
@@ -3436,8 +3436,8 @@ class Psm(BaseModel):
     nummost = models.CharField(db_column='NUMMOST', max_length=80, blank=True, null=True)  # Field name made lowercase.
     shassi = models.CharField(db_column='SHASSI', max_length=40, blank=True, null=True)  # Field name made lowercase.
     zvet = models.CharField(db_column='ZVET', max_length=3, blank=True, null=True)  # Field name made lowercase.
-    powerls = models.FloatField(db_column='POWERLS', blank=True, null=True)  # Field name made lowercase.
-    powerkw = models.FloatField(db_column='POWERKW', blank=True, null=True)  # Field name made lowercase.
+    powerls = models.FloatField(default=0.00, db_column='POWERLS', blank=True, null=True)  # Field name made lowercase.
+    powerkw = models.FloatField(default=0.00, db_column='POWERKW', blank=True, null=True)  # Field name made lowercase.
     viddvig = models.CharField(db_column='VIDDVIG', max_length=2, blank=True, null=True)  # Field name made lowercase.
     maxmass = models.IntegerField(db_column='MAXMASS', blank=True, null=True)  # Field name made lowercase.
     maxspeed = models.SmallIntegerField(db_column='MAXSPEED', blank=True, null=True)  # Field name made lowercase.
@@ -3688,7 +3688,7 @@ class Sbrhead(BaseModel):
     g5454 = models.CharField(db_column='G5454', max_length=150, blank=True, null=True)  # Field name made lowercase.
     valdat = models.DateTimeField(db_column='VALDAT', blank=True, null=True)  # Field name made lowercase.
     tamst_kodv = models.CharField(db_column='TAMST_KODV', max_length=3, blank=True, null=True)  # Field name made lowercase.
-    tamst_kurs = models.FloatField(db_column='TAMST_KURS', blank=True, null=True)  # Field name made lowercase.
+    tamst_kurs = models.FloatField(default=0.00, db_column='TAMST_KURS', blank=True, null=True)  # Field name made lowercase.
     dc10 = models.CharField(db_column='DC10', max_length=2, blank=True, null=True)  # Field name made lowercase.
     dc11 = models.DateTimeField(db_column='DC11', blank=True, null=True)  # Field name made lowercase.
     dc12 = models.CharField(db_column='DC12', max_length=4, blank=True, null=True)  # Field name made lowercase.
@@ -3729,7 +3729,7 @@ class Sbrsscv(BaseModel):
     npoz = models.CharField(db_column='NPOZ', max_length=3, blank=True, null=True)  # Field name made lowercase.
     valsum = models.DecimalField(default=0.00, db_column='VALSUM', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
     valkod = models.CharField(db_column='VALKOD', max_length=3, blank=True, null=True)  # Field name made lowercase.
-    valkurs = models.FloatField(db_column='VALKURS', blank=True, null=True)  # Field name made lowercase.
+    valkurs = models.FloatField(default=0.00, db_column='VALKURS', blank=True, null=True)  # Field name made lowercase.
     # docnum = models.CharField(db_column='DocNum', max_length=28, blank=True, null=True)  # Field name made lowercase.
     valdate = models.DateTimeField(db_column='VALDATE', blank=True, null=True)  # Field name made lowercase.
 
@@ -3751,10 +3751,10 @@ class Sbrsstc(BaseModel):
     d11_v = models.DecimalField(default=0.00, db_column='D11_V', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
     d11_kodv = models.CharField(db_column='D11_KODV', max_length=3, blank=True, null=True)  # Field name made lowercase.
     d11_r = models.DecimalField(default=0.00, db_column='D11_R', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
-    d11_kurs = models.FloatField(db_column='D11_KURS', blank=True, null=True)  # Field name made lowercase.
+    d11_kurs = models.FloatField(default=0.00, db_column='D11_KURS', blank=True, null=True)  # Field name made lowercase.
     d11b_r = models.DecimalField(default=0.00, db_column='D11B_R', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
     d11b_kodv = models.CharField(db_column='D11B_KODV', max_length=3, blank=True, null=True)  # Field name made lowercase.
-    d11b_kurs = models.FloatField(db_column='D11B_KURS', blank=True, null=True)  # Field name made lowercase.
+    d11b_kurs = models.FloatField(default=0.00, db_column='D11B_KURS', blank=True, null=True)  # Field name made lowercase.
     d11 = models.DecimalField(default=0.00, db_column='D11', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
     d12 = models.DecimalField(default=0.00, db_column='D12', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
     d12a = models.DecimalField(default=0.00, db_column='D12A', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
@@ -3816,7 +3816,7 @@ class Sbrsstc(BaseModel):
     # docnum = models.CharField(db_column='DocNum', max_length=28, blank=True, null=True)  # Field name made lowercase.
     valdat = models.DateTimeField(db_column='VALDAT', blank=True, null=True)  # Field name made lowercase.
     tamst_kodv = models.CharField(db_column='TAMST_KODV', max_length=3, blank=True, null=True)  # Field name made lowercase.
-    tamst_kurs = models.FloatField(db_column='TAMST_KURS', blank=True, null=True)  # Field name made lowercase.
+    tamst_kurs = models.FloatField(default=0.00, db_column='TAMST_KURS', blank=True, null=True)  # Field name made lowercase.
     d11_kurd = models.DateTimeField(db_column='D11_KURD', blank=True, null=True)  # Field name made lowercase.
     d11b_kurd = models.DateTimeField(db_column='D11B_KURD', blank=True, null=True)  # Field name made lowercase.
     cucostdate = models.DateTimeField(db_column='CUCOSTDATE', blank=True, null=True)  # Field name made lowercase.

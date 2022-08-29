@@ -94,7 +94,7 @@ class ExtSourceFields(models.Model):
     g07x = models.CharField(max_length=23, blank=True, null=True)
     hash = models.CharField(max_length=64, blank=False, null=True,)
     # hash = models.CharField(max_length=64, blank=False, null=True, unique=True)
-    docnum = models.CharField(db_column='DocNum', max_length=23) # import from Doxc2sql
+    docnum = models.CharField(db_column='DocNum', max_length=28, blank=True, null=True) # import from Doxc2sql
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -108,7 +108,7 @@ class ExtSourceFields(models.Model):
 # SECTION: ARM Doc2Sql import mixins
 ##################################################################################
 class ExtArmFields(ExtSourceFields):
-    docnum = models.CharField(db_column='DocNum', max_length=23)
+    docnum = models.CharField(db_column='DocNum', max_length=28, blank=True, null=True)
 
     class Meta:
         abstract = True
@@ -130,7 +130,7 @@ class ExtNonUniqHash(ExtArmFields):
 ##################################################################################
 class ExtBaseDocNum(models.Model):
     """Extending base model table by additional fields"""
-    docnum = models.CharField(db_column='DocNum', max_length=23, primary_key=True)
+    docnum = models.CharField(db_column='DocNum', max_length=28, primary_key=True)
     g071 = models.CharField(max_length=8)
 
     class Meta:
