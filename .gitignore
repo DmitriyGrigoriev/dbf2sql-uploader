@@ -93,3 +93,6 @@ target/
 
 # pytest cache
 .pytest_cache/
+
+# tmp files
+*.tmp

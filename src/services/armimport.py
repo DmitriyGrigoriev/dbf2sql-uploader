@@ -66,11 +66,11 @@ class ARMImport(BaseImport):
             self._reccount = self._source_model_record_count()
             today = datetime.date.today()
             last = self.gomonth(today=today, month=self._period_of_month)
-            raw_sql = self._get_export_raw_sql()
+            # raw_sql = self._get_export_raw_sql()
 
             for start in range(0, self._reccount, self._limit):
                 # select data from model
-                sql = self._transform_raw_select(start=start + 1, raw_sql=raw_sql)
+                sql = self._transform_raw_select(start=start, raw_sql='')
 
                 if self.logger:
                     self.logger.info(f"Execute SQL: {sql}")
@@ -109,12 +109,28 @@ class ARMImport(BaseImport):
         [SELECT field1, field2 WHERE ...]
         """
         field = self._exported_field_exist('g072')
+        if start == 0:
+            row_sql = self.source_model.__class__.objects.\
+                          using(self.source_connection_name)\
+                          [start:self._limit].query.__str__()
+        else:
+            row_sql = self.source_model.__class__.objects.\
+                          using(self.source_connection_name)\
+                          [start:self._limit+start].query.__str__()
+
+        order_index = row_sql.find('ORDER BY')
+
+        if order_index >=0:
+            limit = row_sql[order_index:]
+            row_sql = row_sql[0:order_index]
+        else:
+            limit = ''
 
         if field:
             where = f" WHERE ([{field}] >= %s AND [{field}] <= %s)"
         else:
             where = ""
-        return f"{raw_sql}{where}"
+        return f"{row_sql}{where} {limit}"
 
 
     def _imported_field_exist(self, field: str):
