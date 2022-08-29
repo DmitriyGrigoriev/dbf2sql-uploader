@@ -116,6 +116,16 @@ class ImportTablesManager(models.Manager):
 
         return last_write
 
+
+    def update_message_id(self, message_data: dict) -> None:
+        kwargs = message_data['kwargs']
+        table_pk = kwargs['table_pk']
+        message_id = message_data['message_id']
+        record_to_update = ImportTables.tables.filter(pk=table_pk)
+
+        record_to_update.update(message_id=message_id)
+
+
     def update_last_import_date(self, message_data, result):
         """Update the date and time of last write uploaded data from the import table"""
         databases = settings.DATABASES
@@ -157,7 +167,7 @@ class ImportTablesManager(models.Manager):
                 print("#########################################################")
                 record_to_update.update(upload_record=result)
             # Update import_table redis message id
-            record_to_update.update(message_id=message_id)
+            self.update_message_id(message_data)
 
 
 class ImportTables(DefaultModel):

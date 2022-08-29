@@ -112,6 +112,8 @@ def print_error(message_data, exception_data):
         redis_client.hdel("dramatiq:default.DQ.msgs", redis_message_id)
         print(f"############ Redis message_id {redis_message_id} was deleted due to {exception_type} #########")
         print("################################################################################")
+    else:
+        ImportTables.tables.update_message_id(message_data)
 
     # print_error.logger.info("################################################################################")
     # print_error.logger.info(f"  * exception_data: {exception_data}")
