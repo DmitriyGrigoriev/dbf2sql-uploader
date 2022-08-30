@@ -154,7 +154,7 @@ class ImportTablesManager(models.Manager):
             else:
                 last_write = datetime.today()
                 print("################################################################################")
-                print(f"#### Success import from database {source_connection_name} : last write was at {last_write}  ####")
+                print(f"#### Success import from database {source_connection_name} table {source_table} : last write was at {last_write}  ####")
                 print("################################################################################")
 
             if last_write:
