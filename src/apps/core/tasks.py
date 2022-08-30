@@ -60,6 +60,7 @@ def process_import(
     global result
     result = 0
     table_pk = kwargs['table_pk']
+    type = kwargs['type']
     try:
         # Clear all indicators before start task
         ImportTables.tables.filter(pk=table_pk).update(
