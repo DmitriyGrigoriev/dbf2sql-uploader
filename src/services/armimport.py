@@ -93,6 +93,7 @@ class ARMImport(BaseImport):
             #     )
 
         except Exception as e:
+            logger.info(f'Error occured in: {self.dest_connection_name} table {self.dest_table_name}')
             logger.exception(e)
             raise e
 
