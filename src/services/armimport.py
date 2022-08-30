@@ -13,13 +13,8 @@ logger = logging.getLogger(__name__)
 
 class ARMImport(BaseImport):
     delete_imported_records = True
-    # _source_connection_name = None
-    # _dest_connection_name = None
-    # _source_model = None
-    # _dest_model = None
-    # _limit = settings.BATCH_SIZE
-    # _reccount = 0
     _period_of_month = -2 # get export data for 2 last month
+    _type = 'ARM'
 
 
     def __init__(self, source_connection_name: str, source_table_name: str,

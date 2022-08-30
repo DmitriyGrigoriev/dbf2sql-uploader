@@ -21,12 +21,7 @@ def datetime_as_string(value):
 
 class SQLImport(BaseImport):
     delete_imported_records = True
-    # _source_connection_name = None
-    # _dest_connection_name = None
-    # _source_model = None
-    # _dest_model = None
-    # _limit = settings.BATCH_SIZE
-    # _reccount = 0
+    _type = 'DBF'
 
 
     def __init__(self, source_connection_name: str, source_table_name: str,

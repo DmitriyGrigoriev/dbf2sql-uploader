@@ -16,6 +16,8 @@ class ExtResource:
     hash_field_name = 'hash'
     hash_field_value = None
 
+    type = None
+
     class Meta:
         use_bulk = True
         batch_size = settings.BATCH_SIZE
@@ -34,12 +36,15 @@ class ExtResource:
             g07x = f"{row['g071']}/{row['g072'].strftime('%d%m%y')}/{row['g073']}"
             row['g07x'] = g07x
 
-        if self.database is not None:
-            row['database'] = self.database
+        if self.database is not None and 'sourcetype' in row:
+            row['sourcetype'] = self.type
 
         # Calculate row hash
         self.hash_field_value = sha256(repr(row.values()).encode('utf8')).hexdigest().encode('utf-8').decode('utf-8')
         row[self.hash_field_name] = self.hash_field_value
+
+        if self.type is not None:
+            row['database'] = self.database
 
     # def skip_row(self, instance, original):
     #     skip = self.dest_connection.cursor().execute(
@@ -90,6 +95,7 @@ class ExtSourceFields(models.Model):
     uid = models.AutoField(primary_key=True)
     g071 = models.CharField(max_length=8, blank=True, null=True)
     # uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    sourcetype = models.CharField(max_length=3, blank=True, null=True)
     database = models.CharField(max_length=50, blank=True, null=True)
     g07x = models.CharField(max_length=23, blank=True, null=True)
     hash = models.CharField(max_length=64, blank=False, null=True,)

@@ -136,6 +136,7 @@ class BaseImport:
     def _create_resource_instance(self):
         res_model = self._get_resource_models()
         try:
+            res_model.type = self._type
             res_model.database = self._get_source_database_id()
             res_model.dest_connection = self.dest_connection
         except AttributeError:
