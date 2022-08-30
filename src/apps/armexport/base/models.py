@@ -2394,7 +2394,7 @@ class Ktddogt(BaseModel):
         # db_table = 'KTDDOGT'
 
 
-class Ktdhead(BaseModel):
+class Ktdhead(models.Model):
     num_ver = models.CharField(db_column='NUM_VER', max_length=8, blank=True, null=True)  # Field name made lowercase.
     data_ver = models.DateTimeField(db_column='DATA_VER', blank=True, null=True)  # Field name made lowercase.
     typ_dcl = models.CharField(db_column='TYP_DCL', max_length=2, blank=True, null=True)  # Field name made lowercase.
@@ -2438,13 +2438,13 @@ class Ktdhead(BaseModel):
     g023post = models.CharField(db_column='G023POST', max_length=9, blank=True, null=True)  # Field name made lowercase.
     g0231 = models.CharField(db_column='G0231', max_length=2, blank=True, null=True)  # Field name made lowercase.
     g0231n = models.CharField(db_column='G0231N', max_length=40, blank=True, null=True)  # Field name made lowercase.
-    g023subd = models.CharField(db_column='G023SUBD', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    g023city = models.CharField(db_column='G023CITY', max_length=35, blank=True, null=True)  # Field name made lowercase.
-    g023street = models.CharField(db_column='G023STREET', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    g023subd = models.CharField(db_column='G023SUBD', max_length=120, blank=True, null=True)  # Field name made lowercase.
+    g023city = models.CharField(db_column='G023CITY', max_length=120, blank=True, null=True)  # Field name made lowercase.
+    g023street = models.CharField(db_column='G023STREET', max_length=120, blank=True, null=True)  # Field name made lowercase.
     g024b = models.CharField(db_column='G024B', max_length=5, blank=True, null=True)  # Field name made lowercase.
     g024n = models.CharField(db_column='G024N', max_length=10, blank=True, null=True)  # Field name made lowercase.
     g024in = models.CharField(db_column='G024IN', max_length=12, blank=True, null=True)  # Field name made lowercase.
-    g027 = models.CharField(db_column='G027', max_length=9, blank=True, null=True)  # Field name made lowercase.
+    g027 = models.CharField(db_column='G027', max_length=12, blank=True, null=True)  # Field name made lowercase.
     g0281 = models.CharField(db_column='G0281', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g0281a = models.CharField(db_column='G0281A', max_length=15, blank=True, null=True)  # Field name made lowercase.
     g02821 = models.CharField(db_column='G02821', max_length=11, blank=True, null=True)  # Field name made lowercase.
@@ -2452,13 +2452,13 @@ class Ktdhead(BaseModel):
     g02823 = models.CharField(db_column='G02823', max_length=150, blank=True, null=True)  # Field name made lowercase.
     g0283 = models.DateTimeField(db_column='G0283', blank=True, null=True)  # Field name made lowercase.
     g022a = models.CharField(db_column='G022A', max_length=150, blank=True, null=True)  # Field name made lowercase.
-    g027a = models.CharField(db_column='G027A', max_length=9, blank=True, null=True)  # Field name made lowercase.
+    g027a = models.CharField(db_column='G027A', max_length=12, blank=True, null=True)  # Field name made lowercase.
     g023apost = models.CharField(db_column='G023APOST', max_length=9, blank=True, null=True)  # Field name made lowercase.
     g0231a = models.CharField(db_column='G0231A', max_length=2, blank=True, null=True)  # Field name made lowercase.
     g0231an = models.CharField(db_column='G0231AN', max_length=40, blank=True, null=True)  # Field name made lowercase.
-    g023asubd = models.CharField(db_column='G023ASUBD', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    g023acity = models.CharField(db_column='G023ACITY', max_length=35, blank=True, null=True)  # Field name made lowercase.
-    g023astree = models.CharField(db_column='G023ASTREE', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    g023asubd = models.CharField(db_column='G023ASUBD', max_length=120, blank=True, null=True)  # Field name made lowercase.
+    g023acity = models.CharField(db_column='G023ACITY', max_length=120, blank=True, null=True)  # Field name made lowercase.
+    g023astree = models.CharField(db_column='G023ASTREE', max_length=120, blank=True, null=True)  # Field name made lowercase.
     g029 = models.CharField(db_column='G029', max_length=1, blank=True, null=True)  # Field name made lowercase.
     g02sm14 = models.CharField(db_column='G02SM14', max_length=1, blank=True, null=True)  # Field name made lowercase.
     g032 = models.IntegerField(db_column='G032', blank=True, null=True)  # Field name made lowercase.
@@ -2474,11 +2474,11 @@ class Ktdhead(BaseModel):
     g083post = models.CharField(db_column='G083POST', max_length=9, blank=True, null=True)  # Field name made lowercase.
     g0831 = models.CharField(db_column='G0831', max_length=2, blank=True, null=True)  # Field name made lowercase.
     g0831a = models.CharField(db_column='G0831A', max_length=40, blank=True, null=True)  # Field name made lowercase.
-    g083subd = models.CharField(db_column='G083SUBD', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    g083city = models.CharField(db_column='G083CITY', max_length=35, blank=True, null=True)  # Field name made lowercase.
-    g083street = models.CharField(db_column='G083STREET', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    g083subd = models.CharField(db_column='G083SUBD', max_length=120, blank=True, null=True)  # Field name made lowercase.
+    g083city = models.CharField(db_column='G083CITY', max_length=120, blank=True, null=True)  # Field name made lowercase.
+    g083street = models.CharField(db_column='G083STREET', max_length=120, blank=True, null=True)  # Field name made lowercase.
     g084b = models.CharField(db_column='G084B', max_length=5, blank=True, null=True)  # Field name made lowercase.
-    g087 = models.CharField(db_column='G087', max_length=9, blank=True, null=True)  # Field name made lowercase.
+    g087 = models.CharField(db_column='G087', max_length=12, blank=True, null=True)  # Field name made lowercase.
     g0881 = models.CharField(db_column='G0881', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g0881a = models.CharField(db_column='G0881A', max_length=15, blank=True, null=True)  # Field name made lowercase.
     g08821 = models.CharField(db_column='G08821', max_length=11, blank=True, null=True)  # Field name made lowercase.
@@ -2487,13 +2487,13 @@ class Ktdhead(BaseModel):
     g0883 = models.DateTimeField(db_column='G0883', blank=True, null=True)  # Field name made lowercase.
     g089 = models.CharField(db_column='G089', max_length=1, blank=True, null=True)  # Field name made lowercase.
     g082a = models.CharField(db_column='G082A', max_length=150, blank=True, null=True)  # Field name made lowercase.
-    g087a = models.CharField(db_column='G087A', max_length=9, blank=True, null=True)  # Field name made lowercase.
+    g087a = models.CharField(db_column='G087A', max_length=12, blank=True, null=True)  # Field name made lowercase.
     g083apost = models.CharField(db_column='G083APOST', max_length=9, blank=True, null=True)  # Field name made lowercase.
     g0831aa = models.CharField(db_column='G0831AA', max_length=2, blank=True, null=True)  # Field name made lowercase.
     g0831an = models.CharField(db_column='G0831AN', max_length=40, blank=True, null=True)  # Field name made lowercase.
-    g083asubd = models.CharField(db_column='G083ASUBD', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    g083acity = models.CharField(db_column='G083ACITY', max_length=35, blank=True, null=True)  # Field name made lowercase.
-    g083astree = models.CharField(db_column='G083ASTREE', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    g083asubd = models.CharField(db_column='G083ASUBD', max_length=120, blank=True, null=True)  # Field name made lowercase.
+    g083acity = models.CharField(db_column='G083ACITY', max_length=120, blank=True, null=True)  # Field name made lowercase.
+    g083astree = models.CharField(db_column='G083ASTREE', max_length=120, blank=True, null=True)  # Field name made lowercase.
     g08sm14 = models.CharField(db_column='G08SM14', max_length=1, blank=True, null=True)  # Field name made lowercase.
     g090 = models.CharField(db_column='G090', max_length=15, blank=True, null=True)  # Field name made lowercase.
     g09_itn = models.CharField(db_column='G09_ITN', max_length=13, blank=True, null=True)  # Field name made lowercase.
@@ -2503,18 +2503,18 @@ class Ktdhead(BaseModel):
     g093post = models.CharField(db_column='G093POST', max_length=9, blank=True, null=True)  # Field name made lowercase.
     g0931 = models.CharField(db_column='G0931', max_length=2, blank=True, null=True)  # Field name made lowercase.
     g0931n = models.CharField(db_column='G0931N', max_length=40, blank=True, null=True)  # Field name made lowercase.
-    g093subd = models.CharField(db_column='G093SUBD', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    g093city = models.CharField(db_column='G093CITY', max_length=35, blank=True, null=True)  # Field name made lowercase.
-    g093street = models.CharField(db_column='G093STREET', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    g093subd = models.CharField(db_column='G093SUBD', max_length=120, blank=True, null=True)  # Field name made lowercase.
+    g093city = models.CharField(db_column='G093CITY', max_length=120, blank=True, null=True)  # Field name made lowercase.
+    g093street = models.CharField(db_column='G093STREET', max_length=120, blank=True, null=True)  # Field name made lowercase.
     g093apost = models.CharField(db_column='G093APOST', max_length=9, blank=True, null=True)  # Field name made lowercase.
     g0931a = models.CharField(db_column='G0931A', max_length=2, blank=True, null=True)  # Field name made lowercase.
     g0931an = models.CharField(db_column='G0931AN', max_length=40, blank=True, null=True)  # Field name made lowercase.
-    g093asubd = models.CharField(db_column='G093ASUBD', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    g093acity = models.CharField(db_column='G093ACITY', max_length=35, blank=True, null=True)  # Field name made lowercase.
-    g093astree = models.CharField(db_column='G093ASTREE', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    g093asubd = models.CharField(db_column='G093ASUBD', max_length=120, blank=True, null=True)  # Field name made lowercase.
+    g093acity = models.CharField(db_column='G093ACITY', max_length=120, blank=True, null=True)  # Field name made lowercase.
+    g093astree = models.CharField(db_column='G093ASTREE', max_length=120, blank=True, null=True)  # Field name made lowercase.
     g094b = models.CharField(db_column='G094B', max_length=5, blank=True, null=True)  # Field name made lowercase.
-    g097 = models.CharField(db_column='G097', max_length=9, blank=True, null=True)  # Field name made lowercase.
-    g097a = models.CharField(db_column='G097A', max_length=9, blank=True, null=True)  # Field name made lowercase.
+    g097 = models.CharField(db_column='G097', max_length=12, blank=True, null=True)  # Field name made lowercase.
+    g097a = models.CharField(db_column='G097A', max_length=12, blank=True, null=True)  # Field name made lowercase.
     g0981 = models.CharField(db_column='G0981', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g0981a = models.CharField(db_column='G0981A', max_length=15, blank=True, null=True)  # Field name made lowercase.
     g09821 = models.CharField(db_column='G09821', max_length=11, blank=True, null=True)  # Field name made lowercase.
@@ -2534,18 +2534,18 @@ class Ktdhead(BaseModel):
     g143post = models.CharField(db_column='G143POST', max_length=9, blank=True, null=True)  # Field name made lowercase.
     g1431 = models.CharField(db_column='G1431', max_length=2, blank=True, null=True)  # Field name made lowercase.
     g1431n = models.CharField(db_column='G1431N', max_length=40, blank=True, null=True)  # Field name made lowercase.
-    g143subd = models.CharField(db_column='G143SUBD', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    g143city = models.CharField(db_column='G143CITY', max_length=35, blank=True, null=True)  # Field name made lowercase.
-    g143street = models.CharField(db_column='G143STREET', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    g143subd = models.CharField(db_column='G143SUBD', max_length=120, blank=True, null=True)  # Field name made lowercase.
+    g143city = models.CharField(db_column='G143CITY', max_length=120, blank=True, null=True)  # Field name made lowercase.
+    g143street = models.CharField(db_column='G143STREET', max_length=120, blank=True, null=True)  # Field name made lowercase.
     g143apost = models.CharField(db_column='G143APOST', max_length=9, blank=True, null=True)  # Field name made lowercase.
     g1431a = models.CharField(db_column='G1431A', max_length=2, blank=True, null=True)  # Field name made lowercase.
     g1431an = models.CharField(db_column='G1431AN', max_length=40, blank=True, null=True)  # Field name made lowercase.
-    g143asubd = models.CharField(db_column='G143ASUBD', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    g143acity = models.CharField(db_column='G143ACITY', max_length=35, blank=True, null=True)  # Field name made lowercase.
-    g143astree = models.CharField(db_column='G143ASTREE', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    g143asubd = models.CharField(db_column='G143ASUBD', max_length=120, blank=True, null=True)  # Field name made lowercase.
+    g143acity = models.CharField(db_column='G143ACITY', max_length=120, blank=True, null=True)  # Field name made lowercase.
+    g143astree = models.CharField(db_column='G143ASTREE', max_length=120, blank=True, null=True)  # Field name made lowercase.
     g144b = models.CharField(db_column='G144B', max_length=5, blank=True, null=True)  # Field name made lowercase.
-    g147 = models.CharField(db_column='G147', max_length=9, blank=True, null=True)  # Field name made lowercase.
-    g147a = models.CharField(db_column='G147A', max_length=9, blank=True, null=True)  # Field name made lowercase.
+    g147 = models.CharField(db_column='G147', max_length=12, blank=True, null=True)  # Field name made lowercase.
+    g147a = models.CharField(db_column='G147A', max_length=12, blank=True, null=True)  # Field name made lowercase.
     g1481 = models.CharField(db_column='G1481', max_length=7, blank=True, null=True)  # Field name made lowercase.
     g1481a = models.CharField(db_column='G1481A', max_length=15, blank=True, null=True)  # Field name made lowercase.
     g14821 = models.CharField(db_column='G14821', max_length=11, blank=True, null=True)  # Field name made lowercase.
@@ -2561,7 +2561,7 @@ class Ktdhead(BaseModel):
     g182 = models.CharField(db_column='G182', max_length=2, blank=True, null=True)  # Field name made lowercase.
     g19 = models.CharField(db_column='G19', max_length=1, blank=True, null=True)  # Field name made lowercase.
     g202 = models.CharField(db_column='G202', max_length=3, blank=True, null=True)  # Field name made lowercase.
-    g2021 = models.CharField(db_column='G2021', max_length=40, blank=True, null=True)  # Field name made lowercase.
+    g2021 = models.CharField(db_column='G2021', max_length=50, blank=True, null=True)  # Field name made lowercase.
     g203 = models.CharField(db_column='G203', max_length=250, blank=True, null=True)  # Field name made lowercase.
     g210 = models.IntegerField(db_column='G210', blank=True, null=True)  # Field name made lowercase.
     g212 = models.CharField(db_column='G212', max_length=2, blank=True, null=True)  # Field name made lowercase.
@@ -2600,9 +2600,9 @@ class Ktdhead(BaseModel):
     g30post = models.CharField(db_column='G30POST', max_length=9, blank=True, null=True)  # Field name made lowercase.
     g30a = models.CharField(db_column='G30A', max_length=2, blank=True, null=True)  # Field name made lowercase.
     g30an = models.CharField(db_column='G30AN', max_length=40, blank=True, null=True)  # Field name made lowercase.
-    g30subd = models.CharField(db_column='G30SUBD', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    g30city = models.CharField(db_column='G30CITY', max_length=35, blank=True, null=True)  # Field name made lowercase.
-    g30street = models.CharField(db_column='G30STREET', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    g30subd = models.CharField(db_column='G30SUBD', max_length=120, blank=True, null=True)  # Field name made lowercase.
+    g30city = models.CharField(db_column='G30CITY', max_length=120, blank=True, null=True)  # Field name made lowercase.
+    g30street = models.CharField(db_column='G30STREET', max_length=120, blank=True, null=True)  # Field name made lowercase.
     g30lname = models.CharField(db_column='G30LNAME', max_length=150, blank=True, null=True)  # Field name made lowercase.
     g3012 = models.CharField(db_column='G3012', max_length=8, blank=True, null=True)  # Field name made lowercase.
     g30121 = models.CharField(db_column='G30121', max_length=2, blank=True, null=True)  # Field name made lowercase.
@@ -2678,7 +2678,7 @@ class Ktdhead(BaseModel):
     gd11 = models.CharField(db_column='GD11', max_length=8, blank=True, null=True)  # Field name made lowercase.
     gd2 = models.CharField(db_column='GD2', max_length=4, blank=True, null=True)  # Field name made lowercase.
     gd2fio = models.CharField(db_column='GD2FIO', max_length=150, blank=True, null=True)  # Field name made lowercase.
-    gd00 = models.CharField(db_column='GD00', max_length=150, blank=True, null=True)  # Field name made lowercase.
+    gd00 = models.CharField(db_column='GD00', max_length=250, blank=True, null=True)  # Field name made lowercase.
     gddf = models.DateTimeField(db_column='GDDF', blank=True, null=True)  # Field name made lowercase.
     recplatv = models.IntegerField(db_column='RECPLATV', blank=True, null=True)  # Field name made lowercase.
     recslotm = models.IntegerField(db_column='RECSLOTM', blank=True, null=True)  # Field name made lowercase.
@@ -2756,10 +2756,405 @@ class Ktdhead(BaseModel):
     g54532 = models.DateTimeField(db_column='G54532', blank=True, null=True)  # Field name made lowercase.
     g54email = models.CharField(db_column='G54EMAIL', max_length=150, blank=True, null=True)  # Field name made lowercase.
     g0132 = models.CharField(db_column='G0132', max_length=2, blank=True, null=True)  # Field name made lowercase.
+    g023room = models.CharField(db_column='G023ROOM', max_length=20, blank=True, null=True)  # Field name made lowercase.
+    g023typ = models.CharField(db_column='G023TYP', max_length=1, blank=True, null=True)  # Field name made lowercase.
+    g023aroom = models.CharField(db_column='G023AROOM', max_length=20, blank=True, null=True)  # Field name made lowercase.
+    g023atyp = models.CharField(db_column='G023ATYP', max_length=1, blank=True, null=True)  # Field name made lowercase.
+    g083room = models.CharField(db_column='G083ROOM', max_length=20, blank=True, null=True)  # Field name made lowercase.
+    g083typ = models.CharField(db_column='G083TYP', max_length=1, blank=True, null=True)  # Field name made lowercase.
+    g083aroom = models.CharField(db_column='G083AROOM', max_length=20, blank=True, null=True)  # Field name made lowercase.
+    g083atyp = models.CharField(db_column='G083ATYP', max_length=1, blank=True, null=True)  # Field name made lowercase.
+    g093room = models.CharField(db_column='G093ROOM', max_length=20, blank=True, null=True)  # Field name made lowercase.
+    g093typ = models.CharField(db_column='G093TYP', max_length=1, blank=True, null=True)  # Field name made lowercase.
+    g093aroom = models.CharField(db_column='G093AROOM', max_length=20, blank=True, null=True)  # Field name made lowercase.
+    g093atyp = models.CharField(db_column='G093ATYP', max_length=1, blank=True, null=True)  # Field name made lowercase.
+    g143room = models.CharField(db_column='G143ROOM', max_length=20, blank=True, null=True)  # Field name made lowercase.
+    g143typ = models.CharField(db_column='G143TYP', max_length=1, blank=True, null=True)  # Field name made lowercase.
+    g143aroom = models.CharField(db_column='G143AROOM', max_length=20, blank=True, null=True)  # Field name made lowercase.
+    g143atyp = models.CharField(db_column='G143ATYP', max_length=1, blank=True, null=True)  # Field name made lowercase.
+    g30room = models.CharField(db_column='G30ROOM', max_length=20, blank=True, null=True)  # Field name made lowercase.
+    g30typ = models.CharField(db_column='G30TYP', max_length=1, blank=True, null=True)  # Field name made lowercase.
+    gd1kdt = models.DateTimeField(db_column='GD1KDT', blank=True, null=True)  # Field name made lowercase.
+    gd11kdt = models.CharField(db_column='GD11KDT', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    seal_plm = models.CharField(db_column='SEAL_PLM', max_length=250, blank=True, null=True)  # Field name made lowercase.
+    seal_qty = models.SmallIntegerField(db_column='SEAL_QTY', blank=True, null=True)  # Field name made lowercase.
+    seal_id = models.CharField(db_column='SEAL_ID', max_length=250, blank=True, null=True)  # Field name made lowercase.
+    seal_decr = models.CharField(db_column='SEAL_DECR', max_length=250, blank=True, null=True)  # Field name made lowercase.
+    kz_cust = models.CharField(db_column='KZ_CUST', max_length=8, blank=True, null=True)  # Field name made lowercase.
+    kz_sec = models.CharField(db_column='KZ_SEC', max_length=6, blank=True, null=True)  # Field name made lowercase.
+    kz_wto = models.CharField(db_column='KZ_WTO', max_length=1, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
         # db_table = 'KTDHEAD'
+
+
+# class _Ktdhead(BaseModel):
+#     num_ver = models.CharField(db_column='NUM_VER', max_length=8, blank=True, null=True)  # Field name made lowercase.
+#     data_ver = models.DateTimeField(db_column='DATA_VER', blank=True, null=True)  # Field name made lowercase.
+#     typ_dcl = models.CharField(db_column='TYP_DCL', max_length=2, blank=True, null=True)  # Field name made lowercase.
+#     gugtk = models.BooleanField(db_column='GUGTK', blank=True, null=True)  # Field name made lowercase.
+#     copy = models.BooleanField(db_column='COPY', blank=True, null=True)  # Field name made lowercase.
+#     dcopy = models.DateTimeField(db_column='DCOPY', blank=True, null=True)  # Field name made lowercase.
+#     q_edit = models.SmallIntegerField(db_column='Q_EDIT', blank=True, null=True)  # Field name made lowercase.
+#     d_edit = models.DateTimeField(db_column='D_EDIT', blank=True, null=True)  # Field name made lowercase.
+#     sol = models.SmallIntegerField(db_column='SOL', blank=True, null=True)  # Field name made lowercase.
+#     max_err = models.SmallIntegerField(db_column='MAX_ERR', blank=True, null=True)  # Field name made lowercase.
+#     dd = models.DateTimeField(db_column='DD', blank=True, null=True)  # Field name made lowercase.
+#     tm = models.CharField(db_column='TM', max_length=8, blank=True, null=True)  # Field name made lowercase.
+#     extrnl = models.CharField(db_column='EXTRNL', max_length=80, blank=True, null=True)  # Field name made lowercase.
+#     schet = models.CharField(db_column='SCHET', max_length=160, blank=True, null=True)  # Field name made lowercase.
+#     stepctrl = models.CharField(db_column='STEPCTRL', max_length=20, blank=True, null=True)  # Field name made lowercase.
+#     typ_dtc = models.CharField(db_column='TYP_DTC', max_length=1, blank=True, null=True)  # Field name made lowercase.
+#     vid_ktc = models.CharField(db_column='VID_KTC', max_length=1, blank=True, null=True)  # Field name made lowercase.
+#     stat = models.CharField(db_column='STAT', max_length=1, blank=True, null=True)  # Field name made lowercase.
+#     # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+#     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
+#     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
+#     ui_b_1 = models.CharField(db_column='UI_B_1', max_length=8, blank=True, null=True)  # Field name made lowercase.
+#     ui_b_2 = models.DateTimeField(db_column='UI_B_2', blank=True, null=True)  # Field name made lowercase.
+#     ui_b_3 = models.CharField(db_column='UI_B_3', max_length=7, blank=True, null=True)  # Field name made lowercase.
+#     sds_srv = models.CharField(db_column='SDS_SRV', max_length=4, blank=True, null=True)  # Field name made lowercase.
+#     sds_num = models.DecimalField(default=0.00, db_column='SDS_NUM', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
+#     sds_cust = models.CharField(db_column='SDS_CUST', max_length=8, blank=True, null=True)  # Field name made lowercase.
+#     f_decl = models.CharField(db_column='F_DECL', max_length=1, blank=True, null=True)  # Field name made lowercase.
+#     rccncode = models.CharField(db_column='RCCNCODE', max_length=2, blank=True, null=True)  # Field name made lowercase.
+#     dpresent = models.DateTimeField(db_column='DPRESENT', blank=True, null=True)  # Field name made lowercase.
+#     tpresent = models.CharField(db_column='TPRESENT', max_length=8, blank=True, null=True)  # Field name made lowercase.
+#     complectbl = models.CharField(db_column='COMPLECTBL', max_length=1, blank=True, null=True)  # Field name made lowercase.
+#     g011 = models.CharField(db_column='G011', max_length=2, blank=True, null=True)  # Field name made lowercase.
+#     g0121 = models.CharField(db_column='G0121', max_length=3, blank=True, null=True)  # Field name made lowercase.
+#     g0131 = models.CharField(db_column='G0131', max_length=3, blank=True, null=True)  # Field name made lowercase.
+#     k0131 = models.CharField(db_column='K0131', max_length=2, blank=True, null=True)  # Field name made lowercase.
+#     g020 = models.CharField(db_column='G020', max_length=15, blank=True, null=True)  # Field name made lowercase.
+#     g02_itn = models.CharField(db_column='G02_ITN', max_length=13, blank=True, null=True)  # Field name made lowercase.
+#     g021 = models.CharField(db_column='G021', max_length=40, blank=True, null=True)  # Field name made lowercase.
+#     g022 = models.CharField(db_column='G022', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     g023post = models.CharField(db_column='G023POST', max_length=9, blank=True, null=True)  # Field name made lowercase.
+#     g0231 = models.CharField(db_column='G0231', max_length=2, blank=True, null=True)  # Field name made lowercase.
+#     g0231n = models.CharField(db_column='G0231N', max_length=40, blank=True, null=True)  # Field name made lowercase.
+#     g023subd = models.CharField(db_column='G023SUBD', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     g023city = models.CharField(db_column='G023CITY', max_length=35, blank=True, null=True)  # Field name made lowercase.
+#     g023street = models.CharField(db_column='G023STREET', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     g024b = models.CharField(db_column='G024B', max_length=5, blank=True, null=True)  # Field name made lowercase.
+#     g024n = models.CharField(db_column='G024N', max_length=10, blank=True, null=True)  # Field name made lowercase.
+#     g024in = models.CharField(db_column='G024IN', max_length=12, blank=True, null=True)  # Field name made lowercase.
+#     g027 = models.CharField(db_column='G027', max_length=9, blank=True, null=True)  # Field name made lowercase.
+#     g0281 = models.CharField(db_column='G0281', max_length=7, blank=True, null=True)  # Field name made lowercase.
+#     g0281a = models.CharField(db_column='G0281A', max_length=15, blank=True, null=True)  # Field name made lowercase.
+#     g02821 = models.CharField(db_column='G02821', max_length=11, blank=True, null=True)  # Field name made lowercase.
+#     g02822 = models.CharField(db_column='G02822', max_length=25, blank=True, null=True)  # Field name made lowercase.
+#     g02823 = models.CharField(db_column='G02823', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     g0283 = models.DateTimeField(db_column='G0283', blank=True, null=True)  # Field name made lowercase.
+#     g022a = models.CharField(db_column='G022A', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     g027a = models.CharField(db_column='G027A', max_length=9, blank=True, null=True)  # Field name made lowercase.
+#     g023apost = models.CharField(db_column='G023APOST', max_length=9, blank=True, null=True)  # Field name made lowercase.
+#     g0231a = models.CharField(db_column='G0231A', max_length=2, blank=True, null=True)  # Field name made lowercase.
+#     g0231an = models.CharField(db_column='G0231AN', max_length=40, blank=True, null=True)  # Field name made lowercase.
+#     g023asubd = models.CharField(db_column='G023ASUBD', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     g023acity = models.CharField(db_column='G023ACITY', max_length=35, blank=True, null=True)  # Field name made lowercase.
+#     g023astree = models.CharField(db_column='G023ASTREE', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     g029 = models.CharField(db_column='G029', max_length=1, blank=True, null=True)  # Field name made lowercase.
+#     g02sm14 = models.CharField(db_column='G02SM14', max_length=1, blank=True, null=True)  # Field name made lowercase.
+#     g032 = models.IntegerField(db_column='G032', blank=True, null=True)  # Field name made lowercase.
+#     g040 = models.IntegerField(db_column='G040', blank=True, null=True)  # Field name made lowercase.
+#     g04 = models.IntegerField(db_column='G04', blank=True, null=True)  # Field name made lowercase.
+#     g05 = models.IntegerField(db_column='G05', blank=True, null=True)  # Field name made lowercase.
+#     g06 = models.IntegerField(db_column='G06', blank=True, null=True)  # Field name made lowercase.
+#     g07 = models.CharField(db_column='G07', max_length=3, blank=True, null=True)  # Field name made lowercase.
+#     g080 = models.CharField(db_column='G080', max_length=15, blank=True, null=True)  # Field name made lowercase.
+#     g08_itn = models.CharField(db_column='G08_ITN', max_length=13, blank=True, null=True)  # Field name made lowercase.
+#     g081 = models.CharField(db_column='G081', max_length=40, blank=True, null=True)  # Field name made lowercase.
+#     g082 = models.CharField(db_column='G082', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     g083post = models.CharField(db_column='G083POST', max_length=9, blank=True, null=True)  # Field name made lowercase.
+#     g0831 = models.CharField(db_column='G0831', max_length=2, blank=True, null=True)  # Field name made lowercase.
+#     g0831a = models.CharField(db_column='G0831A', max_length=40, blank=True, null=True)  # Field name made lowercase.
+#     g083subd = models.CharField(db_column='G083SUBD', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     g083city = models.CharField(db_column='G083CITY', max_length=35, blank=True, null=True)  # Field name made lowercase.
+#     g083street = models.CharField(db_column='G083STREET', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     g084b = models.CharField(db_column='G084B', max_length=5, blank=True, null=True)  # Field name made lowercase.
+#     g087 = models.CharField(db_column='G087', max_length=9, blank=True, null=True)  # Field name made lowercase.
+#     g0881 = models.CharField(db_column='G0881', max_length=7, blank=True, null=True)  # Field name made lowercase.
+#     g0881a = models.CharField(db_column='G0881A', max_length=15, blank=True, null=True)  # Field name made lowercase.
+#     g08821 = models.CharField(db_column='G08821', max_length=11, blank=True, null=True)  # Field name made lowercase.
+#     g08822 = models.CharField(db_column='G08822', max_length=25, blank=True, null=True)  # Field name made lowercase.
+#     g08823 = models.CharField(db_column='G08823', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     g0883 = models.DateTimeField(db_column='G0883', blank=True, null=True)  # Field name made lowercase.
+#     g089 = models.CharField(db_column='G089', max_length=1, blank=True, null=True)  # Field name made lowercase.
+#     g082a = models.CharField(db_column='G082A', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     g087a = models.CharField(db_column='G087A', max_length=9, blank=True, null=True)  # Field name made lowercase.
+#     g083apost = models.CharField(db_column='G083APOST', max_length=9, blank=True, null=True)  # Field name made lowercase.
+#     g0831aa = models.CharField(db_column='G0831AA', max_length=2, blank=True, null=True)  # Field name made lowercase.
+#     g0831an = models.CharField(db_column='G0831AN', max_length=40, blank=True, null=True)  # Field name made lowercase.
+#     g083asubd = models.CharField(db_column='G083ASUBD', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     g083acity = models.CharField(db_column='G083ACITY', max_length=35, blank=True, null=True)  # Field name made lowercase.
+#     g083astree = models.CharField(db_column='G083ASTREE', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     g08sm14 = models.CharField(db_column='G08SM14', max_length=1, blank=True, null=True)  # Field name made lowercase.
+#     g090 = models.CharField(db_column='G090', max_length=15, blank=True, null=True)  # Field name made lowercase.
+#     g09_itn = models.CharField(db_column='G09_ITN', max_length=13, blank=True, null=True)  # Field name made lowercase.
+#     g091 = models.CharField(db_column='G091', max_length=40, blank=True, null=True)  # Field name made lowercase.
+#     g092 = models.CharField(db_column='G092', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     g092a = models.CharField(db_column='G092A', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     g093post = models.CharField(db_column='G093POST', max_length=9, blank=True, null=True)  # Field name made lowercase.
+#     g0931 = models.CharField(db_column='G0931', max_length=2, blank=True, null=True)  # Field name made lowercase.
+#     g0931n = models.CharField(db_column='G0931N', max_length=40, blank=True, null=True)  # Field name made lowercase.
+#     g093subd = models.CharField(db_column='G093SUBD', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     g093city = models.CharField(db_column='G093CITY', max_length=35, blank=True, null=True)  # Field name made lowercase.
+#     g093street = models.CharField(db_column='G093STREET', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     g093apost = models.CharField(db_column='G093APOST', max_length=9, blank=True, null=True)  # Field name made lowercase.
+#     g0931a = models.CharField(db_column='G0931A', max_length=2, blank=True, null=True)  # Field name made lowercase.
+#     g0931an = models.CharField(db_column='G0931AN', max_length=40, blank=True, null=True)  # Field name made lowercase.
+#     g093asubd = models.CharField(db_column='G093ASUBD', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     g093acity = models.CharField(db_column='G093ACITY', max_length=35, blank=True, null=True)  # Field name made lowercase.
+#     g093astree = models.CharField(db_column='G093ASTREE', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     g094b = models.CharField(db_column='G094B', max_length=5, blank=True, null=True)  # Field name made lowercase.
+#     g097 = models.CharField(db_column='G097', max_length=9, blank=True, null=True)  # Field name made lowercase.
+#     g097a = models.CharField(db_column='G097A', max_length=9, blank=True, null=True)  # Field name made lowercase.
+#     g0981 = models.CharField(db_column='G0981', max_length=7, blank=True, null=True)  # Field name made lowercase.
+#     g0981a = models.CharField(db_column='G0981A', max_length=15, blank=True, null=True)  # Field name made lowercase.
+#     g09821 = models.CharField(db_column='G09821', max_length=11, blank=True, null=True)  # Field name made lowercase.
+#     g09822 = models.CharField(db_column='G09822', max_length=25, blank=True, null=True)  # Field name made lowercase.
+#     g09823 = models.CharField(db_column='G09823', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     g0983 = models.DateTimeField(db_column='G0983', blank=True, null=True)  # Field name made lowercase.
+#     g09sm14 = models.CharField(db_column='G09SM14', max_length=1, blank=True, null=True)  # Field name made lowercase.
+#     g11 = models.CharField(db_column='G11', max_length=2, blank=True, null=True)  # Field name made lowercase.
+#     g12 = models.DecimalField(default=0.00, db_column='G12', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
+#     g121 = models.CharField(db_column='G121', max_length=3, blank=True, null=True)  # Field name made lowercase.
+#     g122 = models.DecimalField(default=0.00, db_column='G122', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
+#     g140 = models.CharField(db_column='G140', max_length=15, blank=True, null=True)  # Field name made lowercase.
+#     g14_itn = models.CharField(db_column='G14_ITN', max_length=13, blank=True, null=True)  # Field name made lowercase.
+#     g141 = models.CharField(db_column='G141', max_length=40, blank=True, null=True)  # Field name made lowercase.
+#     g142 = models.CharField(db_column='G142', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     g142a = models.CharField(db_column='G142A', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     g143post = models.CharField(db_column='G143POST', max_length=9, blank=True, null=True)  # Field name made lowercase.
+#     g1431 = models.CharField(db_column='G1431', max_length=2, blank=True, null=True)  # Field name made lowercase.
+#     g1431n = models.CharField(db_column='G1431N', max_length=40, blank=True, null=True)  # Field name made lowercase.
+#     g143subd = models.CharField(db_column='G143SUBD', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     g143city = models.CharField(db_column='G143CITY', max_length=35, blank=True, null=True)  # Field name made lowercase.
+#     g143street = models.CharField(db_column='G143STREET', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     g143apost = models.CharField(db_column='G143APOST', max_length=9, blank=True, null=True)  # Field name made lowercase.
+#     g1431a = models.CharField(db_column='G1431A', max_length=2, blank=True, null=True)  # Field name made lowercase.
+#     g1431an = models.CharField(db_column='G1431AN', max_length=40, blank=True, null=True)  # Field name made lowercase.
+#     g143asubd = models.CharField(db_column='G143ASUBD', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     g143acity = models.CharField(db_column='G143ACITY', max_length=35, blank=True, null=True)  # Field name made lowercase.
+#     g143astree = models.CharField(db_column='G143ASTREE', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     g144b = models.CharField(db_column='G144B', max_length=5, blank=True, null=True)  # Field name made lowercase.
+#     g147 = models.CharField(db_column='G147', max_length=9, blank=True, null=True)  # Field name made lowercase.
+#     g147a = models.CharField(db_column='G147A', max_length=9, blank=True, null=True)  # Field name made lowercase.
+#     g1481 = models.CharField(db_column='G1481', max_length=7, blank=True, null=True)  # Field name made lowercase.
+#     g1481a = models.CharField(db_column='G1481A', max_length=15, blank=True, null=True)  # Field name made lowercase.
+#     g14821 = models.CharField(db_column='G14821', max_length=11, blank=True, null=True)  # Field name made lowercase.
+#     g14822 = models.CharField(db_column='G14822', max_length=25, blank=True, null=True)  # Field name made lowercase.
+#     g14823 = models.CharField(db_column='G14823', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     g1483 = models.DateTimeField(db_column='G1483', blank=True, null=True)  # Field name made lowercase.
+#     g15 = models.CharField(db_column='G15', max_length=40, blank=True, null=True)  # Field name made lowercase.
+#     g15a = models.CharField(db_column='G15A', max_length=2, blank=True, null=True)  # Field name made lowercase.
+#     g16 = models.CharField(db_column='G16', max_length=40, blank=True, null=True)  # Field name made lowercase.
+#     g17a = models.CharField(db_column='G17A', max_length=2, blank=True, null=True)  # Field name made lowercase.
+#     g17b = models.CharField(db_column='G17B', max_length=40, blank=True, null=True)  # Field name made lowercase.
+#     g180 = models.IntegerField(db_column='G180', blank=True, null=True)  # Field name made lowercase.
+#     g182 = models.CharField(db_column='G182', max_length=2, blank=True, null=True)  # Field name made lowercase.
+#     g19 = models.CharField(db_column='G19', max_length=1, blank=True, null=True)  # Field name made lowercase.
+#     g202 = models.CharField(db_column='G202', max_length=3, blank=True, null=True)  # Field name made lowercase.
+#     g2021 = models.CharField(db_column='G2021', max_length=40, blank=True, null=True)  # Field name made lowercase.
+#     g203 = models.CharField(db_column='G203', max_length=250, blank=True, null=True)  # Field name made lowercase.
+#     g210 = models.IntegerField(db_column='G210', blank=True, null=True)  # Field name made lowercase.
+#     g212 = models.CharField(db_column='G212', max_length=2, blank=True, null=True)  # Field name made lowercase.
+#     g221 = models.CharField(db_column='G221', max_length=3, blank=True, null=True)  # Field name made lowercase.
+#     g222 = models.DecimalField(default=0.00, db_column='G222', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
+#     g23 = models.FloatField(default=0.00, db_column='G23', blank=True, null=True)  # Field name made lowercase.
+#     g230 = models.DateTimeField(db_column='G230', blank=True, null=True)  # Field name made lowercase.
+#     g270 = models.CharField(db_column='G270', max_length=2, blank=True, null=True)  # Field name made lowercase.
+#     g27_itn = models.CharField(db_column='G27_ITN', max_length=13, blank=True, null=True)  # Field name made lowercase.
+#     g2710 = models.CharField(db_column='G2710', max_length=1, blank=True, null=True)  # Field name made lowercase.
+#     g271 = models.CharField(db_column='G271', max_length=21, blank=True, null=True)  # Field name made lowercase.
+#     g27 = models.CharField(db_column='G27', max_length=40, blank=True, null=True)  # Field name made lowercase.
+#     g2711 = models.DateTimeField(db_column='G2711', blank=True, null=True)  # Field name made lowercase.
+#     g2712 = models.CharField(db_column='G2712', max_length=8, blank=True, null=True)  # Field name made lowercase.
+#     g28_itn = models.CharField(db_column='G28_ITN', max_length=13, blank=True, null=True)  # Field name made lowercase.
+#     g28okpo = models.CharField(db_column='G28OKPO', max_length=10, blank=True, null=True)  # Field name made lowercase.
+#     g28inn = models.CharField(db_column='G28INN', max_length=12, blank=True, null=True)  # Field name made lowercase.
+#     g281oth = models.CharField(db_column='G281OTH', max_length=30, blank=True, null=True)  # Field name made lowercase.
+#     g28zajmn = models.CharField(db_column='G28ZAJMN', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     g282 = models.CharField(db_column='G282', max_length=70, blank=True, null=True)  # Field name made lowercase.
+#     g28211 = models.CharField(db_column='G28211', max_length=1, blank=True, null=True)  # Field name made lowercase.
+#     g28212 = models.CharField(db_column='G28212', max_length=2, blank=True, null=True)  # Field name made lowercase.
+#     g28221 = models.CharField(db_column='G28221', max_length=3, blank=True, null=True)  # Field name made lowercase.
+#     g28222 = models.CharField(db_column='G28222', max_length=1, blank=True, null=True)  # Field name made lowercase.
+#     g28230 = models.CharField(db_column='G28230', max_length=1, blank=True, null=True)  # Field name made lowercase.
+#     g2823 = models.DateTimeField(db_column='G2823', blank=True, null=True)  # Field name made lowercase.
+#     g28240 = models.CharField(db_column='G28240', max_length=1, blank=True, null=True)  # Field name made lowercase.
+#     g2824 = models.DateTimeField(db_column='G2824', blank=True, null=True)  # Field name made lowercase.
+#     g2825 = models.CharField(db_column='G2825', max_length=3, blank=True, null=True)  # Field name made lowercase.
+#     g30_itn = models.CharField(db_column='G30_ITN', max_length=13, blank=True, null=True)  # Field name made lowercase.
+#     g300 = models.CharField(db_column='G300', max_length=2, blank=True, null=True)  # Field name made lowercase.
+#     g3010 = models.CharField(db_column='G3010', max_length=1, blank=True, null=True)  # Field name made lowercase.
+#     g301 = models.CharField(db_column='G301', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     g3011 = models.DateTimeField(db_column='G3011', blank=True, null=True)  # Field name made lowercase.
+#     g30 = models.CharField(db_column='G30', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     g30post = models.CharField(db_column='G30POST', max_length=9, blank=True, null=True)  # Field name made lowercase.
+#     g30a = models.CharField(db_column='G30A', max_length=2, blank=True, null=True)  # Field name made lowercase.
+#     g30an = models.CharField(db_column='G30AN', max_length=40, blank=True, null=True)  # Field name made lowercase.
+#     g30subd = models.CharField(db_column='G30SUBD', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     g30city = models.CharField(db_column='G30CITY', max_length=35, blank=True, null=True)  # Field name made lowercase.
+#     g30street = models.CharField(db_column='G30STREET', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     g30lname = models.CharField(db_column='G30LNAME', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     g3012 = models.CharField(db_column='G3012', max_length=8, blank=True, null=True)  # Field name made lowercase.
+#     g30121 = models.CharField(db_column='G30121', max_length=2, blank=True, null=True)  # Field name made lowercase.
+#     g30122 = models.CharField(db_column='G30122', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     g45a1 = models.CharField(db_column='G45A1', max_length=1, blank=True, null=True)  # Field name made lowercase.
+#     g45a2 = models.CharField(db_column='G45A2', max_length=1, blank=True, null=True)  # Field name made lowercase.
+#     g45a3 = models.CharField(db_column='G45A3', max_length=1, blank=True, null=True)  # Field name made lowercase.
+#     g45a4 = models.CharField(db_column='G45A4', max_length=1, blank=True, null=True)  # Field name made lowercase.
+#     g45a5 = models.CharField(db_column='G45A5', max_length=1, blank=True, null=True)  # Field name made lowercase.
+#     g45a6 = models.CharField(db_column='G45A6', max_length=1, blank=True, null=True)  # Field name made lowercase.
+#     g45a7 = models.CharField(db_column='G45A7', max_length=1, blank=True, null=True)  # Field name made lowercase.
+#     g45a8 = models.CharField(db_column='G45A8', max_length=1, blank=True, null=True)  # Field name made lowercase.
+#     g53_ztk = models.CharField(db_column='G53_ZTK', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     g53_dt = models.CharField(db_column='G53_DT', max_length=250, blank=True, null=True)  # Field name made lowercase.
+#     g53_dn = models.CharField(db_column='G53_DN', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     g53_dd = models.DateTimeField(db_column='G53_DD', blank=True, null=True)  # Field name made lowercase.
+#     g53_pos = models.CharField(db_column='G53_POS', max_length=9, blank=True, null=True)  # Field name made lowercase.
+#     g53_cc = models.CharField(db_column='G53_CC', max_length=2, blank=True, null=True)  # Field name made lowercase.
+#     g53_cn = models.CharField(db_column='G53_CN', max_length=40, blank=True, null=True)  # Field name made lowercase.
+#     g53_sub = models.CharField(db_column='G53_SUB', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     g53_cit = models.CharField(db_column='G53_CIT', max_length=35, blank=True, null=True)  # Field name made lowercase.
+#     g53_str = models.CharField(db_column='G53_STR', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     d54_itn = models.CharField(db_column='D54_ITN', max_length=13, blank=True, null=True)  # Field name made lowercase.
+#     d5410 = models.CharField(db_column='D5410', max_length=1, blank=True, null=True)  # Field name made lowercase.
+#     d541 = models.CharField(db_column='D541', max_length=14, blank=True, null=True)  # Field name made lowercase.
+#     d541d = models.DateTimeField(db_column='D541D', blank=True, null=True)  # Field name made lowercase.
+#     d5411 = models.CharField(db_column='D5411', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     d5411d = models.DateTimeField(db_column='D5411D', blank=True, null=True)  # Field name made lowercase.
+#     d541_inn = models.CharField(db_column='D541_INN', max_length=12, blank=True, null=True)  # Field name made lowercase.
+#     d541_kpp = models.CharField(db_column='D541_KPP', max_length=9, blank=True, null=True)  # Field name made lowercase.
+#     d542 = models.DateTimeField(db_column='D542', blank=True, null=True)  # Field name made lowercase.
+#     d5441 = models.CharField(db_column='D5441', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     d5441nm = models.CharField(db_column='D5441NM', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     d5441mdnm = models.CharField(db_column='D5441MDNM', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     d5442 = models.CharField(db_column='D5442', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     d5443 = models.CharField(db_column='D5443', max_length=250, blank=True, null=True)  # Field name made lowercase.
+#     d5444 = models.CharField(db_column='D5444', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     d5445 = models.DateTimeField(db_column='D5445', blank=True, null=True)  # Field name made lowercase.
+#     d5446 = models.DateTimeField(db_column='D5446', blank=True, null=True)  # Field name made lowercase.
+#     d5447 = models.CharField(db_column='D5447', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     d5451 = models.CharField(db_column='D5451', max_length=2, blank=True, null=True)  # Field name made lowercase.
+#     d5451a = models.CharField(db_column='D5451A', max_length=15, blank=True, null=True)  # Field name made lowercase.
+#     d54521 = models.CharField(db_column='D54521', max_length=11, blank=True, null=True)  # Field name made lowercase.
+#     d54522 = models.CharField(db_column='D54522', max_length=25, blank=True, null=True)  # Field name made lowercase.
+#     d54523 = models.CharField(db_column='D54523', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     d5453 = models.DateTimeField(db_column='D5453', blank=True, null=True)  # Field name made lowercase.
+#     g54_itn = models.CharField(db_column='G54_ITN', max_length=13, blank=True, null=True)  # Field name made lowercase.
+#     g5410 = models.CharField(db_column='G5410', max_length=1, blank=True, null=True)  # Field name made lowercase.
+#     g541 = models.CharField(db_column='G541', max_length=14, blank=True, null=True)  # Field name made lowercase.
+#     g541d = models.DateTimeField(db_column='G541D', blank=True, null=True)  # Field name made lowercase.
+#     g5411 = models.CharField(db_column='G5411', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     g5411d = models.DateTimeField(db_column='G5411D', blank=True, null=True)  # Field name made lowercase.
+#     g541_inn = models.CharField(db_column='G541_INN', max_length=12, blank=True, null=True)  # Field name made lowercase.
+#     g541_kpp = models.CharField(db_column='G541_KPP', max_length=9, blank=True, null=True)  # Field name made lowercase.
+#     g542 = models.DateTimeField(db_column='G542', blank=True, null=True)  # Field name made lowercase.
+#     g5441 = models.CharField(db_column='G5441', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     g5441nm = models.CharField(db_column='G5441NM', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     g5441mdnm = models.CharField(db_column='G5441MDNM', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     g5442 = models.CharField(db_column='G5442', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     g5443 = models.CharField(db_column='G5443', max_length=250, blank=True, null=True)  # Field name made lowercase.
+#     g5444 = models.CharField(db_column='G5444', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     g5445 = models.DateTimeField(db_column='G5445', blank=True, null=True)  # Field name made lowercase.
+#     g5446 = models.DateTimeField(db_column='G5446', blank=True, null=True)  # Field name made lowercase.
+#     g5447 = models.CharField(db_column='G5447', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     g5451 = models.CharField(db_column='G5451', max_length=7, blank=True, null=True)  # Field name made lowercase.
+#     g5451a = models.CharField(db_column='G5451A', max_length=15, blank=True, null=True)  # Field name made lowercase.
+#     g54521 = models.CharField(db_column='G54521', max_length=11, blank=True, null=True)  # Field name made lowercase.
+#     g54522 = models.CharField(db_column='G54522', max_length=25, blank=True, null=True)  # Field name made lowercase.
+#     g54523 = models.CharField(db_column='G54523', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     g5453 = models.DateTimeField(db_column='G5453', blank=True, null=True)  # Field name made lowercase.
+#     gd0 = models.CharField(db_column='GD0', max_length=2, blank=True, null=True)  # Field name made lowercase.
+#     gd1 = models.DateTimeField(db_column='GD1', blank=True, null=True)  # Field name made lowercase.
+#     gd11 = models.CharField(db_column='GD11', max_length=8, blank=True, null=True)  # Field name made lowercase.
+#     gd2 = models.CharField(db_column='GD2', max_length=4, blank=True, null=True)  # Field name made lowercase.
+#     gd2fio = models.CharField(db_column='GD2FIO', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     gd00 = models.CharField(db_column='GD00', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     gddf = models.DateTimeField(db_column='GDDF', blank=True, null=True)  # Field name made lowercase.
+#     recplatv = models.IntegerField(db_column='RECPLATV', blank=True, null=True)  # Field name made lowercase.
+#     recslotm = models.IntegerField(db_column='RECSLOTM', blank=True, null=True)  # Field name made lowercase.
+#     rectrans = models.IntegerField(db_column='RECTRANS', blank=True, null=True)  # Field name made lowercase.
+#     recsumpp = models.IntegerField(db_column='RECSUMPP', blank=True, null=True)  # Field name made lowercase.
+#     recpasp = models.IntegerField(db_column='RECPASP', blank=True, null=True)  # Field name made lowercase.
+#     dmodify = models.DateTimeField(db_column='DMODIFY', blank=True, null=True)  # Field name made lowercase.
+#     tmodify = models.CharField(db_column='TMODIFY', max_length=8, blank=True, null=True)  # Field name made lowercase.
+#     edoc_guid = models.CharField(db_column='EDOC_GUID', max_length=32, blank=True, null=True)  # Field name made lowercase.
+#     edoc_id = models.DecimalField(default=0.00, db_column='EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
+#     p_status1 = models.SmallIntegerField(db_column='P_STATUS1', blank=True, null=True)  # Field name made lowercase.
+#     p_status2 = models.SmallIntegerField(db_column='P_STATUS2', blank=True, null=True)  # Field name made lowercase.
+#     docid = models.CharField(db_column='DOCID', max_length=38, blank=True, null=True)  # Field name made lowercase.
+#     num_pp = models.SmallIntegerField(db_column='NUM_PP', blank=True, null=True)  # Field name made lowercase.
+#     g541dn = models.CharField(db_column='G541DN', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     g54place = models.CharField(db_column='G54PLACE', max_length=35, blank=True, null=True)  # Field name made lowercase.
+#     g50rw = models.CharField(db_column='G50RW', max_length=5, blank=True, null=True)  # Field name made lowercase.
+#     drv41 = models.CharField(db_column='DRV41', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     drv41nm = models.CharField(db_column='DRV41NM', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     drv41mdnm = models.CharField(db_column='DRV41MDNM', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     drv47 = models.CharField(db_column='DRV47', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     drv4cc = models.CharField(db_column='DRV4CC', max_length=2, blank=True, null=True)  # Field name made lowercase.
+#     drv51 = models.CharField(db_column='DRV51', max_length=7, blank=True, null=True)  # Field name made lowercase.
+#     drv51a = models.CharField(db_column='DRV51A', max_length=15, blank=True, null=True)  # Field name made lowercase.
+#     drv521 = models.CharField(db_column='DRV521', max_length=11, blank=True, null=True)  # Field name made lowercase.
+#     drv522 = models.CharField(db_column='DRV522', max_length=25, blank=True, null=True)  # Field name made lowercase.
+#     drv523 = models.CharField(db_column='DRV523', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     drv53 = models.DateTimeField(db_column='DRV53', blank=True, null=True)  # Field name made lowercase.
+#     act_tp = models.CharField(db_column='ACT_TP', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     # docnum = models.CharField(db_column='DocNum', max_length=25, blank=True, null=True)  # Field name made lowercase.
+#     g023build = models.CharField(db_column='G023BUILD', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     g023abuild = models.CharField(db_column='G023ABUILD', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     g083build = models.CharField(db_column='G083BUILD', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     g083abuild = models.CharField(db_column='G083ABUILD', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     g093build = models.CharField(db_column='G093BUILD', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     g093abuild = models.CharField(db_column='G093ABUILD', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     g143build = models.CharField(db_column='G143BUILD', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     aeorowner = models.CharField(db_column='AEOROWNER', max_length=1, blank=True, null=True)  # Field name made lowercase.
+#     aeocntry = models.CharField(db_column='AEOCNTRY', max_length=2, blank=True, null=True)  # Field name made lowercase.
+#     aeonum = models.CharField(db_column='AEONUM', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     aeokind = models.CharField(db_column='AEOKIND', max_length=1, blank=True, null=True)  # Field name made lowercase.
+#     aeoregcod = models.CharField(db_column='AEOREGCOD', max_length=3, blank=True, null=True)  # Field name made lowercase.
+#     g143abuild = models.CharField(db_column='G143ABUILD', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     g16a = models.CharField(db_column='G16A', max_length=2, blank=True, null=True)  # Field name made lowercase.
+#     g30aeoown = models.CharField(db_column='G30AEOOWN', max_length=1, blank=True, null=True)  # Field name made lowercase.
+#     g30aeocntr = models.CharField(db_column='G30AEOCNTR', max_length=2, blank=True, null=True)  # Field name made lowercase.
+#     g30aeokind = models.CharField(db_column='G30AEOKIND', max_length=1, blank=True, null=True)  # Field name made lowercase.
+#     g30aeorcod = models.CharField(db_column='G30AEORCOD', max_length=3, blank=True, null=True)  # Field name made lowercase.
+#     g30d = models.DateTimeField(db_column='G30D', blank=True, null=True)  # Field name made lowercase.
+#     g30dd = models.DateTimeField(db_column='G30DD', blank=True, null=True)  # Field name made lowercase.
+#     g30build = models.CharField(db_column='G30BUILD', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     g542t = models.CharField(db_column='G542T', max_length=8, blank=True, null=True)  # Field name made lowercase.
+#     drv241 = models.CharField(db_column='DRV241', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     drv241nm = models.CharField(db_column='DRV241NM', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     drv241mdnm = models.CharField(db_column='DRV241MDNM', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     drv247 = models.CharField(db_column='DRV247', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     drv24cc = models.CharField(db_column='DRV24CC', max_length=2, blank=True, null=True)  # Field name made lowercase.
+#     drv251 = models.CharField(db_column='DRV251', max_length=7, blank=True, null=True)  # Field name made lowercase.
+#     drv251a = models.CharField(db_column='DRV251A', max_length=15, blank=True, null=True)  # Field name made lowercase.
+#     drv2521 = models.CharField(db_column='DRV2521', max_length=11, blank=True, null=True)  # Field name made lowercase.
+#     drv2522 = models.CharField(db_column='DRV2522', max_length=25, blank=True, null=True)  # Field name made lowercase.
+#     drv2523 = models.CharField(db_column='DRV2523', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     drv253 = models.DateTimeField(db_column='DRV253', blank=True, null=True)  # Field name made lowercase.
+#     g12zpk = models.DecimalField(default=0.00, db_column='G12ZPK', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
+#     g22zpk = models.DecimalField(default=0.00, db_column='G22ZPK', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
+#     g542time = models.CharField(db_column='G542TIME', max_length=14, blank=True, null=True)  # Field name made lowercase.
+#     g02phone = models.CharField(db_column='G02PHONE', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     g02email = models.CharField(db_column='G02EMAIL', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     g08phone = models.CharField(db_column='G08PHONE', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     g08email = models.CharField(db_column='G08EMAIL', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     g09phone = models.CharField(db_column='G09PHONE', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     g09email = models.CharField(db_column='G09EMAIL', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     g14phone = models.CharField(db_column='G14PHONE', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     g14email = models.CharField(db_column='G14EMAIL', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     g54532 = models.DateTimeField(db_column='G54532', blank=True, null=True)  # Field name made lowercase.
+#     g54email = models.CharField(db_column='G54EMAIL', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     g0132 = models.CharField(db_column='G0132', max_length=2, blank=True, null=True)  # Field name made lowercase.
+#
+#     class Meta:
+#         abstract = True
+#         # db_table = 'KTDHEAD'
 
 
 class Ktdkmp(BaseModel):
