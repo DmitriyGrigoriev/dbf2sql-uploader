@@ -2394,7 +2394,7 @@ class Ktddogt(BaseModel):
         # db_table = 'KTDDOGT'
 
 
-class Ktdhead(models.Model):
+class Ktdhead(BaseModel):
     num_ver = models.CharField(db_column='NUM_VER', max_length=8, blank=True, null=True)  # Field name made lowercase.
     data_ver = models.DateTimeField(db_column='DATA_VER', blank=True, null=True)  # Field name made lowercase.
     typ_dcl = models.CharField(db_column='TYP_DCL', max_length=2, blank=True, null=True)  # Field name made lowercase.
