@@ -36,10 +36,10 @@ class ExtResource:
             g07x = f"{row['g071']}/{row['g072'].strftime('%d%m%y')}/{row['g073']}"
             row['g07x'] = g07x
 
-        if self.type and 'sourcetype' in row:
+        if self.type:
             row['sourcetype'] = self.type
 
-        if self.database and 'database' in row:
+        if self.database:
             row['database'] = self.database
 
         # Calculate row hash
