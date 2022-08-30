@@ -4388,9 +4388,9 @@ class Sbrhead(BaseModel):
     d012post = models.CharField(db_column='D012POST', max_length=9, blank=True, null=True)  # Field name made lowercase.
     d0121 = models.CharField(db_column='D0121', max_length=2, blank=True, null=True)  # Field name made lowercase.
     d0121n = models.CharField(db_column='D0121N', max_length=40, blank=True, null=True)  # Field name made lowercase.
-    d012subd = models.CharField(db_column='D012SUBD', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    d012city = models.CharField(db_column='D012CITY', max_length=35, blank=True, null=True)  # Field name made lowercase.
-    d012street = models.CharField(db_column='D012STREET', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    d012subd = models.CharField(db_column='D012SUBD', max_length=120, blank=True, null=True)  # Field name made lowercase.
+    d012city = models.CharField(db_column='D012CITY', max_length=120, blank=True, null=True)  # Field name made lowercase.
+    d012street = models.CharField(db_column='D012STREET', max_length=120, blank=True, null=True)  # Field name made lowercase.
     d0181 = models.CharField(db_column='D0181', max_length=7, blank=True, null=True)  # Field name made lowercase.
     d0181a = models.CharField(db_column='D0181A', max_length=15, blank=True, null=True)  # Field name made lowercase.
     d01821 = models.CharField(db_column='D01821', max_length=11, blank=True, null=True)  # Field name made lowercase.
@@ -4402,9 +4402,9 @@ class Sbrhead(BaseModel):
     d011apost = models.CharField(db_column='D011APOST', max_length=9, blank=True, null=True)  # Field name made lowercase.
     d011aalf = models.CharField(db_column='D011AALF', max_length=2, blank=True, null=True)  # Field name made lowercase.
     d011akn = models.CharField(db_column='D011AKN', max_length=40, blank=True, null=True)  # Field name made lowercase.
-    d011asubd = models.CharField(db_column='D011ASUBD', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    d011acity = models.CharField(db_column='D011ACITY', max_length=35, blank=True, null=True)  # Field name made lowercase.
-    d011astree = models.CharField(db_column='D011ASTREE', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    d011asubd = models.CharField(db_column='D011ASUBD', max_length=120, blank=True, null=True)  # Field name made lowercase.
+    d011acity = models.CharField(db_column='D011ACITY', max_length=120, blank=True, null=True)  # Field name made lowercase.
+    d011astree = models.CharField(db_column='D011ASTREE', max_length=120, blank=True, null=True)  # Field name made lowercase.
     d02_ogrn = models.CharField(db_column='D02_OGRN', max_length=15, blank=True, null=True)  # Field name made lowercase.
     d02_inn = models.CharField(db_column='D02_INN', max_length=12, blank=True, null=True)  # Field name made lowercase.
     d02_kpp = models.CharField(db_column='D02_KPP', max_length=9, blank=True, null=True)  # Field name made lowercase.
@@ -4413,9 +4413,9 @@ class Sbrhead(BaseModel):
     d02a2post = models.CharField(db_column='D02A2POST', max_length=9, blank=True, null=True)  # Field name made lowercase.
     d02a21 = models.CharField(db_column='D02A21', max_length=2, blank=True, null=True)  # Field name made lowercase.
     d02a21n = models.CharField(db_column='D02A21N', max_length=40, blank=True, null=True)  # Field name made lowercase.
-    d02a2subd = models.CharField(db_column='D02A2SUBD', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    d02a2city = models.CharField(db_column='D02A2CITY', max_length=35, blank=True, null=True)  # Field name made lowercase.
-    d02a2stree = models.CharField(db_column='D02A2STREE', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    d02a2subd = models.CharField(db_column='D02A2SUBD', max_length=120, blank=True, null=True)  # Field name made lowercase.
+    d02a2city = models.CharField(db_column='D02A2CITY', max_length=120, blank=True, null=True)  # Field name made lowercase.
+    d02a2stree = models.CharField(db_column='D02A2STREE', max_length=120, blank=True, null=True)  # Field name made lowercase.
     d02a81 = models.CharField(db_column='D02A81', max_length=7, blank=True, null=True)  # Field name made lowercase.
     d02a81a = models.CharField(db_column='D02A81A', max_length=15, blank=True, null=True)  # Field name made lowercase.
     d02a821 = models.CharField(db_column='D02A821', max_length=11, blank=True, null=True)  # Field name made lowercase.
@@ -4427,9 +4427,9 @@ class Sbrhead(BaseModel):
     d02a1apost = models.CharField(db_column='D02A1APOST', max_length=9, blank=True, null=True)  # Field name made lowercase.
     d02a1aalf = models.CharField(db_column='D02A1AALF', max_length=2, blank=True, null=True)  # Field name made lowercase.
     d02a1akn = models.CharField(db_column='D02A1AKN', max_length=40, blank=True, null=True)  # Field name made lowercase.
-    d02a1asubd = models.CharField(db_column='D02A1ASUBD', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    d02a1acity = models.CharField(db_column='D02A1ACITY', max_length=35, blank=True, null=True)  # Field name made lowercase.
-    d02a1astre = models.CharField(db_column='D02A1ASTRE', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    d02a1asubd = models.CharField(db_column='D02A1ASUBD', max_length=120, blank=True, null=True)  # Field name made lowercase.
+    d02a1acity = models.CharField(db_column='D02A1ACITY', max_length=120, blank=True, null=True)  # Field name made lowercase.
+    d02a1astre = models.CharField(db_column='D02A1ASTRE', max_length=120, blank=True, null=True)  # Field name made lowercase.
     d02b_ogrn = models.CharField(db_column='D02B_OGRN', max_length=15, blank=True, null=True)  # Field name made lowercase.
     d02b_inn = models.CharField(db_column='D02B_INN', max_length=12, blank=True, null=True)  # Field name made lowercase.
     d02b_kpp = models.CharField(db_column='D02B_KPP', max_length=9, blank=True, null=True)  # Field name made lowercase.
@@ -4438,9 +4438,9 @@ class Sbrhead(BaseModel):
     d02b2post = models.CharField(db_column='D02B2POST', max_length=9, blank=True, null=True)  # Field name made lowercase.
     d02b21 = models.CharField(db_column='D02B21', max_length=2, blank=True, null=True)  # Field name made lowercase.
     d02b21n = models.CharField(db_column='D02B21N', max_length=40, blank=True, null=True)  # Field name made lowercase.
-    d02b2subd = models.CharField(db_column='D02B2SUBD', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    d02b2city = models.CharField(db_column='D02B2CITY', max_length=35, blank=True, null=True)  # Field name made lowercase.
-    d02b2stree = models.CharField(db_column='D02B2STREE', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    d02b2subd = models.CharField(db_column='D02B2SUBD', max_length=120, blank=True, null=True)  # Field name made lowercase.
+    d02b2city = models.CharField(db_column='D02B2CITY', max_length=120, blank=True, null=True)  # Field name made lowercase.
+    d02b2stree = models.CharField(db_column='D02B2STREE', max_length=120, blank=True, null=True)  # Field name made lowercase.
     d02b81 = models.CharField(db_column='D02B81', max_length=7, blank=True, null=True)  # Field name made lowercase.
     d02b81a = models.CharField(db_column='D02B81A', max_length=15, blank=True, null=True)  # Field name made lowercase.
     d02b821 = models.CharField(db_column='D02B821', max_length=11, blank=True, null=True)  # Field name made lowercase.
@@ -4452,9 +4452,9 @@ class Sbrhead(BaseModel):
     d02b1apost = models.CharField(db_column='D02B1APOST', max_length=9, blank=True, null=True)  # Field name made lowercase.
     d02b1aalf = models.CharField(db_column='D02B1AALF', max_length=2, blank=True, null=True)  # Field name made lowercase.
     d02b1akn = models.CharField(db_column='D02B1AKN', max_length=40, blank=True, null=True)  # Field name made lowercase.
-    d02b1asubd = models.CharField(db_column='D02B1ASUBD', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    d02b1acity = models.CharField(db_column='D02B1ACITY', max_length=35, blank=True, null=True)  # Field name made lowercase.
-    d02b1astre = models.CharField(db_column='D02B1ASTRE', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    d02b1asubd = models.CharField(db_column='D02B1ASUBD', max_length=120, blank=True, null=True)  # Field name made lowercase.
+    d02b1acity = models.CharField(db_column='D02B1ACITY', max_length=120, blank=True, null=True)  # Field name made lowercase.
+    d02b1astre = models.CharField(db_column='D02B1ASTRE', max_length=120, blank=True, null=True)  # Field name made lowercase.
     d07a = models.CharField(db_column='D07A', max_length=1, blank=True, null=True)  # Field name made lowercase.
     d07b = models.CharField(db_column='D07B', max_length=1, blank=True, null=True)  # Field name made lowercase.
     d07c = models.CharField(db_column='D07C', max_length=1, blank=True, null=True)  # Field name made lowercase.
@@ -4504,10 +4504,162 @@ class Sbrhead(BaseModel):
     d0184 = models.DateTimeField(db_column='D0184', blank=True, null=True)  # Field name made lowercase.
     d02a84 = models.DateTimeField(db_column='D02A84', blank=True, null=True)  # Field name made lowercase.
     d02b84 = models.DateTimeField(db_column='D02B84', blank=True, null=True)  # Field name made lowercase.
+    d012room = models.CharField(db_column='D012ROOM', max_length=20, blank=True, null=True)  # Field name made lowercase.
+    d012typ = models.CharField(db_column='D012TYP', max_length=1, blank=True, null=True)  # Field name made lowercase.
+    d011aroom = models.CharField(db_column='D011AROOM', max_length=20, blank=True, null=True)  # Field name made lowercase.
+    d011atyp = models.CharField(db_column='D011ATYP', max_length=1, blank=True, null=True)  # Field name made lowercase.
+    d02a2room = models.CharField(db_column='D02A2ROOM', max_length=20, blank=True, null=True)  # Field name made lowercase.
+    d02a2typ = models.CharField(db_column='D02A2TYP', max_length=1, blank=True, null=True)  # Field name made lowercase.
+    d02a1abuil = models.CharField(db_column='D02A1ABUIL', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    d02a1aroom = models.CharField(db_column='D02A1AROOM', max_length=20, blank=True, null=True)  # Field name made lowercase.
+    d02a1atyp = models.CharField(db_column='D02A1ATYP', max_length=1, blank=True, null=True)  # Field name made lowercase.
+    d02b2room = models.CharField(db_column='D02B2ROOM', max_length=20, blank=True, null=True)  # Field name made lowercase.
+    d02b2typ = models.CharField(db_column='D02B2TYP', max_length=1, blank=True, null=True)  # Field name made lowercase.
+    d02b1abuil = models.CharField(db_column='D02B1ABUIL', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    d02b1aroom = models.CharField(db_column='D02B1AROOM', max_length=20, blank=True, null=True)  # Field name made lowercase.
+    d02b1atyp = models.CharField(db_column='D02B1ATYP', max_length=1, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         abstract = True
         # db_table = 'SBRHEAD'
+
+
+# class Sbrhead(BaseModel):
+#     # g071 = models.CharField(db_column='G071', max_length=8, blank=True, null=True)  # Field name made lowercase.
+#     g072 = models.DateTimeField(db_column='G072', blank=True, null=True)  # Field name made lowercase.
+#     g073 = models.CharField(db_column='G073', max_length=7, blank=True, null=True)  # Field name made lowercase.
+#     num_pp = models.SmallIntegerField(db_column='NUM_PP', blank=True, null=True)  # Field name made lowercase.
+#     nmet = models.CharField(db_column='NMET', max_length=2, blank=True, null=True)  # Field name made lowercase.
+#     nmet6 = models.CharField(db_column='NMET6', max_length=1, blank=True, null=True)  # Field name made lowercase.
+#     formadtc = models.CharField(db_column='FORMADTC', max_length=1, blank=True, null=True)  # Field name made lowercase.
+#     d01_ogrn = models.CharField(db_column='D01_OGRN', max_length=15, blank=True, null=True)  # Field name made lowercase.
+#     d01_inn = models.CharField(db_column='D01_INN', max_length=12, blank=True, null=True)  # Field name made lowercase.
+#     d01_kpp = models.CharField(db_column='D01_KPP', max_length=9, blank=True, null=True)  # Field name made lowercase.
+#     d01_itn = models.CharField(db_column='D01_ITN', max_length=13, blank=True, null=True)  # Field name made lowercase.
+#     d011 = models.CharField(db_column='D011', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     d012post = models.CharField(db_column='D012POST', max_length=9, blank=True, null=True)  # Field name made lowercase.
+#     d0121 = models.CharField(db_column='D0121', max_length=2, blank=True, null=True)  # Field name made lowercase.
+#     d0121n = models.CharField(db_column='D0121N', max_length=40, blank=True, null=True)  # Field name made lowercase.
+#     d012subd = models.CharField(db_column='D012SUBD', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     d012city = models.CharField(db_column='D012CITY', max_length=35, blank=True, null=True)  # Field name made lowercase.
+#     d012street = models.CharField(db_column='D012STREET', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     d0181 = models.CharField(db_column='D0181', max_length=7, blank=True, null=True)  # Field name made lowercase.
+#     d0181a = models.CharField(db_column='D0181A', max_length=15, blank=True, null=True)  # Field name made lowercase.
+#     d01821 = models.CharField(db_column='D01821', max_length=11, blank=True, null=True)  # Field name made lowercase.
+#     d01822 = models.CharField(db_column='D01822', max_length=25, blank=True, null=True)  # Field name made lowercase.
+#     d01823 = models.CharField(db_column='D01823', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     d0183 = models.DateTimeField(db_column='D0183', blank=True, null=True)  # Field name made lowercase.
+#     d011a = models.CharField(db_column='D011A', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     d011akpp = models.CharField(db_column='D011AKPP', max_length=9, blank=True, null=True)  # Field name made lowercase.
+#     d011apost = models.CharField(db_column='D011APOST', max_length=9, blank=True, null=True)  # Field name made lowercase.
+#     d011aalf = models.CharField(db_column='D011AALF', max_length=2, blank=True, null=True)  # Field name made lowercase.
+#     d011akn = models.CharField(db_column='D011AKN', max_length=40, blank=True, null=True)  # Field name made lowercase.
+#     d011asubd = models.CharField(db_column='D011ASUBD', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     d011acity = models.CharField(db_column='D011ACITY', max_length=35, blank=True, null=True)  # Field name made lowercase.
+#     d011astree = models.CharField(db_column='D011ASTREE', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     d02_ogrn = models.CharField(db_column='D02_OGRN', max_length=15, blank=True, null=True)  # Field name made lowercase.
+#     d02_inn = models.CharField(db_column='D02_INN', max_length=12, blank=True, null=True)  # Field name made lowercase.
+#     d02_kpp = models.CharField(db_column='D02_KPP', max_length=9, blank=True, null=True)  # Field name made lowercase.
+#     d02_itn = models.CharField(db_column='D02_ITN', max_length=13, blank=True, null=True)  # Field name made lowercase.
+#     d02a1 = models.CharField(db_column='D02A1', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     d02a2post = models.CharField(db_column='D02A2POST', max_length=9, blank=True, null=True)  # Field name made lowercase.
+#     d02a21 = models.CharField(db_column='D02A21', max_length=2, blank=True, null=True)  # Field name made lowercase.
+#     d02a21n = models.CharField(db_column='D02A21N', max_length=40, blank=True, null=True)  # Field name made lowercase.
+#     d02a2subd = models.CharField(db_column='D02A2SUBD', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     d02a2city = models.CharField(db_column='D02A2CITY', max_length=35, blank=True, null=True)  # Field name made lowercase.
+#     d02a2stree = models.CharField(db_column='D02A2STREE', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     d02a81 = models.CharField(db_column='D02A81', max_length=7, blank=True, null=True)  # Field name made lowercase.
+#     d02a81a = models.CharField(db_column='D02A81A', max_length=15, blank=True, null=True)  # Field name made lowercase.
+#     d02a821 = models.CharField(db_column='D02A821', max_length=11, blank=True, null=True)  # Field name made lowercase.
+#     d02a822 = models.CharField(db_column='D02A822', max_length=25, blank=True, null=True)  # Field name made lowercase.
+#     d02a823 = models.CharField(db_column='D02A823', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     d02a83 = models.DateTimeField(db_column='D02A83', blank=True, null=True)  # Field name made lowercase.
+#     d02a1a = models.CharField(db_column='D02A1A', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     d02a1akpp = models.CharField(db_column='D02A1AKPP', max_length=9, blank=True, null=True)  # Field name made lowercase.
+#     d02a1apost = models.CharField(db_column='D02A1APOST', max_length=9, blank=True, null=True)  # Field name made lowercase.
+#     d02a1aalf = models.CharField(db_column='D02A1AALF', max_length=2, blank=True, null=True)  # Field name made lowercase.
+#     d02a1akn = models.CharField(db_column='D02A1AKN', max_length=40, blank=True, null=True)  # Field name made lowercase.
+#     d02a1asubd = models.CharField(db_column='D02A1ASUBD', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     d02a1acity = models.CharField(db_column='D02A1ACITY', max_length=35, blank=True, null=True)  # Field name made lowercase.
+#     d02a1astre = models.CharField(db_column='D02A1ASTRE', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     d02b_ogrn = models.CharField(db_column='D02B_OGRN', max_length=15, blank=True, null=True)  # Field name made lowercase.
+#     d02b_inn = models.CharField(db_column='D02B_INN', max_length=12, blank=True, null=True)  # Field name made lowercase.
+#     d02b_kpp = models.CharField(db_column='D02B_KPP', max_length=9, blank=True, null=True)  # Field name made lowercase.
+#     d02b_itn = models.CharField(db_column='D02B_ITN', max_length=13, blank=True, null=True)  # Field name made lowercase.
+#     d02b1 = models.CharField(db_column='D02B1', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     d02b2post = models.CharField(db_column='D02B2POST', max_length=9, blank=True, null=True)  # Field name made lowercase.
+#     d02b21 = models.CharField(db_column='D02B21', max_length=2, blank=True, null=True)  # Field name made lowercase.
+#     d02b21n = models.CharField(db_column='D02B21N', max_length=40, blank=True, null=True)  # Field name made lowercase.
+#     d02b2subd = models.CharField(db_column='D02B2SUBD', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     d02b2city = models.CharField(db_column='D02B2CITY', max_length=35, blank=True, null=True)  # Field name made lowercase.
+#     d02b2stree = models.CharField(db_column='D02B2STREE', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     d02b81 = models.CharField(db_column='D02B81', max_length=7, blank=True, null=True)  # Field name made lowercase.
+#     d02b81a = models.CharField(db_column='D02B81A', max_length=15, blank=True, null=True)  # Field name made lowercase.
+#     d02b821 = models.CharField(db_column='D02B821', max_length=11, blank=True, null=True)  # Field name made lowercase.
+#     d02b822 = models.CharField(db_column='D02B822', max_length=25, blank=True, null=True)  # Field name made lowercase.
+#     d02b823 = models.CharField(db_column='D02B823', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     d02b83 = models.DateTimeField(db_column='D02B83', blank=True, null=True)  # Field name made lowercase.
+#     d02b1a = models.CharField(db_column='D02B1A', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     d02b1akpp = models.CharField(db_column='D02B1AKPP', max_length=9, blank=True, null=True)  # Field name made lowercase.
+#     d02b1apost = models.CharField(db_column='D02B1APOST', max_length=9, blank=True, null=True)  # Field name made lowercase.
+#     d02b1aalf = models.CharField(db_column='D02B1AALF', max_length=2, blank=True, null=True)  # Field name made lowercase.
+#     d02b1akn = models.CharField(db_column='D02B1AKN', max_length=40, blank=True, null=True)  # Field name made lowercase.
+#     d02b1asubd = models.CharField(db_column='D02B1ASUBD', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     d02b1acity = models.CharField(db_column='D02B1ACITY', max_length=35, blank=True, null=True)  # Field name made lowercase.
+#     d02b1astre = models.CharField(db_column='D02B1ASTRE', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     d07a = models.CharField(db_column='D07A', max_length=1, blank=True, null=True)  # Field name made lowercase.
+#     d07b = models.CharField(db_column='D07B', max_length=1, blank=True, null=True)  # Field name made lowercase.
+#     d07c = models.CharField(db_column='D07C', max_length=1, blank=True, null=True)  # Field name made lowercase.
+#     d08a = models.CharField(db_column='D08A', max_length=1, blank=True, null=True)  # Field name made lowercase.
+#     d08b = models.CharField(db_column='D08B', max_length=1, blank=True, null=True)  # Field name made lowercase.
+#     d09a = models.CharField(db_column='D09A', max_length=1, blank=True, null=True)  # Field name made lowercase.
+#     d09b = models.CharField(db_column='D09B', max_length=1, blank=True, null=True)  # Field name made lowercase.
+#     koldopl = models.IntegerField(db_column='KOLDOPL', blank=True, null=True)  # Field name made lowercase.
+#     g542 = models.DateTimeField(db_column='G542', blank=True, null=True)  # Field name made lowercase.
+#     g543 = models.CharField(db_column='G543', max_length=4, blank=True, null=True)  # Field name made lowercase.
+#     g5441 = models.CharField(db_column='G5441', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     g5441nm = models.CharField(db_column='G5441NM', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     g5441mdnm = models.CharField(db_column='G5441MDNM', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     g5442 = models.CharField(db_column='G5442', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     g5447 = models.CharField(db_column='G5447', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     g5451 = models.CharField(db_column='G5451', max_length=7, blank=True, null=True)  # Field name made lowercase.
+#     g5451a = models.CharField(db_column='G5451A', max_length=15, blank=True, null=True)  # Field name made lowercase.
+#     g5451b = models.CharField(db_column='G5451B', max_length=11, blank=True, null=True)  # Field name made lowercase.
+#     g5452 = models.CharField(db_column='G5452', max_length=25, blank=True, null=True)  # Field name made lowercase.
+#     g5453 = models.DateTimeField(db_column='G5453', blank=True, null=True)  # Field name made lowercase.
+#     g5454 = models.CharField(db_column='G5454', max_length=150, blank=True, null=True)  # Field name made lowercase.
+#     valdat = models.DateTimeField(db_column='VALDAT', blank=True, null=True)  # Field name made lowercase.
+#     tamst_kodv = models.CharField(db_column='TAMST_KODV', max_length=3, blank=True, null=True)  # Field name made lowercase.
+#     tamst_kurs = models.FloatField(default=0.00, db_column='TAMST_KURS', blank=True, null=True)  # Field name made lowercase.
+#     dc10 = models.CharField(db_column='DC10', max_length=2, blank=True, null=True)  # Field name made lowercase.
+#     dc11 = models.DateTimeField(db_column='DC11', blank=True, null=True)  # Field name made lowercase.
+#     dc12 = models.CharField(db_column='DC12', max_length=4, blank=True, null=True)  # Field name made lowercase.
+#     dc12d = models.DateTimeField(db_column='DC12D', blank=True, null=True)  # Field name made lowercase.
+#     dc20 = models.CharField(db_column='DC20', max_length=2, blank=True, null=True)  # Field name made lowercase.
+#     dc22 = models.CharField(db_column='DC22', max_length=4, blank=True, null=True)  # Field name made lowercase.
+#     dc22d = models.DateTimeField(db_column='DC22D', blank=True, null=True)  # Field name made lowercase.
+#     dc30 = models.CharField(db_column='DC30', max_length=2, blank=True, null=True)  # Field name made lowercase.
+#     dc32 = models.CharField(db_column='DC32', max_length=4, blank=True, null=True)  # Field name made lowercase.
+#     dc32d = models.DateTimeField(db_column='DC32D', blank=True, null=True)  # Field name made lowercase.
+#     nzp = models.DecimalField(default=0.00, db_column='NZP', max_digits=19, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
+#     dmodify = models.DateTimeField(db_column='DMODIFY', blank=True, null=True)  # Field name made lowercase.
+#     tmodify = models.CharField(db_column='TMODIFY', max_length=8, blank=True, null=True)  # Field name made lowercase.
+#     p_edoc_id = models.DecimalField(default=0.00, db_column='P_EDOC_ID', max_digits=19, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
+#     guid = models.CharField(db_column='GUID', max_length=38, blank=True, null=True)  # Field name made lowercase.
+#     # docnum = models.CharField(db_column='DocNum', max_length=28, blank=True, null=True)  # Field name made lowercase.
+#     d012build = models.CharField(db_column='D012BUILD', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     d011abuild = models.CharField(db_column='D011ABUILD', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     d02a2build = models.CharField(db_column='D02A2BUILD', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     d02a1build = models.CharField(db_column='D02A1BUILD', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     d02b2build = models.CharField(db_column='D02B2BUILD', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     d02b1build = models.CharField(db_column='D02B1BUILD', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     d0184 = models.DateTimeField(db_column='D0184', blank=True, null=True)  # Field name made lowercase.
+#     d02a84 = models.DateTimeField(db_column='D02A84', blank=True, null=True)  # Field name made lowercase.
+#     d02b84 = models.DateTimeField(db_column='D02B84', blank=True, null=True)  # Field name made lowercase.
+#
+#     class Meta:
+#         abstract = True
+#         # db_table = 'SBRHEAD'
 
 
 class Sbrsscv(BaseModel):
