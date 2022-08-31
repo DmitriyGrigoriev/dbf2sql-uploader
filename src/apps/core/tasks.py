@@ -44,7 +44,7 @@ def process_database_import(params: ImportInfo):
         )
 
 
-@dramatiq.actor(max_retries=0, time_limit=settings.ONE_HOUR*3)
+@dramatiq.actor(max_retries=0, time_limit=settings.ONE_HOUR*5)
 def process_import(
         *,
         args=None,
