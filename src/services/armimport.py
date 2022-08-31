@@ -2,9 +2,9 @@ import tablib
 import logging
 import datetime
 from dateutil.relativedelta import relativedelta
-from django.db.models import Count
 from import_export import resources
 from src.services.base.baseimport import BaseImport
+from src.services.armlocal import ARMLocalFts
 from src.config import settings
 
 
@@ -82,15 +82,15 @@ class ARMImport(BaseImport):
 
                 resource = self._create_resource_instance()
                 resource.import_data(dataset)
-            #
-            #     # Update LocalFts
-            #     self.after_import(
-            #         source_connection_name=self.source_connection_name,
-            #         source_table_name=self.source_table_name,
-            #         dest_connection_name=self.dest_connection_name,
-            #         dest_table_name=self.dest_table_name,
-            #         logger=self.logger
-            #     )
+
+                # Update LocalFts
+                self.after_import(
+                    source_connection_name=self.source_connection_name,
+                    source_table_name=self.source_table_name,
+                    dest_connection_name=self.dest_connection_name,
+                    dest_table_name=self.dest_table_name,
+                    logger=self.logger
+                )
 
         except Exception as e:
             logger.info(f'Error occured in: {self.dest_connection_name} table {self.dest_table_name}')
@@ -98,6 +98,19 @@ class ARMImport(BaseImport):
             raise e
 
         return self._reccount
+
+
+    def after_import(self, source_connection_name: str, source_table_name: str,
+                 dest_connection_name: str, dest_table_name: str, logger=logger
+                 ) -> None:
+
+        ARMLocalFts(
+            source_connection_name=source_connection_name,
+            source_table_name=source_table_name,
+            dest_connection_name=dest_connection_name,
+            dest_table_name=dest_table_name,
+            logger=logger
+        ).start_import()
 
 
     def _transform_raw_select(self, start: int, raw_sql: str) -> str:
