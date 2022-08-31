@@ -4,7 +4,7 @@ import logging
 from django.apps import apps
 from import_export import resources
 from src.services.base.baseimport import BaseImport
-from src.services.updatelocal import SQLLocalFts
+from src.services.sqllocal import SQLLocalFts
 from src.config import settings
 
 
@@ -111,7 +111,7 @@ class SQLImport(BaseImport):
                  dest_connection_name: str, dest_table_name: str, logger=logger
                  ) -> None:
 
-        return SQLLocalFts(
+        SQLLocalFts(
             source_connection_name=source_connection_name,
             source_table_name=source_table_name,
             dest_connection_name=dest_connection_name,

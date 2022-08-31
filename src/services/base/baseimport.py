@@ -96,9 +96,11 @@ class BaseImport:
         return settings.DATABASES[settings.CONNECTION_FTS]["NAME"]
 
 
-    def _get_real_table_name(self):
+    def _get_real_source_table_name(self):
         return self.source_model._meta.db_table
 
+    def _get_real_dest_table_name(self):
+        return self.dest_model._meta.db_table
 
     def _get_resource_models(self)-> resources.ModelResource:
         for name, model in self.resources.items():
@@ -228,6 +230,15 @@ class BaseImport:
             )
         ][0]() or None
 
+
+    def _get_sql_fields_list(self)-> str:
+        fields_set = [f.name for f in self.source_model._meta.fields if f.name != self.source_model._meta.pk.name]
+        fields = ""
+        for f in fields_set:
+            fields += f"[{f}], "
+        # remove 2 last symbols
+        result = fields[0:-2]
+        return result
 
     # def _get_table_prefix(self, type):
     #     try:
