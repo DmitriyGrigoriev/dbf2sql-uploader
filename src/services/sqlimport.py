@@ -110,15 +110,40 @@ class SQLImport(BaseImport):
     def after_import(self, source_connection_name: str, source_table_name: str,
                  dest_connection_name: str, dest_table_name: str, logger=logger
                  ) -> None:
+        ######################################################################
+        # First step: GTD_2022_SMOLENSK.DCLHEAD.DBF -> GTD_2022_SMOLENSK.TDCLHEAD
+        # SQLImport(
+        #     source_connection_name='dbf_2022_smolensk'
+        #     source_table_name='DCLHEAD',
+        #     dest_connection_name='gtd_2022_smolensk',
+        #     dest_table_name='TDCLHEAD',
+        #     logger=None
+        # ).start_import()
+        ######################################################################
+        # Second step: GTD_2022_SMOLENSK.dbo.TDCLHEAD -> LocalFts.dbo.TDCLHEAD
+        # SQLLocalFts(
+        #     source_connection_name='gtd_2022_smolensk',
+        #     source_table_name='TDCLHEAD',
+        #     dest_connection_name='localfts',
+        #     dest_table_name='TDCLHEAD',
+        #     logger=None
+        # ).start_import()
+        #######################################################################
+        # SQLLocalFts(
+        #     source_connection_name=source_connection_name,
+        #     source_table_name=source_table_name,
+        #     dest_connection_name=dest_connection_name,
+        #     dest_table_name=dest_table_name,
+        #     logger=logger
+        # ).start_import()
 
         SQLLocalFts(
-            source_connection_name=source_connection_name,
-            source_table_name=source_table_name,
-            dest_connection_name=dest_connection_name,
+            source_connection_name=dest_connection_name,
+            source_table_name=dest_table_name,
+            dest_connection_name=settings.CONNECTION_FTS,
             dest_table_name=dest_table_name,
             logger=logger
         ).start_import()
-
 
     def _transform_raw_select(self, start: int, raw_sql: str) -> str:
         """Transform SQL expr [SELECT field1, fiel2 ...] into expr
