@@ -101,14 +101,32 @@ class ARMImport(BaseImport):
 
 
     def after_import(self, source_connection_name: str, source_table_name: str,
-                 dest_connection_name: str, dest_table_name: str, logger=logger
+                 dest_connection_name: str, dest_table_name: str, logger=None
                  ) -> None:
-
+        ######################################################################
+        # First step: arm_edh.DBRHEAD -> gtd_arm_test.DCLHEAD
+        # ARMImport(
+        #     source_connection_name='arm_edh',
+        #     source_table_name='DBRHEAD',
+        #     dest_connection_name='gtd_arm_test',
+        #     dest_table_name='DCLHEAD',
+        #     logger=None
+        # ).start_import()
+        ######################################################################
+        # Second step: gtd_arm_test.DCLHEAD -> localfts.TDCLHEAD
+        # ARMLocalFts(
+        #     source_connection_name='gtd_arm_test',
+        #     source_table_name='DBRHEAD',
+        #     dest_connection_name='localfts',
+        #     dest_table_name='TDCLHEAD',
+        #     logger=None
+        # ).start_import()
+        #######################################################################
         ARMLocalFts(
-            source_connection_name=source_connection_name,
-            source_table_name=source_table_name,
-            dest_connection_name=dest_connection_name,
-            dest_table_name=dest_table_name,
+            source_connection_name=dest_connection_name,
+            source_table_name=dest_table_name,
+            dest_connection_name=settings.CONNECTION_FTS,
+            dest_table_name=settings.PIPE_MODULES['DBF']['table_prefix'] + dest_table_name,
             logger=logger
         ).start_import()
 

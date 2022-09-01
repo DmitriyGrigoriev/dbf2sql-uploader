@@ -1,5 +1,4 @@
 import logging
-# from django.db import models
 from django.db import transaction
 from src.services.base.baseimport import BaseImport
 from src.config import settings
@@ -9,6 +8,7 @@ logger = logging.getLogger(__name__)
 
 class ARMLocalFts(BaseImport):
     _type = 'ARM'
+
 
     def __init__(self, source_connection_name: str, source_table_name: str,
                  dest_connection_name: str, dest_table_name: str, logger=None
