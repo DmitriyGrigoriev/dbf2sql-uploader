@@ -45,10 +45,10 @@ class SQLLocalFts(BaseImport):
             # self._delete_mark_database_records(model=self.dest_model)
             with transaction.atomic(using=self.dest_connection_name):
                 # delete records step 1
-                sql = self._create_dbf_statement()
+                sql = self._delete_dbf_statement()
                 self._execute_query(sql)
                 # delete records step 2
-                sql = self._create_arm_statement()
+                sql = self._delete_arm_statement()
                 self._execute_query(sql)
                 # insert records step 3
                 sql = self._create_insert_statement()
