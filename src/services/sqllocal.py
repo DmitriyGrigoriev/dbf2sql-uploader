@@ -80,7 +80,7 @@ class SQLLocalFts(BaseImport):
         source_database_name = self._get_real_database_name()
         table_name = self._get_real_source_table_name()
         where = f" WHERE [hash] NOT IN (SELECT [hash] FROM [{source_database_name}].[dbo].[{table_name}])" \
-                f" ADN [sourcetype] = '{self._type}'"
+                f" AND [sourcetype] = '{self._type}'"
 
         sql = f"DELETE FROM [{dest_database_name}].[dbo].[{table_name}] {where}"
 
@@ -95,7 +95,7 @@ class SQLLocalFts(BaseImport):
         source_database_name = self._get_real_database_name()
         table_name = self._get_real_source_table_name()
         where = f" WHERE [g07x] IN (SELECT [g07x] FROM [{source_database_name}].[dbo].[{table_name}])" \
-                f" ADN [sourcetype] = 'ARM'"
+                f" AND [sourcetype] = 'ARM'"
 
         sql = f"DELETE FROM [{dest_database_name}].[dbo].[{table_name}] {where}"
 
