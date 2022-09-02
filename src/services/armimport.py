@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 
 class ARMImport(BaseImport):
     delete_imported_records = True
-    _period_of_month = -2 # get export data for 2 last month
+    _period_of_month = -6 # get export data for 6 last month
     _type = 'ARM'
 
 
