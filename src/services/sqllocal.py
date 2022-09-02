@@ -45,9 +45,17 @@ class SQLLocalFts(BaseImport):
             # self._delete_mark_database_records(model=self.dest_model)
             with transaction.atomic(using=self.dest_connection_name):
                 # delete records step 1
+                # DELETE FROM [LocalFts].[dbo].[tdclhead]
+                # WHERE [hash] NOT IN (
+                #   SELECT [hash] FROM [test].[dbo].[tdclhead]
+                # ) AND [sourcetype] = 'DBF' AND [database] = 'self.database'
                 sql = self._delete_dbf_statement()
                 self._execute_query(sql)
                 # delete records step 2
+                # DELETE FROM [LocalFts].[dbo].[tdclhead]
+                # WHERE [g07x] NOT IN (
+                #   SELECT [g07x] FROM [test].[dbo].[tdclhead]
+                # ) AND [sourcetype] = 'ARM' AND [database] = 'self.database'
                 sql = self._delete_arm_statement()
                 self._execute_query(sql)
                 # insert records step 3
@@ -80,7 +88,7 @@ class SQLLocalFts(BaseImport):
         source_database_name = self._get_real_database_name()
         table_name = self._get_real_source_table_name()
         where = f" WHERE [hash] NOT IN (SELECT [hash] FROM [{source_database_name}].[dbo].[{table_name}])" \
-                f" AND [sourcetype] = '{self._type}'"
+                f" AND [sourcetype] = '{self._type}' AND [database] = '{self.database}'"
 
         sql = f"DELETE FROM [{dest_database_name}].[dbo].[{table_name}] {where}"
 
@@ -95,7 +103,7 @@ class SQLLocalFts(BaseImport):
         source_database_name = self._get_real_database_name()
         table_name = self._get_real_source_table_name()
         where = f" WHERE [g07x] IN (SELECT [g07x] FROM [{source_database_name}].[dbo].[{table_name}])" \
-                f" AND [sourcetype] = 'ARM'"
+                f" AND [sourcetype] = 'ARM' AND [database] = '{self.database}'"
 
         sql = f"DELETE FROM [{dest_database_name}].[dbo].[{table_name}] {where}"
 

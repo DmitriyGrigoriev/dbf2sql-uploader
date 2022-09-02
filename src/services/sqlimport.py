@@ -63,6 +63,15 @@ class SQLImport(BaseImport):
 
     def start_import(self):
         """Process importing data from DBF to SQL Server"""
+        ######################################################################
+        # First step: GTD_2022_SMOLENSK.DCLHEAD.DBF -> GTD_2022_SMOLENSK.TDCLHEAD
+        # SQLImport(
+        #     source_connection_name='dbf_2022_smolensk'
+        #     source_table_name='DCLHEAD',
+        #     dest_connection_name='gtd_2022_smolensk',
+        #     dest_table_name='TDCLHEAD',
+        #     logger=None
+        # ).start_import()
         try:
             if self.delete_imported_records:
                 self._delete_all_imported_records(model=self.dest_model)
@@ -81,10 +90,6 @@ class SQLImport(BaseImport):
                 dataset = tablib.Dataset(headers=self.headers)
 
                 for row in rows:
-                    """Replace datetime format to iso format like to YYYY-DD-MM"""
-                    # r = [r.isoformat() if (isinstance(r, datetime.date) | isinstance(r, datetime.datetime)) else r for r in
-                    #      row]
-                    # dataset.append(row=r)
                     dataset.append(row=row)
 
                 resource = self._create_resource_instance()
@@ -129,14 +134,6 @@ class SQLImport(BaseImport):
         #     logger=None
         # ).start_import()
         #######################################################################
-        # SQLLocalFts(
-        #     source_connection_name=source_connection_name,
-        #     source_table_name=source_table_name,
-        #     dest_connection_name=dest_connection_name,
-        #     dest_table_name=dest_table_name,
-        #     logger=logger
-        # ).start_import()
-
         SQLLocalFts(
             source_connection_name=dest_connection_name,
             source_table_name=dest_table_name,
