@@ -37,7 +37,7 @@ class SQLLocalFts(BaseImport):
         self.dest_connection_name = dest_connection_name
 
         self.database = self._get_source_database_id()
-
+        self.logger = logger or None
 
     def start_import(self):
         """Process importing data from DBF to SQL Server"""
