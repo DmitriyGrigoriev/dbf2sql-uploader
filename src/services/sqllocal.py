@@ -114,7 +114,17 @@ class SQLLocalFts(BaseImport):
                     WHERE [g07x] NOT IN (
                         SELECT [g07x] FROM [{source_database_name}].[dbo].[{table_name}]
                     )
-                      AND [sourcetype] = 'ARM' AND [database] = '{self.database}'
+                AND [sourcetype] = 'ARM'
+
+               GO 
+                
+               DELETE FROM [{dest_database_name}].[dbo].[{table_name}] 
+                    WHERE [g07x] IN (
+                        SELECT [g07x] FROM [{source_database_name}].[dbo].[{table_name}]
+                            WHERE [sourcetype] = '{self._type}'
+                    )
+                AND [sourcetype] = 'ARM'
+               GO 
                """
         self.print(sql)
         return sql
