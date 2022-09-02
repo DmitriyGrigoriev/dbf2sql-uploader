@@ -77,7 +77,7 @@ class SQLLocalFts(BaseImport):
                                 WHERE [sourcetype] = '{self._type}' 
                                   AND [database] = '{self.database}') 
                """
-
+        self.print(sql)
         return sql
 
 
@@ -97,7 +97,7 @@ class SQLLocalFts(BaseImport):
                     )
                       AND [sourcetype] = '{self._type}' AND [database] = '{self.database}'
                """
-
+        self.print(sql)
         return sql
 
     @property
@@ -116,7 +116,7 @@ class SQLLocalFts(BaseImport):
                     )
                       AND [sourcetype] = 'ARM' AND [database] = '{self.database}'
                """
-
+        self.print(sql)
         return sql
 
 
