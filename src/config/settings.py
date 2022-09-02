@@ -264,7 +264,7 @@ PIPE_MODULES = {
     },
 }
 CONNECTION_FTS = 'localfts'
-BATCH_SIZE = 10000
+BATCH_SIZE = 100
 ONE_HOUR = 3600000
 ################################################################################
 # REDIS

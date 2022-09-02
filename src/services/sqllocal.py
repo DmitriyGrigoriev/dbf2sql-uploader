@@ -45,21 +45,13 @@ class SQLLocalFts(BaseImport):
             # self._delete_mark_database_records(model=self.dest_model)
             with transaction.atomic(using=self.dest_connection_name):
                 # delete records step 1
-                # DELETE FROM [LocalFts].[dbo].[tdclhead]
-                # WHERE [hash] NOT IN (
-                #   SELECT [hash] FROM [test].[dbo].[tdclhead]
-                # ) AND [sourcetype] = 'DBF' AND [database] = 'self.database'
-                sql = self._delete_dbf_statement()
+                sql = self._delete_dbf_statement
                 self._execute_query(sql)
                 # delete records step 2
-                # DELETE FROM [LocalFts].[dbo].[tdclhead]
-                # WHERE [g07x] NOT IN (
-                #   SELECT [g07x] FROM [test].[dbo].[tdclhead]
-                # ) AND [sourcetype] = 'ARM' AND [database] = 'self.database'
-                sql = self._delete_arm_statement()
+                sql = self._delete_arm_statement
                 self._execute_query(sql)
                 # insert records step 3
-                sql = self._create_insert_statement()
+                sql = self._insert_statement
                 self._execute_query(sql)
 
         except Exception as e:
@@ -67,45 +59,63 @@ class SQLLocalFts(BaseImport):
             raise e
 
 
-    def _create_insert_statement(self):
+    @property
+    def _insert_statement(self):
         dest_database_name = self._get_real_localfts_name()
         source_database_name = self._get_real_database_name()
         table_name = self._get_real_source_table_name()
-        insert = f"INSERT INTO [{dest_database_name}].[dbo].[{table_name}] "
-        where = f" WHERE [g07x] NOT IN (SELECT [g07x] FROM [{dest_database_name}].[dbo].[{table_name}])"
         fields = self._get_sql_fields_list()
 
-        sql = f"{insert} ({fields}) SELECT {fields} FROM [{source_database_name}].[dbo].[{table_name}] {where}"
+        sql = f"""
+               INSERT INTO [{dest_database_name}].[dbo].[{table_name}] 
+                    (
+                        {fields}
+                    )
+                    SELECT {fields} FROM [{source_database_name}].[dbo].[{table_name}]
+                        WHERE [hash] NOT IN (
+                            SELECT [hash] FROM [{dest_database_name}].[dbo].[{table_name}]
+                                WHERE [sourcetype] = '{self._type}' 
+                                  AND [database] = '{self.database}') 
+               """
 
         return sql
 
 
+    @property
     def _delete_dbf_statement(self):
         # DELETE FROM [LocalFts].[dbo].[tdclhead]
         #   WHERE [hash] NOT IN (SELECT [hash] FROM [gtd_2022_smolensk].[dbo].[tdclhead])
-        #     AND [sourcetype] = 'DBF'
+        #     AND [sourcetype] = 'DBF' AND [database] = 'gtd_2022_smolensk'
         dest_database_name = self._get_real_localfts_name()
         source_database_name = self._get_real_database_name()
         table_name = self._get_real_source_table_name()
-        where = f" WHERE [hash] NOT IN (SELECT [hash] FROM [{source_database_name}].[dbo].[{table_name}])" \
-                f" AND [sourcetype] = '{self._type}' AND [database] = '{self.database}'"
 
-        sql = f"DELETE FROM [{dest_database_name}].[dbo].[{table_name}] {where}"
+        sql = f"""
+               DELETE FROM [{dest_database_name}].[dbo].[{table_name}]
+                    WHERE [hash] NOT IN (
+                        SELECT [hash] FROM [{source_database_name}].[dbo].[{table_name}]
+                    )
+                      AND [sourcetype] = '{self._type}' AND [database] = '{self.database}'
+               """
 
         return sql
 
-
+    @property
     def _delete_arm_statement(self):
         # DELETE FROM [LocalFts].[dbo].[tdclhead]
         #   WHERE [g07x] NOT IN (SELECT [g07x] FROM [gtd_2022_smolensk].[dbo].[tdclhead])
-        #     AND [sourcetype] = 'ARM'
+        #     AND [sourcetype] = 'ARM' AND [database] = 'gtd_2022_smolensk'
         dest_database_name = self._get_real_localfts_name()
         source_database_name = self._get_real_database_name()
         table_name = self._get_real_source_table_name()
-        where = f" WHERE [g07x] IN (SELECT [g07x] FROM [{source_database_name}].[dbo].[{table_name}])" \
-                f" AND [sourcetype] = 'ARM' AND [database] = '{self.database}'"
 
-        sql = f"DELETE FROM [{dest_database_name}].[dbo].[{table_name}] {where}"
+        sql = f"""
+               DELETE FROM [{dest_database_name}].[dbo].[{table_name}]
+                    WHERE [g07x] NOT IN (
+                        SELECT [g07x] FROM [{source_database_name}].[dbo].[{table_name}]
+                    )
+                      AND [sourcetype] = 'ARM' AND [database] = '{self.database}'
+               """
 
         return sql
 
