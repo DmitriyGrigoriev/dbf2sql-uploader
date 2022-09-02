@@ -21,6 +21,7 @@ class BaseImport:
     _limit = settings.BATCH_SIZE
     _reccount = 0
     _type = None
+    logger = None
 
 
     # setter
@@ -88,6 +89,13 @@ class BaseImport:
     dest_connection_name = property(get_dest_connection_name, set_dest_connection_name)
 
 
+    def print(self, message) -> None:
+        if self.logger:
+            self.logger.info(message)
+        else:
+            print(message)
+
+
     def _get_real_database_name(self):
         return settings.DATABASES[self.source_connection_name]['NAME']
 
@@ -99,8 +107,10 @@ class BaseImport:
     def _get_real_source_table_name(self):
         return self.source_model._meta.db_table
 
+
     def _get_real_dest_table_name(self):
         return self.dest_model._meta.db_table
+
 
     def _get_resource_models(self)-> resources.ModelResource:
         for name, model in self.resources.items():
