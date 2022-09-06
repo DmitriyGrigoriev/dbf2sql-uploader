@@ -1,11 +1,10 @@
 import tablib
-import datetime
 import logging
 from django.apps import apps
-from import_export import resources
+#from import_export import resources
 from src.services.base.baseimport import BaseImport
 from src.services.sqllocal import SQLLocalFts
-from src.config import settings
+from src.apps.common.dataclasses import ETL
 
 
 logger = logging.getLogger(__name__)
@@ -20,50 +19,32 @@ def datetime_as_string(value):
 
 
 class SQLImport(BaseImport):
-    delete_imported_records = True
-    _type = 'DBF'
-
 
     def __init__(self, source_connection_name: str, source_table_name: str,
-                 dest_connection_name: str, dest_table_name: str, logger=None
+                 dest_connection_name: str, dest_table_name: str, logger=None,
+                 mode: str = ETL.MODE.FULL
                  ) -> None:
+
+        super(SQLImport, self).__init__()
+
+        self.type = ETL.EXPORT.DBF
+        self.source_model_module = ETL.PIPE_MODULES.DBF_EXPORT
+        self.dest_model_module = ETL.PIPE_MODULES.DBF_IMPORT
+
+        self.source_connection_name = source_connection_name
+        self.dest_connection_name = dest_connection_name
+
         self.source_table_name = source_table_name
         self.dest_table_name = dest_table_name
 
-        ###########################################################################
-        # First setting connection and then attach using_db to source model
-        ###########################################################################
-        self.source_model = self.get_model_class(
-            settings.PIPE_MODULES['DBF']['export'], 'models', self.source_table_name
-        )
-        self.source_connection_name = source_connection_name
+        self.logger = logger
+        self.mode = mode
 
-        ###########################################################################
-        # First setting connection and then attach using_db to destination model
-        ###########################################################################
-        self.dest_model = self.get_model_class(
-            settings.PIPE_MODULES['DBF']['import'], 'models', self.dest_table_name
-        )
-        self.dest_connection_name = dest_connection_name
-
-        self.headers = self._get_exported_headers()
-
-        self.resources = dict(
-            self.get_list_classes(
-                settings.PIPE_MODULES['DBF']['import'], # import module
-                settings.PIPE_MODULES['DBF']['resource'], # resource module
-                resources.ModelResource
-            )
-        )
-
-        self.logger = logger or None
-
-        # self._add_datetime_output_conversion_funct()
-
+        self.get_resources()
 
     def start_import(self):
         """Process importing data from DBF to SQL Server"""
-        ######################################################################
+        ##########################################################################
         # First step: GTD_2022_SMOLENSK.DCLHEAD.DBF -> GTD_2022_SMOLENSK.TDCLHEAD
         # SQLImport(
         #     source_connection_name='dbf_2022_smolensk'
@@ -72,48 +53,54 @@ class SQLImport(BaseImport):
         #     dest_table_name='TDCLHEAD',
         #     logger=None
         # ).start_import()
+        ##########################################################################
         try:
-            if self.delete_imported_records:
+            if self.mode == ETL.MODE.FULL or self.mode == ETL.MODE.IMPORT:
                 self._delete_all_imported_records(model=self.dest_model)
 
-            self._reccount = self._source_model_record_count()
-            raw_sql = self._get_export_raw_sql()
-
-            for start in range(0, self._reccount, self._limit):
-                # select data from dbf model
-                sql = self._transform_raw_select(start=start + 1, raw_sql=raw_sql)
-
-                if self.logger:
-                    self.logger.info(f"Execute SQL: {sql}")
-
-                rows = self._execute_query(sql)
-                dataset = tablib.Dataset(headers=self.headers)
-
-                for row in rows:
-                    dataset.append(row=row)
+                self._reccount = self._source_model_record_count()
+                raw_sql = self._get_export_raw_sql()
 
                 resource = self._create_resource_instance()
-                resource.import_data(dataset)
 
-                # Update LocalFts
-                self.after_import(
-                    source_connection_name=self.source_connection_name,
-                    source_table_name=self.source_table_name,
-                    dest_connection_name=self.dest_connection_name,
-                    dest_table_name=self.dest_table_name,
-                    logger=self.logger
-                )
+                for start in range(0, self._reccount, self._limit):
+                    # select data from dbf model
+                    sql = self._transform_raw_select(start=start + 1, raw_sql=raw_sql)
+
+                    if self.logger:
+                        self.logger.info(f"Execute SQL: {sql}")
+
+                    rows = self._execute_query(sql)
+                    dataset = tablib.Dataset(headers=self.headers)
+
+                    for row in rows:
+                        dataset.append(row=row)
+
+                    # resource = self._create_resource_instance()
+                    resource.import_data(dataset)
+                    dataset.wipe()
+
+                    if self.mode == ETL.MODE.FULL or self.mode == ETL.MODE.EXPORT:
+                        # Update LocalFts
+                        self.after_import(
+                            source_connection_name=self.source_connection_name,
+                            source_table_name=self.source_table_name,
+                            dest_connection_name=self.dest_connection_name,
+                            dest_table_name=self.dest_table_name,
+                            logger=self.logger,
+                            mode=self.mode
+                        )
 
         except Exception as e:
-            logger.info(f'Error occured in: {self.dest_connection_name} table {self.dest_table_name}')
+            logger.info(f'Error occured in NAME[{self.dest_connection_name}] table {self.dest_table_name}')
             logger.exception(e)
             raise e
 
         return self._reccount
 
-
     def after_import(self, source_connection_name: str, source_table_name: str,
-                 dest_connection_name: str, dest_table_name: str, logger=logger
+                 dest_connection_name: str, dest_table_name: str, logger=logger,
+                 mode: str = ETL.MODE.FULL
                  ) -> None:
         ######################################################################
         # First step: GTD_2022_SMOLENSK.DCLHEAD.DBF -> GTD_2022_SMOLENSK.TDCLHEAD
@@ -137,10 +124,20 @@ class SQLImport(BaseImport):
         SQLLocalFts(
             source_connection_name=dest_connection_name,
             source_table_name=dest_table_name,
-            dest_connection_name=settings.CONNECTION_FTS,
+            dest_connection_name=ETL.CONNECT.LOCALFTS,
             dest_table_name=dest_table_name,
-            logger=logger
+            export_database_name=self._get_source_database_id(),
+            logger=logger,
+            mode=mode
         ).start_import()
+
+        # Restore using_db
+        self.restore_default(
+            source_connection_name, source_table_name,
+            dest_connection_name, dest_table_name, logger=None,
+            mode=ETL.MODE.FULL
+        )
+
 
     def _transform_raw_select(self, start: int, raw_sql: str) -> str:
         """Transform SQL expr [SELECT field1, fiel2 ...] into expr
@@ -153,7 +150,6 @@ class SQLImport(BaseImport):
 
         return raw_sql.replace("SELECT", sql)
 
-
     def _source_model_record_count(self) -> int:
         """Calculate rows in DBF"""
         sql = f"SELECT COUNT(*) as RECC FROM {self.source_model._meta.db_table};"
@@ -162,13 +158,5 @@ class SQLImport(BaseImport):
             recc = row[0]
         return recc or 0
 
-    # def _add_datetime_output_conversion_funct(self):
-    #     if self.source_connection:
-    #         self.source_connection.Database.Connection.add_output_converter(
-    #             self.source_connection.Database.SQL_TYPE_TIMESTAMP, datetime_as_string
-    #         )
-
     def _get_models(self, app_name: str):
         return apps.get_app_config(app_name).get_models()
-
-

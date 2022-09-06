@@ -35,13 +35,13 @@ from src.apps.core.tasks import (
 
 
 
-def run_import_for_single_table(request, table_pk):
+def run_import_for_single_table(request, table_pk, mode):
     """Run dramatiq task importing data from single DBF table"""
     # kwargs = ImportTables.tables.get_kwargs(table_pk=table_pk)
     t_list: ImportInfo = ImportTables.tables.table_import_info(table_pk)
 
     if len(t_list)>0:
-        process_database_import(t_list)
+        process_database_import(t_list, mode=mode)
 
     # process_import.send_with_options(
     #     kwargs = kwargs,
@@ -58,7 +58,7 @@ def run_import_for_single_table(request, table_pk):
     )
 
 
-def run_import_for_database(request, poll_pk)-> HttpResponseRedirect:
+def run_import_for_database(request, poll_pk, mode)-> HttpResponseRedirect:
     """
     Run process importing data from any source to MSSQL database
 
@@ -70,7 +70,7 @@ def run_import_for_database(request, poll_pk)-> HttpResponseRedirect:
     poll_name: str = ConnectSet.consets.record(pk=poll_pk).name
 
     if len(t_list)>0:
-        process_database_import(t_list)
+        process_database_import(t_list, mode=mode)
         messages.info(request, f'Process import data from {poll_name} is running!')
     else:
         messages.info(request, f'No needs import data from {poll_name} it\'s up to date!')

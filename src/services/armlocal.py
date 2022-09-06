@@ -1,35 +1,55 @@
 import logging
 from django.db import transaction
 from src.services.base.baseimport import BaseImport
+from src.apps.common.dataclasses import ETL
 from src.config import settings
 
 logger = logging.getLogger(__name__)
 
 
 class ARMLocalFts(BaseImport):
-    _type = 'ARM'
+    # _type = 'ARM'
 
 
     def __init__(self, source_connection_name: str, source_table_name: str,
-                 dest_connection_name: str, dest_table_name: str, logger=None
+                 dest_connection_name: str, dest_table_name: str, logger=None,
+                 mode: str = ETL.MODE.FULL
                  ) -> None:
-        self.source_table_name = source_table_name
-        self.dest_table_name = dest_table_name
 
-        self.source_model = self.get_model_class(
-            settings.PIPE_MODULES[self._type]['import'], 'models', self.dest_table_name[1:] # remove prefix
+        self._type = ETL.EXPORT.DOC2SQL
+        self.source_model_module = ETL.PIPE_MODULES.DOC2SQL_EXPORT
+        self.dest_model_module = ETL.PIPE_MODULES.DBF_IMPORT
+
+        super(ARMLocalFts, self).__init__(
+            source_connection_name,
+            source_table_name,
+            dest_connection_name,
+            dest_table_name,
+            logger,
+            mode
         )
-        self.source_connection_name = source_connection_name
+        # self.source_table_name = source_table_name
+        # self.dest_table_name = dest_table_name
+        #
+        # self.source_model = self.get_model_class(
+        #     settings.PIPE_MODULES[self._type]['import'], 'models', self.dest_table_name[1:] # remove prefix
+        # )
+        # self.source_connection_name = source_connection_name
+        #
+        # self.dest_model = self.get_model_class(
+        #     settings.PIPE_MODULES['DBF']['import'], 'models', self.dest_table_name
+        # )
+        # self.dest_connection_name = settings.CONNECTION_FTS
+        #
+        # self.database = self._get_source_database_id()
+        #
+        # self.logger = logger or None
 
-        self.dest_model = self.get_model_class(
-            settings.PIPE_MODULES['DBF']['import'], 'models', self.dest_table_name
+    def get_dest_model(self):
+        return self.get_model_class(
+            ETL.PIPE_MODULES.DBF_IMPORT, 'models', self.dest_table_name
+            # settings.PIPE_MODULES[ETL.EXPORT.DBF]['import'], 'models', self.dest_table_name
         )
-        self.dest_connection_name = settings.CONNECTION_FTS
-
-        self.database = self._get_source_database_id()
-
-        self.logger = logger or None
-
 
     def start_import(self) -> None:
         """Process importing data from DBF to SQL Server"""

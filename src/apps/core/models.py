@@ -194,7 +194,7 @@ class ImportTables(DefaultModel):
         verbose_name=_('Import table')
     )
     message_id = models.UUIDField(_('Redis message Id'), blank=True, null=True)
-    uploadable = models.BooleanField(default=True)
+    uploadable = models.BooleanField(verbose_name='Uploadable', default=True)
     last_write = models.DateTimeField(verbose_name=_('Last write'), blank=True, null=True,)
     upload_record = models.IntegerField(verbose_name=_('Upload'), default=0)
 

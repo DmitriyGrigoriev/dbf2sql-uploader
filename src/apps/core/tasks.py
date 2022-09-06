@@ -11,6 +11,8 @@ from src.services.sqlimport import SQLImport
 from src.services.armimport import ARMImport
 from src.apps.core.models import ImportTables
 
+from src.apps.common.dataclasses import ETL
+
 
 @dramatiq.actor
 def hello():
@@ -23,7 +25,7 @@ def identity(x):
     return x
 
 
-def process_database_import(params: ImportInfo):
+def process_database_import(params: ImportInfo, mode: str = ETL.MODE.FULL):
     # dataclass:ImportInfo
     # ----------------------------
     # table_pk: int,
@@ -35,9 +37,11 @@ def process_database_import(params: ImportInfo):
     # type: str
     # -----------------------------
     for p in params:
-        # kwargs = ImportTables.tables.get_kwargs(table_pk=p.table_pk)
+        kwargs = dataclasses.asdict(p)
+        kwargs.update({'mode': mode})
+
         process_import.send_with_options(
-            kwargs=dataclasses.asdict(p),
+            kwargs=kwargs,
             # args=(object_pk, source_connection_name, source_table, dest_connection_name, dest_table),
             on_failure=print_error,
             on_success=update_last_write_if_success_result,
@@ -61,6 +65,7 @@ def process_import(
     result = 0
     table_pk = kwargs['table_pk']
     type = kwargs['type']
+    mode = kwargs['mode']
     try:
         # Clear all indicators before start task
         ImportTables.tables.filter(pk=table_pk).update(
@@ -76,13 +81,14 @@ def process_import(
             # print(f'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
             # print(f'{settings.DATABASES}')
             # print(f'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
-            if type == 'DBF':
+            if type == ETL.EXPORT.DBF:
                 result = SQLImport(
                     source_connection_name=kwargs.pop('source_connection_name'),
                     source_table_name=kwargs.pop('source_table_name'),
                     dest_connection_name=kwargs.pop('dest_connection_name'),
                     dest_table_name=kwargs.pop('dest_table_name'),
-                    logger=process_import.logger
+                    logger=process_import.logger,
+                    mode=mode
                 ).start_import()
             else:
                 # type == 'ARM'
@@ -91,7 +97,8 @@ def process_import(
                     source_table_name=kwargs.pop('source_table_name'),
                     dest_connection_name=kwargs.pop('dest_connection_name'),
                     dest_table_name=kwargs.pop('dest_table_name'),
-                    logger=process_import.logger
+                    logger=process_import.logger,
+                    mode=mode
                 ).start_import()
     except dramatiq.RateLimitExceeded:
         # process_import.logger.info('############ dramatiq.RateLimitExceeded ###########')

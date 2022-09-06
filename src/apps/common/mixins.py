@@ -1,26 +1,19 @@
 from django.db import models
-
 from hashlib import sha256
 from import_export.instance_loaders import CachedInstanceLoader
-from src.config import settings
-
+from src.apps.common.dataclasses import ETL
 ################################################################
 # Mixin extend resource model and add some additional fields
 ################################################################
 class ExtResource:
     """Extend resource model"""
-    type = 'RESOURCE'
+    type = 'RESOURCE'  # using as marker for resource class
     database = None
-    dest_connection = None
-
-    hash_field_name = 'hash'
-    hash_field_value = None
-
-    type = None
+    # dest_connection = None
 
     class Meta:
         use_bulk = True
-        batch_size = settings.BATCH_SIZE
+        batch_size = ETL.BULK.BATCH_SIZE
         skip_unchanged = True
         # skip_diff = True
         # This flag can speed up imports
@@ -32,19 +25,21 @@ class ExtResource:
 
 
     def before_import_row(self, row, row_number=None, **kwargs):
-        if 'g071' in row and 'g072' in row and 'g073' in row:
-            g07x = f"{row['g071']}/{row['g072'].strftime('%d%m%y')}/{row['g073']}"
-            row['g07x'] = g07x
+        if ETL.FIELD.G071 in row and \
+                ETL.FIELD.G072 in row and \
+                ETL.FIELD.G073 in row:
+            g07x = f"{row[ETL.FIELD.G071]}/{row[ETL.FIELD.G072].strftime('%d%m%y')}/{row[ETL.FIELD.G073]}"
+            row[ETL.FIELD.G07X] = g07x
 
         if self.type:
-            row['sourcetype'] = self.type
+            row[ETL.FIELD.EXPTYPE] = self.type
 
         if self.database:
-            row['database'] = self.database
+            row[ETL.FIELD.DATABASE] = self.database
 
         # Calculate row hash
-        self.hash_field_value = sha256(repr(row.values()).encode('utf8')).hexdigest().encode('utf-8').decode('utf-8')
-        row[self.hash_field_name] = self.hash_field_value
+        hash_value = sha256(repr(row.values()).encode('utf8')).hexdigest().encode('utf-8').decode('utf-8')
+        row[ETL.FIELD.HASH] = hash_value
 
 
     # def skip_row(self, instance, original):
@@ -99,8 +94,8 @@ class ExtSourceFields(models.Model):
     sourcetype = models.CharField(max_length=3, blank=True, null=True)
     database = models.CharField(max_length=50, blank=True, null=True)
     g07x = models.CharField(max_length=23, blank=True, null=True)
-    hash = models.CharField(max_length=64, blank=False, null=True,)
-    # hash = models.CharField(max_length=64, blank=False, null=True, unique=True)
+    # hash = models.CharField(max_length=64, blank=False, null=True,)
+    hash = models.CharField(max_length=64, blank=False, null=True, unique=True)
     docnum = models.CharField(db_column='DocNum', max_length=28, blank=True, null=True) # import from Doxc2sql
     created_at = models.DateTimeField(auto_now_add=True)
 

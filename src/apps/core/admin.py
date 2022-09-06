@@ -1,15 +1,14 @@
 from django import template
 from django.contrib import admin
 from django.utils.safestring import mark_safe
-from django.urls import re_path
 from django.urls import reverse
 from django.http import HttpResponseRedirect
-from django.utils.html import format_html
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 from django_dramatiq.models import Task
 
 from src.services.base.baseimport import BaseImport
+from src.apps.common.dataclasses import ETL
 from src.config import settings
 
 from .models import ConnectWrapper, ConnectSet, ImportTables, MSSQL_ENGINE
@@ -29,7 +28,9 @@ class ImportTablesAdmin(admin.ModelAdmin):
         'uploadable',
         'show_result',
         'upload_record',
-        'run_import'
+        # 'run_export',
+        # 'run_import',
+        'run_export_import',
     )
     readonly_fields = (
         'message_id',
@@ -40,15 +41,25 @@ class ImportTablesAdmin(admin.ModelAdmin):
     # list_editable = ('uploadable',)
     # save_on_top = True
 
+
+
     def has_add_permission(self, request):
         return False
 
 
+    @admin.display(description=_('Export'))
+    def run_export(self, obj):
+        return self.create_link(obj, ETL.MODE.EXPORT)
+
+
     @admin.display(description=_('Import'))
     def run_import(self, obj):
-        if obj.uploadable:
-            url = reverse('run-import-for-single-table', kwargs={'table_pk': obj.pk})
-            return mark_safe(f'<a href="{url}" class="historylink">Run</a>')
+        return self.create_link(obj, ETL.MODE.IMPORT)
+
+
+    @admin.display(description=_('Export/Import'))
+    def run_export_import(self, obj):
+        return self.create_link(obj, ETL.MODE.FULL)
 
 
     @admin.display(description=_('Task status'))
@@ -61,16 +72,25 @@ class ImportTablesAdmin(admin.ModelAdmin):
                 return mark_safe(f'<a href="{url}" class="historylink">{result.status.title()}</a>')
         return status
 
+    def create_link(self, obj, mode):
+        if obj.uploadable:
+            url = reverse(f'{ETL.URLNAME.EXPORT_SINGLE_TABLE}', kwargs={'table_pk': obj.pk, 'mode': mode})
+            return mark_safe(f'<a href="{url}" class="historylink">Run</a>')
+
 
 class ConnectSetAdmin(admin.ModelAdmin):
     validate_form = None
+    ordering = ('-name',)
 
     list_display = (
-        'source_conection',
-        'dest_conection',
+        'name',
+        # 'source_conection',
+        # 'dest_conection',
         'enabled',
-        'create_tables_actions',
-        'run_import'
+        # 'create_tables_actions',
+        # 'run_export',
+        # 'run_import',
+        'run_export_import',
     )
     save_on_top = True
 
@@ -97,39 +117,54 @@ class ConnectSetAdmin(admin.ModelAdmin):
         self.create_or_update_import_tables_list(request=request, object_pk=obj.pk)
 
 
+    @admin.display(description=_('Export'))
+    def run_export(self, obj):
+        return self.create_link(obj, ETL.MODE.EXPORT)
+
+
     @admin.display(description=_('Import'))
     def run_import(self, obj):
-        connsets = self.model.consets.record(obj.pk)
-        if connsets.enabled:
-            url = reverse('run-import-for-database', kwargs={'poll_pk': obj.pk})
-            link = mark_safe(f'<a href="{url}" class="historylink">Run</a>')
-        else:
-            link = mark_safe(f'<a href="#" class="historylink">Disable</a>')
-        return link
+        return self.create_link(obj, ETL.MODE.IMPORT)
+
+
+    @admin.display(description=_('Export/Import'))
+    def run_export_import(self, obj):
+        return self.create_link(obj, ETL.MODE.FULL)
 
     # run_import.short_description = 'Import'
     run_import.allow_tags = True
 
-    def get_urls(self):
-        urls = super().get_urls()
-        custom_urls = [
-            re_path(
-                r'^(?P<object_pk>.+)/create-tables-list/$',
-                self.admin_site.admin_view(self.create_or_update_import_tables_list),
-                name='create-table-list',
-            ),
-        ]
-        return custom_urls + urls
+    def create_link(self, obj, mode):
+        connsets = self.model.consets.record(obj.pk)
+        if connsets.enabled:
+            url = reverse(f'{ETL.URLNAME.PIPELINE_EXPORT_IMPORT}', kwargs={'poll_pk': obj.pk, 'mode': mode})
+            link = mark_safe(f'<a href="{url}" class="historylink">Run</a>')
+        else:
+            # link = mark_safe(f'<a href="#" class="historylink">Disable</a>')
+            link = ''
+
+        return link
+
+    # def get_urls(self):
+    #     urls = super().get_urls()
+    #     custom_urls = [
+    #         re_path(
+    #             r'^(?P<object_pk>.+)/create-tables-list/$',
+    #             self.admin_site.admin_view(self.create_or_update_import_tables_list),
+    #             name='create-table-list',
+    #         ),
+    #     ]
+    #     return custom_urls + urls
 
 
-    def create_tables_actions(self, obj):
-        return format_html(
-            '<a class="button" href="{}">Create or Update</a>&nbsp;',
-            reverse('admin:create-table-list', args=[obj.pk]),
-        )
-
-    create_tables_actions.short_description = 'Create table list'
-    create_tables_actions.allow_tags = True
+    # def create_tables_actions(self, obj):
+    #     return format_html(
+    #         '<a class="button" href="{}">Create or Update</a>&nbsp;',
+    #         reverse('admin:create-table-list', args=[obj.pk]),
+    #     )
+    #
+    # create_tables_actions.short_description = 'Create table list'
+    # create_tables_actions.allow_tags = True
 
 
     def create_or_update_import_tables_list(self, request, object_pk, *args, **kwargs):
