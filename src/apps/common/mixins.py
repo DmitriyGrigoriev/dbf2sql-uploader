@@ -1,3 +1,4 @@
+import random
 from django.db import models
 from hashlib import sha256
 from import_export.instance_loaders import CachedInstanceLoader
@@ -37,9 +38,11 @@ class ExtResource:
         if self.database:
             row[ETL.FIELD.DATABASE] = self.database
 
+        row[ETL.FIELD.HASH] = self.calculate_hash(row)
+
+    def calculate_hash(self, row):
         # Calculate row hash
-        hash_value = sha256(repr(row.values()).encode('utf8')).hexdigest().encode('utf-8').decode('utf-8')
-        row[ETL.FIELD.HASH] = hash_value
+        return sha256(repr(row.values()).encode('utf8')).hexdigest().encode('utf-8').decode('utf-8')
 
 
     # def skip_row(self, instance, original):
@@ -48,6 +51,13 @@ class ExtResource:
     #     ).fetchone()[0]
     #     return bool(skip)
         #return super(ExtResource, self).skip_row(instance, original)
+
+class ArmResource(ExtResource):
+    def calculate_hash(self, row):
+        # Calculate row hash
+        sole = random.randint(0, ETL.BULK.BATCH_SIZE).__str__()
+        return sha256(str(random.randint(0, 1000)) + repr(row.values()).encode('utf8')).hexdigest().encode('utf-8').decode('utf-8')
+
 
 
 ##################################################################################

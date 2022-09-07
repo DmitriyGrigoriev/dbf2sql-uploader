@@ -20,387 +20,387 @@ from .models import (
 from src.apps.common import mixins
 
 
-class DclmnumResource(mixins.ExtResource, ModelResource):
+class DclmnumResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TDclAmnum
 
 
-class DclavtmbResource(mixins.ExtResource, ModelResource):
+class DclavtmbResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TDclAvtmb
 
 
-class DclcontResource(mixins.ExtResource, ModelResource):
+class DclcontResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TDclCont
 
 
-class DclcrdtsResource(mixins.ExtResource, ModelResource):
+class DclcrdtsResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TDclCrdts
 
 
-class Dcldinf2Resource(mixins.ExtResource, ModelResource):
+class Dcldinf2Resource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TDclDinf2
 
 
-class DcldinfoResource(mixins.ExtResource, ModelResource):
+class DcldinfoResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TDclDinfo
 
 
-class DcldogResource(mixins.ExtResource, ModelResource):
+class DcldogResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TDclDog
 
 
-class DcldogaResource(mixins.ExtResource, ModelResource):
+class DcldogaResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TDclDoga
 
 
-class DcldogtResource(mixins.ExtResource, ModelResource):
+class DcldogtResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TDclDogt
 
 
-class Dcldop48Resource(mixins.ExtResource, ModelResource):
+class Dcldop48Resource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TDclDop48
 
 
-class DclheadResource(mixins.ExtResource, ModelResource):
+class DclheadResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TDclHead
 
 
-class DclkmpResource(mixins.ExtResource, ModelResource):
+class DclkmpResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TDclKmp
 
 
-class DclkmpkResource(mixins.ExtResource, ModelResource):
+class DclkmpkResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TDclKmpk
 
 
-class DcllistdResource(mixins.ExtResource, ModelResource):
+class DcllistdResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TDclListd
 
 
-class DcllisthResource(mixins.ExtResource, ModelResource):
+class DcllisthResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TDclListh
 
 
-class DcllistlResource(mixins.ExtResource, ModelResource):
+class DcllistlResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TDclListl
 
 
-class DclpaspResource(mixins.ExtResource, ModelResource):
+class DclpaspResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TDclPasp
 
 
-class DclpkResource(mixins.ExtResource, ModelResource):
+class DclpkResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TDclPk
 
 
-class DclplatrResource(mixins.ExtResource, ModelResource):
+class DclplatrResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TDclPlatr
 
 
-class DclplatvResource(mixins.ExtResource, ModelResource):
+class DclplatvResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TDclPlatv
 
 
-class DclpreddResource(mixins.ExtResource, ModelResource):
+class DclpreddResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TDclPredd
 
 
-class DclquerdResource(mixins.ExtResource, ModelResource):
+class DclquerdResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TDclQuerd
 
 
-class DclquerhResource(mixins.ExtResource, ModelResource):
+class DclquerhResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TDclQuerh
 
 
-class DclsumppResource(mixins.ExtResource, ModelResource):
+class DclsumppResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TDclSumpp
 
 
-class DcltechdResource(mixins.ExtResource, ModelResource):
+class DcltechdResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TDclTechd
 
 
-class DcltermsResource(mixins.ExtResource, ModelResource):
+class DcltermsResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TDclTerms
 
 
-class Dcltov2Resource(mixins.ExtResource, ModelResource):
+class Dcltov2Resource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TDclTov2
 
 
-class DcltovarResource(mixins.ExtResource, ModelResource):
+class DcltovarResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TDclTovar
 
 
-class DcltovgResource(mixins.ExtResource, ModelResource):
+class DcltovgResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TDclTovg
 
 
-class Dcltovg2Resource(mixins.ExtResource, ModelResource):
+class Dcltovg2Resource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TDclTovg2
 
 
-class DcltovsResource(mixins.ExtResource, ModelResource):
+class DcltovsResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TDclTovs
 
 
-class Dcltovs2Resource(mixins.ExtResource, ModelResource):
+class Dcltovs2Resource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TDclTovs2
 
 
-class DcltransResource(mixins.ExtResource, ModelResource):
+class DcltransResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TDclTrans
 
 
-class DclusltResource(mixins.ExtResource, ModelResource):
+class DclusltResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TDclUslt
 
 
-class DtcddtcResource(mixins.ExtResource, ModelResource):
+class DtcddtcResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TDtcDdtc
 
 
-class DtcdinfoResource(mixins.ExtResource, ModelResource):
+class DtcdinfoResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TDtcDinfo
 
 
-class DtcheadResource(mixins.ExtResource, ModelResource):
+class DtcheadResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TDtcHead
 
 
-class DtcsscvResource(mixins.ExtResource, ModelResource):
+class DtcsscvResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TDtcSscv
 
 
-class DtcsstcResource(mixins.ExtResource, ModelResource):
+class DtcsstcResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TDtcSstc
 
 
-class KtcavtmbResource(mixins.ExtResource, ModelResource):
+class KtcavtmbResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TKtcAvtmb
 
 
-class KtcdinfoResource(mixins.ExtResource, ModelResource):
+class KtcdinfoResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TKtcDinfo
 
 
-class KtcdokizResource(mixins.ExtResource, ModelResource):
+class KtcdokizResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TKtcDokiz
 
 
-class KtcheadResource(mixins.ExtResource, ModelResource):
+class KtcheadResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TKtcHead
 
 
-class KtcPkResource(mixins.ExtResource, ModelResource):
+class KtcPkResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TKtcPk
 
 
-class KtcplbizResource(mixins.ExtResource, ModelResource):
+class KtcplbizResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TKtcPlbiz
 
 
-class KtcpltizResource(mixins.ExtResource, ModelResource):
+class KtcpltizResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TKtcPltiz
 
 
-class KtcsumppResource(mixins.ExtResource, ModelResource):
+class KtcsumppResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TKtcSumpp
 
 
-class KtctermsResource(mixins.ExtResource, ModelResource):
+class KtctermsResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TKtcTerms
 
 
-class KtctovgResource(mixins.ExtResource, ModelResource):
+class KtctovgResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TKtcTovg
 
 
-class KtctovizResource(mixins.ExtResource, ModelResource):
+class KtctovizResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TKtcToviz
 
 
-class KtctovsResource(mixins.ExtResource, ModelResource):
+class KtctovsResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TKtcTovs
 
 
-class KtdavtmbResource(mixins.ExtResource, ModelResource):
+class KtdavtmbResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TKtdAvtmb
 
 
-class KtdcontResource(mixins.ExtResource, ModelResource):
+class KtdcontResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TKtdCont
 
 
-class KtdcrdtsResource(mixins.ExtResource, ModelResource):
+class KtdcrdtsResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TKtdCrdts
 
 
-class Ktddinf2Resource(mixins.ExtResource, ModelResource):
+class Ktddinf2Resource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TKtdDinf2
 
 
-class KtddinfoResource(mixins.ExtResource, ModelResource):
+class KtddinfoResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TKtdDinfo
 
 
-class KtddogResource(mixins.ExtResource, ModelResource):
+class KtddogResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TKtdDog
 
 
-class KtddogaResource(mixins.ExtResource, ModelResource):
+class KtddogaResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TKtdDoga
 
 
-class KtddogtResource(mixins.ExtResource, ModelResource):
+class KtddogtResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TKtdDogt
 
 
-class KtdheadResource(mixins.ExtResource, ModelResource):
+class KtdheadResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TKtdHead
 
 
-class KtdkmpResource(mixins.ExtResource, ModelResource):
+class KtdkmpResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TKtdKmp
 
 
-class KtdkmpkResource(mixins.ExtResource, ModelResource):
+class KtdkmpkResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TKtdKmpk
 
 
-class KtdpaspResource(mixins.ExtResource, ModelResource):
+class KtdpaspResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TKtdPasp
 
 
-class KtdpkResource(mixins.ExtResource, ModelResource):
+class KtdpkResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TKtdPk
 
 
-class KtdplatrResource(mixins.ExtResource, ModelResource):
+class KtdplatrResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TKtdPlatr
 
 
-class KtdplatvResource(mixins.ExtResource, ModelResource):
+class KtdplatvResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TKtdPlatv
 
 
-class KtdpreddResource(mixins.ExtResource, ModelResource):
+class KtdpreddResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TKtdPredd
 
 
-class KtdsumppResource(mixins.ExtResource, ModelResource):
+class KtdsumppResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TKtdSumpp
 
 
-class KtdtechdResource(mixins.ExtResource, ModelResource):
+class KtdtechdResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TKtdTechd
 
 
-class KtdtermsResource(mixins.ExtResource, ModelResource):
+class KtdtermsResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TKtdTerms
 
 
-class Ktdtov2Resource(mixins.ExtResource, ModelResource):
+class Ktdtov2Resource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TKtdTov2
 
 
-class KtdtovarResource(mixins.ExtResource, ModelResource):
+class KtdtovarResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TKtdTovar
 
 
-class KtdtovgResource(mixins.ExtResource, ModelResource):
+class KtdtovgResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TKtdTovg
 
 
-class Ktdtovg2Resource(mixins.ExtResource, ModelResource):
+class Ktdtovg2Resource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TKtdTovg2
 
 
-class KtdtovsResource(mixins.ExtResource, ModelResource):
+class KtdtovsResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TKtdTovs
 
 
-class KtdtransResource(mixins.ExtResource, ModelResource):
+class KtdtransResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TKtdTrans
 
 
-class KtdusltResource(mixins.ExtResource, ModelResource):
+class KtdusltResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TKtdUslt
 
@@ -429,7 +429,7 @@ class KtdusltResource(mixins.ExtResource, ModelResource):
 #     klass_name = k
 #     out = \
 #     f"""
-#     class {klass_name}Resource(mixins.ExtResource, ModelResource):
+#     class {klass_name}Resource(mixins.ArmResource, ModelResource):
 #         class Meta(mixins.ExtResource.Meta):
 #             model = T{k}
 #     """
