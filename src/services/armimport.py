@@ -17,17 +17,8 @@ class ARMImport(BaseImport):
 
         super(ARMImport, self).__init__()
 
-        # super(ARMImport, self).__init__(
-        #     source_connection_name,
-        #     source_table_name,
-        #     dest_connection_name,
-        #     dest_table_name,
-        #     logger,
-        #     mode
-        # )
-
         self.type = ETL.EXPORT.DOC2SQL
-        self._period_of_month = -6  # get export data for 6 last month
+        self._period_of_month = -10  # get export data for 10 last month
         self.source_model_module = ETL.PIPE_MODULES.DOC2SQL_EXPORT
         self.dest_model_module = ETL.PIPE_MODULES.DOC2SQL_IMPORT
 
@@ -42,38 +33,6 @@ class ARMImport(BaseImport):
 
         self.get_model_classes()
         self.get_resources()
-
-
-        # self.source_table_name = source_table_name
-        # self.dest_table_name = dest_table_name
-        #
-        # ###########################################################################
-        # # First setting connection and then attach using_db to source model
-        # ###########################################################################
-        # self.source_model = self.get_model_class(
-        #     settings.PIPE_MODULES['ARM']['export'], 'models', self.source_table_name
-        # )
-        # self.source_connection_name = source_connection_name
-        #
-        # ###########################################################################
-        # # First setting connection and then attach using_db to destination model
-        # ###########################################################################
-        # self.dest_model = self.get_model_class(
-        #     settings.PIPE_MODULES['ARM']['import'], 'models', self.dest_table_name
-        # )
-        # self.dest_connection_name = dest_connection_name
-        #
-        # self.headers = self._get_exported_headers()
-        #
-        # self.resources = dict(
-        #     self.get_list_classes(
-        #         settings.PIPE_MODULES['ARM']['import'], # import module
-        #         settings.PIPE_MODULES['ARM']['resource'], # resource module
-        #         resources.ModelResource
-        #     )
-        # )
-        #
-        # self.logger = logger or None
 
     def start_import(self):
         """Process importing data from DBF to SQL Server"""
