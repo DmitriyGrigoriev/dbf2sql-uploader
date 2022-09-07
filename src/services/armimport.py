@@ -2,40 +2,47 @@ import tablib
 import logging
 import datetime
 from dateutil.relativedelta import relativedelta
-from import_export import resources
 from src.services.base.baseimport import BaseImport
 from src.services.armlocal import ARMLocalFts
 from src.apps.common.dataclasses import ETL
-from src.config import settings
-
 
 logger = logging.getLogger(__name__)
 
-
 class ARMImport(BaseImport):
-    # delete_imported_records = True
-    # _type = 'ARM'
-
 
     def __init__(self, source_connection_name: str, source_table_name: str,
                  dest_connection_name: str, dest_table_name: str, logger=None,
                  mode: str = ETL.MODE.FULL
                  ) -> None:
 
+        super(ARMImport, self).__init__()
 
-        super(ARMImport, self).__init__(
-            source_connection_name,
-            source_table_name,
-            dest_connection_name,
-            dest_table_name,
-            logger,
-            mode
-        )
+        # super(ARMImport, self).__init__(
+        #     source_connection_name,
+        #     source_table_name,
+        #     dest_connection_name,
+        #     dest_table_name,
+        #     logger,
+        #     mode
+        # )
 
-        self._type = ETL.EXPORT.DOC2SQL
+        self.type = ETL.EXPORT.DOC2SQL
         self._period_of_month = -6  # get export data for 6 last month
         self.source_model_module = ETL.PIPE_MODULES.DOC2SQL_EXPORT
         self.dest_model_module = ETL.PIPE_MODULES.DOC2SQL_IMPORT
+
+        self.source_connection_name = source_connection_name
+        self.dest_connection_name = dest_connection_name
+
+        self.source_table_name = source_table_name
+        self.dest_table_name = dest_table_name
+
+        self.logger = logger
+        self.mode = mode
+
+        self.get_model_classes()
+        self.get_resources()
+
 
         # self.source_table_name = source_table_name
         # self.dest_table_name = dest_table_name
@@ -68,48 +75,48 @@ class ARMImport(BaseImport):
         #
         # self.logger = logger or None
 
-
     def start_import(self):
         """Process importing data from DBF to SQL Server"""
         try:
-            # if self.delete_imported_records:
-            self._delete_all_imported_records(model=self.dest_model)
+            if self.mode == ETL.MODE.FULL or self.mode == ETL.MODE.IMPORT:
+                # if self.delete_imported_records:
+                self._delete_all_imported_records(model=self.dest_model)
 
-            self._reccount = self._source_model_record_count()
-            today = datetime.date.today()
-            last = self.gomonth(today=today, month=self._period_of_month)
-            # raw_sql = self._get_export_raw_sql()
-            resource = self._create_resource_instance()
+                self._reccount = self._source_model_record_count()
+                today = datetime.date.today()
+                last = self.gomonth(today=today, month=self._period_of_month)
+                resource = self._create_resource_instance()
 
-            for start in range(0, self._reccount, self._limit):
-                # select data from model
-                sql = self._transform_raw_select(start=start, raw_sql='')
+                for start in range(0, self._reccount, self._limit):
+                    # select data from model
+                    sql = self._transform_raw_select(start=start, raw_sql='')
 
-                if self.logger:
-                    self.logger.info(f"Execute SQL: {sql}")
+                    if self.logger:
+                        self.logger.info(f"Execute SQL: {sql}")
 
-                # rows = self.source_model.__class__.objects.using(self.source_connection_name).\
-                #              raw(sql, [last, today])[start + 1:self._limit]
+                    # rows = self.source_model.__class__.objects.using(self.source_connection_name).\
+                    #              raw(sql, [last, today])[start + 1:self._limit]
 
-                rows = self._execute_query(sql, params=[last, today])
+                    rows = self._execute_query(sql, params=[last, today])
 
-                dataset = tablib.Dataset(headers=self.headers)
+                    dataset = tablib.Dataset(headers=self.headers)
 
-                for row in rows:
-                    dataset.append(row=row)
+                    for row in rows:
+                        dataset.append(row=row)
 
-                # resource = self._create_resource_instance()
-                resource.import_data(dataset)
-                dataset.wipe()
+                    resource.import_data(dataset, use_transactions=False)
+                    dataset.wipe()
 
-                # Update LocalFts
-                self.after_import(
-                    source_connection_name=self.source_connection_name,
-                    source_table_name=self.source_table_name,
-                    dest_connection_name=self.dest_connection_name,
-                    dest_table_name=self.dest_table_name,
-                    logger=self.logger
-                )
+                    if self.mode == ETL.MODE.FULL or self.mode == ETL.MODE.EXPORT:
+                        # Update LocalFts
+                        self.after_import(
+                            source_connection_name=self.source_connection_name,
+                            source_table_name=self.source_table_name,
+                            dest_connection_name=self.dest_connection_name,
+                            dest_table_name=self.dest_table_name,
+                            logger=self.logger,
+                            mode=self.mode
+                        )
 
         except Exception as e:
             logger.info(f'Error occured in: {self.dest_connection_name} table {self.dest_table_name}')
@@ -117,7 +124,6 @@ class ARMImport(BaseImport):
             raise e
 
         return self._reccount
-
 
     def after_import(self, source_connection_name: str, source_table_name: str,
                      dest_connection_name: str, dest_table_name: str, logger: str =None,
@@ -145,12 +151,18 @@ class ARMImport(BaseImport):
         ARMLocalFts(
             source_connection_name=dest_connection_name,
             source_table_name=dest_table_name,
-            dest_connection_name=settings.CONNECTION_FTS,
-            dest_table_name=settings.PIPE_MODULES['DBF']['table_prefix'] + dest_table_name,
+            dest_connection_name=ETL.CONNECT.LOCALFTS,
+            dest_table_name=ETL.PIPE_MODULES.DBF_TABLE_PREFIX + dest_table_name,
             logger=logger,
             mode=mode
         ).start_import()
 
+        # Restore using_db
+        self.restore_default(
+            source_connection_name, source_table_name,
+            dest_connection_name, dest_table_name, logger=None,
+            mode=mode
+        )
 
     def _transform_raw_select(self, start: int, raw_sql: str) -> str:
         """Transform SQL expr [SELECT field1, fiel2 ...] into expr
@@ -180,7 +192,6 @@ class ARMImport(BaseImport):
             where = ""
         return f"{row_sql}{where} {limit}"
 
-
     def _imported_field_exist(self, field: str):
         result = [
             field
@@ -189,7 +200,6 @@ class ARMImport(BaseImport):
         ]
         return result or None
 
-
     def _exported_field_exist(self, field: str):
         result = [
             field
@@ -197,7 +207,6 @@ class ARMImport(BaseImport):
                 if f.lower() == field.lower()
         ]
         return result[0] or None
-
 
     def gomonth(self, today: datetime.date, month: int):
         return today + relativedelta(months=+month)

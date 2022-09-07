@@ -2,64 +2,40 @@ import logging
 from django.db import transaction
 from src.services.base.baseimport import BaseImport
 from src.apps.common.dataclasses import ETL
-from src.config import settings
 
 logger = logging.getLogger(__name__)
 
 
 class ARMLocalFts(BaseImport):
-    # _type = 'ARM'
-
 
     def __init__(self, source_connection_name: str, source_table_name: str,
                  dest_connection_name: str, dest_table_name: str, logger=None,
                  mode: str = ETL.MODE.FULL
                  ) -> None:
 
-        self._type = ETL.EXPORT.DOC2SQL
-        self.source_model_module = ETL.PIPE_MODULES.DOC2SQL_EXPORT
+        super(ARMLocalFts, self).__init__()
+
+        self.type = ETL.EXPORT.DOC2SQL
+        self.source_model_module = ETL.PIPE_MODULES.DOC2SQL_IMPORT
         self.dest_model_module = ETL.PIPE_MODULES.DBF_IMPORT
 
-        super(ARMLocalFts, self).__init__(
-            source_connection_name,
-            source_table_name,
-            dest_connection_name,
-            dest_table_name,
-            logger,
-            mode
-        )
-        # self.source_table_name = source_table_name
-        # self.dest_table_name = dest_table_name
-        #
-        # self.source_model = self.get_model_class(
-        #     settings.PIPE_MODULES[self._type]['import'], 'models', self.dest_table_name[1:] # remove prefix
-        # )
-        # self.source_connection_name = source_connection_name
-        #
-        # self.dest_model = self.get_model_class(
-        #     settings.PIPE_MODULES['DBF']['import'], 'models', self.dest_table_name
-        # )
-        # self.dest_connection_name = settings.CONNECTION_FTS
-        #
-        # self.database = self._get_source_database_id()
-        #
-        # self.logger = logger or None
+        self.source_connection_name = source_connection_name
+        self.dest_connection_name = dest_connection_name
 
-    def get_dest_model(self):
-        return self.get_model_class(
-            ETL.PIPE_MODULES.DBF_IMPORT, 'models', self.dest_table_name
-            # settings.PIPE_MODULES[ETL.EXPORT.DBF]['import'], 'models', self.dest_table_name
-        )
+        self.source_table_name = source_table_name
+        self.dest_table_name = dest_table_name
+
+        self.logger = logger
+        self.mode = mode
+
+        self.get_model_classes()
+        self.database = self._get_source_database_id()
 
     def start_import(self) -> None:
         """Process importing data from DBF to SQL Server"""
         try:
-            # self._delete_mark_database_records(model=self.dest_model)
             with transaction.atomic(using=self.dest_connection_name):
-                # delete records
-                # sql = self._create_delete_statement()
-                # self._execute_query(sql)
-                # insert records
+                # insert records to LocalFts
                 sql = self._create_insert_statement()
                 self._execute_query(sql)
 
@@ -96,15 +72,24 @@ class ARMLocalFts(BaseImport):
         return result
 
 
-    def _create_insert_statement(self):
-        source_database_name = self._get_real_database_name()
-        source_table_name = self._get_real_source_table_name()
-        dest_database_name = self._get_real_localfts_name()
-        dest_table_name = self._get_real_dest_table_name()
-        insert = f"INSERT INTO [{dest_database_name}].[dbo].[{dest_table_name}] "
-        where = f" WHERE [g07x] NOT IN (SELECT [g07x] FROM [{dest_database_name}].[dbo].[{dest_table_name}])"
-        fields = self._get_identical_fields()
-
-        sql = f"{insert} ({fields}) SELECT {fields} FROM [{source_database_name}].[dbo].[{source_table_name}] {where}"
+    def _create_insert_statement(self) -> str:
+        source_database_name: str = self._get_real_database_name()
+        source_table_name: str = self._get_real_source_table_name()
+        dest_database_name: str = self._get_real_localfts_name()
+        dest_table_name: str = self._get_real_dest_table_name()
+        fields: str = self._get_identical_fields()
+        sql: str = \
+            f"""
+            INSERT INTO [{dest_database_name}].[dbo].[{dest_table_name}] 
+                (
+                    {fields}
+                )
+                SELECT {fields} FROM [{source_database_name}].[dbo].[{source_table_name}]
+                    WHERE [{ETL.FIELD.G07X}] NOT IN (SELECT [{ETL.FIELD.G07X}] FROM [{dest_database_name}].[dbo].[{dest_table_name}])
+            """
+        # insert = f"INSERT INTO [{dest_database_name}].[dbo].[{dest_table_name}] "
+        # where = f" WHERE [g07x] NOT IN (SELECT [g07x] FROM [{dest_database_name}].[dbo].[{dest_table_name}])"
+        #
+        # sql = f"{insert} ({fields}) SELECT {fields} FROM [{source_database_name}].[dbo].[{source_table_name}] {where}"
 
         return sql

@@ -32,6 +32,7 @@ class SQLLocalFts(BaseImport):
         #     logger,
         #     mode
         # )
+        #######################################################################
         super(SQLLocalFts, self).__init__()
 
         self.type = ETL.EXPORT.DBF
@@ -49,6 +50,7 @@ class SQLLocalFts(BaseImport):
         self.logger = logger
         self.mode = mode
 
+        self.get_model_classes()
         self.get_resources()
 
         self.database = self._get_source_database_id()
@@ -85,10 +87,10 @@ class SQLLocalFts(BaseImport):
                         {fields}
                     )
                     SELECT {fields} FROM [{source_database_name}].[dbo].[{table_name}]
-                        WHERE [hash] NOT IN (
-                            SELECT [hash] FROM [{dest_database_name}].[dbo].[{table_name}]
-                                WHERE [sourcetype] = '{self.type}' 
-                                  AND [database] = '{self.export_database_name}') 
+                        WHERE [{ETL.FIELD.HASH}] NOT IN (
+                            SELECT [{ETL.FIELD.HASH}] FROM [{dest_database_name}].[dbo].[{table_name}]
+                                WHERE [{ETL.FIELD.EXPTYPE}] = '{self.type}' 
+                                  AND [{ETL.FIELD.DATABASE}] = '{self.export_database_name}') 
                """
         # self.print(sql)
         return sql
@@ -104,10 +106,10 @@ class SQLLocalFts(BaseImport):
 
         sql = f"""
                DELETE FROM [{dest_database_name}].[dbo].[{table_name}]
-                    WHERE [hash] NOT IN (
-                        SELECT [hash] FROM [{source_database_name}].[dbo].[{table_name}]
+                    WHERE [{ETL.FIELD.HASH}] NOT IN (
+                        SELECT [{ETL.FIELD.HASH}] FROM [{source_database_name}].[dbo].[{table_name}]
                     )
-                      AND [sourcetype] = '{self.type}' AND [database] = '{self.database}'
+                      AND [{ETL.FIELD.EXPTYPE}] = '{self.type}' AND [{ETL.FIELD.DATABASE}] = '{self.database}'
                """
         # self.print(sql)
         return sql
@@ -123,17 +125,17 @@ class SQLLocalFts(BaseImport):
 
         sql = f"""
                DELETE FROM [{dest_database_name}].[dbo].[{table_name}]
-                    WHERE [g07x] NOT IN (
-                        SELECT [g07x] FROM [{source_database_name}].[dbo].[{table_name}]
+                    WHERE [{ETL.FIELD.G07X}] NOT IN (
+                        SELECT [{ETL.FIELD.G07X}] FROM [{source_database_name}].[dbo].[{table_name}]
                     )
-                AND [sourcetype] = 'ARM'
+                AND [{ETL.FIELD.EXPTYPE}] = '{ETL.EXPORT.DOC2SQL}'
                 
                DELETE FROM [{dest_database_name}].[dbo].[{table_name}] 
-                    WHERE [g07x] IN (
-                        SELECT [g07x] FROM [{source_database_name}].[dbo].[{table_name}]
-                            WHERE [sourcetype] = '{self.type}'
+                    WHERE [{ETL.FIELD.G07X}] IN (
+                        SELECT [{ETL.FIELD.G07X}] FROM [{source_database_name}].[dbo].[{table_name}]
+                            WHERE [{ETL.FIELD.EXPTYPE}] = '{self.type}'
                     )
-                AND [sourcetype] = 'ARM'
+                AND [{ETL.FIELD.EXPTYPE}] = '{ETL.EXPORT.DOC2SQL}'
                """
         # self.print(sql)
         return sql

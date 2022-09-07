@@ -40,6 +40,7 @@ class SQLImport(BaseImport):
         self.logger = logger
         self.mode = mode
 
+        self.get_model_classes()
         self.get_resources()
 
     def start_import(self):
@@ -56,6 +57,7 @@ class SQLImport(BaseImport):
         ##########################################################################
         try:
             if self.mode == ETL.MODE.FULL or self.mode == ETL.MODE.IMPORT:
+
                 self._delete_all_imported_records(model=self.dest_model)
 
                 self._reccount = self._source_model_record_count()
@@ -76,8 +78,7 @@ class SQLImport(BaseImport):
                     for row in rows:
                         dataset.append(row=row)
 
-                    # resource = self._create_resource_instance()
-                    resource.import_data(dataset)
+                    resource.import_data(dataset, use_transactions=False)
                     dataset.wipe()
 
                     if self.mode == ETL.MODE.FULL or self.mode == ETL.MODE.EXPORT:
@@ -135,9 +136,8 @@ class SQLImport(BaseImport):
         self.restore_default(
             source_connection_name, source_table_name,
             dest_connection_name, dest_table_name, logger=None,
-            mode=ETL.MODE.FULL
+            mode=mode
         )
-
 
     def _transform_raw_select(self, start: int, raw_sql: str) -> str:
         """Transform SQL expr [SELECT field1, fiel2 ...] into expr

@@ -164,7 +164,7 @@ class BaseImport:
             self.dest_model_module, 'models', self.dest_table_name
         )
 
-    def get_resources(self):
+    def get_model_classes(self):
         ###########################################################################
         # First setting connection and then attach using_db to source model
         ###########################################################################
@@ -175,6 +175,7 @@ class BaseImport:
         ###########################################################################
         self.dest_model = self.get_dest_model_class()
 
+    def get_resources(self):
         self.resources = dict(
             self.get_list_classes(
                 ETL.PIPE_MODULES.DBF_IMPORT if self.type == ETL.EXPORT.DBF else ETL.PIPE_MODULES.DOC2SQL_IMPORT,
@@ -183,6 +184,13 @@ class BaseImport:
             )
         )
 
+        # self.resources = dict(
+        #     self.get_list_classes(
+        #         settings.PIPE_MODULES['ARM']['import'], # import module
+        #         settings.PIPE_MODULES['ARM']['resource'], # resource module
+        #         resources.ModelResource
+        #     )
+        # )
 
     def print(self, message) -> None:
         if self.logger:
