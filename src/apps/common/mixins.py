@@ -1,4 +1,4 @@
-import random
+import uuid
 from django.db import models
 from hashlib import sha256
 from import_export.instance_loaders import CachedInstanceLoader
@@ -53,9 +53,10 @@ class ExtResource:
         #return super(ExtResource, self).skip_row(instance, original)
 
 class ArmResource(ExtResource):
+    """Generate unique hash for each record from Doc2SQL"""
     def calculate_hash(self, row):
         # Calculate row hash
-        sole = str(random.randint(0, ETL.BULK.BATCH_SIZE)).encode('utf8')
+        sole = str(uuid.uuid4().hex[:6].upper()).encode('utf8')
         return sha256(sole + repr(row.values()).encode('utf8')).hexdigest().encode('utf-8').decode('utf-8')
 
 
