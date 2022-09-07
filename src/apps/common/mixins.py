@@ -55,8 +55,8 @@ class ExtResource:
 class ArmResource(ExtResource):
     def calculate_hash(self, row):
         # Calculate row hash
-        sole = random.randint(0, ETL.BULK.BATCH_SIZE).__str__()
-        return sha256(str(random.randint(0, 1000)) + repr(row.values()).encode('utf8')).hexdigest().encode('utf-8').decode('utf-8')
+        sole = str(random.randint(0, ETL.BULK.BATCH_SIZE)).encode('utf8')
+        return sha256(sole + repr(row.values()).encode('utf8')).hexdigest().encode('utf-8').decode('utf-8')
 
 
 
