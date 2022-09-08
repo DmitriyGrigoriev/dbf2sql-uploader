@@ -81,16 +81,16 @@ class SQLImport(BaseImport):
                     resource.import_data(dataset, use_transactions=False)
                     dataset.wipe()
 
-                    if self.mode == ETL.MODE.FULL or self.mode == ETL.MODE.EXPORT:
-                        # Update LocalFts
-                        self.after_import(
-                            source_connection_name=self.source_connection_name,
-                            source_table_name=self.source_table_name,
-                            dest_connection_name=self.dest_connection_name,
-                            dest_table_name=self.dest_table_name,
-                            logger=self.logger,
-                            mode=self.mode
-                        )
+            if self.mode == ETL.MODE.FULL or self.mode == ETL.MODE.EXPORT:
+                # Update LocalFts
+                self.after_import(
+                    source_connection_name=self.source_connection_name,
+                    source_table_name=self.source_table_name,
+                    dest_connection_name=self.dest_connection_name,
+                    dest_table_name=self.dest_table_name,
+                    logger=self.logger,
+                    mode=self.mode
+                )
 
         except Exception as e:
             logger.info(f'Error occured in NAME[{self.dest_connection_name}] table {self.dest_table_name}')

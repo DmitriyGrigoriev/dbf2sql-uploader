@@ -127,7 +127,7 @@ class ARMImport(BaseImport):
         """Transform SQL expr [SELECT field1, fiel2 ...] into expr
         [SELECT field1, field2 WHERE ...]
         """
-        field = self._exported_field_exist('g072')
+        field = self._exported_field_exist(ETL.FIELD.G072)
         if start == 0:
             row_sql = self.source_model.__class__.objects.\
                           using(self.source_connection_name)\
@@ -173,7 +173,7 @@ class ARMImport(BaseImport):
 
     def _source_model_record_count(self) -> int:
         """Calculate was exported rows"""
-        field = self._exported_field_exist('g072')
+        field = self._exported_field_exist(ETL.FIELD.G072)
 
         today = datetime.date.today()
         last = self.gomonth(today=today, month=self._period_of_month)
