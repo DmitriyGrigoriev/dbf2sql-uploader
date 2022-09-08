@@ -102,9 +102,9 @@ class ExtSourceFields(models.Model):
     uid = models.AutoField(primary_key=True)
     g071 = models.CharField(max_length=8, blank=True, null=True)
     # uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    sourcetype = models.CharField(max_length=3, blank=True, null=True)
-    database = models.CharField(max_length=50, blank=True, null=True)
-    g07x = models.CharField(max_length=23, blank=True, null=True)
+    sourcetype = models.CharField(max_length=3, blank=True, null=True, db_index=True,)
+    database = models.CharField(max_length=50, blank=True, null=True, db_index=True,)
+    g07x = models.CharField(max_length=23, blank=True, null=True, db_index=True,)
     # hash = models.CharField(max_length=64, blank=False, null=True,)
     hash = models.CharField(max_length=64, blank=False, null=True, unique=True)
     docnum = models.CharField(db_column='DocNum', max_length=28, blank=True, null=True) # import from Doxc2sql
@@ -118,7 +118,7 @@ class ExtSourceFields(models.Model):
         ]
 
 class ExtSourceNoHashUniqueIndex(ExtSourceFields):
-    hash = models.CharField(max_length=64, blank=False, null=True)
+    hash = models.CharField(max_length=64, blank=False, null=True, db_index=True,)
 
     class Meta(ExtSourceFields.Meta):
         abstract = True
@@ -135,7 +135,7 @@ class ExtArmFields(ExtSourceFields):
 
 class ExtNonUniqHash(ExtArmFields):
     """Extending sql import table by additional fields"""
-    hash = models.CharField(max_length=64, blank=False, null=True)
+    hash = models.CharField(max_length=64, blank=False, null=True,db_index=True,)
 
     class Meta:
         abstract = True
