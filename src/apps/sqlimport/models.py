@@ -37,7 +37,7 @@ from src.apps.armexport.base.models import (
     Dbrdop48, Ktdcrdts, Ktddog, Ktddoga, Ktddogt,
     Ktdkmp, Ktdkmpk, Ktdplatr, Ktdplatv,
 )
-from src.apps.common.mixins import ExtSourceFields
+from src.apps.common.mixins import ExtSourceFields, ExtSourceNoHashUniqueIndex
 
 
 #####################################################################################
@@ -98,7 +98,7 @@ class TDcldinf2(Dcldinf2, ExtSourceFields):
         db_table = 'tdcldinf2'
 
 
-class TDcldinfo(Dcldinfo, ExtSourceFields):
+class TDcldinfo(Dcldinfo, ExtSourceNoHashUniqueIndex):
     class Meta:
         db_table = 'tdcldinfo'
 
@@ -263,7 +263,7 @@ class TDcltcim(Dcltcim, ExtSourceFields):
         db_table = 'tdcltcim'
 
 
-class TDcltechd(Dcltechd, ExtSourceFields):
+class TDcltechd(Dcltechd, ExtSourceNoHashUniqueIndex):
     class Meta:
         db_table = 'tdcltechd'
 

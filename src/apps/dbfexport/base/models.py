@@ -1,10 +1,9 @@
 from django.db import models
-
+from src.apps.common.dataclasses import ETL
 
 class BaseModel(models.Model):
     """Base import model"""
-    # settings.PIPE_MODULES['DBF']
-    type = 'DBF'
+    type = ETL.EXPORT.DBF
 
     class Meta:
         abstract = True

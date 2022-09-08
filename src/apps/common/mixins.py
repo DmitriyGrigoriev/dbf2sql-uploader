@@ -117,6 +117,12 @@ class ExtSourceFields(models.Model):
             models.Index(fields=['hash']),
         ]
 
+class ExtSourceNoHashUniqueIndex(ExtSourceFields):
+    hash = models.CharField(max_length=64, blank=False, null=True)
+
+    class Meta(ExtSourceFields.Meta):
+        abstract = True
+
 ##################################################################################
 # SECTION: ARM Doc2Sql import mixins
 ##################################################################################
