@@ -1,5 +1,4 @@
 import logging
-from django.db import models
 from django.db import transaction
 from src.services.base.baseimport import BaseImport
 from src.apps.common.dataclasses import ETL
@@ -55,31 +54,27 @@ class SQLLocalFts(BaseImport):
 
         self.database = self._get_source_database_id()
 
-        self._reccount = 0
+        # self._reccount = 0
 
     def start_import(self):
         """Process importing data from DBF to SQL Server"""
         try:
-            self._reccount = self._source_model_record_count()
-
-            for start in range(0, self._reccount, self._limit):
-                # self._delete_mark_database_records(model=self.dest_model)
-                with transaction.atomic(using=self.dest_connection_name):
-                    # delete records step 1
-                    sql = self._delete_dbf_statement(start)
-                    self._execute_query(sql)
-                    # delete records step 2
-                    sql = self._delete_arm_statement()
-                    self._execute_query(sql)
-                    # insert records step 3
-                    sql = self._insert_statement()
-                    self._execute_query(sql)
+            # self._reccount = self._source_model_record_count()
+            # for start in range(0, self._reccount, self._limit):
+            # self._delete_mark_database_records(model=self.dest_model)
+            delete_dbf_sql = self._delete_dbf_statement()
+            delete_arm_sql = self._delete_arm_statement()
+            insert_sql = self._insert_statement()
+            sql = f"{delete_dbf_sql} {delete_arm_sql} {insert_sql}"
+            with transaction.atomic(using=self.dest_connection_name):
+                self.print(sql)
+                self._execute_query(sql)
 
         except Exception as e:
             logger.exception(e)
             raise e
 
-    def _insert_statement(self,start: int):
+    def _insert_statement(self):
         source_database_name = self._get_real_database_name()
         dest_database_name = self._get_real_localfts_name()
         table_name = self._get_real_source_table_name()
@@ -93,8 +88,7 @@ class SQLLocalFts(BaseImport):
                     SELECT {fields} FROM [{source_database_name}].[dbo].[{table_name}]
                         WHERE [{ETL.FIELD.HASH}] NOT IN (
                             SELECT [{ETL.FIELD.HASH}] FROM [{dest_database_name}].[dbo].[{table_name}]
-                                WHERE [{ETL.FIELD.EXPTYPE}] = '{self.type}' 
-                                  AND [{ETL.FIELD.DATABASE}] = '{self.export_database_name}') 
+                        )
                """
         # self.print(sql)
         return sql
@@ -102,23 +96,23 @@ class SQLLocalFts(BaseImport):
     def _source_model_record_count(self):
         return self.source_model.__class__.objects.using(self.source_connection_name).count()
 
-    def _get_sub_query_select(self, start: int, source_database_name: str, table_name: str, field: str):
-        if start == 0:
-            sub_query = self.source_model.__class__.objects. \
-                            using(self.source_connection_name). \
-                            values(field)[start:self._limit].query.__str__()
-        else:
-            sub_query = self.source_model.__class__.objects. \
-                            using(self.source_connection_name). \
-                            values(field)[start:self._limit + start].query.__str__()
+    # def _get_sub_query_select(self, start: int, source_database_name: str, table_name: str, field: str):
+    #     if start == 0:
+    #         sub_query = self.source_model.__class__.objects. \
+    #                         using(self.source_connection_name). \
+    #                         values(field)[start:self._limit].query.__str__()
+    #     else:
+    #         sub_query = self.source_model.__class__.objects. \
+    #                         using(self.source_connection_name). \
+    #                         values(field)[start:self._limit + start].query.__str__()
+    #
+    #     from_index = sub_query.find('FROM') + 5
+    #     order_index = sub_query.find('ORDER BY')
+    #
+    #     full_sub_query = f"{sub_query[0:from_index]}[{source_database_name}].[dbo].[{table_name}]{sub_query[order_index:]}"
+    #     return full_sub_query
 
-        from_index = sub_query.find('FROM') + 5
-        order_index = sub_query.find('ORDER BY')
-
-        full_sub_query = f"{sub_query[0:from_index]}[{source_database_name}].[dbo].[{table_name}]{sub_query[order_index:]}"
-        return full_sub_query
-
-    def _delete_dbf_statement(self, start: int):
+    def _delete_dbf_statement(self):
         # DELETE FROM [LocalFts].[dbo].[tdclhead]
         #   WHERE [hash] NOT IN (SELECT [hash] FROM [gtd_2022_smolensk].[dbo].[tdclhead])
         #     AND [sourcetype] = 'DBF' AND [database] = 'gtd_2022_smolensk'
@@ -147,7 +141,7 @@ class SQLLocalFts(BaseImport):
         return sql
 
 
-    def _delete_arm_statement(self, start: int):
+    def _delete_arm_statement(self):
         # DELETE FROM [LocalFts].[dbo].[tdclhead]
         #   WHERE [g07x] NOT IN (SELECT [g07x] FROM [gtd_2022_smolensk].[dbo].[tdclhead])
         #     AND [sourcetype] = 'ARM' AND [database] = 'gtd_2022_smolensk'
