@@ -9,7 +9,7 @@ from django.utils.translation import gettext_lazy as _
 from django_dramatiq.models import Task
 from src.config import settings
 from src.apps.common.dataclasses import ETL
-from src.apps.common.dataclasses import ImportInfo
+from src.apps.common.dataclasses import ImportInfo, RecordInfo
 from src.services.armcount import ARMCount
 
 # Create your models here.
@@ -67,8 +67,6 @@ class ImportTablesManager(models.Manager):
                 t.dest_table,
                 connection_poll.source_conection.name, # DataDirectory
                 connection_poll.type, # import type: DBF / ARM
-                t.last_write,
-                t.upload_record
             )
             for t in ImportTables.tables.tables_for_import(connection_poll.pk) \
             if self.need_to_upload(
@@ -85,9 +83,7 @@ class ImportTablesManager(models.Manager):
     def get_upload_record(self, poll_pk) -> int:
         connection_poll = ConnectSet.consets.record(pk=poll_pk)
         t_list = [
-            ImportInfo(
-                t.pk,
-                t.connects.pk,
+            RecordInfo(
                 t.connects.source_conection.slug_name,
                 t.source_table,
                 t.connects.dest_conection.slug_name,
@@ -119,8 +115,6 @@ class ImportTablesManager(models.Manager):
                 t.dest_table,
                 t.dest_table,
                 t.connects.type, # import type: DBF / ARM
-                t.last_write,
-                t.upload_record,
             )
         ]
         return t_list

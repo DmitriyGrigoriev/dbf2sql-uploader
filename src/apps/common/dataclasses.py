@@ -80,7 +80,16 @@ class ImportInfo:
     dest_table_name: str
     data_directory: str
     type: str
+
+@dataclass
+class RecordInfo:
+    source_connection_name: str
+    source_table_name: str
+    dest_connection_name: str
+    dest_table_name: str
+    data_directory: str
     last_write: datetime
     upload_record: int
+
 
 ETL = Etl()
