@@ -37,18 +37,10 @@ from src.apps.core.tasks import (
 
 def run_import_for_single_table(request, table_pk, mode):
     """Run dramatiq task importing data from single DBF table"""
-    # kwargs = ImportTables.tables.get_kwargs(table_pk=table_pk)
     t_list: ImportInfo = ImportTables.tables.table_import_info(table_pk)
 
     if len(t_list)>0:
         process_database_import(t_list, mode=mode)
-
-    # process_import.send_with_options(
-    #     kwargs = kwargs,
-    #     # args=(object_pk, source_connection_name, source_table, dest_connection_name, dest_table),
-    #     on_failure=print_error,
-    #     on_success=update_last_write_if_success_result,
-    # )
 
     messages.success(request,
                      f"Process import data from table {t_list[0].source_table_name} to {t_list[0].dest_table_name} has started..."

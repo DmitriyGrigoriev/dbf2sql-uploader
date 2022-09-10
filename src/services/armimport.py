@@ -170,7 +170,6 @@ class ARMImport(BaseImport):
     def gomonth(self, today: datetime.date, month: int):
         return today + relativedelta(months=+month)
 
-
     def _source_model_record_count(self) -> int:
         """Calculate was exported rows"""
         field = self._exported_field_exist(ETL.FIELD.G072)

@@ -1,3 +1,4 @@
+from datetime import datetime
 from pydantic.dataclasses import dataclass
 
 @dataclass
@@ -5,13 +6,11 @@ class Export:
     DBF: str = 'DBF'
     DOC2SQL: str = 'ARM'
 
-
 @dataclass
 class Mode:
     EXPORT: str = 'only-export'
     IMPORT: str = 'only-import'
     FULL: str = 'export-import'
-
 
 @dataclass
 class Field:
@@ -23,12 +22,10 @@ class Field:
     EXPTYPE: str = 'sourcetype'
     DATABASE: str = 'database'
 
-
 @dataclass
 class UrlName:
     EXPORT_SINGLE_TABLE: str = 'export-from-single-table'
     PIPELINE_EXPORT_IMPORT: str = 'pipeline-export-import'
-
 
 @dataclass
 class TimeLimit:
@@ -42,11 +39,9 @@ class TimeLimit:
     EIGHT_HOUR: int = 3600000 * 8
     NIGHT_HOUR: int = 3600000 * 9
 
-
 @dataclass
 class Connect:
     LOCALFTS: str = 'localfts'
-
 
 @dataclass
 class Bulk:
@@ -64,7 +59,6 @@ class PipeModules:
     DOC2SQL_RESOURCE: str = 'resources'
     DOC2SQL_TABLE_PREFIX: str = ''
 
-
 @dataclass
 class Etl:
     EXPORT: Export = Export()
@@ -76,7 +70,6 @@ class Etl:
     BULK: Bulk = Bulk()
     PIPE_MODULES: PipeModules = PipeModules()
 
-
 @dataclass
 class ImportInfo:
     table_pk: int
@@ -87,6 +80,7 @@ class ImportInfo:
     dest_table_name: str
     data_directory: str
     type: str
-
+    last_write: datetime
+    upload_record: int
 
 ETL = Etl()

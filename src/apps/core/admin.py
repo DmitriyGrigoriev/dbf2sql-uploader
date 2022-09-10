@@ -34,6 +34,7 @@ class ImportTablesAdmin(admin.ModelAdmin):
     )
     readonly_fields = (
         'message_id',
+        'last_write',
         'upload_record',
     )
     list_filter = ('connects__name',)
@@ -64,12 +65,25 @@ class ImportTablesAdmin(admin.ModelAdmin):
 
     @admin.display(description=_('Task status'))
     def show_result(self, obj):
-        status = _('Unknown') if obj.uploadable else None
+        define_color = '#B15117'
+        status = mark_safe(f'<span style="color: {define_color};">'
+                                f'{_("Unknown") if obj.uploadable else "-"}'
+                           f'</span>'
+                           )
         if obj.message_id:
+            # Highlight the font in color if status not equal Done
+            is_done = _('Done')
             result = Task.tasks.filter(pk=obj.message_id).get()
             if result:
+                status = result.status.title()
                 url = reverse('admin:django_dramatiq_task_change', args=[result.pk])
-                return mark_safe(f'<a href="{url}" class="historylink">{result.status.title()}</a>')
+                return mark_safe(
+                    f'<a href="{url}" class="historylink">'
+                        f'<span style="color: {define_color};">{status}'
+                    f'</span></a>' \
+                        if status != is_done else \
+                    f'<a href="{url}" class="historylink">{status}</a>'
+                )
         return status
 
     def create_link(self, obj, mode):
@@ -285,6 +299,4 @@ admin.site.register(ImportTables, ImportTablesAdmin)
 admin.site.register(ConnectSet, ConnectSetAdmin)
 admin.site.register(ConnectWrapper, ConnectWrapperAdmin)
 
-admin.site.site_header = _("DBF to MSSQL Django Uploader")
-
-
+admin.site.site_header = _("DBF to MSSQL Uploader")
