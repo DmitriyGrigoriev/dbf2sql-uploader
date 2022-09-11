@@ -10,6 +10,7 @@ from src.apps.common.dataclasses import ImportInfo
 from src.services.sqlimport import SQLImport
 from src.services.armimport import ARMImport
 from src.apps.core.models import ImportTables
+from src.apps.core.functions import update_last_import_date, update_message_id
 
 from src.apps.common.dataclasses import ETL
 
@@ -111,7 +112,7 @@ def process_import(
 @dramatiq.actor
 def update_last_write_if_success_result(message_data, result):
     """Update last_write field by current datetime from DBF file"""
-    ImportTables.tables.update_last_import_date(message_data, result)
+    update_last_import_date(message_data, result)
 
 
 @dramatiq.actor
@@ -127,7 +128,7 @@ def print_error(message_data, exception_data):
         print(f"############ Redis message_id {redis_message_id} was deleted due to {exception_type} #########")
         print("################################################################################")
     else:
-        ImportTables.tables.update_message_id(message_data)
+        update_message_id(message_data)
 
     # print_error.logger.info("################################################################################")
     # print_error.logger.info(f"  * exception_data: {exception_data}")
