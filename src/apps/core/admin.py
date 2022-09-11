@@ -11,9 +11,10 @@ from src.services.base.baseimport import BaseImport
 from src.apps.common.dataclasses import ETL
 from src.config import settings
 
-from .models import ConnectWrapper, ConnectSet, ImportTables, MSSQL_ENGINE
 from .forms import ConnectWrapperForm
+from .filters import PipelineListFilter, ConnectTypeListFilter
 from .validators import SQLConnectValidator, DBFConnectValidator
+from .models import ConnectWrapper, ConnectSet, ImportTables, MSSQL_ENGINE
 
 # Register your models here.
 
@@ -106,6 +107,7 @@ class ConnectSetAdmin(admin.ModelAdmin):
         # 'run_import',
         'run_export_import',
     )
+    list_filter = (PipelineListFilter,)
     save_on_top = True
 
     def save_form(self, request, form, change):
@@ -213,7 +215,6 @@ class ConnectSetAdmin(admin.ModelAdmin):
         )
 
 
-
 class ConnectWrapperAdmin(admin.ModelAdmin):
     # validate_form = None
 
@@ -231,6 +232,8 @@ class ConnectWrapperAdmin(admin.ModelAdmin):
             'classes': ('security_fieldset',)
         }),
     )
+    list_filter = (ConnectTypeListFilter,)
+    search_fields = ('conname',)
     exclude = ['slug_name',]
     save_as = True
     save_on_top = True

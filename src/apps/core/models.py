@@ -273,7 +273,8 @@ class ConnectWrapper(DefaultModel):
         db_table = 'connects'
         constraints = [
             models.UniqueConstraint(
-                fields=["engine", "name"], name="unique_database_name"
+                fields=["engine", "name"],
+                name="unique_database_name"
             )
         ]
         # Add verbose name

@@ -6,7 +6,7 @@ import sys; print('Python %s on %s' % (sys.version, sys.platform))
 sys.path.extend(['E:\\MyDocuments\\Projects\\code\\dbf2sql-uploader', 'D:\\MyPrograms\\JetBrains\\PyCharm 2020.1\\plugins\\python\\helpers\\pycharm', 'D:\\MyPrograms\\JetBrains\\PyCharm 2020.1\\plugins\\python\\helpers\\pydev'])
 
 from src.apps.task_scheduler import cron
-from src.apps.task_scheduler.tasks import print_current_datetime
+# from src.apps.task_scheduler.tasks import print_current_datetime
 from apscheduler.schedulers.blocking import BlockingScheduler
 
 logging.basicConfig(

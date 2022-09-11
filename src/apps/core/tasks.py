@@ -10,7 +10,9 @@ from src.apps.common.dataclasses import ImportInfo
 from src.services.sqlimport import SQLImport
 from src.services.armimport import ARMImport
 from src.apps.core.models import ImportTables
-from src.apps.core.functions import update_last_import_date, update_message_id
+from src.apps.core.functions import (
+    update_last_import_date, update_message_id
+)
 
 from src.apps.common.dataclasses import ETL
 
@@ -49,7 +51,7 @@ def process_database_import(params: ImportInfo, mode: str = ETL.MODE.FULL):
         )
 
 
-@dramatiq.actor(max_retries=0, time_limit=settings.ONE_HOUR*5)
+@dramatiq.actor(max_retries=0, time_limit=ETL.TIMELMIT.FIVE_HOUR)
 def process_import(
         *,
         args=None,
