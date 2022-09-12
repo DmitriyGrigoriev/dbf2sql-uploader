@@ -37,9 +37,8 @@ def select_tables_for_imports():
     # https://linuxize.com/post/cron-jobs-every-5-10-15-minutes/
 
     data_polls = ConnectSet.consets.allowed_for_import()
-    for data in data_polls:
-        params: ImportInfo = ImportTables.tables.table_import_info(data.pk)
-        # params = ImportTables.tables.tables_import_list(data.pk)
+    for poll in data_polls:
+        params = ImportTables.tables.tables_import_info_list(poll.pk)
         if len(params) > 0:
             print(f'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
             logging.info(f'%%%%%%% Selected tables for import {params} %%%%%%%%')
