@@ -9,7 +9,6 @@ from src.apps.common.dataclasses import ImportInfo
 # from django_dramatiq.models import Task
 from src.services.sqlimport import SQLImport
 from src.services.armimport import ARMImport
-from src.apps.core.models import ImportTables
 from src.apps.core.functions import (
     update_last_import_date, update_message_id
 )
@@ -70,20 +69,18 @@ def process_import(
     type = kwargs['type']
     mode = kwargs['mode']
     try:
-        # Clear all indicators before start task
-        ImportTables.tables.filter(pk=table_pk).update(
-            message_id=None,
-            upload_record=0
-        )
         backend = RedisBackend(url=settings.DRAMATIQ_REDIS_URL)
         DISTRIBUTED_MUTEX = ConcurrentRateLimiter(backend, f"distributed-mutex-{table_pk}", limit=1)
         # {'table_pk': 132, 'poll_pk': 1, 'source_connection_name': 'dbf_borodki_2022', 'source_table_name': 'PZK_RSN',
         #  'dest_connection_name': 'dbf_borodki_2022', 'dest_table_name': 'TPZK_RSN'}
         with DISTRIBUTED_MUTEX.acquire():
             print('########### DISTRIBUTED_MUTEX.acquire ###########')
-            # print(f'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
-            # print(f'{settings.DATABASES}')
-            # print(f'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+            from src.apps.core.models import ImportTables
+            # Clear all indicators before start task
+            ImportTables.tables.filter(pk=table_pk).update(
+                message_id=None,
+                upload_record=0
+            )
             if type == ETL.EXPORT.DBF:
                 result = SQLImport(
                     source_connection_name=kwargs.pop('source_connection_name'),
