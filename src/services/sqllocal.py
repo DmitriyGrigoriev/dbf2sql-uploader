@@ -59,15 +59,12 @@ class SQLLocalFts(BaseImport):
     def start_import(self):
         """Process importing data from DBF to SQL Server"""
         try:
-            # self._reccount = self._source_model_record_count()
-            # for start in range(0, self._reccount, self._limit):
-            # self._delete_mark_database_records(model=self.dest_model)
             delete_dbf_sql = self._delete_dbf_statement()
             delete_arm_sql = self._delete_arm_statement()
             insert_sql = self._insert_statement()
             sql = f"{delete_dbf_sql} {delete_arm_sql} {insert_sql}"
             with transaction.atomic(using=self.dest_connection_name):
-                self.print(sql)
+                # self.print(sql)
                 self._execute_query(sql)
 
         except Exception as e:
@@ -96,21 +93,6 @@ class SQLLocalFts(BaseImport):
     def _source_model_record_count(self):
         return self.source_model.__class__.objects.using(self.source_connection_name).count()
 
-    # def _get_sub_query_select(self, start: int, source_database_name: str, table_name: str, field: str):
-    #     if start == 0:
-    #         sub_query = self.source_model.__class__.objects. \
-    #                         using(self.source_connection_name). \
-    #                         values(field)[start:self._limit].query.__str__()
-    #     else:
-    #         sub_query = self.source_model.__class__.objects. \
-    #                         using(self.source_connection_name). \
-    #                         values(field)[start:self._limit + start].query.__str__()
-    #
-    #     from_index = sub_query.find('FROM') + 5
-    #     order_index = sub_query.find('ORDER BY')
-    #
-    #     full_sub_query = f"{sub_query[0:from_index]}[{source_database_name}].[dbo].[{table_name}]{sub_query[order_index:]}"
-    #     return full_sub_query
 
     def _delete_dbf_statement(self):
         # DELETE FROM [LocalFts].[dbo].[tdclhead]
@@ -119,17 +101,6 @@ class SQLLocalFts(BaseImport):
         dest_database_name = self._get_real_localfts_name()
         source_database_name = self._get_real_database_name()
         table_name = self._get_real_source_table_name()
-        # full_sub_query = self._get_sub_query_select(
-        #     start, source_database_name, table_name, field=ETL.FIELD.HASH
-        # )
-        #
-        # sql = f"""
-        #        DELETE FROM [{dest_database_name}].[dbo].[{table_name}]
-        #             WHERE [{ETL.FIELD.HASH}] NOT IN (
-        #                 {full_sub_query}
-        #             )
-        #               AND [{ETL.FIELD.EXPTYPE}] = '{self.type}' AND [{ETL.FIELD.DATABASE}] = '{self.database}'
-        #        """
         sql = f"""
                DELETE FROM [{dest_database_name}].[dbo].[{table_name}]
                     WHERE [{ETL.FIELD.HASH}] NOT IN (
@@ -140,7 +111,6 @@ class SQLLocalFts(BaseImport):
         # self.print(sql)
         return sql
 
-
     def _delete_arm_statement(self):
         # DELETE FROM [LocalFts].[dbo].[tdclhead]
         #   WHERE [g07x] NOT IN (SELECT [g07x] FROM [gtd_2022_smolensk].[dbo].[tdclhead])
@@ -148,23 +118,6 @@ class SQLLocalFts(BaseImport):
         dest_database_name = self._get_real_localfts_name()
         source_database_name = self._get_real_database_name()
         table_name = self._get_real_source_table_name()
-        # full_sub_query = self._get_sub_query_select(
-        #     start, source_database_name, table_name, field=ETL.FIELD.G07X
-        # )
-        # sql = f"""
-        #        DELETE FROM [{dest_database_name}].[dbo].[{table_name}]
-        #             WHERE [{ETL.FIELD.G07X}] NOT IN (
-        #                 {full_sub_query}
-        #             )
-        #         AND [{ETL.FIELD.EXPTYPE}] = '{ETL.EXPORT.DOC2SQL}'
-        #
-        #        DELETE FROM [{dest_database_name}].[dbo].[{table_name}]
-        #             WHERE [{ETL.FIELD.G07X}] IN (
-        #                 {full_sub_query}
-        #                     WHERE [{ETL.FIELD.EXPTYPE}] = '{self.type}'
-        #             )
-        #         AND [{ETL.FIELD.EXPTYPE}] = '{ETL.EXPORT.DOC2SQL}'
-        #        """
         sql = f"""
                DELETE FROM [{dest_database_name}].[dbo].[{table_name}]
                     WHERE [{ETL.FIELD.G07X}] NOT IN (
@@ -181,23 +134,3 @@ class SQLLocalFts(BaseImport):
                """
         # self.print(sql)
         return sql
-
-
-    # def _delete_mark_database_records(self, model: models) -> bool:
-    #     """
-    #     Delete record where src field equal source DBF data directory name
-    #
-    #     :param model: Destination model (MSSQL Server table)
-    #     :return: True
-    #     """
-    #     # Delete all table records where field src=self.database
-    #     try:
-    #         model.__class__.objects.using(self.dest_connection.alias).filter(database=self.database).delete()
-    #     except Exception as e:
-    #         logger.exception(e)
-    #         raise e
-    #
-    #     return True
-
-
-

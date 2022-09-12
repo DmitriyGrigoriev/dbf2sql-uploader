@@ -2,10 +2,46 @@ from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 from src.apps.core.models import DBF_ENGINE, MSSQL_ENGINE
 
+
+class PipelineTablesListFilter(admin.SimpleListFilter):
+    # Human-readable title which will be displayed in the
+    # right admin sidebar just above the filter options.
+    title = _('pipeline owner')
+
+    # Parameter for the filter that will be used in the URL query.
+    parameter_name = 'pipeline-tables'
+
+    def lookups(self, request, model_admin):
+        """
+        Returns a list of tuples. The first element in each
+        tuple is the coded value for the option that will
+        appear in the URL query. The second element is the
+        human-readable name for the option that will appear
+        in the right sidebar.
+        """
+        return [c for c in
+                model_admin.model.tables.\
+                    values_list('connects_id','connects__name').\
+                    filter(connects__enabled=True).distinct()
+                ]
+
+
+    def queryset(self, request, queryset):
+        """
+        Returns the filtered queryset based on the value
+        provided in the query string and retrievable via
+        `self.value()`.
+        """
+        if self.value():
+            return queryset.filter(connects__id__exact=self.value())
+        else:
+            return queryset.filter(connects__enabled=True)
+
+
 class PipelineListFilter(admin.SimpleListFilter):
     # Human-readable title which will be displayed in the
     # right admin sidebar just above the filter options.
-    title = _('pipeline')
+    title = _('pipelines')
 
     # Parameter for the filter that will be used in the URL query.
     parameter_name = 'pipeline'
@@ -48,6 +84,7 @@ class PipelineListFilter(admin.SimpleListFilter):
             return queryset.filter(enabled=False)
         if self.value() == None:
             return queryset.filter(enabled=True)
+
 
 class ConnectTypeListFilter(admin.SimpleListFilter):
     # Human-readable title which will be displayed in the
