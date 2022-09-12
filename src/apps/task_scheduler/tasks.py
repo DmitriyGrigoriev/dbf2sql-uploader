@@ -2,9 +2,9 @@ import logging
 # import time
 import dramatiq
 from src.apps.task_scheduler.cron import cron
-from src.apps.core.models import ConnectSet, ImportTables
+from src.apps.core.managers import ConnectSetManager
 from src.apps.core.tasks import process_database_import
-from src.apps.common.dataclasses import ImportInfo
+from src.apps.core.functions import tables_import_info_list
 
 # logging.basicConfig(
 #     format="[%(asctime)s] [PID %(process)d] [%(threadName)s] [%(name)s] [%(levelname)s] %(message)s",
@@ -36,9 +36,9 @@ def select_tables_for_imports():
     """Just do reimport it data from DBF tables if they have  changed last write date time"""
     # https://linuxize.com/post/cron-jobs-every-5-10-15-minutes/
 
-    data_polls = ConnectSet.consets.allowed_for_import()
+    data_polls = ConnectSetManager.allowed_for_import()
     for poll in data_polls:
-        params = ImportTables.tables.tables_import_info_list(poll.pk)
+        params = tables_import_info_list(poll.pk)
         if len(params) > 0:
             print(f'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
             logging.info(f'%%%%%%% Selected tables for import {params} %%%%%%%%')
