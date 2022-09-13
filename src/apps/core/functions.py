@@ -4,7 +4,6 @@ from src.apps.common.dataclasses import ETL
 from src.apps.common.functions import get_last_dbf_file_modify_date
 from src.apps.common.dataclasses import ImportInfo, RecordInfo
 from src.services.armcount import ARMCount
-from .managers import ImportTablesManager
 
 def need_to_upload(
         data_directory: str,
@@ -164,14 +163,14 @@ def update_last_import_date(message_data, result):
             # Get last write file date
             last_write = get_last_dbf_file_modify_date(data_directory, source_table)
             print("################################################################################")
-            print(
-                f"#### Success import from file {data_directory}{source_table}.DBF : last write was at {last_write}  ####")
+            print(f"#### Success import from file {data_directory}{source_table}.DBF : "
+                  f"last write was at {last_write}  ####")
             print("################################################################################")
         else:
             last_write = datetime.today()
             print("################################################################################")
-            print(
-                f"#### Success import from database {source_connection_name} table {source_table} : last write was at {last_write}  ####")
+            print(f"#### Success import from database {source_connection_name} table {source_table} : "
+                f"last write was at {last_write}  ####")
             print("################################################################################")
 
         if last_write:

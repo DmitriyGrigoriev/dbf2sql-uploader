@@ -6,7 +6,6 @@ from dramatiq.rate_limits.backends import RedisBackend
 import dataclasses
 from src.config import settings
 from src.apps.common.dataclasses import ImportInfo
-# from django_dramatiq.models import Task
 from src.services.sqlimport import SQLImport
 from src.services.armimport import ARMImport
 from src.apps.core.functions import (
@@ -14,6 +13,10 @@ from src.apps.core.functions import (
 )
 
 from src.apps.common.dataclasses import ETL
+from src.apps.core.functions import (
+    get_last_dbf_file_modify_date,
+)
+from src.services.armcount import ARMCount
 
 
 @dramatiq.actor
@@ -27,7 +30,7 @@ def identity(x):
     return x
 
 
-def process_database_import(params: ImportInfo, mode: str = ETL.MODE.FULL):
+def process_database_import(params: ImportInfo, mode: str = ETL.MODE.FULL, force_upload=False):
     # dataclass:ImportInfo
     # ----------------------------
     # table_pk: int,
@@ -41,6 +44,7 @@ def process_database_import(params: ImportInfo, mode: str = ETL.MODE.FULL):
     for p in params:
         kwargs = dataclasses.asdict(p)
         kwargs.update({'mode': mode})
+        kwargs.update({'force_upload': force_upload})
 
         process_import.send_with_options(
             kwargs=kwargs,
@@ -50,7 +54,7 @@ def process_database_import(params: ImportInfo, mode: str = ETL.MODE.FULL):
         )
 
 
-@dramatiq.actor(max_retries=0, time_limit=ETL.TIMELMIT.FIVE_HOUR)
+@dramatiq.actor(store_results=True, max_retries=0, time_limit=ETL.TIMELMIT.FIVE_HOUR)
 def process_import(
         *,
         args=None,
@@ -63,8 +67,8 @@ def process_import(
     # dest_connection_name: str,
     # dest_table_name: str,
     # type: str
-    global result
-    result = 0
+    # global result
+    # result = 0
     table_pk = kwargs['table_pk']
     type = kwargs['type']
     mode = kwargs['mode']
@@ -77,36 +81,71 @@ def process_import(
             print('########### DISTRIBUTED_MUTEX.acquire ###########')
             from src.apps.core.models import ImportTables
             # Clear all indicators before start task
-            ImportTables.tables.filter(pk=table_pk).update(
-                message_id=None,
-                upload_record=0
-            )
+            record_to_update = ImportTables.tables.filter(pk=table_pk)
+
             if type == ETL.EXPORT.DBF:
-                result = SQLImport(
-                    source_connection_name=kwargs.pop('source_connection_name'),
-                    source_table_name=kwargs.pop('source_table_name'),
-                    dest_connection_name=kwargs.pop('dest_connection_name'),
-                    dest_table_name=kwargs.pop('dest_table_name'),
-                    logger=process_import.logger,
-                    mode=mode
-                ).start_import()
+                data_directory = kwargs.pop('source_connection_name')
+                source_table = kwargs.pop('source_table_name')
+                # Get last write file date
+                last_write = get_last_dbf_file_modify_date(data_directory, source_table)
+                record = record_to_update.get()
+                if last_write != record.last_write:
+                    result = SQLImport(
+                        source_connection_name=data_directory,
+                        source_table_name=source_table,
+                        dest_connection_name=kwargs.pop('dest_connection_name'),
+                        dest_table_name=kwargs.pop('dest_table_name'),
+                        logger=process_import.logger,
+                        mode=mode
+                    ).start_import()
+                    # Save result
+                    if result:
+                        record_to_update.update(
+                            last_write=get_last_dbf_file_modify_date(data_directory, source_table),
+                            upload_record=result
+                        )
+                    return result
+                else:
+                    return record.upload_record
             else:
                 # type == 'ARM'
-                result = ARMImport(
-                    source_connection_name=kwargs.pop('source_connection_name'),
-                    source_table_name=kwargs.pop('source_table_name'),
-                    dest_connection_name=kwargs.pop('dest_connection_name'),
-                    dest_table_name=kwargs.pop('dest_table_name'),
-                    logger=process_import.logger,
-                    mode=mode
-                ).start_import()
+                source_connection = kwargs.pop('source_connection_name')
+                source_table = kwargs.pop('source_table_name')
+                dest_connection = kwargs.pop('dest_connection_name')
+                dest_table = kwargs.pop('dest_table_name')
+
+                upload_record = ARMCount(
+                    source_connection_name=source_connection,
+                    source_table_name=source_table,
+                    dest_connection_name=dest_connection,
+                    dest_table_name=dest_table,
+                ).count()
+
+                record = record_to_update.get()
+
+                if upload_record != record.upload_record:
+                    result = ARMImport(
+                        source_connection_name=source_connection,
+                        source_table_name=source_table,
+                        dest_connection_name=dest_connection,
+                        dest_table_name=dest_table,
+                        logger=process_import.logger,
+                        mode=mode
+                    ).start_import()
+                    # Save result
+                    if result:
+                        record_to_update.update(
+                            upload_record=result
+                        )
+                    return result
+                else:
+                    return record.upload_record
     except dramatiq.RateLimitExceeded:
-        # process_import.logger.info('############ dramatiq.RateLimitExceeded ###########')
         raise dramatiq.RateLimitExceeded('############ dramatiq.RateLimitExceeded ###########')
 
     # print(f"############ Has been imported {result} records ########")
 
-    return result
+    # return result
 
 @dramatiq.actor
 def update_last_write_if_success_result(message_data, result):
