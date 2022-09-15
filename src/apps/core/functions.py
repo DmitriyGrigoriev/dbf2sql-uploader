@@ -115,7 +115,6 @@ def get_upload_record(poll_pk) -> int:
             t.connects.dest_conection.slug_name,
             t.dest_table,
             t.dest_table,
-            t.connects.type,  # import type: DBF / ARM
             t.last_write,
             ARMCount(
                 source_connection_name=t.connects.source_conection.slug_name,
@@ -124,7 +123,7 @@ def get_upload_record(poll_pk) -> int:
                 dest_table_name=t.dest_table,
             ).count(),
         )
-        for t in ImportTables.tables.tables_for_import(connection_poll.pk) \
+        for t in ImportTables.tables.tables_for_import(connection_poll.pk)
         ]
     return t_list
 
