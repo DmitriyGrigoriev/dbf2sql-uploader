@@ -1,16 +1,19 @@
 from datetime import datetime
 from pydantic.dataclasses import dataclass
 
+
 @dataclass
 class Export:
     DBF: str = 'DBF'
     DOC2SQL: str = 'ARM'
+
 
 @dataclass
 class Mode:
     EXPORT: str = 'only-export'
     IMPORT: str = 'only-import'
     FULL: str = 'export-import'
+
 
 @dataclass
 class Field:
@@ -22,10 +25,12 @@ class Field:
     EXPTYPE: str = 'sourcetype'
     DATABASE: str = 'database'
 
+
 @dataclass
 class UrlName:
     EXPORT_SINGLE_TABLE: str = 'export-from-single-table'
     PIPELINE_EXPORT_IMPORT: str = 'pipeline-export-import'
+
 
 @dataclass
 class TimeLimit:
@@ -39,14 +44,18 @@ class TimeLimit:
     EIGHT_HOUR: int = 3600000 * 8
     NIGHT_HOUR: int = 3600000 * 9
 
+
 @dataclass
 class Connect:
     LOCALFTS: str = 'localfts'
 
+
 @dataclass
 class Bulk:
-    #BATCH_SIZE: int = 10
+    # BATCH_SIZE: int = 10
     BATCH_SIZE: int = 1000
+    SHIFT_MONTHS: int = -1
+
 
 @dataclass
 class PipeModules:
@@ -59,10 +68,11 @@ class PipeModules:
     DOC2SQL_RESOURCE: str = 'resources'
     DOC2SQL_TABLE_PREFIX: str = ''
 
+
 @dataclass
 class RedisClient:
     DRAMATIQ_MSGS: str = 'dramatiq:default.msgs'
-    DRAMATIQ_DQ_MSGS: str = 'dramatiq:default.DQ.msgs' # delay queue
+    DRAMATIQ_DQ_MSGS: str = 'dramatiq:default.DQ.msgs'  # delay queue
 
 
 @dataclass
@@ -77,6 +87,7 @@ class Etl:
     PIPE_MODULES: PipeModules = PipeModules()
     DRAMATIQ: RedisClient = RedisClient()
 
+
 @dataclass
 class ImportInfo:
     table_pk: int
@@ -88,6 +99,7 @@ class ImportInfo:
     data_directory: str
     type: str
 
+
 @dataclass
 class RecordInfo:
     source_connection_name: str
@@ -97,5 +109,6 @@ class RecordInfo:
     data_directory: str
     last_write: datetime
     upload_record: int
+
 
 ETL = Etl()

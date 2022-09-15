@@ -335,21 +335,21 @@ class BaseImport:
 
         return True
 
-    def get_actual_arm_record(self, connection_name):
-        self.source_connection = self.get_connection_by_alias(connection_name)
-        sql = f"""
-                SELECT
-                    QUOTENAME(SCHEMA_NAME(sOBJ.schema_id)) + '.' + QUOTENAME(sOBJ.name) AS [table_name]
-                    ,SUM(sPTN.Rows) AS [row_count]
-                FROM [gtd_0_arm_2022_dbk1].[sys].[objects] AS sOBJ
-                    INNER JOIN [gtd_0_arm_2022_dbk1].[sys].[partitions] AS sPTN
-                    ON sOBJ.object_id = sPTN.object_id
-                WHERE sOBJ.type = 'U'
-                  AND sOBJ.is_ms_shipped = 0x0
-                  AND index_id < 2 -- 0:Heap, 1:Clustered
-                GROUP BY sOBJ.schema_id, sOBJ.name
-                ORDER BY [table_name]
-               """
-        rows = self._execute_query(sql)
-
-        return rows
+    # def get_actual_arm_record(self, connection_name):
+    #     self.source_connection = self.get_connection_by_alias(connection_name)
+    #     sql = f"""
+    #             SELECT
+    #                 QUOTENAME(SCHEMA_NAME(sOBJ.schema_id)) + '.' + QUOTENAME(sOBJ.name) AS [table_name]
+    #                 ,SUM(sPTN.Rows) AS [row_count]
+    #             FROM [gtd_0_arm_2022_dbk1].[sys].[objects] AS sOBJ
+    #                 INNER JOIN [gtd_0_arm_2022_dbk1].[sys].[partitions] AS sPTN
+    #                 ON sOBJ.object_id = sPTN.object_id
+    #             WHERE sOBJ.type = 'U'
+    #               AND sOBJ.is_ms_shipped = 0x0
+    #               AND index_id < 2 -- 0:Heap, 1:Clustered
+    #             GROUP BY sOBJ.schema_id, sOBJ.name
+    #             ORDER BY [table_name]
+    #            """
+    #     rows = self._execute_query(sql)
+    #
+    #     return rows

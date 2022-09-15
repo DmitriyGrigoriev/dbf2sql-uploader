@@ -18,7 +18,7 @@ class ARMImport(BaseImport):
         super(ARMImport, self).__init__()
 
         self.type = ETL.EXPORT.DOC2SQL
-        self._period_of_month = -10  # get export data for 10 last month
+        self._period_of_month = ETL.BULK.SHIFT_MONTHS  # get export data for 10 last month
         self.source_model_module = ETL.PIPE_MODULES.DOC2SQL_EXPORT
         self.dest_model_module = ETL.PIPE_MODULES.DOC2SQL_IMPORT
 
