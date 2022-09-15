@@ -287,10 +287,6 @@ REDIS_PORT = env.int('REDIS_PORT')
 DRAMATIQ_REDIS_URL = os.getenv("REDIS_URL", f"redis://{REDIS_HOST}:{REDIS_PORT}/0")
 DRAMATIQ_BROKER = {
     "BROKER": "dramatiq.brokers.redis.RedisBroker",
-    # "OPTIONS": {
-    #     "host": f"{REDIS_HOST}",
-    #     "port": f"{REDIS_PORT}",
-    # },
     "OPTIONS": {
         "connection_pool": redis.ConnectionPool.from_url(DRAMATIQ_REDIS_URL),
     },
@@ -302,6 +298,8 @@ DRAMATIQ_BROKER = {
         "dramatiq.middleware.Retries",
         # This middleware stores metadata about tasks in flight to a database and exposes them via the Django admin.
         "django_dramatiq.middleware.AdminMiddleware",
+        # This middleware stores message_id in the ImportTables.message_id field
+        "src.services.middleware.ImportTablesAdminMiddleware",
         # This middleware is vital in taking care of closing expired connections after each message is processed.
         "django_dramatiq.middleware.DbConnectionsMiddleware",
     ]

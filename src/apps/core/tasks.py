@@ -11,13 +11,8 @@ from src.services.armimport import ARMImport
 from src.apps.core.functions import (
     update_last_import_date, update_message_id
 )
-
 from src.apps.common.dataclasses import ETL
-from src.apps.core.functions import (
-    get_last_dbf_file_modify_date,
-)
-from src.services.armcount import ARMCount
-
+from src.apps.common.functions import get_redis_client
 
 @dramatiq.actor
 def hello():
@@ -30,7 +25,7 @@ def identity(x):
     return x
 
 
-def process_database_import(params: ImportInfo, mode: str = ETL.MODE.FULL, force_upload=False):
+def process_database_import(params: ImportInfo, mode: str = ETL.MODE.FULL):
     # dataclass:ImportInfo
     # ----------------------------
     # table_pk: int,
@@ -44,7 +39,6 @@ def process_database_import(params: ImportInfo, mode: str = ETL.MODE.FULL, force
     for p in params:
         kwargs = dataclasses.asdict(p)
         kwargs.update({'mode': mode})
-        kwargs.update({'force_upload': force_upload})
 
         process_import.send_with_options(
             kwargs=kwargs,
@@ -79,73 +73,34 @@ def process_import(
         #  'dest_connection_name': 'dbf_borodki_2022', 'dest_table_name': 'TPZK_RSN'}
         with DISTRIBUTED_MUTEX.acquire():
             print('########### DISTRIBUTED_MUTEX.acquire ###########')
-            from src.apps.core.models import ImportTables
-            # Clear all indicators before start task
-            record_to_update = ImportTables.tables.filter(pk=table_pk)
-
             if type == ETL.EXPORT.DBF:
                 data_directory = kwargs.pop('source_connection_name')
                 source_table = kwargs.pop('source_table_name')
-                # Get last write file date
-                last_write = get_last_dbf_file_modify_date(data_directory, source_table)
-                record = record_to_update.get()
-                if last_write != record.last_write:
-                    result = SQLImport(
-                        source_connection_name=data_directory,
-                        source_table_name=source_table,
-                        dest_connection_name=kwargs.pop('dest_connection_name'),
-                        dest_table_name=kwargs.pop('dest_table_name'),
-                        logger=process_import.logger,
-                        mode=mode
-                    ).start_import()
-                    # Save result
-                    if result:
-                        record_to_update.update(
-                            last_write=get_last_dbf_file_modify_date(data_directory, source_table),
-                            upload_record=result
-                        )
-                    return result
-                else:
-                    return record.upload_record
+                return SQLImport(
+                    source_connection_name=data_directory,
+                    source_table_name=source_table,
+                    dest_connection_name=kwargs.pop('dest_connection_name'),
+                    dest_table_name=kwargs.pop('dest_table_name'),
+                    logger=process_import.logger,
+                    mode=mode
+                ).start_import()
             else:
                 # type == 'ARM'
                 source_connection = kwargs.pop('source_connection_name')
                 source_table = kwargs.pop('source_table_name')
                 dest_connection = kwargs.pop('dest_connection_name')
                 dest_table = kwargs.pop('dest_table_name')
-
-                upload_record = ARMCount(
+                return ARMImport(
                     source_connection_name=source_connection,
                     source_table_name=source_table,
                     dest_connection_name=dest_connection,
                     dest_table_name=dest_table,
-                ).count()
-
-                record = record_to_update.get()
-
-                if upload_record != record.upload_record:
-                    result = ARMImport(
-                        source_connection_name=source_connection,
-                        source_table_name=source_table,
-                        dest_connection_name=dest_connection,
-                        dest_table_name=dest_table,
-                        logger=process_import.logger,
-                        mode=mode
-                    ).start_import()
-                    # Save result
-                    if result:
-                        record_to_update.update(
-                            upload_record=result
-                        )
-                    return result
-                else:
-                    return record.upload_record
+                    logger=process_import.logger,
+                    mode=mode
+                ).start_import()
     except dramatiq.RateLimitExceeded:
         raise dramatiq.RateLimitExceeded('############ dramatiq.RateLimitExceeded ###########')
 
-    # print(f"############ Has been imported {result} records ########")
-
-    # return result
 
 @dramatiq.actor
 def update_last_write_if_success_result(message_data, result):
@@ -155,16 +110,14 @@ def update_last_write_if_success_result(message_data, result):
 
 @dramatiq.actor
 def print_error(message_data, exception_data):
-    print("################################################################################")
-    print(f"############ Message id {message_data['message_id']} is failed #########")
-    print("################################################################################")
+    print(f"############ Task message_id {message_data['message_id']} was failed #########")
     exception_type = exception_data['type']
     if exception_type == 'RateLimitExceeded':
         redis_message_id = message_data['options']['redis_message_id']
-        redis_client = redis.Redis(host=f"{settings.REDIS_HOST}", port=f"{settings.REDIS_PORT}", db=0)
-        redis_client.hdel("dramatiq:default.DQ.msgs", redis_message_id)
-        print(f"############ Redis message_id {redis_message_id} was deleted due to {exception_type} #########")
-        print("################################################################################")
+        redis_client = get_redis_client()
+        redis_client.hdel(ETL.DRAMATIQ.DRAMATIQ_MSGS, redis_message_id)
+
+        print(f"############ Task Redis message_id {redis_message_id} was deleted by {exception_type} #########")
     else:
         update_message_id(message_data)
 

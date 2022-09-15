@@ -35,6 +35,7 @@ class ImportTablesAdmin(admin.ModelAdmin):
     )
     readonly_fields = (
         'message_id',
+        'redis_message_id',
         'last_write',
         'upload_record',
     )

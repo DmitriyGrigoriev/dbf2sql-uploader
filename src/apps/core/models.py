@@ -9,9 +9,6 @@ from src.apps.common.dataclasses import ETL
 
 from .base.models import DefaultModel
 from .managers import ImportTablesManager, ConnectSetManager
-# from src.apps.common.functions import get_last_dbf_file_modify_date
-# from src.apps.common.dataclasses import ImportInfo, RecordInfo
-# from src.services.armcount import ARMCount
 
 # Create your models here.
 
@@ -46,7 +43,8 @@ class ImportTables(DefaultModel):
     dest_table = models.CharField(max_length=50,
                                   verbose_name=_('Import table')
                                   )
-    message_id = models.UUIDField(_('Redis message Id'), blank=True, null=True)
+    message_id = models.UUIDField(_('Broker message Id'), blank=True, null=True)
+    redis_message_id = models.UUIDField(_('Redis message Id'), blank=True, null=True)
     uploadable = models.BooleanField(verbose_name='Uploadable', default=True)
     last_write = models.DateTimeField(verbose_name=_('Last write'), blank=True, null=True, )
     upload_record = models.IntegerField(verbose_name=_('Upload'), default=0)

@@ -60,6 +60,12 @@ class PipeModules:
     DOC2SQL_TABLE_PREFIX: str = ''
 
 @dataclass
+class RedisClient:
+    DRAMATIQ_MSGS: str = 'dramatiq:default.msgs'
+    DRAMATIQ_DQ_MSGS: str = 'dramatiq:default.DQ.msgs' # delay queue
+
+
+@dataclass
 class Etl:
     EXPORT: Export = Export()
     MODE: Mode = Mode()
@@ -69,6 +75,7 @@ class Etl:
     CONNECT: Connect = Connect()
     BULK: Bulk = Bulk()
     PIPE_MODULES: PipeModules = PipeModules()
+    DRAMATIQ: RedisClient = RedisClient()
 
 @dataclass
 class ImportInfo:
@@ -90,6 +97,5 @@ class RecordInfo:
     data_directory: str
     last_write: datetime
     upload_record: int
-
 
 ETL = Etl()

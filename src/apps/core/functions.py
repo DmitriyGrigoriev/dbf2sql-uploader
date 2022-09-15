@@ -1,9 +1,14 @@
+import logging
 from datetime import datetime
+
 from src.config import settings
 from src.apps.common.dataclasses import ETL
-from src.apps.common.functions import get_last_dbf_file_modify_date
+from src.apps.common.functions import get_last_dbf_file_modify_date, get_redis_client
 from src.apps.common.dataclasses import ImportInfo, RecordInfo
 from src.services.armcount import ARMCount
+
+logger = logging.getLogger(__name__)
+
 
 def need_to_upload(
         data_directory: str,
@@ -11,6 +16,7 @@ def need_to_upload(
         type: str,
         last_write: datetime,
         upload_record: int,
+        redis_message_id,
         record: list
 ) -> bool:
     """
@@ -25,11 +31,23 @@ def need_to_upload(
     :param upload_record:
     :return: Bool
     """
-    if type == ETL.EXPORT.DBF:
-        result = last_write != get_last_dbf_file_modify_date(data_directory, table_name)
+    redis_client = get_redis_client()
+    if redis_message_id:
+        already_in_queue: bool = redis_client.hexists(ETL.DRAMATIQ.DRAMATIQ_MSGS, str(redis_message_id))
     else:
-        result = upload_record != [t.upload_record for t in record if
-                                   t.source_table_name.lower() == table_name.lower()]
+        already_in_queue: bool = False
+
+    # Task is not in Redis queue
+    if not already_in_queue:
+        if type == ETL.EXPORT.DBF:
+            result = last_write != get_last_dbf_file_modify_date(data_directory, table_name)
+        else:
+            result = upload_record != [t.upload_record for t in record if
+                                       t.source_table_name.lower() == table_name.lower()
+                                       ]
+    else:
+        result = False
+
     return result
 
 
@@ -39,15 +57,16 @@ def tables_import_info_list(poll_pk) -> ImportInfo:
 
     :param poll_pk:
     :return ImportInfo:
-            -----------------------------
-            table_pk: int,
-            object_pk: int,
-            source_connection_name: str,
-            source_table_name: str,
-            dest_connection_name: str,
-            dest_table_name: str,
-            type: str
-            ------------------------------
+    -----------------------------
+    table_pk: int
+    poll_pk: int
+    source_connection_name: str
+    source_table_name: str
+    dest_connection_name: str
+    dest_table_name: str
+    data_directory: str
+    type: str
+    ------------------------------
     """
     from src.apps.core.models import ConnectSet, ImportTables
 
@@ -78,6 +97,7 @@ def tables_import_info_list(poll_pk) -> ImportInfo:
             connection_poll.type,
             t.last_write,
             t.upload_record,
+            t.redis_message_id,
             t_arm_list,
         )
     ]
@@ -130,10 +150,10 @@ def table_import_info(table_pk) -> ImportInfo:
 
 
 def update_message_id(message_data: dict) -> None:
-    from src.apps.core.models import ImportTables, ConnectSet
+    from src.apps.core.models import ImportTables
     kwargs = message_data['kwargs']
-    table_pk = kwargs['table_pk']
     message_id = message_data['message_id']
+    table_pk = kwargs['table_pk']
     record_to_update = ImportTables.tables.filter(pk=table_pk)
     record_to_update.update(message_id=message_id)
 
@@ -170,7 +190,7 @@ def update_last_import_date(message_data, result):
             last_write = datetime.today()
             print("################################################################################")
             print(f"#### Success import from database {source_connection_name} table {source_table} : "
-                f"last write was at {last_write}  ####")
+                  f"last write was at {last_write}  ####")
             print("################################################################################")
 
         if last_write:
@@ -183,4 +203,4 @@ def update_last_import_date(message_data, result):
             print("#########################################################")
             record_to_update.update(upload_record=result)
         # Update import_table redis message id
-        update_message_id(message_data)
+        # update_message_id(message_data)
