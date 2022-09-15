@@ -22,13 +22,9 @@ def select_tables_for_imports():
     for poll in data_polls:
         params = tables_import_info_list(poll.pk)
         if len(params) > 0:
-            print(f'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
             logging.info(f'%%%%%%% Selected tables for import {params} %%%%%%%%')
-            print(f'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
             process_database_import(params=params)
         else:
-            print(f'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
             logging.info(f'%%%%%%% No selected tables for import data %%%%%%%%')
-            print(f'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
 
 # python manage.py run_scheduler

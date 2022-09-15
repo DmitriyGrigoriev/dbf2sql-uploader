@@ -170,9 +170,7 @@ def update_last_import_date(message_data, result):
     source_connection_name = kwargs['source_connection_name']
     source_databases = databases[kwargs['source_connection_name']]
 
-    print("################################################################################")
     print(f"############ Message id {message_id} is success ########")
-    print("################################################################################")
 
     record_to_update = ImportTables.tables.filter(pk=table_pk)
 
@@ -182,25 +180,17 @@ def update_last_import_date(message_data, result):
         if type == ETL.EXPORT.DBF:
             # Get last write file date
             last_write = get_last_dbf_file_modify_date(data_directory, source_table)
-            print("################################################################################")
-            print(f"#### Success import from file {data_directory}{source_table}.DBF : "
-                  f"last write was at {last_write}  ####")
-            print("################################################################################")
+            print(f"#### Success import from file {data_directory}{source_table}.DBF last write was at {last_write}  ####")
         else:
             last_write = datetime.today()
-            print("################################################################################")
-            print(f"#### Success import from database {source_connection_name} table {source_table} : "
-                  f"last write was at {last_write}  ####")
-            print("################################################################################")
+            print(f"#### Success import from database {source_connection_name} table {source_table} last write was at {last_write}  ####")
 
         if last_write:
             # last_write = datetime.fromtimestamp(last_write_time, tz=pytz.timezone(settings.TIME_ZONE)).strftime('%Y-%m-%d %H:%M:%S')
             record_to_update.update(last_write=last_write)
 
         if result:
-            print("#########################################################")
             print(f"############# {result} records has been imported #######")
-            print("#########################################################")
             record_to_update.update(upload_record=result)
         # Update import_table redis message id
         # update_message_id(message_data)

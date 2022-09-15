@@ -1,6 +1,43 @@
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 from src.apps.core.models import DBF_ENGINE, MSSQL_ENGINE
+from django_dramatiq.models import Task
+
+class PipelineStatusListFilter(admin.SimpleListFilter):
+    # Human-readable title which will be displayed in the
+    # right admin sidebar just above the filter options.
+    title = _('status')
+
+    # Parameter for the filter that will be used in the URL query.
+    parameter_name = 'pipeline-status'
+
+    def lookups(self, request, model_admin):
+        """
+        Returns a list of tuples. The first element in each
+        tuple is the coded value for the option that will
+        appear in the URL query. The second element is the
+        human-readable name for the option that will appear
+        in the right sidebar.
+        """
+        return (
+            ('enqueued', _('Enqueued')),
+            ('delayed', _('Delayed')),
+            ('running', _('Running')),
+            ('failed', _('Failed')),
+            ('done', _('Done')),
+            ('skipped', _('Skipped')),
+        )
+
+    def queryset(self, request, queryset):
+        """
+        Returns the filtered queryset based on the value
+        provided in the query string and retrievable via
+        `self.value()`.
+        """
+        if self.value():
+            return queryset.filter(message_id__in=Task.tasks.filter(status=self.value()))
+        else:
+            return queryset.filter(connects__enabled=True)
 
 
 class PipelineTablesListFilter(admin.SimpleListFilter):

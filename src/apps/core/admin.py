@@ -12,7 +12,10 @@ from src.apps.common.dataclasses import ETL
 from src.config import settings
 
 from .forms import ConnectWrapperForm
-from .filters import PipelineListFilter, ConnectTypeListFilter, PipelineTablesListFilter
+from .filters import (
+    PipelineListFilter, ConnectTypeListFilter, PipelineTablesListFilter,
+    PipelineStatusListFilter,
+)
 from .validators import SQLConnectValidator, DBFConnectValidator
 from .models import ConnectWrapper, ConnectSet, ImportTables, MSSQL_ENGINE
 
@@ -39,7 +42,7 @@ class ImportTablesAdmin(admin.ModelAdmin):
         'last_write',
         'upload_record',
     )
-    list_filter = (PipelineTablesListFilter,)
+    list_filter = (PipelineTablesListFilter, PipelineStatusListFilter)
     # list_filter = ('connects__name',)
     search_fields = ('source_table',)
     # list_editable = ('uploadable',)
