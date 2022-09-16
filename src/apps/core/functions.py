@@ -45,7 +45,7 @@ def need_to_upload(
         else:
             result = upload_record != [t.upload_record for t in record if
                                        t.source_table_name.lower() == table_name.lower()
-                                       ]
+                                       ][0]
     else:
         result = False
 
