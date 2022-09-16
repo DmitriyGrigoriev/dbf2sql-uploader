@@ -56,7 +56,7 @@ class ArmResource(ExtResource):
     """Generate unique hash for each record from Doc2SQL"""
     def calculate_hash(self, row):
         # Calculate row hash
-        sole = str(uuid.uuid4().hex[:6].upper()).encode('utf8')
+        sole = str(uuid.uuid4()).encode('utf8')
         return sha256(sole + repr(row.values()).encode('utf8')).hexdigest().encode('utf-8').decode('utf-8')
 
 
@@ -133,16 +133,16 @@ class ExtArmFields(ExtSourceFields):
         abstract = True
 
 
-class ExtNonUniqHash(ExtArmFields):
-    """Extending sql import table by additional fields"""
-    hash = models.CharField(max_length=64, blank=False, null=True,db_index=True,)
-
-    class Meta:
-        abstract = True
-        # indexes = [
-        #     models.Index(fields=['g07x']),
-        #     models.Index(fields=['hash']),
-        # ]
+# class ExtNonUniqHash(ExtArmFields):
+#     """Extending sql import table by additional fields"""
+#     hash = models.CharField(max_length=64, blank=False, null=True,db_index=True,)
+#
+#     class Meta:
+#         abstract = True
+#         # indexes = [
+#         #     models.Index(fields=['g07x']),
+#         #     models.Index(fields=['hash']),
+#         # ]
 
 ##################################################################################
 # SECTION: ARM Doc2Sql export mixins

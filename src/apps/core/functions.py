@@ -31,6 +31,7 @@ def need_to_upload(
     :param upload_record:
     :return: Bool
     """
+    # https: //github.com/Bogdanp/django_dramatiq/issues/24
     redis_client = get_redis_client()
     if redis_message_id:
         already_in_queue: bool = redis_client.hexists(ETL.DRAMATIQ.DRAMATIQ_MSGS, str(redis_message_id))

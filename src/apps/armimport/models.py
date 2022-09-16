@@ -16,7 +16,7 @@ from src.apps.armexport.base.models import (
     Ktdsumpp, Ktdtechd, Ktdterms, Ktdtov2, Ktdtovar,
     Ktdtovg, Ktdtovg2, Ktdtovs, Ktdtrans, Ktduslt,
 )
-from src.apps.common.mixins import ExtArmFields, ExtNonUniqHash
+from src.apps.common.mixins import ExtArmFields
 
 
 class TDclAmnum(Dbramnum, ExtArmFields):
