@@ -79,14 +79,13 @@ class ARMLocalFts(BaseImport):
         dest_table_name: str = self._get_real_dest_table_name()
         fields: str = self._get_identical_fields()
         sql: str = \
-            f"""
-            INSERT INTO [{dest_database_name}].[dbo].[{dest_table_name}] 
-                (
-                    {fields}
-                )
-                SELECT {fields} FROM [{source_database_name}].[dbo].[{source_table_name}]
-                    WHERE [{ETL.FIELD.G07X}] NOT IN (SELECT [{ETL.FIELD.G07X}] FROM [{dest_database_name}].[dbo].[{dest_table_name}])
-            """
+            (f"\n"
+             f"INSERT INTO [{dest_database_name}].[dbo].[{dest_table_name}] \n"
+             f"    (\n"
+             f"        {fields}\n"
+             f"    )\n"
+             f"    SELECT {fields} FROM [{source_database_name}].[dbo].[{source_table_name}]\n"
+             f"        WHERE [{ETL.FIELD.G07X}] NOT IN (SELECT [{ETL.FIELD.G07X}] FROM [{dest_database_name}].[dbo].[{dest_table_name}])\n")
         # insert = f"INSERT INTO [{dest_database_name}].[dbo].[{dest_table_name}] "
         # where = f" WHERE [g07x] NOT IN (SELECT [g07x] FROM [{dest_database_name}].[dbo].[{dest_table_name}])"
         #

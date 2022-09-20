@@ -64,8 +64,8 @@ class SQLLocalFts(BaseImport):
             insert_sql = self._insert_statement()
             sql = f"{delete_dbf_sql} {delete_arm_sql} {insert_sql}"
             with transaction.atomic(using=self.dest_connection_name):
-                # self.print(sql)
-                self._execute_query(sql)
+                self.print(sql)
+                # self._execute_query(sql)
 
         except Exception as e:
             logger.exception(e)
@@ -77,16 +77,15 @@ class SQLLocalFts(BaseImport):
         table_name = self._get_real_source_table_name()
         fields = self._get_sql_fields_list()
 
-        sql = f"""
-               INSERT INTO [{dest_database_name}].[dbo].[{table_name}] 
-                    (
-                        {fields}
-                    )
-                    SELECT {fields} FROM [{source_database_name}].[dbo].[{table_name}]
-                        WHERE [{ETL.FIELD.HASH}] NOT IN (
-                            SELECT [{ETL.FIELD.HASH}] FROM [{dest_database_name}].[dbo].[{table_name}]
-                        )
-               """
+        sql = (f"\n"
+               f"INSERT INTO [{dest_database_name}].[dbo].[{table_name}] \n"
+               f"    (\n"
+               f"        {fields}\n"
+               f"    )\n"
+               f"    SELECT {fields} FROM [{source_database_name}].[dbo].[{table_name}]\n"
+               f"        WHERE [{ETL.FIELD.HASH}] NOT IN (\n"
+               f"            SELECT [{ETL.FIELD.HASH}] FROM [{dest_database_name}].[dbo].[{table_name}]\n"
+               f"        )\n")
         # self.print(sql)
         return sql
 
@@ -101,13 +100,12 @@ class SQLLocalFts(BaseImport):
         dest_database_name = self._get_real_localfts_name()
         source_database_name = self._get_real_database_name()
         table_name = self._get_real_source_table_name()
-        sql = f"""
-               DELETE FROM [{dest_database_name}].[dbo].[{table_name}]
-                    WHERE [{ETL.FIELD.HASH}] NOT IN (
-                        SELECT [{ETL.FIELD.HASH}] FROM [{source_database_name}].[dbo].[{table_name}]
-                    )
-                      AND [{ETL.FIELD.EXPTYPE}] = '{self.type}' AND [{ETL.FIELD.DATABASE}] = '{self.database}'
-               """
+        sql = (f"\n"
+               f"DELETE FROM [{dest_database_name}].[dbo].[{table_name}]\n"
+               f"    WHERE [{ETL.FIELD.HASH}] NOT IN (\n"
+               f"        SELECT [{ETL.FIELD.HASH}] FROM [{source_database_name}].[dbo].[{table_name}]\n"
+               f"    )\n"
+               f"        AND [{ETL.FIELD.EXPTYPE}] = '{self.type}' AND [{ETL.FIELD.DATABASE}] = '{self.database}'\n")
         # self.print(sql)
         return sql
 
@@ -118,19 +116,18 @@ class SQLLocalFts(BaseImport):
         dest_database_name = self._get_real_localfts_name()
         source_database_name = self._get_real_database_name()
         table_name = self._get_real_source_table_name()
-        sql = f"""
-               DELETE FROM [{dest_database_name}].[dbo].[{table_name}]
-                    WHERE [{ETL.FIELD.G07X}] NOT IN (
-                        SELECT [{ETL.FIELD.G07X}] FROM [{source_database_name}].[dbo].[{table_name}]
-                    )
-                AND [{ETL.FIELD.EXPTYPE}] = '{ETL.EXPORT.DOC2SQL}'
-
-               DELETE FROM [{dest_database_name}].[dbo].[{table_name}]
-                    WHERE [{ETL.FIELD.G07X}] IN (
-                        SELECT [{ETL.FIELD.G07X}] FROM [{source_database_name}].[dbo].[{table_name}]
-                            WHERE [{ETL.FIELD.EXPTYPE}] = '{self.type}'
-                    )
-                AND [{ETL.FIELD.EXPTYPE}] = '{ETL.EXPORT.DOC2SQL}'
-               """
+        sql = (f"\n"
+               f"DELETE FROM [{dest_database_name}].[dbo].[{table_name}]\n"
+               f"    WHERE [{ETL.FIELD.G07X}] NOT IN (\n"
+               f"        SELECT [{ETL.FIELD.G07X}] FROM [{source_database_name}].[dbo].[{table_name}]\n"
+               f"    )\n"
+               f"    AND [{ETL.FIELD.EXPTYPE}] = '{ETL.EXPORT.DOC2SQL}'\n"
+               f"\n"
+               f"DELETE FROM [{dest_database_name}].[dbo].[{table_name}]\n"
+               f"    WHERE [{ETL.FIELD.G07X}] IN (\n"
+               f"        SELECT [{ETL.FIELD.G07X}] FROM [{source_database_name}].[dbo].[{table_name}]\n"
+               f"            WHERE [{ETL.FIELD.EXPTYPE}] = '{self.type}'\n"
+               f"    )\n"
+               f"    AND [{ETL.FIELD.EXPTYPE}] = '{ETL.EXPORT.DOC2SQL}'\n")
         # self.print(sql)
         return sql
