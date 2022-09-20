@@ -1,6 +1,6 @@
 from import_export.resources import ModelResource
 from .models import (
-    TDclAmnum, TDclAvtmb, TDclCont, TDclCrdts,
+    TDclAmnum, TKtdAmnum, TDclAvtmb, TDclCont, TDclCrdts,
     TDclDinf2, TDclDinfo, TDclDog, TDclDoga, TDclDogt,
     TDclDop48, TDclHead, TDclKmp, TDclKmpk, TDclListd,
     TDclListh, TDclListl, TDclPasp, TDclPk, TDclPlatr,
@@ -20,10 +20,13 @@ from .models import (
 from src.apps.common import mixins
 
 
-class DclmnumResource(mixins.ArmResource, ModelResource):
+class DclamnumResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):
         model = TDclAmnum
 
+class KtdamnumResource(mixins.ArmResource, ModelResource):
+    class Meta(mixins.ExtResource.Meta):
+        model = TKtdAmnum
 
 class DclavtmbResource(mixins.ArmResource, ModelResource):
     class Meta(mixins.ExtResource.Meta):

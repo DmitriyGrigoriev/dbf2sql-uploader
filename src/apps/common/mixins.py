@@ -15,7 +15,6 @@ class ExtResource:
 
     type = "RESOURCE"  # using as marker for resource class
     database = None
-    # dest_connection = None
 
     class Meta:
         use_bulk = True
