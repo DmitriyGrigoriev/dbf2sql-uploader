@@ -42,8 +42,8 @@ class ARMImport(BaseImport):
                 self._delete_all_imported_records(model=self.dest_model)
 
                 self._reccount = self._source_model_record_count()
-                today = datetime.date.today()
-                last = self.gomonth(today=today, month=self._period_of_month)
+                today = datetime.date.today().strftime("%Y%m%d")
+                last = self.gomonth(today=datetime.date.today(), month=self._period_of_month).strftime("%Y%m%d")
                 resource = self._create_resource_instance()
 
                 for start in range(0, self._reccount, self._limit):
@@ -146,7 +146,7 @@ class ARMImport(BaseImport):
             limit = ''
 
         if field:
-            where = f" WHERE ([{field}] >= %s AND [{field}] <= %s)"
+            where = f" WHERE ([{field}] >= '%s' AND [{field}] <= '%s')"
         else:
             where = ""
         return f"{row_sql}{where} {limit}"
