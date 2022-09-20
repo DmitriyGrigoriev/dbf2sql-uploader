@@ -129,7 +129,7 @@ DATABASES: dict = {
     "gtd_arm_test": {
         "ENGINE": "mssql",
         # "NAME": "gtd_0_arm_2022_dbk1",
-        "NAME": "gtd_arm_2022",
+        "NAME": "gtd_0_arm_2022_dbk1",
         "USER": None,
         "PASSWORD": None,
         # "HOST": "dbk1.ntbroker.ru\s2005",

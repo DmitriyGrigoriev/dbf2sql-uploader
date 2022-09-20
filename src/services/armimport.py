@@ -78,7 +78,7 @@ class ARMImport(BaseImport):
                         )
 
         except Exception as e:
-            logger.info(f'Error occured in: {self.dest_connection_name} table {self.dest_table_name}')
+            logger.error(f'Error occured in: {self.dest_connection_name} table {self.dest_table_name}')
             logger.exception(e)
             raise e
 
@@ -146,7 +146,7 @@ class ARMImport(BaseImport):
             limit = ''
 
         if field:
-            where = f" WHERE ([{field}] >= '%s' AND [{field}] <= '%s')"
+            where = f" WHERE ([{field}] >= %s AND [{field}] <= %s)"
         else:
             where = ""
         return f"{row_sql}{where} {limit}"
