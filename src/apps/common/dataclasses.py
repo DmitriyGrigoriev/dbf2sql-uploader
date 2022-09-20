@@ -1,35 +1,37 @@
 from datetime import datetime
 from pydantic.dataclasses import dataclass
 
+from src.config.settings import env
+
 
 @dataclass
 class Export:
-    DBF: str = 'DBF'
-    DOC2SQL: str = 'ARM'
+    DBF: str = "DBF"
+    DOC2SQL: str = "ARM"
 
 
 @dataclass
 class Mode:
-    EXPORT: str = 'only-export'
-    IMPORT: str = 'only-import'
-    FULL: str = 'export-import'
+    EXPORT: str = "only-export"
+    IMPORT: str = "only-import"
+    FULL: str = "export-import"
 
 
 @dataclass
 class Field:
-    HASH: str = 'hash'
-    G07X: str = 'g07x'
-    G071: str = 'g071'
-    G072: str = 'g072'
-    G073: str = 'g073'
-    EXPTYPE: str = 'sourcetype'
-    DATABASE: str = 'database'
+    HASH: str = "hash"
+    G07X: str = "g07x"
+    G071: str = "g071"
+    G072: str = "g072"
+    G073: str = "g073"
+    EXPTYPE: str = "sourcetype"
+    DATABASE: str = "database"
 
 
 @dataclass
 class UrlName:
-    EXPORT_SINGLE_TABLE: str = 'export-from-single-table'
-    PIPELINE_EXPORT_IMPORT: str = 'pipeline-export-import'
+    EXPORT_SINGLE_TABLE: str = "export-from-single-table"
+    PIPELINE_EXPORT_IMPORT: str = "pipeline-export-import"
 
 
 @dataclass
@@ -47,32 +49,32 @@ class TimeLimit:
 
 @dataclass
 class Connect:
-    LOCALFTS: str = 'localfts'
+    LOCALFTS: str = "localfts"
 
 
 @dataclass
 class Bulk:
     # BATCH_SIZE: int = 10
     BATCH_SIZE: int = 1000
-    SHIFT_MONTHS: int = -1
+    SHIFT_MONTHS: int = env.int('SHIFT_MONTHS', default=-1)
 
 
 @dataclass
 class PipeModules:
-    DBF_EXPORT: str = 'src.apps.dbfexport'
-    DBF_IMPORT: str = 'src.apps.sqlimport'
-    DBF_RESOURCE: str = 'resources'
-    DBF_TABLE_PREFIX: str = 'T'
-    DOC2SQL_EXPORT: str = 'src.apps.armexport'
-    DOC2SQL_IMPORT: str = 'src.apps.armimport'
-    DOC2SQL_RESOURCE: str = 'resources'
-    DOC2SQL_TABLE_PREFIX: str = ''
+    DBF_EXPORT: str = "src.apps.dbfexport"
+    DBF_IMPORT: str = "src.apps.sqlimport"
+    DBF_RESOURCE: str = "resources"
+    DBF_TABLE_PREFIX: str = "T"
+    DOC2SQL_EXPORT: str = "src.apps.armexport"
+    DOC2SQL_IMPORT: str = "src.apps.armimport"
+    DOC2SQL_RESOURCE: str = "resources"
+    DOC2SQL_TABLE_PREFIX: str = ""
 
 
 @dataclass
 class RedisClient:
-    DRAMATIQ_MSGS: str = 'dramatiq:default.msgs'
-    DRAMATIQ_DQ_MSGS: str = 'dramatiq:default.DQ.msgs'  # delay queue
+    DRAMATIQ_MSGS: str = "dramatiq:default.msgs"
+    DRAMATIQ_DQ_MSGS: str = "dramatiq:default.DQ.msgs"  # delay queue
 
 
 @dataclass

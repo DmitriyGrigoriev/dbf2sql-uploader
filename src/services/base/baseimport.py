@@ -1,17 +1,33 @@
-import os
 import inspect
 import logging
-from pathlib import Path
+import os
 from importlib import import_module
-from import_export import resources
-from django.db import connections
+from pathlib import Path
+
+from django.db import connections, models
 from django.utils.connection import ConnectionDoesNotExist
 from django.utils.module_loading import module_has_submodule
-from django.db import models
+from import_export import resources
+
 from src.apps.common.dataclasses import ETL
 from src.config import settings
 
 logger = logging.getLogger(__name__)
+
+
+def get_databases_item_value(alias: str, key: str) -> str:
+    """Return value from settings.DATABASES dict"""
+    if alias is None:
+        alias = "default"
+
+    if alias in settings.DATABASES:
+        data_dir_or_file = settings.DATABASES[alias][key]
+        db_item_value = os.path.basename(data_dir_or_file)
+        if db_item_value == "":
+            db_item_value = Path(data_dir_or_file).parts[-1]
+        return db_item_value
+
+    return ""
 
 
 class BaseImport:
@@ -19,10 +35,10 @@ class BaseImport:
 
     def __init__(self) -> None:
 
-    # def __init__(self, source_connection_name: str, source_table_name: str,
-    #              dest_connection_name: str, dest_table_name: str, logger=None,
-    #              mode: str = ETL.MODE.FULL
-    #              ) -> None:
+        # def __init__(self, source_connection_name: str, source_table_name: str,
+        #              dest_connection_name: str, dest_table_name: str, logger=None,
+        #              mode: str = ETL.MODE.FULL
+        #              ) -> None:
 
         self._type = None
         self._source_connection_name = None
@@ -36,7 +52,7 @@ class BaseImport:
 
         self.source_model = None
         self.dest_model = None
-        self.resources = {}
+        self.resources: dict = {}
 
         self._logger = None
         self._mode = None
@@ -99,10 +115,14 @@ class BaseImport:
     def source_connection_name(self, value):
         self._source_connection_name = value
         if self.source_model:
-            self.source_model._meta.model.objects._db = self.source_connection_name
+            self.source_model._meta.model.objects._db = (
+                self.source_connection_name
+            )
 
         if self.source_connection_name:
-            self.source_connection = self.get_connection_by_alias(self.source_connection_name)
+            self.source_connection = self.get_connection_by_alias(
+                self.source_connection_name
+            )
 
     @property
     def source_model(self):
@@ -116,7 +136,9 @@ class BaseImport:
             self.headers = self._get_exported_headers()
 
         if self.source_connection_name:
-            self.source_model._meta.model.objects._db = self.source_connection_name
+            self.source_model._meta.model.objects._db = (
+                self.source_connection_name
+            )
 
     @property
     def dest_model(self):
@@ -136,15 +158,23 @@ class BaseImport:
     def dest_connection_name(self, value: str):
         self._dest_connection_name = value
         if self.dest_model:
-            self.dest_model._meta.model.objects._db = self._dest_connection_name
+            self.dest_model._meta.model.objects._db = (
+                self._dest_connection_name
+            )
 
         if self.dest_connection_name:
-            self.dest_connection = self.get_connection_by_alias(self.dest_connection_name)
+            self.dest_connection = self.get_connection_by_alias(
+                self.dest_connection_name
+            )
 
     def restore_default(
-            self, source_connection_name: str, source_table_name: str,
-            dest_connection_name: str, dest_table_name: str, logger=None,
-            mode: str = ETL.MODE.FULL
+        self,
+        source_connection_name: str,
+        source_table_name: str,
+        dest_connection_name: str,
+        dest_table_name: str,
+        logger=None,
+        mode: str = ETL.MODE.FULL,
     ) -> None:
 
         self.source_connection_name = source_connection_name
@@ -156,12 +186,12 @@ class BaseImport:
 
     def get_source_model_class(self):
         return self.get_model_class(
-            self.source_model_module, 'models', self.source_table_name
+            self.source_model_module, "models", self.source_table_name
         )
 
     def get_dest_model_class(self):
         return self.get_model_class(
-            self.dest_model_module, 'models', self.dest_table_name
+            self.dest_model_module, "models", self.dest_table_name
         )
 
     def get_model_classes(self):
@@ -178,9 +208,13 @@ class BaseImport:
     def get_resources(self):
         self.resources = dict(
             self.get_list_classes(
-                ETL.PIPE_MODULES.DBF_IMPORT if self.type == ETL.EXPORT.DBF else ETL.PIPE_MODULES.DOC2SQL_IMPORT,
-                ETL.PIPE_MODULES.DBF_RESOURCE if self.type == ETL.EXPORT.DBF else ETL.PIPE_MODULES.DOC2SQL_RESOURCE,
-                resources.ModelResource
+                ETL.PIPE_MODULES.DBF_IMPORT
+                if self.type == ETL.EXPORT.DBF
+                else ETL.PIPE_MODULES.DOC2SQL_IMPORT,
+                ETL.PIPE_MODULES.DBF_RESOURCE
+                if self.type == ETL.EXPORT.DBF
+                else ETL.PIPE_MODULES.DOC2SQL_RESOURCE,
+                resources.ModelResource,
             )
         )
 
@@ -191,7 +225,7 @@ class BaseImport:
             print(message)
 
     def _get_real_database_name(self):
-        return settings.DATABASES[self.source_connection_name]['NAME']
+        return settings.DATABASES[self.source_connection_name]["NAME"]
 
     def _get_real_localfts_name(self):
         return settings.DATABASES[ETL.CONNECT.LOCALFTS]["NAME"]
@@ -204,13 +238,18 @@ class BaseImport:
 
     def _get_resource_models(self) -> resources.ModelResource:
         for name, model in self.resources.items():
-            if model.Meta.model.__name__.lower() == self.dest_model._meta.model.__name__.lower():
+            if (
+                model.Meta.model.__name__.lower()
+                == self.dest_model._meta.model.__name__.lower()
+            ):
                 return model()
         return None
 
     def _get_exported_headers(self) -> list:
         """Return fields list from model"""
-        return [field.attname.lower() for field in self.source_model._meta.fields]
+        return [
+            field.attname.lower() for field in self.source_model._meta.fields
+        ]
 
     def _get_imported_headers(self) -> list:
         """Return fields list from model"""
@@ -219,14 +258,13 @@ class BaseImport:
     def _get_source_database_id(self) -> str:
         """
         Extract dir from settings.DATABASES[][NAME]
-        Return "NAME": "\\192.168.0.122\BASES\GTD_2022_LG"
+        Return "NAME":str = "\\\\192.168.0.122\\BASES\\GTD_2022_LG"
 
         :return: DBF data directory name
         """
         try:
-            return self.get_databases_item_value(
-                alias=self.source_connection_name,
-                key='NAME'
+            return get_databases_item_value(
+                alias=self.source_connection_name, key="NAME"
             ).lower()
         except AttributeError:
             raise
@@ -256,20 +294,6 @@ class BaseImport:
             logger.exception(e)
             raise e
 
-    def get_databases_item_value(self, alias: str, key: str) -> str:
-        """Return value from settings.DATABASES dict"""
-        if alias is None:
-            alias = "default"
-
-        if alias in settings.DATABASES:
-            data_dir_or_file = settings.DATABASES[alias][key]
-            db_item_value = os.path.basename(data_dir_or_file)
-            if db_item_value == '':
-                db_item_value = Path(data_dir_or_file).parts[-1]
-            return db_item_value
-
-        return None
-
     def get_list_classes(self, entry, module_name, base_class) -> list:
 
         try:
@@ -290,8 +314,9 @@ class BaseImport:
                 (name, candidate)
                 for name, candidate in inspect.getmembers(mod, inspect.isclass)
                 if (
-                        issubclass(candidate, base_class) and candidate is not base_class \
-                        and hasattr(candidate, 'type')
+                    issubclass(candidate, base_class)
+                    and candidate is not base_class
+                    and hasattr(candidate, "type")
                 )
             ]
 
@@ -301,21 +326,35 @@ class BaseImport:
         """Return raw sql for export model"""
         return self.source_model.__class__.objects.all().query.__str__()
 
-    def get_list_tables_from_model_class(self, entry: str, module_name: str) -> list:
+    def get_list_tables_from_model_class(
+        self, entry: str, module_name: str
+    ) -> list:
         """Return list of table names selected in the db_table property Meta class"""
-        return [klass._meta.db_table for _, klass in self.get_list_classes(entry, module_name, models.Model)]
+        return [
+            klass._meta.db_table
+            for _, klass in self.get_list_classes(
+                entry, module_name, models.Model
+            )
+        ]
 
-    def get_model_class(self, entry: str, module_name: str, db_table: str) -> models:
+    def get_model_class(
+        self, entry: str, module_name: str, db_table: str
+    ) -> models:
         """Return model associated with the db_table property Meta class"""
         return [
-                   klass for _, klass in self.get_list_classes(entry, module_name, models.Model)
-                   if (
-                    klass._meta.db_table.lower() == db_table.lower()
+            klass
+            for _, klass in self.get_list_classes(
+                entry, module_name, models.Model
             )
-               ][0]() or None
+            if (klass._meta.db_table.lower() == db_table.lower())
+        ][0]() or None
 
     def _get_sql_fields_list(self) -> str:
-        fields_set = [f.name for f in self.source_model._meta.fields if f.name != self.source_model._meta.pk.name]
+        fields_set = [
+            f.name
+            for f in self.source_model._meta.fields
+            if f.name != self.source_model._meta.pk.name
+        ]
         fields = ""
         for f in fields_set:
             fields += f"[{f}], "

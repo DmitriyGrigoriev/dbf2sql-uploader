@@ -1,9 +1,15 @@
 import os
+from datetime import datetime
+from typing import Optional
+
 import redis
-from datetime import datetime, timezone
+
 from src.config import settings
 
-def get_last_dbf_file_modify_date(data_directory, file_name) -> datetime:
+
+def get_last_dbf_file_modify_date(
+    data_directory, file_name
+) -> Optional[datetime]:
     """
     Return the last time modifying DBF file
 
@@ -19,5 +25,8 @@ def get_last_dbf_file_modify_date(data_directory, file_name) -> datetime:
 
     return last_write
 
+
 def get_redis_client():
-    return redis.Redis(host=f"{settings.REDIS_HOST}", port=f"{settings.REDIS_PORT}", db=0)
+    return redis.Redis(
+        host=f"{settings.REDIS_HOST}", port=f"{settings.REDIS_PORT}", db=0
+    )

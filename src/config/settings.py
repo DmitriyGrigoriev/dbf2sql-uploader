@@ -7,7 +7,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Load operating system environment variables and then prepare to use them
 env = environ.Env()
 # reading .env file ~/projects/broker/config/.env
-environ.Env.read_env(BASE_DIR + '/config/.env' )
+env.read_env(BASE_DIR + '/config/.env' )
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -90,7 +90,7 @@ DATABASE_DIR = os.path.join(BASE_DIR, 'db')
 ################################################################################
 # Database MSSQL (required installed package mssql-django)
 ################################################################################
-DATABASES = {
+DATABASES: dict = {
     "default": {
         "ENGINE": "mssql",
         "NAME": "UPLOADER",
