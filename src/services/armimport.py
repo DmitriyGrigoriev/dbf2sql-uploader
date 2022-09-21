@@ -150,7 +150,7 @@ class ARMImport(BaseImport):
         last = self.gomonth(today=datetime.date.today(), month=self._period_of_month).strftime("%Y%m%d")
 
         if field:
-            where = f" WHERE ([{field}] >= '%s' AND [{field}] <= '%s')" % (today, last)
+            where = f" WHERE ([{field}] >= '%s' AND [{field}] <= '%s')" % (last, today)
         else:
             where = ""
         return f"{row_sql}{where} {limit}"
