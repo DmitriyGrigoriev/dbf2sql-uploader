@@ -64,8 +64,8 @@ class SQLLocalFts(BaseImport):
             insert_sql = self._insert_statement()
             sql = f"{delete_dbf_sql} {delete_arm_sql} {insert_sql}"
             with transaction.atomic(using=self.dest_connection_name):
-                self.print(sql)
-                # self._execute_query(sql)
+                # self.print(sql)
+                self._execute_query(sql)
 
         except Exception as e:
             logger.exception(e)
