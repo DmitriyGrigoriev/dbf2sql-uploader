@@ -110,23 +110,16 @@ class SQLLocalFts(BaseImport):
         return sql
 
     def _delete_arm_statement(self):
-        # DELETE FROM [LocalFts].[dbo].[tdclhead]
-        #   WHERE [g07x] NOT IN (SELECT [g07x] FROM [gtd_2022_smolensk].[dbo].[tdclhead])
-        #     AND [sourcetype] = 'ARM' AND [database] = 'gtd_2022_smolensk'
         dest_database_name = self._get_real_localfts_name()
         source_database_name = self._get_real_database_name()
         table_name = self._get_real_source_table_name()
         sql = (f"\n"
                f"DELETE FROM [{dest_database_name}].[dbo].[{table_name}]\n"
-               f"    WHERE [{ETL.FIELD.G07X}] NOT IN (\n"
-               f"        SELECT [{ETL.FIELD.G07X}] FROM [{source_database_name}].[dbo].[{table_name}]\n"
-               f"    )\n"
-               f"    AND [{ETL.FIELD.EXPTYPE}] = '{ETL.EXPORT.DOC2SQL}'\n"
-               f"\n"
-               f"DELETE FROM [{dest_database_name}].[dbo].[{table_name}]\n"
                f"    WHERE [{ETL.FIELD.G07X}] IN (\n"
                f"        SELECT [{ETL.FIELD.G07X}] FROM [{source_database_name}].[dbo].[{table_name}]\n"
-               f"            WHERE [{ETL.FIELD.EXPTYPE}] = '{self.type}'\n"
+               f"            WHERE [{ETL.FIELD.HASH}] NOT IN  (\n"
+               f"               SELECT [{ETL.FIELD.HASH}] FROM [{dest_database_name}].[dbo].[{table_name}]\n" 
+               f"        )\n" 
                f"    )\n"
                f"    AND [{ETL.FIELD.EXPTYPE}] = '{ETL.EXPORT.DOC2SQL}'\n")
         # self.print(sql)
