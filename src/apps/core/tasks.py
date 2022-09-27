@@ -48,7 +48,7 @@ def process_database_import(
 
 
 @dramatiq.actor(
-    store_results=True, max_retries=0, time_limit=ETL.TIMELMIT.FIVE_HOUR
+    store_results=True, max_retries=0, time_limit=ETL.TIMELMIT.SIX_HOUR
 )
 def process_import(*, args=None, **kwargs) -> int:
     """
