@@ -139,7 +139,7 @@ class TDclSumpp(Dbrsumpp, ExtArmFields):
         db_table = 'dclsumpp'
 
 
-class TDbrTechd(Dbrtechd, ExtArmFields):
+class TDclTechd(Dbrtechd, ExtArmFields):
     class Meta:
         db_table = 'dcltechd'
 
