@@ -117,6 +117,7 @@ class ExtBaseK32(models.Model):
 ##################################################################################
 class ExtSourceFields(models.Model):
     """Extending sql import table by additional fields"""
+    unique_hash = True
 
     uid = models.AutoField(primary_key=True)
     g071 = models.CharField(max_length=8, blank=True, null=True)
@@ -155,6 +156,8 @@ class ExtSourceFields(models.Model):
 
 
 class ExtSourceNoHashUniqueIndex(ExtSourceFields):
+    unique_hash = False
+
     hash = models.CharField(
         max_length=64,
         blank=False,

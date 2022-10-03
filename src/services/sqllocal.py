@@ -59,7 +59,15 @@ class SQLLocalFts(BaseImport):
     def start_import(self):
         """Process importing data from DBF to SQL Server"""
         try:
-            delete_dbf_sql = self._delete_dbf_statement()
+            if not hasattr(self.source_model, 'unique_hash'):
+                raise AttributeError("'source_model' object has no attribute 'unique_hash'")
+
+            if self.source_model.unique_hash:
+                delete_dbf_sql = self._delete_dbf_statement_by_hash()
+
+            if not self.source_model.unique_hash:
+                delete_dbf_sql = self._delete_dbf_statement()
+
             delete_arm_sql = self._delete_arm_statement()
             insert_sql = self._insert_statement()
             sql = f"{delete_dbf_sql} {delete_arm_sql} {insert_sql}"
@@ -94,6 +102,20 @@ class SQLLocalFts(BaseImport):
 
 
     def _delete_dbf_statement(self):
+        # DELETE FROM [LocalFts].[dbo].[tdclhead]
+        #   WHERE [hash] NOT IN (SELECT [hash] FROM [gtd_2022_smolensk].[dbo].[tdclhead])
+        #     AND [sourcetype] = 'DBF' AND [database] = 'gtd_2022_smolensk'
+        dest_database_name = self._get_real_localfts_name()
+        database_name = self._get_source_database_id()
+        table_name = self._get_real_source_table_name()
+        sql = (f"\n"
+               f"DELETE FROM [{dest_database_name}].[dbo].[{table_name}]\n"
+               f"    WHERE [{ETL.FIELD.DATABASE}] = '{database_name}'\n")
+        # self.print(sql)
+        return sql
+
+
+    def _delete_dbf_statement_by_hash(self):
         # DELETE FROM [LocalFts].[dbo].[tdclhead]
         #   WHERE [hash] NOT IN (SELECT [hash] FROM [gtd_2022_smolensk].[dbo].[tdclhead])
         #     AND [sourcetype] = 'DBF' AND [database] = 'gtd_2022_smolensk'
