@@ -37,6 +37,14 @@ class ExtResource:
             g07x = f"{row[ETL.FIELD.G071]}/{row[ETL.FIELD.G072].strftime('%d%m%y')}/{row[ETL.FIELD.G073]}"
             row[ETL.FIELD.G07X] = g07x
 
+        self.update_field(row, ETL.FIELD.G081, ETL.FIELD.G141, "ИМ")
+        self.update_field(row, ETL.FIELD.G082, ETL.FIELD.G142, "ИМ")
+        self.update_field(row, ETL.FIELD.G087, ETL.FIELD.G147, "ИМ")
+
+        self.update_field(row, ETL.FIELD.G021, ETL.FIELD.G141, "ЭК")
+        self.update_field(row, ETL.FIELD.G022, ETL.FIELD.G142, "ЭК")
+        self.update_field(row, ETL.FIELD.G027, ETL.FIELD.G147, "ЭК")
+
         if self.type:
             row[ETL.FIELD.EXPTYPE] = self.type
 
@@ -53,6 +61,17 @@ class ExtResource:
             .encode("utf-8")
             .decode("utf-8")
         )
+
+    def update_field(self, record, source: str, dest: str, type: str) -> None:
+        if (
+            source in record
+            and dest in record
+            and ETL.FIELD.G011 in record
+        ):
+            if record[ETL.FIELD.G011] == type and (
+                record[source] is None or record[source].replace(' ', '') == ''
+            ):
+                record[source] = record[dest]
 
     # def skip_row(self, instance, original):
     #     skip = self.dest_connection.cursor().execute(
