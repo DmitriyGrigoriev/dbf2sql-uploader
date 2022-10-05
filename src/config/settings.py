@@ -139,17 +139,13 @@ DATABASES: dict = {
                     "extra_params": "TrustServerCertificate=Yes;",
                     },
     },
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': os.path.join(DATABASE_DIR, 'uploader.db'),
-    #     "OPTIONS": {"timeout": 10},
-    # },
-    "dbf_2022_borod_test": {
+    "dbf_2022_test": {
         "ENGINE": "src.db.connection.advantage",
         # "NAME": "E:\\MyDocuments\\FoxProProjects\\Bastion\\BASE\\GTD_2022_LG\\GTD_2022_LG.add",
         # "NAME": "\\\\10.1.0.12\\K\\softland\\BASE\\GTD_2022_BOROD",
         # "NAME": f"\\\\{DOMAIN}\\FTSBASES\\TEST",
-        "NAME": f"\\\\{DOMAIN}\\FTSBASES\\GTD_2022_BOROD",
+        # "NAME": f"\\\\{DOMAIN}\\FTSBASES\\GTD_2022_BOROD",
+        "NAME": f"\\\\{DOMAIN}\\FTSBASES\\GTD_2022_LG",
         "USER": "",
         "PASSWORD": "",
         # "AUTOCOMMIT": True,

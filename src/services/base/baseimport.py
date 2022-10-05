@@ -269,6 +269,20 @@ class BaseImport:
         except AttributeError:
             raise
 
+    def _get_dest_database_id(self) -> str:
+        """
+        Extract dir from settings.DATABASES[][NAME]
+        Return "NAME":str = "\\\\192.168.0.122\\BASES\\GTD_2022_LG"
+
+        :return: DBF data directory name
+        """
+        try:
+            return get_databases_item_value(
+                alias=self.dest_connection_name, key="NAME"
+            ).lower()
+        except AttributeError:
+            raise
+
     def _create_resource_instance(self):
         res_model = self._get_resource_models()
         try:

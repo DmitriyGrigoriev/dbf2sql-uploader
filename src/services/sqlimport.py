@@ -58,8 +58,7 @@ class SQLImport(BaseImport):
         try:
             if self.mode == ETL.MODE.FULL or self.mode == ETL.MODE.IMPORT:
 
-                self._delete_all_imported_records(model=self.dest_model)
-
+                self.delete()
                 self._reccount = self._source_model_record_count()
                 raw_sql = self._get_export_raw_sql()
 
@@ -83,7 +82,7 @@ class SQLImport(BaseImport):
 
             if self.mode == ETL.MODE.FULL or self.mode == ETL.MODE.EXPORT:
                 # Update LocalFts
-                self.after_import(
+                self._reccount = self.after_import(
                     source_connection_name=self.source_connection_name,
                     source_table_name=self.source_table_name,
                     dest_connection_name=self.dest_connection_name,
@@ -102,7 +101,7 @@ class SQLImport(BaseImport):
     def after_import(self, source_connection_name: str, source_table_name: str,
                  dest_connection_name: str, dest_table_name: str, logger=logger,
                  mode: str = ETL.MODE.FULL
-                 ) -> None:
+                 ) -> int:
         ######################################################################
         # First step: GTD_2022_SMOLENSK.DCLHEAD.DBF -> GTD_2022_SMOLENSK.TDCLHEAD
         # SQLImport(
@@ -119,10 +118,11 @@ class SQLImport(BaseImport):
         #     source_table_name='TDCLHEAD',
         #     dest_connection_name='localfts',
         #     dest_table_name='TDCLHEAD',
+        #     export_database_name='gtd_2022_smolensk',
         #     logger=None
         # ).start_import()
         #######################################################################
-        SQLLocalFts(
+        result = SQLLocalFts(
             source_connection_name=dest_connection_name,
             source_table_name=dest_table_name,
             dest_connection_name=ETL.CONNECT.LOCALFTS,
@@ -138,6 +138,7 @@ class SQLImport(BaseImport):
             dest_connection_name, dest_table_name, logger=None,
             mode=mode
         )
+        return result
 
     def _transform_raw_select(self, start: int, raw_sql: str) -> str:
         """Transform SQL expr [SELECT field1, fiel2 ...] into expr
@@ -151,7 +152,9 @@ class SQLImport(BaseImport):
         return raw_sql.replace("SELECT", sql)
 
     def _source_model_record_count(self) -> int:
-        """Calculate rows in DBF"""
+        """Calculate rows in DBF
+        :rtype: object
+        """
         sql = f"SELECT COUNT(*) as RECC FROM {self.source_model._meta.db_table};"
         rows = self._execute_query(sql)
         for row in rows:
@@ -160,3 +163,6 @@ class SQLImport(BaseImport):
 
     def _get_models(self, app_name: str):
         return apps.get_app_config(app_name).get_models()
+
+    def delete(self) -> bool:
+        return self._delete_all_imported_records(model=self.dest_model)

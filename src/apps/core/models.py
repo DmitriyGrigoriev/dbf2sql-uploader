@@ -86,6 +86,13 @@ class ConnectSet(DefaultModel):
         return self.name
 
 
+# class ControlPanel(ConnectSet):
+#     class Meta:
+#         proxy = True
+#         verbose_name = _('#4. Control Panel')
+#         verbose_name_plural = _('#4. Control Panels')
+
+
 class ConnectWrapper(DefaultModel):
     """Store data source info like as connection string"""
     CONNECTOR_ENGINE = (

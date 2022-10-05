@@ -37,8 +37,6 @@ History	{{ app_label }}_{{ model_name }}_history	object_id
 Delete	{{ app_label }}_{{ model_name }}_delete	object_id
 Change	{{ app_label }}_{{ model_name }}_change	object_id
 """
-
-
 def run_import_for_single_table(
     request: object, table_pk: int, mode: str
 ) -> HttpResponseRedirect:
@@ -84,7 +82,7 @@ def run_import_for_database(
             request, f"Process import data from {poll_name} is running!"
         )
     else:
-        messages.info(
+        messages.warning(
             request, f"No needs import data from {poll_name} it's up to date!"
         )
 

@@ -71,9 +71,14 @@ class SQLLocalFts(BaseImport):
             delete_arm_sql = self._delete_arm_statement()
             insert_sql = self._insert_statement()
             sql = f"{delete_dbf_sql} {delete_arm_sql} {insert_sql}"
+            nl = '\n'
+
             with transaction.atomic(using=self.dest_connection_name):
-                # self.print(sql)
+                self.print(f"Delete & Insert statement for table "
+                           f"{self._get_real_source_table_name()}: {sql.replace(nl, '')}")
                 self._execute_query(sql)
+
+            return self._dest_model_record_count()
 
         except Exception as e:
             logger.exception(e)
@@ -100,17 +105,18 @@ class SQLLocalFts(BaseImport):
     def _source_model_record_count(self):
         return self.source_model.__class__.objects.using(self.source_connection_name).count()
 
+    def _dest_model_record_count(self):
+        return self.dest_model.__class__.objects.using(self.dest_connection_name).\
+            filter(sourcetype=ETL.EXPORT.DBF, database=self.export_database_name).count()
 
     def _delete_dbf_statement(self):
         # DELETE FROM [LocalFts].[dbo].[tdclhead]
-        #   WHERE [hash] NOT IN (SELECT [hash] FROM [gtd_2022_smolensk].[dbo].[tdclhead])
-        #     AND [sourcetype] = 'DBF' AND [database] = 'gtd_2022_smolensk'
+        #   WHERE [sourcetype] = 'DBF' AND [database] = 'gtd_2022_smolensk'
         dest_database_name = self._get_real_localfts_name()
-        database_name = self._get_source_database_id()
         table_name = self._get_real_source_table_name()
         sql = (f"\n"
                f"DELETE FROM [{dest_database_name}].[dbo].[{table_name}]\n"
-               f"    WHERE [{ETL.FIELD.DATABASE}] = '{database_name}'\n")
+               f"    WHERE [{ETL.FIELD.EXPTYPE}] = '{self.type}' AND [{ETL.FIELD.DATABASE}] = '{self.export_database_name}'\n")
         # self.print(sql)
         return sql
 
