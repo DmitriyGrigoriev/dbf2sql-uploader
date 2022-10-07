@@ -142,8 +142,8 @@ class ARMImport(BaseImport):
         else:
             limit = ''
 
-        today = datetime.date.today().strftime("%Y%m%d")
-        last = self.gomonth(today=datetime.date.today(), month=self._period_of_month).strftime("%Y%m%d")
+        today = datetime.date.today().strftime("%Y-%m-%d")
+        last = self.gomonth(today=datetime.date.today(), month=self._period_of_month).strftime("%Y-%m-%d")
 
         if field:
             where = f" WHERE [{field}] BETWEEN '%s' AND '%s'" % (last, today)
