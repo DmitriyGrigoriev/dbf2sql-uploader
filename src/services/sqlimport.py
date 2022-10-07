@@ -25,6 +25,9 @@ class SQLImport(BaseImport):
                  mode: str = ETL.MODE.FULL
                  ) -> None:
 
+        self.start = 0
+        self.end = 0
+
         super(SQLImport, self).__init__()
 
         self.type = ETL.EXPORT.DBF
@@ -43,7 +46,7 @@ class SQLImport(BaseImport):
         self.get_model_classes()
         self.get_resources()
 
-    def start_import(self):
+    def start_import(self, start: int = 0, end: int = 0) -> int:
         """Process importing data from DBF to SQL Server"""
         ##########################################################################
         # First step: GTD_2022_SMOLENSK.DCLHEAD.DBF -> GTD_2022_SMOLENSK.TDCLHEAD
@@ -55,16 +58,25 @@ class SQLImport(BaseImport):
         #     logger=None
         # ).start_import()
         ##########################################################################
+        self.start = start
+        self.end = end
+
         try:
             if self.mode == ETL.MODE.FULL or self.mode == ETL.MODE.IMPORT:
 
-                self.delete()
-                self._reccount = self._source_model_record_count()
+                if self.start == 0:
+                    self.delete()
+
+                if self.end == 0:
+                    self._reccount = self._source_model_record_count()
+                else:
+                    self._reccount = self.end
+
                 raw_sql = self._get_export_raw_sql()
 
                 resource = self._create_resource_instance()
 
-                for start in range(0, self._reccount, self._limit):
+                for start in range(self.start, self._reccount, self._limit):
                     # select data from dbf model
                     sql = self._transform_raw_select(start=start + 1, raw_sql=raw_sql)
 
@@ -80,7 +92,9 @@ class SQLImport(BaseImport):
                     resource.import_data(dataset, use_transactions=False)
                     dataset.wipe()
 
-            if self.mode == ETL.MODE.FULL or self.mode == ETL.MODE.EXPORT:
+            if self.end == 0 and (
+                self.mode == ETL.MODE.FULL or self.mode == ETL.MODE.EXPORT
+            ):
                 # Update LocalFts
                 self._reccount = self.after_import(
                     source_connection_name=self.source_connection_name,

@@ -64,7 +64,7 @@ class Connect:
 
 @dataclass
 class Bulk:
-    # BATCH_SIZE: int = 10
+    # BATCH_SIZE: int = 100
     BATCH_SIZE: int = 1000
     SHIFT_MONTHS: int = env.int('SHIFT_MONTHS', default=-1)
 

@@ -31,8 +31,6 @@ def get_databases_item_value(alias: str, key: str) -> str:
 
 
 class BaseImport:
-    _limit = ETL.BULK.BATCH_SIZE
-
     def __init__(self) -> None:
 
         # def __init__(self, source_connection_name: str, source_table_name: str,
@@ -46,6 +44,8 @@ class BaseImport:
         self._source_model = None
         self._dest_model = None
         self._reccount = 0
+
+        self._limit = ETL.BULK.BATCH_SIZE
 
         self._source_model_module = None
         self._dest_model_module = None
@@ -287,6 +287,8 @@ class BaseImport:
         res_model = self._get_resource_models()
         try:
             res_model.type = self.type
+            # res_model.Meta.using_db = self.dest_connection_name
+            # res_model._meta.using_db = self.dest_connection_name
             res_model.database = self._get_source_database_id()
             # res_model.dest_connection = self.dest_connection
         except AttributeError:

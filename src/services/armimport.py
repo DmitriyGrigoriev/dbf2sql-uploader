@@ -18,6 +18,7 @@ class ARMImport(BaseImport):
         super(ARMImport, self).__init__()
 
         self.type = ETL.EXPORT.DOC2SQL
+
         self._period_of_month = ETL.BULK.SHIFT_MONTHS  # get export data for 10 last month
         self.source_model_module = ETL.PIPE_MODULES.DOC2SQL_EXPORT
         self.dest_model_module = ETL.PIPE_MODULES.DOC2SQL_IMPORT
@@ -42,8 +43,6 @@ class ARMImport(BaseImport):
                 self._delete_all_imported_records(model=self.dest_model)
 
                 self._reccount = self._source_model_record_count()
-                # today = datetime.date.today().strftime("%Y%m%d")
-                # last = self.gomonth(today=datetime.date.today(), month=self._period_of_month).strftime("%Y%m%d")
                 resource = self._create_resource_instance()
 
                 for start in range(0, self._reccount, self._limit):
@@ -53,9 +52,6 @@ class ARMImport(BaseImport):
                     if self.logger:
                         self.logger.info(f"Execute SQL: {sql}")
 
-                    # rows = self.source_model.__class__.objects.using(self.source_connection_name).\
-                    #              raw(sql, [last, today])[start + 1:self._limit]
-
                     # rows = self._execute_query(sql, params=[last, today])
                     rows = self._execute_query(sql)
 
@@ -64,19 +60,19 @@ class ARMImport(BaseImport):
                     for row in rows:
                         dataset.append(row=row)
 
-                    resource.import_data(dataset, use_transactions=False)
+                    resource.import_data(dataset, use_transactions=False, collect_failed_rows=True)
                     dataset.wipe()
 
-                    if self.mode == ETL.MODE.FULL or self.mode == ETL.MODE.EXPORT:
-                        # Update LocalFts
-                        self.after_import(
-                            source_connection_name=self.source_connection_name,
-                            source_table_name=self.source_table_name,
-                            dest_connection_name=self.dest_connection_name,
-                            dest_table_name=self.dest_table_name,
-                            logger=self.logger,
-                            mode=self.mode
-                        )
+                if self.mode == ETL.MODE.FULL or self.mode == ETL.MODE.EXPORT:
+                    # Update LocalFts
+                    self.after_import(
+                        source_connection_name=self.source_connection_name,
+                        source_table_name=self.source_table_name,
+                        dest_connection_name=self.dest_connection_name,
+                        dest_table_name=self.dest_table_name,
+                        logger=self.logger,
+                        mode=self.mode
+                    )
 
         except Exception as e:
             logger.error(f'Error occured in: {self.dest_connection_name} table {self.dest_table_name}')
@@ -151,6 +147,7 @@ class ARMImport(BaseImport):
 
         if field:
             where = f" WHERE ([{field}] >= '%s' AND [{field}] <= '%s')" % (last, today)
+            # where = f" WHERE ([g072] >= '20221004' AND[g072] <= '20221004')"
         else:
             where = ""
         return f"{row_sql}{where} {limit}"

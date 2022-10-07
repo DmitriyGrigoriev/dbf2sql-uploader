@@ -17,9 +17,12 @@ class ExtResource:
     database = None
 
     class Meta:
-        use_bulk = True
+        # use_bulk = True
+        use_bulk = False
         batch_size = ETL.BULK.BATCH_SIZE
-        skip_unchanged = True
+        # skip_unchanged = False
+        skip_diff = False
+        # skip_unchanged = True
         # skip_diff = True
         # This flag can speed up imports
         # Cannot be used when performing updates
@@ -172,6 +175,11 @@ class ExtSourceFields(models.Model):
             models.Index(fields=["g07x"]),
             models.Index(fields=["hash"]),
         ]
+
+    def save(
+        self, force_insert=False, force_update=False, using=None, update_fields=None
+    ):
+        super().save(force_insert=False, force_update=False, using=self._meta.model.objects.db, update_fields=None)
 
 
 class ExtSourceNoHashUniqueIndex(ExtSourceFields):
