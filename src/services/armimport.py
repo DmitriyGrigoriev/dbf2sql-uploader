@@ -124,34 +124,46 @@ class ARMImport(BaseImport):
         """Transform SQL expr [SELECT field1, fiel2 ...] into expr
         [SELECT field1, field2 WHERE ...]
         """
-        field = self._exported_field_exist(ETL.FIELD.G072)
+        today = datetime.date.today()
+        last = self.gomonth(today=datetime.date.today(), month=self._period_of_month)
+        # field = self._exported_field_exist(ETL.FIELD.G072)
         if start == 0:
+            # Important: Do not remove order by clause (using for correct offset)
             row_sql = self.source_model.__class__.objects.\
-                          using(self.source_connection_name)\
-                          [start:self._limit].query.__str__()
+                using(self.source_connection_name).\
+                filter(g072__gte=last,g072__lte=today).\
+                order_by(self.source_model.__class__._meta.pk.name)\
+                [start:self._limit].query.__str__()
         else:
+            # Important: Do not remove order by clause (using for correct offset)
             row_sql = self.source_model.__class__.objects.\
-                          using(self.source_connection_name)\
-                          [start:self._limit+start].query.__str__()
+                using(self.source_connection_name).\
+                filter(g072__gte=last,g072__lte=today).\
+                order_by(self.source_model.__class__._meta.pk.name)\
+                [start:self._limit+start].query.__str__()
 
-        order_index = row_sql.find('ORDER BY')
+        row_sql = row_sql.replace(last.strftime("%Y-%m-%d %H:%M:%S"), f"'{last.strftime('%Y-%m-%d %H:%M:%S')}'")
+        row_sql = row_sql.replace(today.strftime("%Y-%m-%d %H:%M:%S"), f"'{today.strftime('%Y-%m-%d %H:%M:%S')}'")
 
-        if order_index >=0:
-            limit = row_sql[order_index:]
-            row_sql = row_sql[0:order_index]
-        else:
-            limit = ''
+        # order_index = row_sql.find('ORDER BY')
+        #
+        # if order_index > 0:
+        #     limit = row_sql[order_index:]
+        #     row_sql = row_sql[0:order_index]
+        # else:
+        #     limit = ''
 
-        today = datetime.date.today().strftime("%Y-%m-%d %H:%M:%S")
-        last = self.gomonth(today=datetime.date.today(), month=self._period_of_month).strftime("%Y-%m-%d %H:%M:%S")
+        # today = datetime.date.today().strftime("%Y%m%d")
+        # last = self.gomonth(today=datetime.date.today(), month=self._period_of_month).strftime("%Y%m%d")
 
-        if field:
-            where = f" WHERE [{field}] BETWEEN '%s' AND '%s'" % (last, today)
-            # where = f" WHERE ([{field}] >= '%s' AND [{field}] <= '%s')" % (last, today)
-            # where = f" WHERE ([g072] >= '20221004' AND[g072] <= '20221004')"
-        else:
-            where = ""
-        return f"{row_sql}{where} {limit}"
+        # if field:
+        #     where = f" WHERE ([{field}] >= '%s' AND [{field}] <= '%s')" % (last, today)
+        #     # where = f" WHERE ([{field}] >= '%s' AND [{field}] <= '%s')" % (last, today)
+        #     # where = f" WHERE ([g072] >= '20221004' AND[g072] <= '20221004')"
+        # else:
+        #     where = ""
+        # return f"{row_sql}{where} {limit}"
+        return row_sql
 
     def _imported_field_exist(self, field: str):
         result = [

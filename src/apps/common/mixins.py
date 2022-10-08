@@ -18,7 +18,7 @@ class ExtResource:
 
     class Meta:
         # use_bulk = True
-        use_bulk = False
+        use_bulk = True
         batch_size = ETL.BULK.BATCH_SIZE
         # skip_unchanged = False
         skip_diff = False
