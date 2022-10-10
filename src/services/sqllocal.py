@@ -129,7 +129,7 @@ class SQLLocalFts(BaseImport):
         source_database_name = self._get_real_database_name()
         table_name = self._get_real_source_table_name()
         sql = (f"\n"
-               f"DELETE FROM [{dest_database_name}].[dbo].[{table_name}]\n"
+               f"DELETE [{table_name}] FROM [{dest_database_name}].[dbo].[{table_name}]\n"
                f"    WHERE [{ETL.FIELD.HASH}] NOT IN (\n"
                f"        SELECT [{ETL.FIELD.HASH}] FROM [{source_database_name}].[dbo].[{table_name}]\n"
                f"    )\n"
@@ -142,13 +142,13 @@ class SQLLocalFts(BaseImport):
         source_database_name = self._get_real_database_name()
         table_name = self._get_real_source_table_name()
         sql = (f"\n"
-               f"DELETE FROM [{dest_database_name}].[dbo].[{table_name}]\n"
-               f"    WHERE [{ETL.FIELD.G07X}] IN (\n"
+               f"DELETE [{table_name}] FROM [{dest_database_name}].[dbo].[{table_name}]\n"
+               f"    INNER JOIN ("
                f"        SELECT [{ETL.FIELD.G07X}] FROM [{source_database_name}].[dbo].[{table_name}]\n"
                f"            WHERE [{ETL.FIELD.HASH}] NOT IN  (\n"
                f"               SELECT [{ETL.FIELD.HASH}] FROM [{dest_database_name}].[dbo].[{table_name}]\n" 
-               f"        )\n" 
+               f"        ) AS T ON [{table_name}].[{ETL.FIELD.G07X}] = T.[{ETL.FIELD.G07X}] \n" 
                f"    )\n"
-               f"    AND [{ETL.FIELD.EXPTYPE}] = '{ETL.EXPORT.DOC2SQL}'\n")
+               f"    WHERE [{ETL.FIELD.EXPTYPE}] = '{ETL.EXPORT.DOC2SQL}'\n")
         # self.print(sql)
         return sql

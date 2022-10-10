@@ -145,24 +145,6 @@ class ARMImport(BaseImport):
         row_sql = row_sql.replace(last.strftime("%Y-%m-%d %H:%M:%S"), f"'{last.strftime('%Y-%m-%d %H:%M:%S')}'")
         row_sql = row_sql.replace(today.strftime("%Y-%m-%d %H:%M:%S"), f"'{today.strftime('%Y-%m-%d %H:%M:%S')}'")
 
-        # order_index = row_sql.find('ORDER BY')
-        #
-        # if order_index > 0:
-        #     limit = row_sql[order_index:]
-        #     row_sql = row_sql[0:order_index]
-        # else:
-        #     limit = ''
-
-        # today = datetime.date.today().strftime("%Y%m%d")
-        # last = self.gomonth(today=datetime.date.today(), month=self._period_of_month).strftime("%Y%m%d")
-
-        # if field:
-        #     where = f" WHERE ([{field}] >= '%s' AND [{field}] <= '%s')" % (last, today)
-        #     # where = f" WHERE ([{field}] >= '%s' AND [{field}] <= '%s')" % (last, today)
-        #     # where = f" WHERE ([g072] >= '20221004' AND[g072] <= '20221004')"
-        # else:
-        #     where = ""
-        # return f"{row_sql}{where} {limit}"
         return row_sql
 
     def _imported_field_exist(self, field: str):
