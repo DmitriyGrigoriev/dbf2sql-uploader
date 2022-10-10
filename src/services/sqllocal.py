@@ -72,12 +72,22 @@ class SQLLocalFts(BaseImport):
             insert_sql = self._insert_statement()
             sql = f"{delete_dbf_sql} {delete_arm_sql} {insert_sql}"
             nl = '\n'
-            self.print(f"Delete & Insert statement for table "
-                       f"{self._get_real_source_table_name()}: {sql.replace(nl, '')}")
+            # self.print(f"Delete & Insert statement for table "
+            #            f"{self._get_real_source_table_name()}: {sql.replace(nl, '')}")
 
             with transaction.atomic(using=self.dest_connection_name, savepoint=False):
+                self.print(f"Delete DBF records: "
+                           f"{self._get_real_source_table_name()}: {delete_dbf_sql}")
                 self._execute_query(delete_dbf_sql)
+
+            with transaction.atomic(using=self.dest_connection_name, savepoint=False):
+                self.print(f"Delete ARM records: "
+                           f"{self._get_real_source_table_name()}: {delete_arm_sql}")
                 self._execute_query(delete_arm_sql)
+
+            with transaction.atomic(using=self.dest_connection_name, savepoint=False):
+                self.print(f"Insert records: "
+                           f"{self._get_real_source_table_name()}: {insert_sql}")
                 self._execute_query(insert_sql)
 
             return self._dest_model_record_count()
