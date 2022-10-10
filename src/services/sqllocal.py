@@ -117,7 +117,7 @@ class SQLLocalFts(BaseImport):
         dest_database_name = self._get_real_localfts_name()
         table_name = self._get_real_source_table_name()
         sql = (f"\n"
-               f"DELETE FROM [{dest_database_name}].[dbo].[{table_name}]\n"
+               f"DELETE [{table_name}] FROM [{dest_database_name}].[dbo].[{table_name}]\n"
                f"    WHERE [{ETL.FIELD.EXPTYPE}] = '{self.type}' AND [{ETL.FIELD.DATABASE}] = '{self.export_database_name}'\n")
         # self.print(sql)
         return sql
