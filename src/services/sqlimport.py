@@ -1,7 +1,7 @@
 import tablib
 import logging
 from django.apps import apps
-#from import_export import resources
+# from import_export import resources
 from src.services.base.baseimport import BaseImport
 from src.services.sqllocal import SQLLocalFts
 from src.apps.common.dataclasses import ETL
@@ -40,7 +40,7 @@ class SQLImport(BaseImport):
         self.source_table_name = source_table_name
         self.dest_table_name = dest_table_name
 
-        self.logger = logger
+        # self.logger = logger
         self.mode = mode
 
         self.get_model_classes()
@@ -101,20 +101,24 @@ class SQLImport(BaseImport):
                     source_table_name=self.source_table_name,
                     dest_connection_name=self.dest_connection_name,
                     dest_table_name=self.dest_table_name,
-                    logger=self.logger,
+                    # logger=self.logger,
                     mode=self.mode
                 )
 
         except Exception as e:
-            logger.info(f'Error occured in NAME[{self.dest_connection_name}] table {self.dest_table_name}')
-            logger.exception(e)
+            if self.logger:
+                self.logger.error(f'Error occured in NAME[{self.dest_connection_name}] table {self.dest_table_name}')
+                self.logger.exception(e)
+            else:
+                logger.exception(e)
             raise e
 
         return self._reccount
 
     def after_import(self, source_connection_name: str, source_table_name: str,
-                 dest_connection_name: str, dest_table_name: str, logger=logger,
-                 mode: str = ETL.MODE.FULL
+                     dest_connection_name: str, dest_table_name: str,
+                     # logger=logger,
+                     mode: str = ETL.MODE.FULL
                  ) -> int:
         ######################################################################
         # First step: GTD_2022_SMOLENSK.DCLHEAD.DBF -> GTD_2022_SMOLENSK.TDCLHEAD
@@ -142,14 +146,15 @@ class SQLImport(BaseImport):
             dest_connection_name=ETL.CONNECT.LOCALFTS,
             dest_table_name=dest_table_name,
             export_database_name=self._get_source_database_id(),
-            logger=logger,
+            # logger=logger,
             mode=mode
         ).start_import()
 
         # Restore using_db
         self.restore_default(
             source_connection_name, source_table_name,
-            dest_connection_name, dest_table_name, logger=None,
+            dest_connection_name, dest_table_name,
+            # logger=None,
             mode=mode
         )
         return result

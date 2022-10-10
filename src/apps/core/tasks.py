@@ -121,7 +121,7 @@ def process_import(*, args=None, **kwargs) -> int:
                     source_table_name=source_table,
                     dest_connection_name=kwargs.pop("dest_connection_name"),
                     dest_table_name=kwargs.pop("dest_table_name"),
-                    logger=process_import.logger,
+                    # logger=process_import.logger,
                     mode=mode,
                 ).start_import()
             else:
@@ -135,67 +135,7 @@ def process_import(*, args=None, **kwargs) -> int:
                     source_table_name=source_table,
                     dest_connection_name=dest_connection,
                     dest_table_name=dest_table,
-                    logger=process_import.logger,
-                    mode=mode,
-                ).start_import()
-    except dramatiq.RateLimitExceeded:
-        raise dramatiq.RateLimitExceeded(
-            "############ dramatiq.RateLimitExceeded ###########"
-        )
-
-
-
-@dramatiq.actor(
-    store_results=True, max_retries=0, time_limit=ETL.TIMELMIT.SIX_HOUR
-)
-def process_import(*, args=None, **kwargs) -> int:
-    """
-
-    :param args:
-    :param kwargs: {
-        table_pk: int,
-        object_pk: int,
-        source_connection_name: str,
-        source_table_name: str,
-        dest_connection_name: str,
-        dest_table_name: str,
-        type: str,
-    }
-    :return:
-    """
-    table_pk = kwargs["table_pk"]
-    type = kwargs["type"]
-    mode = kwargs["mode"]
-    try:
-        backend = RedisBackend(url=settings.DRAMATIQ_REDIS_URL)
-        DISTRIBUTED_MUTEX = ConcurrentRateLimiter(
-            backend, f"distributed-mutex-{table_pk}", limit=1
-        )
-        with DISTRIBUTED_MUTEX.acquire():
-            print("########### DISTRIBUTED_MUTEX.acquire ###########")
-            if type == ETL.EXPORT.DBF:
-                data_directory = kwargs.pop("source_connection_name")
-                source_table = kwargs.pop("source_table_name")
-                return SQLImport(
-                    source_connection_name=data_directory,
-                    source_table_name=source_table,
-                    dest_connection_name=kwargs.pop("dest_connection_name"),
-                    dest_table_name=kwargs.pop("dest_table_name"),
-                    logger=process_import.logger,
-                    mode=mode,
-                ).start_import()
-            else:
-                # type == 'ARM'
-                source_connection = kwargs.pop("source_connection_name")
-                source_table = kwargs.pop("source_table_name")
-                dest_connection = kwargs.pop("dest_connection_name")
-                dest_table = kwargs.pop("dest_table_name")
-                return ARMImport(
-                    source_connection_name=source_connection,
-                    source_table_name=source_table,
-                    dest_connection_name=dest_connection,
-                    dest_table_name=dest_table,
-                    logger=process_import.logger,
+                    # logger=process_import.logger,
                     mode=mode,
                 ).start_import()
     except dramatiq.RateLimitExceeded:

@@ -1,8 +1,8 @@
-import logging
+# import logging
 from src.apps.common.dataclasses import ETL
 from src.services.sqllocal import SQLLocalFts
 
-logger = logging.getLogger(__name__)
+# logger = logging.getLogger(__name__)
 
 
 class SQLCount(SQLLocalFts):
@@ -17,7 +17,8 @@ class SQLCount(SQLLocalFts):
         super(SQLCount, self).__init__(
             source_connection_name, source_table_name,
             dest_connection_name, dest_table_name,
-            export_database_name, logger=logger,
+            export_database_name,
+            # logger=logger,
             mode=mode
         )
 

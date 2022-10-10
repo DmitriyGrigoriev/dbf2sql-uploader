@@ -234,12 +234,13 @@ def update_last_import_date(message_data: Dict[str, Any], result: int) -> None:
                 data_directory, source_table
             )
             print(
-                f"#### Success import from file {data_directory}{source_table}.DBF last write was at {last_write}  ####"
+                f"#### Success import from file {data_directory}{source_table}.DBF ####"
+                # f"#### Success import from file {data_directory}{source_table}.DBF last write was at {last_write}  ####"
             )
         else:
             last_write = datetime.today()
             print(
-                f"#### Success import from database {source_connection_name} table {source_table} last write was at {last_write}  ####"
+                f"#### Success import from database {source_connection_name} table {source_table} ####"
             )
 
         if last_write:

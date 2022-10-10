@@ -6,7 +6,7 @@ from src.services.base.baseimport import BaseImport
 from src.services.armlocal import ARMLocalFts
 from src.apps.common.dataclasses import ETL
 
-logger = logging.getLogger(__name__)
+# logger = logging.getLogger(__name__)
 
 class ARMImport(BaseImport):
 
@@ -29,7 +29,7 @@ class ARMImport(BaseImport):
         self.source_table_name = source_table_name
         self.dest_table_name = dest_table_name
 
-        self.logger = logger
+        # self.logger = logger
         self.mode = mode
 
         self.get_model_classes()
@@ -70,13 +70,13 @@ class ARMImport(BaseImport):
                         source_table_name=self.source_table_name,
                         dest_connection_name=self.dest_connection_name,
                         dest_table_name=self.dest_table_name,
-                        logger=self.logger,
+                        # logger=self.logger,
                         mode=self.mode
                     )
 
         except Exception as e:
-            logger.error(f'Error occured in: {self.dest_connection_name} table {self.dest_table_name}')
-            logger.exception(e)
+            self.logger.error(f'Error occured in: {self.dest_connection_name} table {self.dest_table_name}')
+            self.logger.exception(e)
             raise e
 
         return self._reccount
@@ -109,7 +109,7 @@ class ARMImport(BaseImport):
             source_table_name=dest_table_name,
             dest_connection_name=ETL.CONNECT.LOCALFTS,
             dest_table_name=ETL.PIPE_MODULES.DBF_TABLE_PREFIX + dest_table_name,
-            logger=logger,
+            # logger=logger,
             mode=mode
         ).start_import()
 

@@ -12,7 +12,9 @@ from import_export import resources
 from src.apps.common.dataclasses import ETL
 from src.config import settings
 
-logger = logging.getLogger(__name__)
+from dramatiq.logging import get_logger
+
+# logger = logging.getLogger(__name__)
 
 
 def get_databases_item_value(alias: str, key: str) -> str:
@@ -54,7 +56,8 @@ class BaseImport:
         self.dest_model = None
         self.resources: dict = {}
 
-        self._logger = None
+        self.logger = get_logger(__name__, type(self))
+        # self._logger = None
         self._mode = None
 
         self._headers = None
@@ -181,7 +184,7 @@ class BaseImport:
         self.source_table_name = source_table_name
         self.dest_connection_name = dest_connection_name
         self.dest_table_name = dest_table_name
-        self.logger = logger
+        # self.logger = logger
         self.mode = mode
 
     def get_source_model_class(self):
@@ -307,7 +310,7 @@ class BaseImport:
             else:
                 raise ConnectionDoesNotExist(alias)
         except Exception as e:
-            logger.exception(e)
+            self.logger.exception(e)
             raise e
 
     def get_list_classes(self, entry, module_name, base_class) -> list:
@@ -315,7 +318,7 @@ class BaseImport:
         try:
             app_module = import_module(entry)
         except Exception as e:
-            logger.exception(e)
+            self.logger.exception(e)
             raise e
 
         res_models = []
@@ -385,7 +388,7 @@ class BaseImport:
             self.dest_connection.cursor().execute(sql)
             # model.__class__.objects.using(self.dest_connection.alias).all().delete()
         except Exception as e:
-            logger.exception(e)
+            self.logger.exception(e)
             raise e
 
         return True

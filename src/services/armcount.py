@@ -16,7 +16,8 @@ class ARMCount(ARMImport):
         """
         super(ARMCount, self).__init__(
             source_connection_name, source_table_name,
-            dest_connection_name, dest_table_name, logger=logger,
+            dest_connection_name, dest_table_name,
+            # logger=logger,
             mode=mode
         )
 

@@ -1,9 +1,9 @@
-import logging
+# import logging
 from django.db import transaction
 from src.services.base.baseimport import BaseImport
 from src.apps.common.dataclasses import ETL
 
-logger = logging.getLogger(__name__)
+# logger = logging.getLogger(__name__)
 
 
 class SQLLocalFts(BaseImport):
@@ -46,7 +46,7 @@ class SQLLocalFts(BaseImport):
 
         self.export_database_name = export_database_name
 
-        self.logger = logger
+        # self.logger = logger
         self.mode = mode
 
         self.get_model_classes()
@@ -83,7 +83,7 @@ class SQLLocalFts(BaseImport):
             return self._dest_model_record_count()
 
         except Exception as e:
-            logger.exception(e)
+            self.logger.exception(e)
             raise e
 
     def _insert_statement(self):

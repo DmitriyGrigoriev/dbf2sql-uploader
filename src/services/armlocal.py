@@ -25,7 +25,7 @@ class ARMLocalFts(BaseImport):
         self.source_table_name = source_table_name
         self.dest_table_name = dest_table_name
 
-        self.logger = logger
+        # self.logger = logger
         self.mode = mode
 
         self.get_model_classes()
@@ -49,8 +49,8 @@ class ARMLocalFts(BaseImport):
                                   f"{source_database_name} table {source_table_name} "
                                   f"into {dest_database_name} table {dest_table_name}"
                                   )
-
-            logger.exception(e)
+            else:
+                logger.exception(e)
             raise e
 
 
