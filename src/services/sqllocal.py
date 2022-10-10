@@ -133,7 +133,8 @@ class SQLLocalFts(BaseImport):
                f"    WHERE [{ETL.FIELD.HASH}] NOT IN (\n"
                f"        SELECT [{ETL.FIELD.HASH}] FROM [{source_database_name}].[dbo].[{table_name}]\n"
                f"    )\n"
-               f"        AND [{ETL.FIELD.EXPTYPE}] = '{self.type}' AND [{ETL.FIELD.DATABASE}] = '{self.database}'\n")
+               f"      AND [{ETL.FIELD.EXPTYPE}] = '{self.type}'\n"
+               f"      AND [{ETL.FIELD.DATABASE}] = '{self.database}'\n")
         # self.print(sql)
         return sql
 
@@ -147,8 +148,8 @@ class SQLLocalFts(BaseImport):
                f"        SELECT [{ETL.FIELD.G07X}] FROM [{source_database_name}].[dbo].[{table_name}]\n"
                f"            WHERE [{ETL.FIELD.HASH}] NOT IN  (\n"
                f"               SELECT [{ETL.FIELD.HASH}] FROM [{dest_database_name}].[dbo].[{table_name}]\n" 
-               f"        ) AS T ON [{table_name}].[{ETL.FIELD.G07X}] = T.[{ETL.FIELD.G07X}] \n" 
-               f"    )\n"
+               f"        )\n" 
+               f"    ) AS T ON [{table_name}].[{ETL.FIELD.G07X}] = T.[{ETL.FIELD.G07X}]\n"
                f"    WHERE [{ETL.FIELD.EXPTYPE}] = '{ETL.EXPORT.DOC2SQL}'\n")
         # self.print(sql)
         return sql
