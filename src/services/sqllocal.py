@@ -70,11 +70,12 @@ class SQLLocalFts(BaseImport):
 
             delete_arm_sql = self._delete_arm_statement()
             insert_sql = self._insert_statement()
-            sql = f"{delete_dbf_sql} {delete_arm_sql} {insert_sql}"
-            nl = '\n'
+            # sql = f"{delete_dbf_sql} {delete_arm_sql} {insert_sql}"
+            # nl = '\n'
             # self.print(f"Delete & Insert statement for table "
             #            f"{self._get_real_source_table_name()}: {sql.replace(nl, '')}")
 
+            # Split to tree separate transaction to avoid deadlock error: 40001
             with transaction.atomic(using=self.dest_connection_name, savepoint=False):
                 self.print(f"Delete DBF records: "
                            f"{self._get_real_source_table_name()}: {delete_dbf_sql}")

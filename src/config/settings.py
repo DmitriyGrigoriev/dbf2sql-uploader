@@ -26,6 +26,7 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     'django_dramatiq',
     'import_export',
+    'debug_toolbar',
 ]
 
 LOCAL_APPS = [
@@ -48,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware'
 ]
 ################################################################################
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#debug
@@ -292,10 +294,10 @@ DRAMATIQ_BROKER = {
         "dramatiq.middleware.Retries",
         # This middleware stores metadata about tasks in flight to a database and exposes them via the Django admin.
         "django_dramatiq.middleware.AdminMiddleware",
-        # This middleware stores message_id in the ImportTables.message_id field
-        "src.services.middleware.ImportTablesAdminMiddleware",
         # This middleware is vital in taking care of closing expired connections after each message is processed.
         "django_dramatiq.middleware.DbConnectionsMiddleware",
+        # This middleware stores message_id in the ImportTables.message_id field
+        "src.services.middleware.ImportTablesAdminMiddleware",
     ]
 }
 # from django_dramatiq.middleware import AdminMiddleware
@@ -345,6 +347,25 @@ LOGGING = {
             'handlers': ['console', 'file']
         }
     }
+}
+################################################################################
+# Django show Toolbar
+################################################################################
+def show_toolbar(request):
+    # is no ajax
+    if not request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest' \
+            and request.user \
+            and request.user.is_authenticated \
+            and request.user.is_superuser \
+            and env.bool('SHOW_DEBUG_TOOLBAR'):
+        return True
+    return False
+################################################################################
+# Django Debug Toolbar
+################################################################################
+INTERNAL_IPS = ['127.0.0.1','192.168.89.213',]
+DEBUG_TOOLBAR_CONFIG = {
+    'SHOW_TOOLBAR_CALLBACK': 'src.config.settings.show_toolbar'
 }
 
 ################################################################################

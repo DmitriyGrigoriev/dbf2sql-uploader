@@ -43,7 +43,11 @@ class ImportTables(DefaultModel):
     dest_table = models.CharField(max_length=50,
                                   verbose_name=_('Import table')
                                   )
-    message_id = models.UUIDField(_('Broker message Id'), blank=True, null=True)
+    # important! Do not set constrain because dramatiq ImportTablesAdminMiddleware cannot write value message_id
+    message = models.OneToOneField(to=Task, to_field="id",
+                                   db_constraint=False, on_delete=models.SET_NULL,
+                                   verbose_name=_('Broker message Id'), blank=True, null=True
+                                   )
     redis_message_id = models.UUIDField(_('Redis message Id'), blank=True, null=True)
     uploadable = models.BooleanField(verbose_name='Uploadable', default=True)
     last_write = models.DateTimeField(verbose_name=_('Last write'), blank=True, null=True, )
@@ -54,8 +58,8 @@ class ImportTables(DefaultModel):
 
 class ConnectSet(DefaultModel):
     PIPE_TYPE = (
-        (ETL.EXPORT.DBF, _('import from DBF')),
-        (ETL.EXPORT.DOC2SQL, _('import from Doc2Sql')),
+        (ETL.EXPORT.DBF, _('DBF source')),
+        (ETL.EXPORT.DOC2SQL, _('Doc2Sql source')),
     )
 
     name = models.CharField(max_length=100)

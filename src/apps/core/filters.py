@@ -136,7 +136,7 @@ class PipelineListFilter(admin.SimpleListFilter):
 class ConnectTypeListFilter(admin.SimpleListFilter):
     # Human-readable title which will be displayed in the
     # right admin sidebar just above the filter options.
-    title = _("export/import type")
+    title = _("export/import engine")
 
     # Parameter for the filter that will be used in the URL query.
     parameter_name = "export-type"
@@ -150,8 +150,8 @@ class ConnectTypeListFilter(admin.SimpleListFilter):
         in the right sidebar.
         """
         return (
-            (DBF_ENGINE, _("Export from DBF")),
-            (MSSQL_ENGINE, _("Import to Doc2sql")),
+            (DBF_ENGINE, _("DBF source")),
+            (MSSQL_ENGINE, _("MSSQL source")),
         )
 
     def queryset(self, request, queryset):

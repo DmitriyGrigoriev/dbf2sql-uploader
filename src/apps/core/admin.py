@@ -43,16 +43,20 @@ class ImportTablesAdmin(admin.ModelAdmin):
         "run_export_import",
     )
     readonly_fields = (
-        "message_id",
+        "message",
         "redis_message_id",
         "last_write",
         "upload_record",
     )
     list_filter = (PipelineTablesListFilter, PipelineStatusListFilter)
-    # list_filter = ('connects__name',)
+    list_select_related = ('message',)
     search_fields = ("source_table",)
     # list_editable = ('uploadable',)
     # save_on_top = True
+
+    # def get_queryset(self, request):
+    #     qs = super(ImportTablesAdmin, self).get_queryset(request)
+    #     return qs.filter(message_id__in=Task.tasks.all())
 
     def has_add_permission(self, request: object) -> bool:
         return False
@@ -77,22 +81,22 @@ class ImportTablesAdmin(admin.ModelAdmin):
             f'{_("Unknown") if obj.uploadable else "-"}'
             f"</span>"
         )
-        if obj.message_id:
+        if obj.message:
             # Highlight the font in color if status not equal Done
             is_done = _("Done")
-            result = Task.tasks.filter(pk=obj.message_id).get()
-            if result:
-                status = result.status.title()
-                url = reverse(
-                    "admin:django_dramatiq_task_change", args=[result.pk]
-                )
-                return mark_safe(
-                    f'<a href="{url}" class="historylink">'
-                    f'<span style="color: {define_color};">{status}'
-                    f"</span></a>"
-                    if status != is_done
-                    else f'<a href="{url}" class="historylink">{status}</a>'
-                )
+            # result = Task.tasks.filter(pk=obj.message_id).get()
+            # if result:
+            status = obj.message.status.title()
+            url = reverse(
+                "admin:django_dramatiq_task_change", args=[obj.message.pk]
+            )
+            return mark_safe(
+                f'<a href="{url}" class="historylink">'
+                f'<span style="color: {define_color};">{status}'
+                f"</span></a>"
+                if status != is_done
+                else f'<a href="{url}" class="historylink">{status}</a>'
+            )
         return status
 
     def create_link(self, obj: ImportTables, mode: str) -> str:

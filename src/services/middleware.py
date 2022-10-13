@@ -19,7 +19,7 @@ class ImportTablesAdminMiddleware(Middleware):
             message_id = message_data['message_id']
             redis_message_id = message_data['options']['redis_message_id']
             record_to_update = ImportTables.tables.filter(pk=table_pk)
-            record_to_update.update(message_id=message_id, redis_message_id=redis_message_id)
+            record_to_update.update(message=message_id, redis_message_id=redis_message_id)
 
     def after_enqueue(self, broker, message, delay):
         self.update_message_id(message=message)
