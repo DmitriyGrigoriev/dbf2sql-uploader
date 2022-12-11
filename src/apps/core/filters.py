@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 from django_dramatiq.models import Task
 
+from src.apps.common.dataclasses import ETL
 from src.apps.core.models import DBF_ENGINE
 from src.apps.core.models import MSSQL_ENGINE
 
@@ -23,12 +24,12 @@ class PipelineStatusListFilter(admin.SimpleListFilter):
         in the right sidebar.
         """
         return (
-            ("enqueued", _("Enqueued")),
-            ("delayed", _("Delayed")),
-            ("running", _("Running")),
-            ("failed", _("Failed")),
-            ("done", _("Done")),
-            ("skipped", _("Skipped")),
+            ("enqueued", ETL.TASKSTATUS.ENDQUEUED),
+            ("delayed", ETL.TASKSTATUS.DELAYED),
+            ("running", ETL.TASKSTATUS.RUNNING),
+            ("failed", ETL.TASKSTATUS.FAILED),
+            ("done", ETL.TASKSTATUS.DONE),
+            ("skipped", ETL.TASKSTATUS.SKIPPED),
         )
 
     def queryset(self, request, queryset):
