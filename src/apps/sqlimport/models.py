@@ -148,7 +148,7 @@ class TDclpasp(Dclpasp, ExtSourceFields):
         db_table = 'tdclpasp'
 
 
-class TDclpk(Dclpk, ExtSourceFields):
+class TDclpk(Dclpk, ExtSourceNoHashUniqueIndex):
     class Meta:
         db_table = 'tdclpk'
 
