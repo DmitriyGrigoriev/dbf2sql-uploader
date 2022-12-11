@@ -163,6 +163,7 @@ DATABASES: dict = {
     },
     "test": {
         "ENGINE": "mssql",
+        # "NAME": "test",
         "NAME": "test",
         "USER": None,
         "PASSWORD": None,
@@ -292,6 +293,7 @@ DRAMATIQ_BROKER = {
         # Middleware that lets you chain success and failure callbacks onto Actors.
         "dramatiq.middleware.Callbacks",
         "dramatiq.middleware.Retries",
+        "dramatiq.middleware.Pipelines",
         # This middleware stores metadata about tasks in flight to a database and exposes them via the Django admin.
         "django_dramatiq.middleware.AdminMiddleware",
         # This middleware is vital in taking care of closing expired connections after each message is processed.
@@ -357,7 +359,7 @@ def show_toolbar(request):
             and request.user \
             and request.user.is_authenticated \
             and request.user.is_superuser \
-            and env.bool('SHOW_DEBUG_TOOLBAR'):
+            and env.bool('SHOW_DEBUG_TOOLBAR', default=False):
         return True
     return False
 ################################################################################
