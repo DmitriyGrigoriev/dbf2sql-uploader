@@ -1,8 +1,9 @@
 import json
-import logging
+# import logging
 from dramatiq.middleware import Middleware
+from src.apps.common.dataclasses import ImportInfo
 
-LOGGER = logging.getLogger("django_dramatiq.ImportTablesAdminMiddleware")
+# LOGGER = logging.getLogger("django_dramatiq.ImportTablesAdminMiddleware")
 
 
 class ImportTablesAdminMiddleware(Middleware):
@@ -15,10 +16,10 @@ class ImportTablesAdminMiddleware(Middleware):
         message_data.update({"message_id": message.message_id})
 
         if 'kwargs' in message_data and 'table_pk' in message_data['kwargs']:
-            table_pk = message_data['kwargs']['table_pk']
+            params = ImportInfo.from_dict(message_data['kwargs'])
             message_id = message_data['message_id']
             redis_message_id = message_data['options']['redis_message_id']
-            record_to_update = ImportTables.tables.filter(pk=table_pk)
+            record_to_update = ImportTables.tables.filter(pk=params.table_pk)
             record_to_update.update(message=message_id, redis_message_id=redis_message_id)
 
     def after_enqueue(self, broker, message, delay):
