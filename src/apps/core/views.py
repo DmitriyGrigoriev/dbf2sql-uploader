@@ -52,7 +52,7 @@ def run_import_for_single_table(
     t_list: List[ImportInfo] = table_import_info(table_pk)
 
     if len(t_list) > 0:
-        process_database_import(t_list, mode=mode)
+        process_database_import(t_list)
 
     messages.success(
         request,
@@ -77,7 +77,9 @@ def run_import_for_database(
     poll_name: str = ConnectSet.consets.record(pk=poll_pk).name
 
     if len(t_list) > 0:
-        process_database_import(t_list, mode=mode)
+        # pipeline_steps_for_import(t_list, mode=mode)
+        # process_database_import(t_list, mode=mode)
+        process_database_import(t_list)
         messages.info(
             request, f"Process import data from {poll_name} is running!"
         )
