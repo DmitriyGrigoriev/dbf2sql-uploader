@@ -1,6 +1,7 @@
-import inspect
-import logging
 import os
+import inspect
+import datetime
+from dateutil.relativedelta import relativedelta
 from importlib import import_module
 from pathlib import Path
 
@@ -9,7 +10,7 @@ from django.utils.connection import ConnectionDoesNotExist
 from django.utils.module_loading import module_has_submodule
 from import_export import resources
 
-from src.apps.common.dataclasses import ETL
+from src.apps.common.dataclasses import ETL, ImportInfo
 from src.config import settings
 
 from dramatiq.logging import get_logger
@@ -18,7 +19,7 @@ from dramatiq.logging import get_logger
 
 
 def get_databases_item_value(alias: str, key: str) -> str:
-    """Return value from settings.DATABASES dict"""
+    """Return value from settings.DATABASES[] dict"""
     if alias is None:
         alias = "default"
 
@@ -33,14 +34,9 @@ def get_databases_item_value(alias: str, key: str) -> str:
 
 
 class BaseImport:
-    def __init__(self) -> None:
-
-        # def __init__(self, source_connection_name: str, source_table_name: str,
-        #              dest_connection_name: str, dest_table_name: str, logger=None,
-        #              mode: str = ETL.MODE.FULL
-        #              ) -> None:
-
-        self._type = None
+    def __init__(self, params: ImportInfo) -> None:
+        self.params = params
+        self._type = self.params.type
         self._source_connection_name = None
         self._dest_connection_name = None
         self._source_model = None
@@ -48,6 +44,7 @@ class BaseImport:
         self._reccount = 0
 
         self._limit = ETL.BULK.BATCH_SIZE
+        self._period_of_month = ETL.BULK.SHIFT_MONTHS  # get export data for 10 last month
 
         self._source_model_module = None
         self._dest_model_module = None
@@ -57,10 +54,35 @@ class BaseImport:
         self.resources: dict = {}
 
         self.logger = get_logger(__name__, type(self))
-        # self._logger = None
-        self._mode = None
-
         self._headers = None
+
+        # There are definitions of the class model
+        if self.type == ETL.EXPORT.DBF:
+            self.source_model_module = ETL.PIPE_MODULES.DBF_EXPORT
+            self.dest_model_module = ETL.PIPE_MODULES.DBF_IMPORT
+
+        if self.type == ETL.EXPORT.DOC2SQL:
+            self.source_model_module = ETL.PIPE_MODULES.DOC2SQL_EXPORT
+            self.dest_model_module = ETL.PIPE_MODULES.DOC2SQL_IMPORT
+
+        if self.type == ETL.EXPORT.DBF and self.params.dest_connection_name == ETL.CONNECT.LOCALFTS:
+            self.source_model_module = ETL.PIPE_MODULES.DBF_IMPORT
+            self.dest_model_module = ETL.PIPE_MODULES.DBF_IMPORT
+
+        if self.type == ETL.EXPORT.DOC2SQL and self.params.dest_connection_name == ETL.CONNECT.LOCALFTS:
+            self.source_model_module = ETL.PIPE_MODULES.DOC2SQL_IMPORT
+            self.dest_model_module = ETL.PIPE_MODULES.DBF_IMPORT
+
+        self.source_table_name = self.params.source_table_name
+        self.dest_table_name = self.params.dest_table_name
+
+        self.source_connection_name = self.params.source_connection_name
+        self.dest_connection_name = self.params.dest_connection_name
+        self.get_model_classes()
+        self.get_resources()
+
+        self.database = self._get_source_database_id()
+        self.export_database_name = None
 
     @property
     def source_model_module(self):
@@ -85,14 +107,6 @@ class BaseImport:
     @headers.setter
     def headers(self, value):
         self._headers = value
-
-    @property
-    def mode(self):
-        return self._mode
-
-    @mode.setter
-    def mode(self, value):
-        self._mode = value
 
     @property
     def logger(self):
@@ -175,17 +189,13 @@ class BaseImport:
         source_connection_name: str,
         source_table_name: str,
         dest_connection_name: str,
-        dest_table_name: str,
-        logger=None,
-        mode: str = ETL.MODE.FULL,
+        dest_table_name: str
     ) -> None:
 
         self.source_connection_name = source_connection_name
         self.source_table_name = source_table_name
         self.dest_connection_name = dest_connection_name
         self.dest_table_name = dest_table_name
-        # self.logger = logger
-        self.mode = mode
 
     def get_source_model_class(self):
         return self.get_model_class(
@@ -221,7 +231,7 @@ class BaseImport:
             )
         )
 
-    def print(self, message) -> None:
+    def print(self, message: str) -> None:
         if self.logger:
             self.logger.info(message)
         else:
@@ -246,7 +256,6 @@ class BaseImport:
                 == self.dest_model._meta.model.__name__.lower()
             ):
                 return model()
-        return None
 
     def _get_exported_headers(self) -> list:
         """Return fields list from model"""
@@ -392,6 +401,49 @@ class BaseImport:
             raise e
 
         return True
+
+    def dbf_record_count(self) -> int:
+        """Calculate rows in DBF
+        :rtype: object
+        """
+        sql = f"SELECT COUNT(*) as RECC FROM {self.source_model._meta.db_table};"
+        rows = self._execute_query(sql)
+        count = 0
+        for row in rows:
+            count = row[0]
+        return count
+
+    def _imported_field_exist(self, field: str):
+        result = [
+            field
+            for f in self._get_imported_headers() if f.lower() == field.lower()
+        ]
+        return result or None
+
+    def _exported_field_exist(self, field: str):
+        result = [
+            field
+            for f in self._get_exported_headers() if f.lower() == field.lower()
+        ]
+        return result[0] or None
+
+    def gomonth(self, today: datetime.date, month: int):
+        return today + relativedelta(months=+month)
+
+    def arm_record_count(self) -> int:
+        """Calculate was exported rows"""
+        field = self._exported_field_exist(ETL.FIELD.G072)
+
+        today = datetime.date.today()
+        last = self.gomonth(today=today, month=self._period_of_month)
+
+        if field:
+            result = self.source_model.__class__.objects.using(self.source_connection_name). \
+                    filter(g072__gte=last, g072__lte=today).count()
+        else:
+            result = self.source_model.__class__.objects.using(self.source_connection_name).count()
+
+        return result
 
     # def get_actual_arm_record(self, connection_name):
     #     self.source_connection = self.get_connection_by_alias(connection_name)
