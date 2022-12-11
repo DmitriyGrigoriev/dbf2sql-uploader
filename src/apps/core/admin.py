@@ -21,7 +21,7 @@ from .models import MSSQL_ENGINE
 from .validators import ConnectBaseValidator
 from .validators import DBFConnectValidator
 from .validators import SQLConnectValidator
-from src.apps.common.dataclasses import ETL
+from src.apps.common.dataclasses import ETL, ImportInfo
 from src.services.base.baseimport import BaseImport
 
 # Register your models here.
@@ -216,25 +216,26 @@ class ConnectSetAdmin(admin.ModelAdmin):
     def create_or_update_import_tables_list(
         self, request: object, object_pk: int
     ) -> HttpResponseRedirect:
-        import_class = BaseImport()
+
         poll = ConnectSet.consets.record(pk=object_pk)
-        # prefix = settings.PIPE_MODULES[poll.type]["table_prefix"]
-        prefix = (
-            ETL.PIPE_MODULES.DBF_TABLE_PREFIX
-            if poll.type == ETL.EXPORT.DBF
-            else ETL.PIPE_MODULES.DOC2SQL_TABLE_PREFIX
-        )
 
         if len(ImportTables.tables.filter(connects=object_pk).all()) == 0:
+            params = ImportInfo()
+            params.type = poll.type
+            base_import_class = BaseImport(params=params)
 
-            table_list = import_class.get_list_tables_from_model_class(
-                # settings.PIPE_MODULES[poll.type]["export"], "models"
+            table_list = base_import_class.get_list_tables_from_model_class(
                 ETL.PIPE_MODULES.DBF_EXPORT
                 if poll.type == ETL.EXPORT.DBF
                 else ETL.PIPE_MODULES.DOC2SQL_EXPORT,
                 "models",
             )
 
+            prefix = (
+                ETL.PIPE_MODULES.DBF_TABLE_PREFIX
+                if poll.type == ETL.EXPORT.DBF
+                else ETL.PIPE_MODULES.DOC2SQL_TABLE_PREFIX
+            )
             for table in table_list:
                 ImportTables.tables.update_or_create(
                     source_table=table.upper(),
