@@ -1,13 +1,8 @@
+import copy
 import tablib
-import logging
-from django.apps import apps
-# from import_export import resources
 from src.services.base.baseimport import BaseImport
 from src.services.sqllocal import SQLLocalFts
-from src.apps.common.dataclasses import ETL
-
-
-logger = logging.getLogger(__name__)
+from src.apps.common.dataclasses import ETL, ImportInfo
 
 
 def datetime_as_string(value):
@@ -19,169 +14,106 @@ def datetime_as_string(value):
 
 
 class SQLImport(BaseImport):
+    def __init__(self, params) -> None:
+        # params = ImportInfo.from_dict({'table_pk': 174, 'poll_pk': 2, 'source_connection_name':
+        # 'dbf_2022_test', 'source_table_name': 'DCLTECHD', 'dest_connection_name': 'test',
+        # 'dest_table_name': 'TDCLTECHD', 'data_directory': 'TDCLTECHD', 'type': 'DBF',
+        # 'last_write': '2022-08-26T11:24:36.911358', 'upload_record': 9534, 'table_record': 0,
+        # 'status': 'enqueued', 'redis_message_id': '82dbcee0-17ee-4d81-bd43-a9f35b010b98'})
+        super(SQLImport, self).__init__(params)
+        self.partial_uploaded = False
+        self._prev_start = 0
 
-    def __init__(self, source_connection_name: str, source_table_name: str,
-                 dest_connection_name: str, dest_table_name: str, logger=None,
-                 mode: str = ETL.MODE.FULL
-                 ) -> None:
-
-        self.start = 0
-        self.end = 0
-
-        super(SQLImport, self).__init__()
-
-        self.type = ETL.EXPORT.DBF
-        self.source_model_module = ETL.PIPE_MODULES.DBF_EXPORT
-        self.dest_model_module = ETL.PIPE_MODULES.DBF_IMPORT
-
-        self.source_connection_name = source_connection_name
-        self.dest_connection_name = dest_connection_name
-
-        self.source_table_name = source_table_name
-        self.dest_table_name = dest_table_name
-
-        # self.logger = logger
-        self.mode = mode
-
-        self.get_model_classes()
-        self.get_resources()
-
-    def start_import(self, start: int = 0, end: int = 0) -> int:
+    def run_import(self) -> int:
         """Process importing data from DBF to SQL Server"""
         ##########################################################################
         # First step: GTD_2022_SMOLENSK.DCLHEAD.DBF -> GTD_2022_SMOLENSK.TDCLHEAD
-        # SQLImport(
-        #     source_connection_name='dbf_2022_smolensk'
-        #     source_table_name='DCLHEAD',
-        #     dest_connection_name='gtd_2022_smolensk',
-        #     dest_table_name='TDCLHEAD',
-        #     logger=None
+        # SQLImport({
+        #     source_connection_name: 'dbf_2022_smolensk'
+        #     source_table_name: 'DCLHEAD',
+        #     dest_connection_name: 'gtd_2022_smolensk',
+        #     dest_table_name: 'TDCLHEAD'}
         # ).start_import()
         ##########################################################################
-        self.start = start
-        self.end = end
-
         try:
-            if self.mode == ETL.MODE.FULL or self.mode == ETL.MODE.IMPORT:
-
-                if self.start == 0:
-                    self.delete()
-
-                if self.end == 0:
-                    self._reccount = self._source_model_record_count()
-                else:
-                    self._reccount = self.end
-
-                raw_sql = self._get_export_raw_sql()
-
+            self._reccount = self.dbf_record_count()
+            if self._reccount > 0:
+                self._delete_all_imported_records(model=self.dest_model)
+                raw_sql_select = self._get_export_raw_sql()
                 resource = self._create_resource_instance()
 
-                for start in range(self.start, self._reccount, self._limit):
+                for i in reversed(range(0, self._reccount, self._limit)):
                     # select data from dbf model
-                    sql = self._transform_raw_select(start=start + 1, raw_sql=raw_sql)
-
-                    if self.logger:
-                        self.logger.info(f"Execute SQL: {sql}")
-
+                    sql = self._transform_raw_select(i, raw_sql=raw_sql_select)
                     rows = self._execute_query(sql)
                     dataset = tablib.Dataset(headers=self.headers)
 
                     for row in rows:
                         dataset.append(row=row)
-
-                    resource.import_data(dataset, use_transactions=False)
-                    dataset.wipe()
-
-            if self.end == 0 and (
-                self.mode == ETL.MODE.FULL or self.mode == ETL.MODE.EXPORT
-            ):
+                    resource.import_data(dataset, use_transactions=True, raise_errors=True)
+                    # After importing some specific records from the end of the dbf file will
+                    # run export to localfts database and continue import
+                    if not self.partial_uploaded and (
+                            self._reccount - i >= ETL.BULK.BATCH_SLICE
+                    ):
+                        self.export_to_localfts(is_partial=True)
+                ######################################################################
+                # Second step: GTD_2022_SMOLENSK.dbo.TDCLHEAD -> LocalFts.dbo.TDCLHEAD
+                # SQLLocalFts({
+                #     source_connection_name: 'gtd_2022_smolensk',
+                #     source_table_name: 'TDCLHEAD',
+                #     dest_connection_name: 'localfts',
+                #     dest_table_name: 'TDCLHEAD',
+                #     export_database_name: 'gtd_2022_smolensk'}
+                # ).start_import()
+                #######################################################################
                 # Update LocalFts
-                self._reccount = self.after_import(
-                    source_connection_name=self.source_connection_name,
-                    source_table_name=self.source_table_name,
-                    dest_connection_name=self.dest_connection_name,
-                    dest_table_name=self.dest_table_name,
-                    # logger=self.logger,
-                    mode=self.mode
-                )
-
+                self.export_to_localfts(is_partial=False)
         except Exception as e:
-            if self.logger:
-                self.logger.error(f'Error occured in NAME[{self.dest_connection_name}] table {self.dest_table_name}')
-                self.logger.exception(e)
-            else:
-                logger.exception(e)
+            self.logger.error(f'Error occurred in connection [{self.dest_connection_name}] '
+                              f'table name: {self.dest_table_name}')
+            self.logger.exception(e)
             raise e
 
         return self._reccount
 
-    def after_import(self, source_connection_name: str, source_table_name: str,
-                     dest_connection_name: str, dest_table_name: str,
-                     # logger=logger,
-                     mode: str = ETL.MODE.FULL
-                 ) -> int:
-        ######################################################################
-        # First step: GTD_2022_SMOLENSK.DCLHEAD.DBF -> GTD_2022_SMOLENSK.TDCLHEAD
-        # SQLImport(
-        #     source_connection_name='dbf_2022_smolensk'
-        #     source_table_name='DCLHEAD',
-        #     dest_connection_name='gtd_2022_smolensk',
-        #     dest_table_name='TDCLHEAD',
-        #     logger=None
-        # ).start_import()
-        ######################################################################
-        # Second step: GTD_2022_SMOLENSK.dbo.TDCLHEAD -> LocalFts.dbo.TDCLHEAD
-        # SQLLocalFts(
-        #     source_connection_name='gtd_2022_smolensk',
-        #     source_table_name='TDCLHEAD',
-        #     dest_connection_name='localfts',
-        #     dest_table_name='TDCLHEAD',
-        #     export_database_name='gtd_2022_smolensk',
-        #     logger=None
-        # ).start_import()
-        #######################################################################
-        result = SQLLocalFts(
-            source_connection_name=dest_connection_name,
-            source_table_name=dest_table_name,
-            dest_connection_name=ETL.CONNECT.LOCALFTS,
-            dest_table_name=dest_table_name,
-            export_database_name=self._get_source_database_id(),
-            # logger=logger,
-            mode=mode
-        ).start_import()
+    def save_start_point(self, i: int):
+        if self._prev_start == 0:
+            if i == 0:
+                self._prev_start = self._limit
+            else:
+                self._prev_start = i
+        elif (self._prev_start - self._limit - 1) > 0:
+            self._prev_start = self._prev_start - self._limit - 1
+        else:
+            self._prev_start = self._limit - (self._limit - self._prev_start) - 1
 
-        # Restore using_db
-        self.restore_default(
-            source_connection_name, source_table_name,
-            dest_connection_name, dest_table_name,
-            # logger=None,
-            mode=mode
-        )
-        return result
+    def export_to_localfts(self, is_partial: bool = False) -> None:
+        if is_partial:
+            self.partial_uploaded = is_partial
+        params: ImportInfo = self.get_export_params()
+        SQLLocalFts(params, is_partial=is_partial).run_import()
 
-    def _transform_raw_select(self, start: int, raw_sql: str) -> str:
-        """Transform SQL expr [SELECT field1, fiel2 ...] into expr
+    def _transform_raw_select(self, start: int, raw_sql: str, reverse: bool = False) -> str:
+        """Transform SQL expr [SELECT field1, field2 ...] into expr
         [SELECT TOP limit START AT record field1, field2]
         """
-        if start == 1:
-            sql = f"SELECT TOP {self._limit}"
+        self.save_start_point(start)
+
+        if start == 0:
+            sql = f"SELECT TOP {self._prev_start}"
         else:
-            sql = f"SELECT TOP {self._limit} START AT {start}"
+            sql = f"SELECT TOP {self._limit} START AT {self._prev_start}"
 
-        return raw_sql.replace("SELECT", sql)
+        sql = raw_sql.replace("SELECT", sql)
+        if self.logger:
+            self.logger.info(f"{sql}")
 
-    def _source_model_record_count(self) -> int:
-        """Calculate rows in DBF
-        :rtype: object
-        """
-        sql = f"SELECT COUNT(*) as RECC FROM {self.source_model._meta.db_table};"
-        rows = self._execute_query(sql)
-        for row in rows:
-            recc = row[0]
-        return recc or 0
+        return sql
 
-    def _get_models(self, app_name: str):
-        return apps.get_app_config(app_name).get_models()
-
-    def delete(self) -> bool:
-        return self._delete_all_imported_records(model=self.dest_model)
+    def get_export_params(self):
+        params: ImportInfo = copy.copy(self.params)
+        params.source_connection_name = self.params.dest_connection_name
+        params.source_table_name = self.params.dest_table_name
+        params.dest_connection_name = ETL.CONNECT.LOCALFTS
+        return params
