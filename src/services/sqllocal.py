@@ -8,11 +8,7 @@ from src.apps.common.dataclasses import ETL
 
 class SQLLocalFts(BaseImport):
 
-    def __init__(self, source_connection_name: str, source_table_name: str,
-                 dest_connection_name: str, dest_table_name: str,
-                 export_database_name: str,
-                 logger=None, mode: str = ETL.MODE.FULL
-                 ) -> None:
+    def __init__(self, params, is_partial: bool = False) -> None:
         ######################################################################
         # Second step: GTD_2022_SMOLENSK.dbo.TDCLHEAD -> LocalFts.dbo.TDCLHEAD
         # SQLLocalFts(
@@ -21,74 +17,33 @@ class SQLLocalFts(BaseImport):
         #     dest_connection_name='localfts',
         #     dest_table_name='TDCLHEAD',
         #     logger=None
-        # ).start_import()
+        # ).run_import()
         #######################################################################
-        # super(SQLLocalFts, self).__init__(
-        #     source_connection_name,
-        #     source_table_name,
-        #     dest_connection_name,
-        #     dest_table_name,
-        #     logger,
-        #     mode
-        # )
-        #######################################################################
-        super(SQLLocalFts, self).__init__()
+        super(SQLLocalFts, self).__init__(params)
+        self.partial = is_partial
+        self.export_database_name = self._get_source_database_id()
 
-        self.type = ETL.EXPORT.DBF
-        self.source_model_module = ETL.PIPE_MODULES.DBF_IMPORT
-        self.dest_model_module = ETL.PIPE_MODULES.DBF_IMPORT
-
-        self.source_connection_name = source_connection_name
-        self.dest_connection_name = dest_connection_name
-
-        self.source_table_name = source_table_name
-        self.dest_table_name = dest_table_name
-
-        self.export_database_name = export_database_name
-
-        # self.logger = logger
-        self.mode = mode
-
-        self.get_model_classes()
-        self.get_resources()
-
-        self.database = self._get_source_database_id()
-
-        # self._reccount = 0
-
-    def start_import(self):
+    def run_import(self):
         """Process importing data from DBF to SQL Server"""
         try:
             if not hasattr(self.source_model, 'unique_hash'):
                 raise AttributeError("'source_model' object has no attribute 'unique_hash'")
 
-            if self.source_model.unique_hash:
-                delete_dbf_sql = self._delete_dbf_statement_by_hash()
+            if not self.partial:
+                if self.source_model.unique_hash:
+                    delete_dbf_sql = self.delete_dbf_statement_by_hash()
+                if not self.source_model.unique_hash:
+                    delete_dbf_sql = self.delete_dbf_statement()
+                # Run each sql as an isolate transaction to avoid deadlock error: 40001
+                with transaction.atomic(using=self.dest_connection_name, savepoint=False):
+                    self._execute_query(delete_dbf_sql)
 
-            if not self.source_model.unique_hash:
-                delete_dbf_sql = self._delete_dbf_statement()
-
-            delete_arm_sql = self._delete_arm_statement()
-            insert_sql = self._insert_statement()
-            # sql = f"{delete_dbf_sql} {delete_arm_sql} {insert_sql}"
-            # nl = '\n'
-            # self.print(f"Delete & Insert statement for table "
-            #            f"{self._get_real_source_table_name()}: {sql.replace(nl, '')}")
-
-            # Split to tree separate transaction to avoid deadlock error: 40001
-            with transaction.atomic(using=self.dest_connection_name, savepoint=False):
-                self.print(f"Delete DBF records: "
-                           f"{self._get_real_source_table_name()}: {delete_dbf_sql}")
-                self._execute_query(delete_dbf_sql)
+                with transaction.atomic(using=self.dest_connection_name, savepoint=False):
+                    delete_arm_sql = self.delete_arm_statement()
+                    self._execute_query(delete_arm_sql)
 
             with transaction.atomic(using=self.dest_connection_name, savepoint=False):
-                self.print(f"Delete ARM records: "
-                           f"{self._get_real_source_table_name()}: {delete_arm_sql}")
-                self._execute_query(delete_arm_sql)
-
-            with transaction.atomic(using=self.dest_connection_name, savepoint=False):
-                self.print(f"Insert records: "
-                           f"{self._get_real_source_table_name()}: {insert_sql}")
+                insert_sql = self.insert_statement()
                 self._execute_query(insert_sql)
 
             return self._dest_model_record_count()
@@ -97,7 +52,7 @@ class SQLLocalFts(BaseImport):
             self.logger.exception(e)
             raise e
 
-    def _insert_statement(self):
+    def insert_statement(self):
         source_database_name = self._get_real_database_name()
         dest_database_name = self._get_real_localfts_name()
         table_name = self._get_real_source_table_name()
@@ -112,17 +67,21 @@ class SQLLocalFts(BaseImport):
                f"        WHERE [{ETL.FIELD.HASH}] NOT IN (\n"
                f"            SELECT [{ETL.FIELD.HASH}] FROM [{dest_database_name}].[dbo].[{table_name}]\n"
                f"        )\n")
-        # self.print(sql)
+
+        self.print(f"\n################## Insert statement for {self._get_real_source_table_name().upper()}  "
+                   f"##################: {sql}")
         return sql
 
     def _source_model_record_count(self):
+        # SELECT COUNT(*) FROM [LocalFts].[dbo].[tdclhead]
+        #   WHERE [sourcetype] = 'DBF' AND [database] = 'gtd_2022_smolensk'
         return self.source_model.__class__.objects.using(self.source_connection_name).count()
 
     def _dest_model_record_count(self):
         return self.dest_model.__class__.objects.using(self.dest_connection_name).\
             filter(sourcetype=ETL.EXPORT.DBF, database=self.export_database_name).count()
 
-    def _delete_dbf_statement(self):
+    def delete_dbf_statement(self):
         # DELETE FROM [LocalFts].[dbo].[tdclhead]
         #   WHERE [sourcetype] = 'DBF' AND [database] = 'gtd_2022_smolensk'
         dest_database_name = self._get_real_localfts_name()
@@ -130,11 +89,29 @@ class SQLLocalFts(BaseImport):
         sql = (f"\n"
                f"DELETE [{table_name}] FROM [{dest_database_name}].[dbo].[{table_name}]\n"
                f"    WHERE [{ETL.FIELD.EXPTYPE}] = '{self.type}' AND [{ETL.FIELD.DATABASE}] = '{self.export_database_name}'\n")
-        # self.print(sql)
+
+        self.print(f"\n################## Delete type {ETL.EXPORT.DBF} records "
+                   f"in {self._get_real_source_table_name().upper()}  ##################: {sql}")
         return sql
 
+    # def delete_partial_dbf_statement(self):
+    #     # DELETE [tdcltechd] FROM [LocalFts].[dbo].[tdcltechd] l
+    #     # 	INNER JOIN [gtd_2022_lg].[dbo].[tdcltechd] d
+    #     # 		ON d.[hash] = l.[hash] AND d.[g07x] = l.[g07x]
+    #     # WHERE l.[sourcetype] = 'DBF' AND l.[database] = 'gtd_2022_lg'
+    #     dest_database_name = self._get_real_localfts_name()
+    #     source_database_name = self._get_real_database_name()
+    #     table_name = self._get_real_source_table_name()
+    #     sql = (f"\n"
+    #            f"DELETE [{table_name}] FROM [{source_database_name}].[dbo].[{table_name}] d\n"
+    #            f"   INNER JOIN [{dest_database_name}].[dbo].[{table_name}] l\n"
+    #            f"       ON d.[{ETL.FIELD.HASH}] = l.[{ETL.FIELD.HASH}] AND d.[{ETL.FIELD.G07X}] = l.[{ETL.FIELD.G07X}]\n"
+    #            f"    WHERE l.[{ETL.FIELD.EXPTYPE}] = '{self.type}' AND [{ETL.FIELD.DATABASE}] = '{self.export_database_name}'\n")
+    #     # self.print(sql)
+    #     return sql
 
-    def _delete_dbf_statement_by_hash(self):
+
+    def delete_dbf_statement_by_hash(self):
         # DELETE FROM [LocalFts].[dbo].[tdclhead]
         #   WHERE [hash] NOT IN (SELECT [hash] FROM [gtd_2022_smolensk].[dbo].[tdclhead])
         #     AND [sourcetype] = 'DBF' AND [database] = 'gtd_2022_smolensk'
@@ -148,21 +125,34 @@ class SQLLocalFts(BaseImport):
                f"    )\n"
                f"      AND [{ETL.FIELD.EXPTYPE}] = '{self.type}'\n"
                f"      AND [{ETL.FIELD.DATABASE}] = '{self.database}'\n")
-        # self.print(sql)
+
+        self.print(f"\n################## Delete type {ETL.EXPORT.DBF} records "
+                   f"by unique {ETL.FIELD.HASH} in {self._get_real_source_table_name().upper()} ##################:"
+                   f"{sql}")
         return sql
 
-    def _delete_arm_statement(self):
+    def delete_arm_statement(self):
+        # DELETE [tdcltechd] FROM [LocalFts].[dbo].[tdcltechd]
+        #     INNER JOIN (
+        #         SELECT [g07x] FROM [gtd_2022_lg].[dbo].[tdcltechd]
+        #             WHERE [hash] NOT IN  (
+        #                SELECT [hash] FROM [LocalFts].[dbo].[tdcltechd]
+        #         )
+        #     ) AS T ON [tdcltechd].[g07x] = T.[g07x]
+        #     WHERE [sourcetype] = 'ARM'
         dest_database_name = self._get_real_localfts_name()
         source_database_name = self._get_real_database_name()
         table_name = self._get_real_source_table_name()
         sql = (f"\n"
                f"DELETE [{table_name}] FROM [{dest_database_name}].[dbo].[{table_name}]\n"
-               f"    INNER JOIN ("
+               f"    INNER JOIN (\n"
                f"        SELECT [{ETL.FIELD.G07X}] FROM [{source_database_name}].[dbo].[{table_name}]\n"
                f"            WHERE [{ETL.FIELD.HASH}] NOT IN  (\n"
                f"               SELECT [{ETL.FIELD.HASH}] FROM [{dest_database_name}].[dbo].[{table_name}]\n" 
                f"        )\n" 
                f"    ) AS T ON [{table_name}].[{ETL.FIELD.G07X}] = T.[{ETL.FIELD.G07X}]\n"
                f"    WHERE [{ETL.FIELD.EXPTYPE}] = '{ETL.EXPORT.DOC2SQL}'\n")
-        # self.print(sql)
+
+        self.print(f"\n################## Delete type {ETL.EXPORT.DOC2SQL} "
+                   f"records in {self._get_real_source_table_name().upper()} ##################: {sql}")
         return sql
