@@ -30,19 +30,19 @@ class ImportInfo:
     redis_message_id: str
     # redis_message_id: UUID = field(default_factory=uuid4)
 
-@dataclass
+@dataclass(frozen=True)
 class Export:
     DBF: str = "DBF"
     DOC2SQL: str = "ARM"
 
-@dataclass
+@dataclass(frozen=True)
 class Mode:
     EXPORT: str = "only-export"
     IMPORT: str = "only-import"
     FULL: str = "export-import"
 
 
-@dataclass
+@dataclass(frozen=True)
 class Field:
     HASH: str = "hash"
     G07X: str = "g07x"
@@ -63,12 +63,12 @@ class Field:
     DATABASE: str = "database"
 
 
-@dataclass
+@dataclass(frozen=True)
 class UrlName:
     EXPORT_SINGLE_TABLE: str = "export-from-single-table"
     PIPELINE_EXPORT_IMPORT: str = "pipeline-export-import"
 
-@dataclass
+@dataclass(frozen=True)
 class TaskStatus:
     ENDQUEUED = _("Enqueued")
     DELAYED = _("Delayed")
@@ -79,7 +79,7 @@ class TaskStatus:
     UNKNOWN = _("Unknown")
 
 
-@dataclass
+@dataclass(frozen=True)
 class TimeLimit:
     ONE_HOUR: int = 3600000
     TWO_HOUR: int = 3600000 * 2
@@ -92,7 +92,7 @@ class TimeLimit:
     NIGHT_HOUR: int = 3600000 * 9
 
 
-@dataclass
+@dataclass(frozen=True)
 class Connect:
     LOCALFTS: str = "localfts"
 
@@ -105,7 +105,7 @@ class Bulk:
     SHIFT_MONTHS: int = env.int('SHIFT_MONTHS', default=-2)
 
 
-@dataclass
+@dataclass(frozen=True)
 class PipeModules:
     DBF_EXPORT: str = "src.apps.dbfexport"
     DBF_IMPORT: str = "src.apps.sqlimport"
@@ -117,7 +117,7 @@ class PipeModules:
     DOC2SQL_TABLE_PREFIX: str = ""
 
 
-@dataclass
+@dataclass(frozen=True)
 class RedisClient:
     DRAMATIQ_MSGS: str = "dramatiq:default.msgs"
     DRAMATIQ_DQ_MSGS: str = "dramatiq:default.DQ.msgs"  # delay queue
