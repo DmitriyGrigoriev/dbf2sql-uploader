@@ -8,7 +8,6 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
-from django_dramatiq.models import Task
 
 from .filters import ConnectTypeListFilter
 from .filters import PipelineListFilter
@@ -78,14 +77,12 @@ class ImportTablesAdmin(admin.ModelAdmin):
         define_color = "#B15117"
         status = mark_safe(
             f'<span style="color: {define_color};">'
-            f'{_("Unknown") if obj.uploadable else "-"}'
+            f'{ETL.TASKSTATUS.UNKNOWN if obj.uploadable else "-"}'
             f"</span>"
         )
         if obj.message:
             # Highlight the font in color if status not equal Done
             is_done = _("Done")
-            # result = Task.tasks.filter(pk=obj.message_id).get()
-            # if result:
             status = obj.message.status.title()
             url = reverse(
                 "admin:django_dramatiq_task_change", args=[obj.message.pk]
