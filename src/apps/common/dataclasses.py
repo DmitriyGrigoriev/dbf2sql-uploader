@@ -1,14 +1,39 @@
 from datetime import datetime
-from pydantic.dataclasses import dataclass
+from dataclasses import dataclass, field
+from dataclasses_json import dataclass_json, config
+from django.utils.translation import gettext_lazy as _
+from marshmallow import fields
 
 from src.config.settings import env
 
+@dataclass_json
+@dataclass
+class ImportInfo:
+    table_pk: int
+    poll_pk: int
+    source_connection_name: str
+    source_table_name: str
+    dest_connection_name: str
+    dest_table_name: str
+    data_directory: str
+    type: str
+    last_write: datetime = field(
+        metadata=config(
+            encoder=datetime.isoformat,
+            decoder=datetime.fromisoformat,
+            mm_field=fields.DateTime(format='iso')
+        )
+    )
+    upload_record: int
+    table_record: int
+    status: str
+    redis_message_id: str
+    # redis_message_id: UUID = field(default_factory=uuid4)
 
 @dataclass
 class Export:
     DBF: str = "DBF"
     DOC2SQL: str = "ARM"
-
 
 @dataclass
 class Mode:
@@ -43,6 +68,16 @@ class UrlName:
     EXPORT_SINGLE_TABLE: str = "export-from-single-table"
     PIPELINE_EXPORT_IMPORT: str = "pipeline-export-import"
 
+@dataclass
+class TaskStatus:
+    ENDQUEUED = _("Enqueued")
+    DELAYED = _("Delayed")
+    RUNNING = _("Running")
+    FAILED = _("Failed")
+    DONE = _("Done")
+    SKIPPED = _("Skipped")
+    UNKNOWN = _("Skipped")
+
 
 @dataclass
 class TimeLimit:
@@ -66,7 +101,8 @@ class Connect:
 class Bulk:
     # BATCH_SIZE: int = 100
     BATCH_SIZE: int = 1000
-    SHIFT_MONTHS: int = env.int('SHIFT_MONTHS', default=-1)
+    BATCH_SLICE: int = 20000
+    SHIFT_MONTHS: int = env.int('SHIFT_MONTHS', default=-2)
 
 
 @dataclass
@@ -98,29 +134,7 @@ class Etl:
     BULK: Bulk = Bulk()
     PIPE_MODULES: PipeModules = PipeModules()
     DRAMATIQ: RedisClient = RedisClient()
-
-
-@dataclass
-class ImportInfo:
-    table_pk: int
-    poll_pk: int
-    source_connection_name: str
-    source_table_name: str
-    dest_connection_name: str
-    dest_table_name: str
-    data_directory: str
-    type: str
-
-
-@dataclass
-class RecordInfo:
-    source_connection_name: str
-    source_table_name: str
-    dest_connection_name: str
-    dest_table_name: str
-    data_directory: str
-    last_write: datetime
-    upload_record: int
+    TASKSTATUS: TaskStatus = TaskStatus()
 
 
 ETL = Etl()
