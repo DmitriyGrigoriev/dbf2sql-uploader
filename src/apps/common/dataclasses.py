@@ -76,7 +76,7 @@ class TaskStatus:
     FAILED = _("Failed")
     DONE = _("Done")
     SKIPPED = _("Skipped")
-    UNKNOWN = _("Skipped")
+    UNKNOWN = _("Unknown")
 
 
 @dataclass

@@ -99,11 +99,11 @@ def get_upload_record_value(poll_pk: int) -> List[ImportInfo]:
                     t.last_write,
                     t.upload_record,
                     0,
-                    t.message.status,
+                    t.message.status if t.message is not None else ETL.TASKSTATUS.UNKNOWN,
                     str(t.redis_message_id)
                 ),
             ).count(),
-            t.message.status,
+            t.message.status if t.message is not None else ETL.TASKSTATUS.UNKNOWN,
             str(t.redis_message_id)
         )
         for t in ImportTables.tables.tables_for_import(connection_poll.pk)
