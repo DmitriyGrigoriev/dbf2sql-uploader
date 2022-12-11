@@ -25,6 +25,6 @@ def select_tables_for_imports():
             logging.info(f'%%%%%%% Selected tables for import {params} %%%%%%%%')
             process_database_import(params=params)
         else:
-            logging.info(f'%%%%%%% No selected tables for import data %%%%%%%%')
+            logging.info(f'%%%%%%% No selected tables for import %%%%%%%%')
 
 # python manage.py run_scheduler
