@@ -53,11 +53,11 @@ def run_import_for_single_table(
 
     if len(t_list) > 0:
         process_database_import(t_list)
+        messages.success(
+            request,
+            f"Process import data from table {t_list[0].source_table_name} to {t_list[0].dest_table_name} has started...",
+        )
 
-    messages.success(
-        request,
-        f"Process import data from table {t_list[0].source_table_name} to {t_list[0].dest_table_name} has started...",
-    )
     return HttpResponseRedirect(reverse("admin:core_importtables_changelist"))
 
 
