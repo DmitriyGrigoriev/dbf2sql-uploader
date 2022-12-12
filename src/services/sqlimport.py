@@ -107,7 +107,7 @@ class SQLImport(BaseImport):
         """
         # self.save_start_point(start)
 
-        if start <= self._limit:
+        if start == 0:
             sql = f"SELECT TOP {self._limit}"
         else:
             sql = f"SELECT TOP {self._limit} START AT {start}"
