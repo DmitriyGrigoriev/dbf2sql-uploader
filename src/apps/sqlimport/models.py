@@ -288,7 +288,7 @@ class TDcltovar(Dcltovar, ExtSourceFields):
         db_table = 'tdcltovar'
 
 
-class TDcltovg(Dcltovg, ExtSourceFields):
+class TDcltovg(Dcltovg, ExtSourceNoHashUniqueIndex):
     class Meta:
         db_table = 'tdcltovg'
 
