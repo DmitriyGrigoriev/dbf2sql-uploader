@@ -308,7 +308,7 @@ class TDcltovs2(Dcltovs2, ExtSourceFields):
         db_table = 'tdcltovs2'
 
 
-class TDcltrans(Dcltrans, ExtSourceFields):
+class TDcltrans(Dcltrans, ExtSourceNoHashUniqueIndex):
     class Meta:
         db_table = 'tdcltrans'
 
