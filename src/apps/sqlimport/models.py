@@ -158,7 +158,7 @@ class TDclplat2(Dclplat2, ExtSourceFields):
         db_table = 'tdclplat2'
 
 
-class TDclplatr(Dclplatr, ExtSourceFields):
+class TDclplatr(Dclplatr, ExtSourceNoHashUniqueIndex):
     class Meta:
         db_table = 'tdclplatr'
 
