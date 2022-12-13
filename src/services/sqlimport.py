@@ -84,16 +84,8 @@ class SQLImport(BaseImport):
 
         return result
 
-    # def save_start_point(self, i: int):
-    #     if self._prev_start == 0:
-    #         if i == 0:
-    #             self._prev_start = self._limit
-    #         else:
-    #             self._prev_start = i
-    #     elif (self._prev_start - self._limit) > 0:
-    #         self._prev_start = self._prev_start - self._limit
-    #     else:
-    #         self._prev_start = self._limit - (self._limit - self._prev_start)
+    def save_start_point(self, i: int):
+        self._prev_start = i
 
     def export_to_localfts(self, is_partial: bool = False) -> None:
         if is_partial:
@@ -105,12 +97,14 @@ class SQLImport(BaseImport):
         """Transform SQL expr [SELECT field1, field2 ...] into expr
         [SELECT TOP limit START AT record field1, field2]
         """
-        # self.save_start_point(start)
-
         if start == 0:
-            sql = f"SELECT TOP {self._limit}"
+            if self._prev_start == 0:
+                sql = f"SELECT TOP {self._limit}"
+            else:
+                sql = f"SELECT TOP {self._limit-1}"
         else:
             sql = f"SELECT TOP {self._limit} START AT {start}"
+        self.save_start_point(start)
 
         sql = raw_sql.replace("SELECT", sql)
         if self.logger:
