@@ -50,7 +50,7 @@ class SQLImport(BaseImport):
 
                     for row in rows:
                         dataset.append(row=row)
-                    resource.import_data(dataset, use_transactions=True, raise_errors=True)
+                    resource.import_data(dataset, use_transactions=False, raise_errors=True)
                     # After importing some specific records from the end of the dbf file will
                     # run export to localfts database and continue import
                     if not self.partial_uploaded and (
