@@ -20,9 +20,10 @@ class SQLImport(BaseImport):
         # 'dest_table_name': 'TDCLTECHD', 'data_directory': 'TDCLTECHD', 'type': 'DBF',
         # 'last_write': '2022-08-26T11:24:36.911358', 'upload_record': 9534, 'table_record': 0,
         # 'status': 'enqueued', 'redis_message_id': '82dbcee0-17ee-4d81-bd43-a9f35b010b98'})
-        super(SQLImport, self).__init__(params)
+        self._params = params
         self.partial_uploaded = False
         self._prev_start = 0
+        super(SQLImport, self).__init__(params)
 
     def run_import(self) -> int:
         """Process importing data from DBF to SQL Server"""
@@ -90,8 +91,10 @@ class SQLImport(BaseImport):
     def export_to_localfts(self, is_partial: bool = False) -> None:
         if is_partial:
             self.partial_uploaded = is_partial
-        params: ImportInfo = self.get_export_params()
-        SQLLocalFts(params, is_partial=is_partial).run_import()
+        SQLLocalFts(self.get_export_params(), is_partial=is_partial).run_import()
+        # Revert _db for property source_model and dest_model !Important
+        super(SQLImport, self).__init__(self._params)
+
 
     def _transform_raw_select(self, start: int, raw_sql: str, reverse: bool = False) -> str:
         """Transform SQL expr [SELECT field1, field2 ...] into expr
