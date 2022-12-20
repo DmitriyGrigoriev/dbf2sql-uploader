@@ -1,14 +1,13 @@
 import redis
 import os
 import environ
-#from pathlib import Path
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Load operating system environment variables and then prepare to use them
 env = environ.Env()
 # reading .env file ~/projects/broker/config/.env
-env.read_env(BASE_DIR + '/src/config/.env' )
+env.read_env(BASE_DIR + '/config/.env' )
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -164,8 +163,8 @@ DATABASES: dict = {
     },
     "test": {
         "ENGINE": "mssql",
-        "NAME": "gtd_2022_lg",
         # "NAME": "test",
+        "NAME": "test",
         "USER": None,
         "PASSWORD": None,
         "HOST": f"{DOMAIN}",
@@ -227,28 +226,21 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-# PROJECT_ROOT = ROOT_DIR = environ.Path(__file__) - 3
+PROJECT_ROOT = ROOT_DIR = environ.Path(__file__) - 3
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
+
 MEDIA_URL = '/media/'
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles-cdn')
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
+# STATICFILES_DIRS = (os.path.join(PROJECT_ROOT, 'static'),)
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-        'LOCATION': os.path.join(BASE_DIR, 'upload_cache'),
-    }
-}
 ################################################################################
 # SECTION: export / import
 ################################################################################
