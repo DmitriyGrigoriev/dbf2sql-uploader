@@ -94,23 +94,6 @@ class SQLLocalFts(BaseImport):
                    f"in {self._get_real_source_table_name().upper()}  ##################: {sql}")
         return sql
 
-    # def delete_partial_dbf_statement(self):
-    #     # DELETE [tdcltechd] FROM [LocalFts].[dbo].[tdcltechd] l
-    #     # 	INNER JOIN [gtd_2022_lg].[dbo].[tdcltechd] d
-    #     # 		ON d.[hash] = l.[hash] AND d.[g07x] = l.[g07x]
-    #     # WHERE l.[sourcetype] = 'DBF' AND l.[database] = 'gtd_2022_lg'
-    #     dest_database_name = self._get_real_localfts_name()
-    #     source_database_name = self._get_real_database_name()
-    #     table_name = self._get_real_source_table_name()
-    #     sql = (f"\n"
-    #            f"DELETE [{table_name}] FROM [{source_database_name}].[dbo].[{table_name}] d\n"
-    #            f"   INNER JOIN [{dest_database_name}].[dbo].[{table_name}] l\n"
-    #            f"       ON d.[{ETL.FIELD.HASH}] = l.[{ETL.FIELD.HASH}] AND d.[{ETL.FIELD.G07X}] = l.[{ETL.FIELD.G07X}]\n"
-    #            f"    WHERE l.[{ETL.FIELD.EXPTYPE}] = '{self.type}' AND [{ETL.FIELD.DATABASE}] = '{self.export_database_name}'\n")
-    #     # self.print(sql)
-    #     return sql
-
-
     def delete_dbf_statement_by_hash(self):
         # DELETE FROM [LocalFts].[dbo].[tdclhead]
         #   WHERE [hash] NOT IN (SELECT [hash] FROM [gtd_2022_smolensk].[dbo].[tdclhead])

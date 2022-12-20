@@ -18,7 +18,7 @@ from dramatiq.logging import get_logger
 # logger = logging.getLogger(__name__)
 
 
-def get_databases_item_value(alias: str, key: str) -> str:
+def get_databases_item_value(alias: str, key: str="NAME") -> str:
     """Return value from settings.DATABASES[] dict"""
     if alias is None:
         alias = "default"
@@ -84,6 +84,8 @@ class BaseImport:
         self.database = self._get_source_database_id()
         self.export_database_name = None
 
+        self.resource = self._create_resource_instance()
+
     @property
     def source_model_module(self):
         return self._source_model_module
@@ -132,14 +134,32 @@ class BaseImport:
     def source_connection_name(self, value):
         self._source_connection_name = value
         if self.source_model:
-            self.source_model._meta.model.objects._db = (
+            self.source_model._meta.model.objects.using(
                 self.source_connection_name
             )
+            # self.source_model._meta.model.objects._db = (
+            #     self.source_connection_name
+            # )
 
         if self.source_connection_name:
             self.source_connection = self.get_connection_by_alias(
                 self.source_connection_name
             )
+
+
+    def source_model(self):
+        source_model = self.get_source_model_class()
+        if source_model:
+            self.headers = self._get_exported_headers()
+
+        if self.source_connection_name:
+            source_model._meta.model.objects.using(
+                self.source_connection_name
+            )
+            # source_model._meta.model.objects._db = (
+            #     self.source_connection_name
+            # )
+        return source_model
 
     @property
     def source_model(self):
@@ -153,9 +173,19 @@ class BaseImport:
             self.headers = self._get_exported_headers()
 
         if self.source_connection_name:
-            self.source_model._meta.model.objects._db = (
+            self.source_model._meta.model.objects.using(
                 self.source_connection_name
             )
+            # self.source_model._meta.model.objects._db = (
+            #     self.source_connection_name
+            # )
+
+    def dest_model(self):
+        dest_model = self.get_dest_model_class()
+        if self.dest_connection_name:
+            dest_model._meta.model.objects.using(self.dest_connection_name)
+            # dest_model._meta.model.objects._db = self.dest_connection_name
+        return dest_model
 
     @property
     def dest_model(self):
@@ -165,7 +195,8 @@ class BaseImport:
     def dest_model(self, value):
         self._dest_model = value
         if self.dest_connection_name:
-            self.dest_model._meta.model.objects._db = self.dest_connection_name
+            self.dest_model._meta.model.objects.using(self.dest_connection_name)
+            # self.dest_model._meta.model.objects._db = self.dest_connection_name
 
     @property
     def dest_connection_name(self):
@@ -175,9 +206,12 @@ class BaseImport:
     def dest_connection_name(self, value: str):
         self._dest_connection_name = value
         if self.dest_model:
-            self.dest_model._meta.model.objects._db = (
+            self.dest_model._meta.model.objects.using(
                 self._dest_connection_name
             )
+            # self.dest_model._meta.model.objects._db = (
+            #     self._dest_connection_name
+            # )
 
         if self.dest_connection_name:
             self.dest_connection = self.get_connection_by_alias(
@@ -255,7 +289,9 @@ class BaseImport:
                 model.Meta.model.__name__.lower()
                 == self.dest_model._meta.model.__name__.lower()
             ):
-                return model()
+                resource_model = model()
+                resource_model._meta.using_db = self.dest_connection_name
+                return resource_model
 
     def _get_exported_headers(self) -> list:
         """Return fields list from model"""

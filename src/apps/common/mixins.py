@@ -1,10 +1,14 @@
 import uuid
+import logging
 from hashlib import sha256
 
 from django.db import models
 from import_export.instance_loaders import CachedInstanceLoader
 
 from src.apps.common.dataclasses import ETL
+from src.services.base.baseimport import get_databases_item_value
+
+logger = logging.getLogger(__name__)
 
 
 ################################################################
@@ -17,7 +21,7 @@ class ExtResource:
     database = None
 
     class Meta:
-        # use_bulk = True
+        # using_db = None
         use_bulk = True
         batch_size = ETL.BULK.BATCH_SIZE
         # skip_unchanged = False
@@ -30,6 +34,27 @@ class ExtResource:
         # This instance loader work only when there is one ``import_id_fields``
         import_id_fields = ("uid",)
         instance_loader_class = CachedInstanceLoader
+
+    def bulk_create(self, using_transactions, dry_run, raise_errors, batch_size=None):
+        """
+        Creates objects by calling ``bulk_create``.
+        !Important: override original bulk_create, add using
+        """
+        try:
+            if len(self.create_instances) > 0:
+                if not using_transactions and dry_run:
+                    pass
+                else:
+                    database = get_databases_item_value(alias=self._meta.using_db)
+                    logger.info(f'###### BULK INSERT INTO: {database} ######')
+                    self._meta.model.objects.using(self._meta.using_db)\
+                        .bulk_create(self.create_instances, batch_size=batch_size)
+        except Exception as e:
+            logger.exception(e)
+            if raise_errors:
+                raise e
+        finally:
+            self.create_instances.clear()
 
     def before_import_row(self, row, row_number=None, **kwargs):
         if (

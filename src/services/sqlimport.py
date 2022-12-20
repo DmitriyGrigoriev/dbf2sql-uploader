@@ -41,7 +41,7 @@ class SQLImport(BaseImport):
             if self._reccount > 0:
                 self._delete_all_imported_records(model=self.dest_model)
                 raw_sql_select = self._get_export_raw_sql()
-                resource = self._create_resource_instance()
+                # resource = self._create_resource_instance()
 
                 for i in reversed(range(0, self._reccount, self._limit)):
                     # select data from dbf model
@@ -51,7 +51,7 @@ class SQLImport(BaseImport):
 
                     for row in rows:
                         dataset.append(row=row)
-                    resource.import_data(dataset, use_transactions=False, raise_errors=True)
+                    self.resource.import_data(dataset, use_transactions=False, raise_errors=True)
                     # After importing some specific records from the end of the dbf file will
                     # run export to localfts database and continue import
                     if not self.partial_uploaded and (
@@ -91,10 +91,11 @@ class SQLImport(BaseImport):
     def export_to_localfts(self, is_partial: bool = False) -> None:
         if is_partial:
             self.partial_uploaded = is_partial
-        SQLLocalFts(self.get_export_params(), is_partial=is_partial).run_import()
+        export_to_fts = SQLLocalFts(self.get_export_params(), is_partial=is_partial)
+        export_to_fts.run_import()
         # Revert _db for property source_model and dest_model !Important
         super(SQLImport, self).__init__(self._params)
-
+        self.resource = self._create_resource_instance()
 
     def _transform_raw_select(self, start: int, raw_sql: str, reverse: bool = False) -> str:
         """Transform SQL expr [SELECT field1, field2 ...] into expr
