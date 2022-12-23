@@ -54,7 +54,7 @@ def process_import(*, args=None, **kwargs: dict) -> int:
             backend, f"mutex-{params.source_table_name.lower()}-{params.table_pk}", limit=1
         )
         with PROCESS_MUTEX.acquire():
-            print(f"########### PROCESS MUTEX: f'mutex-{params.source_table_name.lower()}-"
+            print(f"########### PROCESS_MUTEX: mutex-{params.source_table_name.lower()}-"
                   f"{params.table_pk}' ###########")
             if params.type == ETL.EXPORT.DBF:
                 return SQLImport(params).run_import()

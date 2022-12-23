@@ -24,6 +24,7 @@ class ExtResource:
         # using_db = None
         use_bulk = True
         batch_size = ETL.BULK.BATCH_SIZE
+        redis_message_id = None
         # skip_unchanged = False
         skip_diff = False
         # skip_unchanged = True
@@ -38,7 +39,7 @@ class ExtResource:
     def bulk_create(self, using_transactions, dry_run, raise_errors, batch_size=None):
         """
         Creates objects by calling ``bulk_create``.
-        !Important: override original bulk_create, add using
+        !Important: override original bulk_create, added using
         """
         try:
             if len(self.create_instances) > 0:
@@ -46,7 +47,10 @@ class ExtResource:
                     pass
                 else:
                     database = get_databases_item_value(alias=self._meta.using_db)
-                    logger.info(f'###### BULK INSERT INTO: {database} ######')
+                    logger.info(
+                        f'###### BULK INSERT INTO: {database}.{self._meta.model._meta.db_table} '
+                        f'## Redis message id: {self._meta.redis_message_id} ######'
+                    )
                     self._meta.model.objects.using(self._meta.using_db)\
                         .bulk_create(self.create_instances, batch_size=batch_size)
         except Exception as e:

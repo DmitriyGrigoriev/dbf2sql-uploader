@@ -1,4 +1,5 @@
 import os
+import copy
 import inspect
 import datetime
 from dateutil.relativedelta import relativedelta
@@ -35,7 +36,7 @@ def get_databases_item_value(alias: str, key: str="NAME") -> str:
 
 class BaseImport:
     def __init__(self, params: ImportInfo) -> None:
-        self.params = params
+        self.params = self.get_copy_params(params)
         self._type = self.params.type
         self._source_connection_name = None
         self._dest_connection_name = None
@@ -45,6 +46,7 @@ class BaseImport:
 
         self._limit = ETL.BULK.BATCH_SIZE
         self._period_of_month = ETL.BULK.SHIFT_MONTHS  # get export data for 10 last month
+        self._redis_message_id = self.params.redis_message_id
 
         self._source_model_module = None
         self._dest_model_module = None
@@ -81,7 +83,7 @@ class BaseImport:
         self.get_model_classes()
         self.get_resources()
 
-        self.database = self._get_source_database_id()
+        self.database = get_databases_item_value(alias=self.params.source_connection_name)
         self.export_database_name = None
 
         self.resource = self._create_resource_instance()
@@ -180,13 +182,6 @@ class BaseImport:
             #     self.source_connection_name
             # )
 
-    def dest_model(self):
-        dest_model = self.get_dest_model_class()
-        if self.dest_connection_name:
-            dest_model._meta.model.objects.using(self.dest_connection_name)
-            # dest_model._meta.model.objects._db = self.dest_connection_name
-        return dest_model
-
     @property
     def dest_model(self):
         return self._dest_model
@@ -271,6 +266,9 @@ class BaseImport:
         else:
             print(message)
 
+    def get_copy_params(self, params):
+        return copy.copy(params)
+
     def _get_real_database_name(self):
         return settings.DATABASES[self.source_connection_name]["NAME"]
 
@@ -290,7 +288,6 @@ class BaseImport:
                 == self.dest_model._meta.model.__name__.lower()
             ):
                 resource_model = model()
-                resource_model._meta.using_db = self.dest_connection_name
                 return resource_model
 
     def _get_exported_headers(self) -> list:
@@ -303,19 +300,19 @@ class BaseImport:
         """Return fields list from model"""
         return [field.attname for field in self.dest_model._meta.fields]
 
-    def _get_source_database_id(self) -> str:
-        """
-        Extract dir from settings.DATABASES[][NAME]
-        Return "NAME":str = "\\\\192.168.0.122\\BASES\\GTD_2022_LG"
-
-        :return: DBF data directory name
-        """
-        try:
-            return get_databases_item_value(
-                alias=self.source_connection_name, key="NAME"
-            ).lower()
-        except AttributeError:
-            raise
+    # def _get_source_database_id(self) -> str:
+    #     """
+    #     Extract dir from settings.DATABASES[][NAME]
+    #     Return "NAME":str = "\\\\192.168.0.122\\BASES\\GTD_2022_LG"
+    #
+    #     :return: DBF data directory name
+    #     """
+    #     try:
+    #         return get_databases_item_value(
+    #             alias=self.source_connection_name, key="NAME"
+    #         ).lower()
+    #     except AttributeError:
+    #         raise
 
     def _get_dest_database_id(self) -> str:
         """
@@ -332,16 +329,17 @@ class BaseImport:
             raise
 
     def _create_resource_instance(self):
-        res_model = self._get_resource_models()
+        resource_model = self._get_resource_models()
         try:
-            res_model.type = self.type
-            # res_model.Meta.using_db = self.dest_connection_name
-            # res_model._meta.using_db = self.dest_connection_name
-            res_model.database = self._get_source_database_id()
-            # res_model.dest_connection = self.dest_connection
+            # Class property
+            resource_model.type = self.type
+            resource_model.database = get_databases_item_value(alias=self.params.source_connection_name)
+            # Meta property
+            resource_model._meta.using_db = self.params.dest_connection_name
+            resource_model._meta.redis_message_id = self._redis_message_id
         except AttributeError:
             pass
-        return res_model
+        return resource_model
 
     def _execute_query(self, row_sql: str, params=None) -> list:
         """Return rows by executing query SELECT * from dbf_model"""
@@ -413,19 +411,6 @@ class BaseImport:
             if (klass._meta.db_table.lower() == db_table.lower())
         ][0]() or None
 
-    def _get_sql_fields_list(self) -> str:
-        fields_set = [
-            f.name
-            for f in self.source_model._meta.fields
-            if f.name != self.source_model._meta.pk.name
-        ]
-        fields = ""
-        for f in fields_set:
-            fields += f"[{f}], "
-        # remove 2 last symbols
-        result = fields[0:-2]
-        return result
-
     def _delete_all_imported_records(self, model: models) -> bool:
         # clearing down existing objects
         try:
@@ -480,6 +465,10 @@ class BaseImport:
             result = self.source_model.__class__.objects.using(self.source_connection_name).count()
 
         return result
+
+    def execute_query(self, connection_name: str, row_sql: str, params=None) -> list:
+        connection = self.get_connection_by_alias(connection_name)
+        return connection.cursor().execute(row_sql, params)
 
     # def get_actual_arm_record(self, connection_name):
     #     self.source_connection = self.get_connection_by_alias(connection_name)

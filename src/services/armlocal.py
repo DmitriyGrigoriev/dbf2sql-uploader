@@ -1,6 +1,6 @@
 from django.db import transaction
-from src.services.base.baseimport import BaseImport
 from src.apps.common.dataclasses import ETL
+from src.services.base.baseimport import BaseImport, get_databases_item_value
 
 
 class ARMLocalFts(BaseImport):
@@ -18,8 +18,9 @@ class ARMLocalFts(BaseImport):
 
         except Exception as e:
             if self.logger:
+                database_name = get_databases_item_value(self.params.source_connection_name)
                 self.logger.error(f"Error occurred while insert data from database "
-                                  f"{self._get_real_database_name()} table {self._get_real_source_table_name()} "
+                                  f"{database_name} table {self._get_real_source_table_name()} "
                                   f"into {self._get_real_localfts_name()} table {self._get_real_dest_table_name()}"
                                   )
             raise e
@@ -42,7 +43,7 @@ class ARMLocalFts(BaseImport):
         return result
 
     def _create_insert_statement(self) -> str:
-        source_database_name: str = self._get_real_database_name()
+        source_database_name: str = get_databases_item_value(self.params.source_connection_name)
         source_table_name: str = self._get_real_source_table_name()
         dest_database_name: str = self._get_real_localfts_name()
         dest_table_name: str = self._get_real_dest_table_name()
