@@ -22,7 +22,7 @@ class SQLLocalFts(BaseImport):
         super(SQLLocalFts, self).__init__(params)
         self.params = self.get_export_params(self.get_copy_params(params))
         self.partial = is_partial
-        self.export_database_name = get_databases_item_value(alias=self.params.source_connection_name)
+        self.export_database_name = get_databases_item_value(alias=self.params.source_connection_name).lower()
 
     def run_import(self):
         """Process importing data from DBF to SQL Server"""
