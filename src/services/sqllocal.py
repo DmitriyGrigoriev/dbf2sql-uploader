@@ -22,7 +22,7 @@ class SQLLocalFts(BaseImport):
         super(SQLLocalFts, self).__init__(params)
         self.params = self.get_export_params(self.get_copy_params(params))
         self.partial = is_partial
-        self.export_database_name = get_databases_item_value(alias=self.params.source_connection_name).lower()
+        self.export_database_name = get_databases_item_value(alias=self.params.source_connection_name)
 
     def run_import(self):
         """Process importing data from DBF to SQL Server"""
@@ -116,7 +116,7 @@ class SQLLocalFts(BaseImport):
         table_name = self.params.source_table_name.lower()
         sql = (f"\n"
                f"DELETE [{table_name}] FROM [{local_fts}].[dbo].[{table_name}]\n"
-               f"    WHERE [{ETL.FIELD.EXPTYPE}] = '{self.type}' AND [{ETL.FIELD.DATABASE}] = '{self.export_database_name}'\n")
+               f"    WHERE [{ETL.FIELD.EXPTYPE}] = '{self.type}' AND [{ETL.FIELD.DATABASE}] = '{self.export_database_name.lower()}'\n")
 
         self.print(f"\n################## Delete type {ETL.EXPORT.DBF} records "
                    f"in {table_name.upper()}  ##################: {sql}")
@@ -135,7 +135,7 @@ class SQLLocalFts(BaseImport):
                f"        SELECT [{ETL.FIELD.HASH}] FROM [{database_name}].[dbo].[{table_name}]\n"
                f"    )\n"
                f"      AND [{ETL.FIELD.EXPTYPE}] = '{self.type}'\n"
-               f"      AND [{ETL.FIELD.DATABASE}] = '{self.database}'\n")
+               f"      AND [{ETL.FIELD.DATABASE}] = '{self.database.lower()}'\n")
 
         self.print(f"\n################## Delete type {ETL.EXPORT.DBF} records "
                    f"by unique {ETL.FIELD.HASH} in {table_name.upper()} ##################:"
