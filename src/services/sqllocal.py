@@ -129,13 +129,14 @@ class SQLLocalFts(BaseImport):
         local_fts = self._get_real_localfts_name()
         database_name = get_databases_item_value(self.params.source_connection_name)
         table_name = self.params.source_table_name.lower()
+        source_database = get_databases_item_value(alias=self.resource._meta.using_db)
         sql = (f"\n"
                f"DELETE [{table_name}] FROM [{local_fts}].[dbo].[{table_name}]\n"
                f"    WHERE [{ETL.FIELD.HASH}] NOT IN (\n"
                f"        SELECT [{ETL.FIELD.HASH}] FROM [{database_name}].[dbo].[{table_name}]\n"
                f"    )\n"
                f"      AND [{ETL.FIELD.EXPTYPE}] = '{self.type}'\n"
-               f"      AND [{ETL.FIELD.DATABASE}] = '{self.resource._meta.database.lower()}'\n")
+               f"      AND [{ETL.FIELD.DATABASE}] = '{source_database.lower()}'\n")
 
         self.print(f"\n################## Delete type {ETL.EXPORT.DBF} records "
                    f"by unique {ETL.FIELD.HASH} in {table_name.upper()} ##################:"

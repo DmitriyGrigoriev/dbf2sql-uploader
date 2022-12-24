@@ -25,7 +25,7 @@ class ExtResource:
         use_bulk = True
         batch_size = ETL.BULK.BATCH_SIZE
         redis_message_id = None
-        database = None
+        # database = None
         # skip_unchanged = False
         skip_diff = False
         # skip_unchanged = True
@@ -81,8 +81,8 @@ class ExtResource:
         if self.type:
             row[ETL.FIELD.EXPTYPE] = self.type
 
-        if self._meta.database:
-            row[ETL.FIELD.DATABASE] = self._meta.database
+        if self._meta.using_db:
+            row[ETL.FIELD.DATABASE] = get_databases_item_value(alias=self._meta.using_db)
 
         row[ETL.FIELD.HASH] = self.calculate_hash(row)
 
