@@ -38,9 +38,8 @@ class SQLImport(BaseImport):
         try:
             self._reccount = self.dbf_record_count()
             if self._reccount > 0:
-                self._delete_all_imported_records(model=self.dest_model)
+                self._delete_all_imported_records(model=self.resource._meta.model)
                 raw_sql_select = self._get_export_raw_sql()
-                # resource = self._create_resource_instance()
 
                 for i in reversed(range(0, self._reccount, self._limit)):
                     # select data from dbf model

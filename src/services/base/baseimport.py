@@ -412,17 +412,11 @@ class BaseImport:
             if (klass._meta.db_table.lower() == db_table.lower())
         ][0]() or None
 
-    def _delete_all_imported_records(self, model: models) -> bool:
+    def _delete_all_imported_records(self, model: models) -> int:
         # clearing down existing objects
-        try:
-            sql = f"TRUNCATE TABLE {model._meta.db_table}"
-            self.dest_connection.cursor().execute(sql)
-            # model.__class__.objects.using(self.dest_connection.alias).all().delete()
-        except Exception as e:
-            self.logger.exception(e)
-            raise e
-
-        return True
+        sql = f"TRUNCATE TABLE {model._meta.db_table}"
+        result = self.execute_query(self.resource._meta.using_db, sql)
+        return result.rowcount
 
     def dbf_record_count(self) -> int:
         """Calculate rows in DBF
@@ -467,9 +461,15 @@ class BaseImport:
 
         return result
 
-    def execute_query(self, connection_name: str, row_sql: str, params=None) -> list:
-        connection = self.get_connection_by_alias(connection_name)
-        return connection.cursor().execute(row_sql, params)
+    def execute_query(self, connection_name: str, row_sql: str, params=None):
+        try:
+            connection = self.get_connection_by_alias(connection_name)
+            return connection.cursor().execute(row_sql, params)
+        except Exception as e:
+            self.logger.exception(e)
+            raise e
+
+
 
     # def get_actual_arm_record(self, connection_name):
     #     self.source_connection = self.get_connection_by_alias(connection_name)
