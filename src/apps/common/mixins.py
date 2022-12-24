@@ -18,13 +18,14 @@ class ExtResource:
     """Extend resource model"""
 
     type = "RESOURCE"  # using as marker for resource class
-    database = None
+    # database = None
 
     class Meta:
         # using_db = None
         use_bulk = True
         batch_size = ETL.BULK.BATCH_SIZE
         redis_message_id = None
+        database = None
         # skip_unchanged = False
         skip_diff = False
         # skip_unchanged = True
@@ -80,8 +81,8 @@ class ExtResource:
         if self.type:
             row[ETL.FIELD.EXPTYPE] = self.type
 
-        if self.database:
-            row[ETL.FIELD.DATABASE] = self.database
+        if self._meta.database:
+            row[ETL.FIELD.DATABASE] = self._meta.database
 
         row[ETL.FIELD.HASH] = self.calculate_hash(row)
 

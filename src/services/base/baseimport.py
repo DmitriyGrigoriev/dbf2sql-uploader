@@ -83,7 +83,7 @@ class BaseImport:
         self.get_model_classes()
         self.get_resources()
 
-        self.database = get_databases_item_value(alias=self.params.source_connection_name)
+        # self.database = get_databases_item_value(alias=self.params.source_connection_name)
         self.export_database_name = None
 
         self.resource = self._create_resource_instance()
@@ -333,8 +333,9 @@ class BaseImport:
         try:
             # Class property
             resource_model.type = self.type
-            resource_model.database = get_databases_item_value(alias=self.params.source_connection_name)
             # Meta property
+            self.database = get_databases_item_value(alias=self.params.source_connection_name)
+            resource_model._meta.database = self.database
             resource_model._meta.using_db = self.params.dest_connection_name
             resource_model._meta.redis_message_id = self._redis_message_id
         except AttributeError:
