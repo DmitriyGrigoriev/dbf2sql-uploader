@@ -135,7 +135,7 @@ class SQLLocalFts(BaseImport):
                f"        SELECT [{ETL.FIELD.HASH}] FROM [{database_name}].[dbo].[{table_name}]\n"
                f"    )\n"
                f"      AND [{ETL.FIELD.EXPTYPE}] = '{self.type}'\n"
-               f"      AND [{ETL.FIELD.DATABASE}] = '{self.database.lower()}'\n")
+               f"      AND [{ETL.FIELD.DATABASE}] = '{self.resource._meta.database.lower()}'\n")
 
         self.print(f"\n################## Delete type {ETL.EXPORT.DBF} records "
                    f"by unique {ETL.FIELD.HASH} in {table_name.upper()} ##################:"
