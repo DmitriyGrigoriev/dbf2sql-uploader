@@ -19,7 +19,7 @@ from dramatiq.logging import get_logger
 # logger = logging.getLogger(__name__)
 
 
-def get_databases_item_value(alias: str, key: str="NAME") -> str:
+def get_databases_item_value(alias: str, key: str = "NAME") -> str:
     """Return value from settings.DATABASES[] dict"""
     if alias is None:
         alias = "default"
@@ -135,33 +135,27 @@ class BaseImport:
     @source_connection_name.setter
     def source_connection_name(self, value):
         self._source_connection_name = value
-        if self.source_model:
-            self.source_model._meta.model.objects.using(
-                self.source_connection_name
-            )
+
+        if self.source_connection_name:
+            self.source_connection = self.get_connection_by_alias(self.source_connection_name)
+        # if self.source_model:
+        #     self._source_model._meta.model.objects.using(self.source_connection_name)
+
             # self.source_model._meta.model.objects._db = (
             #     self.source_connection_name
             # )
 
-        if self.source_connection_name:
-            self.source_connection = self.get_connection_by_alias(
-                self.source_connection_name
-            )
-
-
-    def source_model(self):
-        source_model = self.get_source_model_class()
-        if source_model:
-            self.headers = self._get_exported_headers()
-
-        if self.source_connection_name:
-            source_model._meta.model.objects.using(
-                self.source_connection_name
-            )
-            # source_model._meta.model.objects._db = (
-            #     self.source_connection_name
-            # )
-        return source_model
+    # def source_model(self):
+    #     source_model = self.get_source_model_class()
+    #     if source_model:
+    #         self.headers = self._get_exported_headers()
+    #
+    #     if self.source_connection_name:
+    #         source_model._meta.model.objects.using(self.source_connection_name)
+    #         # source_model._meta.model.objects._db = (
+    #         #     self.source_connection_name
+    #         # )
+    #     return source_model
 
     @property
     def source_model(self):
@@ -173,14 +167,8 @@ class BaseImport:
         self._source_model = value
         if self.source_model:
             self.headers = self._get_exported_headers()
-
-        if self.source_connection_name:
-            self.source_model._meta.model.objects.using(
-                self.source_connection_name
-            )
-            # self.source_model._meta.model.objects._db = (
-            #     self.source_connection_name
-            # )
+        # if self.source_connection_name:
+        #     self._source_model._meta.model.objects.using(self.source_connection_name)
 
     @property
     def dest_model(self):
@@ -189,9 +177,9 @@ class BaseImport:
     @dest_model.setter
     def dest_model(self, value):
         self._dest_model = value
-        if self.dest_connection_name:
-            self.dest_model._meta.model.objects.using(self.dest_connection_name)
-            # self.dest_model._meta.model.objects._db = self.dest_connection_name
+        # if self.dest_connection_name:
+        #     self._dest_model._meta.model.objects.using(self.dest_connection_name)
+        #     # self.dest_model._meta.model.objects._db = self.dest_connection_name
 
     @property
     def dest_connection_name(self):
@@ -200,18 +188,11 @@ class BaseImport:
     @dest_connection_name.setter
     def dest_connection_name(self, value: str):
         self._dest_connection_name = value
-        if self.dest_model:
-            self.dest_model._meta.model.objects.using(
-                self._dest_connection_name
-            )
-            # self.dest_model._meta.model.objects._db = (
-            #     self._dest_connection_name
-            # )
 
         if self.dest_connection_name:
-            self.dest_connection = self.get_connection_by_alias(
-                self.dest_connection_name
-            )
+            self.dest_connection = self.get_connection_by_alias(self.dest_connection_name)
+        # if self.dest_model:
+        #     self._dest_model._meta.model.objects.using(self.dest_connection_name)
 
     def restore_default(
         self,
@@ -330,16 +311,14 @@ class BaseImport:
 
     def _create_resource_instance(self):
         resource_model = self._get_resource_models()
-        try:
-            # Class property
-            resource_model.type = self.type
-            # Meta property
-            # self.database = get_databases_item_value(alias=self.params.source_connection_name).lower()
-            resource_model._meta.using_db = self.params.dest_connection_name
-            resource_model._meta.database = get_databases_item_value(alias=self._meta.using_db)
-            resource_model._meta.redis_message_id = self._redis_message_id
-        except AttributeError:
-            pass
+        # Class property
+        resource_model.type = self.type
+        # Meta property
+        # self.database = get_databases_item_value(alias=self.params.source_connection_name).lower()
+        resource_model._meta.using_db = self.params.dest_connection_name
+        resource_model._meta.database = get_databases_item_value(alias=resource_model._meta.using_db)
+        resource_model._meta.redis_message_id = self._redis_message_id
+
         return resource_model
 
     def _execute_query(self, row_sql: str, params=None) -> list:
@@ -468,8 +447,6 @@ class BaseImport:
         except Exception as e:
             self.logger.exception(e)
             raise e
-
-
 
     # def get_actual_arm_record(self, connection_name):
     #     self.source_connection = self.get_connection_by_alias(connection_name)

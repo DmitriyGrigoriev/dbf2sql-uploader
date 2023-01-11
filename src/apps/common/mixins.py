@@ -5,27 +5,39 @@ from hashlib import sha256
 from django.db import models
 from import_export.instance_loaders import CachedInstanceLoader
 
+from import_export import resources
 from src.apps.common.dataclasses import ETL
 from src.services.base.baseimport import get_databases_item_value
 
 logger = logging.getLogger(__name__)
 
 
+class ExtModelDeclarativeMetaclass(resources.ModelDeclarativeMetaclass):
+
+    def __new__(cls, name, bases, attrs):
+        new_class = super().__new__(cls, name, bases, attrs)
+
+        opts = new_class._meta
+
+        setattr(opts, 'redis_message_id', None)
+        setattr(opts, 'database', '*')
+
+        return new_class
+
+
 ################################################################
 # Mixin extend resource model and add some additional fields
 ################################################################
-class ExtResource:
+class ExtResource(resources.ModelResource, metaclass=ExtModelDeclarativeMetaclass):
     """Extend resource model"""
 
     type = "RESOURCE"  # using as marker for resource class
     # database = None
 
-    class Meta:
-        # using_db = None
+    class Meta(resources.ResourceOptions):
+        using_db = None
         use_bulk = True
         batch_size = ETL.BULK.BATCH_SIZE
-        redis_message_id = None
-        # database = None
         # skip_unchanged = False
         skip_diff = False
         # skip_unchanged = True
@@ -47,13 +59,15 @@ class ExtResource:
                 if not using_transactions and dry_run:
                     pass
                 else:
-                    database = get_databases_item_value(alias=self._meta.using_db)
+                    # database = get_databases_item_value(alias=self._meta.using_db)
                     logger.info(
-                        f'###### BULK INSERT INTO: {database}.{self._meta.model._meta.db_table} '
-                        f'## Redis message id: {self._meta.redis_message_id} ######'
+                        f'###### BULK INSERT INTO: {self._meta.database}.{self._meta.model._meta.db_table} '
+                        f'##  Redis message id: {self._meta.redis_message_id} ##'
                     )
-                    self._meta.model.objects.using(self._meta.using_db)\
-                        .bulk_create(self.create_instances, batch_size=batch_size)
+                    self._meta.model.objects._db = self._meta.using_db
+                    self._meta.model.objects.bulk_create(self.create_instances, batch_size=batch_size)
+                    # self._meta.model.objects.using(self._meta.using_db)\
+                    #     .bulk_create(self.create_instances, batch_size=batch_size)
         except Exception as e:
             logger.exception(e)
             if raise_errors:
@@ -206,10 +220,10 @@ class ExtSourceFields(models.Model):
             models.Index(fields=["hash"]),
         ]
 
-    def save(
-        self, force_insert=False, force_update=False, using=None, update_fields=None
-    ):
-        super().save(force_insert=False, force_update=False, using=self._meta.model.objects.db, update_fields=None)
+    # def save(
+    #     self, force_insert=False, force_update=False, using=None, update_fields=None
+    # ):
+    #     super().save(force_insert=False, force_update=False, using=self._meta.model.objects.db, update_fields=None)
 
 
 class ExtSourceNoHashUniqueIndex(ExtSourceFields):
