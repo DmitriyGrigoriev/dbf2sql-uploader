@@ -7,6 +7,7 @@ from import_export.instance_loaders import CachedInstanceLoader
 
 from import_export import resources
 from src.apps.common.dataclasses import ETL
+from src.apps.core.models import ConnectSet
 from src.services.base.baseimport import get_databases_item_value
 
 logger = logging.getLogger(__name__)
@@ -20,6 +21,7 @@ class ExtModelDeclarativeMetaclass(resources.ModelDeclarativeMetaclass):
         opts = new_class._meta
 
         setattr(opts, 'redis_message_id', None)
+        setattr(opts, 'poll_pk', -1)
         setattr(opts, 'database', '*')
 
         return new_class
@@ -60,10 +62,15 @@ class ExtResource(resources.ModelResource, metaclass=ExtModelDeclarativeMetaclas
                     pass
                 else:
                     # database = get_databases_item_value(alias=self._meta.using_db)
+                    self._meta.model.objects.using_db = ConnectSet.consets.record(pk=self._meta.poll_pk).dest_conection.slug_name
+                    self._meta.database = get_databases_item_value(alias=self._meta.model.objects.using_db)
                     logger.info(
                         f'###### BULK INSERT INTO: {self._meta.database}.{self._meta.model._meta.db_table} '
-                        f'##  Redis message id: {self._meta.redis_message_id} ##'
+                        f'## Redis message id: {self._meta.redis_message_id} ##'
                     )
+                    # logger.info(
+                    #     f'###### DATABASES.NAME: {self._meta.database} ######'
+                    # )
                     self._meta.model.objects._db = self._meta.using_db
                     self._meta.model.objects.bulk_create(self.create_instances, batch_size=batch_size)
                     # self._meta.model.objects.using(self._meta.using_db)\
@@ -95,8 +102,12 @@ class ExtResource(resources.ModelResource, metaclass=ExtModelDeclarativeMetaclas
         if self.type:
             row[ETL.FIELD.EXPTYPE] = self.type
 
-        if self._meta.using_db:
-            row[ETL.FIELD.DATABASE] = get_databases_item_value(alias=self._meta.using_db)
+        if self._meta.database:
+            row[ETL.FIELD.DATABASE] = self._meta.database
+        # if self._meta.using_db:
+        #     row[ETL.FIELD.DATABASE] = get_databases_item_value(alias=self._meta.using_db)
+        # if self._meta.using_db:
+        #     row[ETL.FIELD.DATABASE] = get_databases_item_value(alias=self._meta.using_db)
 
         row[ETL.FIELD.HASH] = self.calculate_hash(row)
 
