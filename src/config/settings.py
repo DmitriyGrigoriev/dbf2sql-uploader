@@ -1,13 +1,5 @@
-import redis
 import os
-import environ
-
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-# Load operating system environment variables and then prepare to use them
-env = environ.Env()
-# reading .env file ~/projects/broker/config/.env
-env.read_env(BASE_DIR + '/config/.env' )
+from src.config.env import env, environ, BASE_DIR
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -15,6 +7,7 @@ env.read_env(BASE_DIR + '/config/.env' )
 # APP CONFIGURATION
 # ------------------------------------------------------------------------------
 DJANGO_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -235,38 +228,12 @@ MEDIA_URL = '/media/'
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 
-# STATICFILES_DIRS = (os.path.join(PROJECT_ROOT, 'static'),)
+STATICFILES_DIRS = (os.path.join(PROJECT_ROOT, 'staticfiles-cdn'),)
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
-################################################################################
-# SECTION: export / import
-################################################################################
-# Path to the connection module for customs data sources
-CONNECTION_MODULE = 'src.db.connection.connects'
-PIPE_MODULES = {
-    'DBF': {
-        'export': 'src.apps.dbfexport',
-        'import': 'src.apps.sqlimport',
-        'resource': 'resources', # module: resources.py
-        'table_prefix': 'T'
-    },
-    'ARM': {
-        'export': 'src.apps.armexport',
-        'import': 'src.apps.armimport',
-        'resource': 'resources', # module: resources.py
-        'table_prefix': ''
-    },
-}
-CONNECTION_FTS = 'localfts'
-ONE_HOUR = 3600000
-################################################################################
-# REDIS
-################################################################################
-REDIS_HOST = env.str('REDIS_HOST')
-REDIS_PORT = env.int('REDIS_PORT')
 ################################################################################
 # CELERY_ NAMESPACE
 ################################################################################
@@ -278,48 +245,6 @@ REDIS_PORT = env.int('REDIS_PORT')
 # CELERY_RESULT_SERIALIZER = 'json'
 #
 # CELERY_RESULT_EXTENDED = True
-################################################################################
-# DRAMATIQ
-################################################################################
-DRAMATIQ_REDIS_URL = os.getenv("REDIS_URL", f"redis://{REDIS_HOST}:{REDIS_PORT}/0")
-DRAMATIQ_BROKER = {
-    "BROKER": "dramatiq.brokers.redis.RedisBroker",
-    "OPTIONS": {
-        "connection_pool": redis.ConnectionPool.from_url(DRAMATIQ_REDIS_URL),
-    },
-    "MIDDLEWARE": [
-        "dramatiq.middleware.AgeLimit",
-        "dramatiq.middleware.TimeLimit",
-        # Middleware that lets you chain success and failure callbacks onto Actors.
-        "dramatiq.middleware.Callbacks",
-        "dramatiq.middleware.Retries",
-        "dramatiq.middleware.Pipelines",
-        # This middleware stores metadata about tasks in flight to a database and exposes them via the Django admin.
-        "django_dramatiq.middleware.AdminMiddleware",
-        # This middleware is vital in taking care of closing expired connections after each message is processed.
-        "django_dramatiq.middleware.DbConnectionsMiddleware",
-        # This middleware stores message_id in the ImportTables.message_id field
-        "src.services.middleware.ImportTablesAdminMiddleware",
-    ]
-}
-# from django_dramatiq.middleware import AdminMiddleware
-# from django_dramatiq.models import Task
-DRAMATIQ_RESULT_BACKEND = {
-    "BACKEND": "dramatiq.results.backends.redis.RedisBackend",
-    "BACKEND_OPTIONS": {
-        "url": f"redis://{REDIS_HOST}:{REDIS_PORT}",
-    },
-    "MIDDLEWARE_OPTIONS": {
-        # The maximum number of milliseconds results areallowed to exist in the backend
-        "result_ttl": ONE_HOUR
-    }
-}
-# DRAMATIQ_AUTODISCOVER_MODULES = []
-################################################################################
-# Defines which database should be used to persist Task objects when the
-# AdminMiddleware is enabled.  The default value is "default".
-DRAMATIQ_TASKS_DATABASE = "default"
-################################################################################
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -374,3 +299,12 @@ DEBUG_TOOLBAR_CONFIG = {
 # UPDATE DATABASES dict from connects table !
 ################################################################################
 # See also: Update database script added to WSGI.py !
+
+################################################################################
+# DRAMATIQ
+################################################################################
+from src.config.dramatiq import *
+################################################################################
+# Import django-jazzmin settings
+################################################################################
+from src.config.jazzmin import JAZZMIN_SETTINGS

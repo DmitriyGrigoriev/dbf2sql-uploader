@@ -25,7 +25,7 @@ class ImportTables(DefaultModel):
     class Meta:
         db_table = 'import_tables'
         # Add verbose name
-        verbose_name = '#3. Pipeline table'
+        verbose_name = 'Pipeline table'
 
     def __str__(self):
         return f"{self.connects}: {self.source_table} -> {self.dest_table}"
@@ -84,7 +84,7 @@ class ConnectSet(DefaultModel):
     class Meta:
         db_table = 'connect_set'
         # Add verbose name
-        verbose_name = '#2. Pipeline'
+        verbose_name = 'Pipeline'
 
     def __str__(self):
         return self.name
@@ -151,7 +151,7 @@ class ConnectWrapper(DefaultModel):
             )
         ]
         # Add verbose name
-        verbose_name = '#1. Connection list'
+        verbose_name = 'Connection'
 
     def __str__(self):
         return self.conname
