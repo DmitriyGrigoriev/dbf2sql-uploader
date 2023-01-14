@@ -113,7 +113,7 @@ JAZZMIN_SETTINGS: Dict[str, Any] = {
     },
     # Icons that are used when one is not manually specified
     "default_icon_parents": "fas fa-chevron-circle-right",
-    "default_icon_children": "fas fa-circle",
+    "default_icon_children": "far fa-circle nav-icon",
 
     #################
     # Related Modal #
