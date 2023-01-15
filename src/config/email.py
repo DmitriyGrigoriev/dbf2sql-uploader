@@ -13,7 +13,7 @@ EMAIL_PORT = 25
 # Custom setting. To email
 # RECIPIENT_ADDRESS = env('RECIPIENT_ADDRESS')
 
-# from django.core.mail import send_mail
+from django.core.mail import send_mail
 # send_mail(
 #     subject='A cool subject',
 #     message='A stunning message',

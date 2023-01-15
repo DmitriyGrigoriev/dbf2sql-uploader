@@ -19,7 +19,7 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     'django_dramatiq',
     'import_export',
-    'debug_toolbar',
+    # 'debug_toolbar',
 ]
 
 LOCAL_APPS = [
@@ -42,7 +42,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware'
+    # 'debug_toolbar.middleware.DebugToolbarMiddleware'
 ]
 ################################################################################
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#debug
@@ -219,32 +219,25 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-PROJECT_ROOT = ROOT_DIR = environ.Path(__file__) - 3
+PROJECT_ROOT = environ.Path(__file__) - 3
 
 MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
 
 MEDIA_URL = '/media/'
 
+# https://pythobyte.com/serving-static-files-in-python-with-django-aws-s3-and-whitenoise-aaff3e61/
+# Настройка Статических файлов
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles-cdn')
 
-STATICFILES_DIRS = (os.path.join(PROJECT_ROOT, 'staticfiles-cdn'),)
+STATICFILES_DIRS = (os.path.join(PROJECT_ROOT, 'static'),)
 
+# Extra lookup directories for collectstatic to find static files
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
-################################################################################
-# CELERY_ NAMESPACE
-################################################################################
-# CELERY_BROKER_URL = f'redis://{REDIS_HOST}:{REDIS_PORT}/0'
-# CELERY_BROKER_TRANSPORT_OPTIONS={'visibility_timeout': 3600}
-# CELERY_RESULT_BACKEND = f'redis://{REDIS_HOST}:{REDIS_PORT}/0'
-# CELERY_ACCEPT_CONTENT = ['application/json']
-# CELERY_TASK_SERIALIZER = 'json'
-# CELERY_RESULT_SERIALIZER = 'json'
-#
-# CELERY_RESULT_EXTENDED = True
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -278,22 +271,31 @@ LOGGING = {
 ################################################################################
 # Django show Toolbar
 ################################################################################
-def show_toolbar(request):
-    # is no ajax
-    if not request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest' \
-            and request.user \
-            and request.user.is_authenticated \
-            and request.user.is_superuser \
-            and env.bool('SHOW_DEBUG_TOOLBAR', default=False):
-        return True
-    return False
+# def show_toolbar(request):
+#     # is no ajax
+#     if not request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest' \
+#             and request.user \
+#             and request.user.is_authenticated \
+#             and request.user.is_superuser \
+#             and env.bool('SHOW_DEBUG_TOOLBAR', default=False):
+#         return True
+#     return False
 ################################################################################
 # Django Debug Toolbar
 ################################################################################
-INTERNAL_IPS = ['127.0.0.1','192.168.89.213',]
-DEBUG_TOOLBAR_CONFIG = {
-    'SHOW_TOOLBAR_CALLBACK': 'src.config.settings.show_toolbar'
-}
+if DEBUG:
+    INTERNAL_IPS = ['127.0.0.1', '192.168.89.213', ]
+    INSTALLED_APPS.extend(["debug_toolbar", "django_extensions"])
+    MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware")
+    DEBUG_TOOLBAR_CONFIG = {"SHOW_TOOLBAR_CALLBACK": lambda _: False}
+
+if not DEBUG:
+    MIDDLEWARE.insert(1, "whitenoise.middleware.WhiteNoiseMiddleware")
+    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+# DEBUG_TOOLBAR_CONFIG = {
+#     'SHOW_TOOLBAR_CALLBACK': 'src.config.settings.show_toolbar'
+# }
 
 ################################################################################
 # UPDATE DATABASES dict from connects table !

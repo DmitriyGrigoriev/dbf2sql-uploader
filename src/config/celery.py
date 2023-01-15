@@ -20,3 +20,15 @@ app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
 
 # celery worker -A src.services.tasks --loglevel=info -E --pool=gevent --concurrency=4
 # celery worker -A src.services.tasks --loglevel=info -E --pool=solo --concurrency=4
+
+################################################################################
+# CELERY_ NAMESPACE
+################################################################################
+# CELERY_BROKER_URL = f'redis://{REDIS_HOST}:{REDIS_PORT}/0'
+# CELERY_BROKER_TRANSPORT_OPTIONS={'visibility_timeout': 3600}
+# CELERY_RESULT_BACKEND = f'redis://{REDIS_HOST}:{REDIS_PORT}/0'
+# CELERY_ACCEPT_CONTENT = ['application/json']
+# CELERY_TASK_SERIALIZER = 'json'
+# CELERY_RESULT_SERIALIZER = 'json'
+#
+# CELERY_RESULT_EXTENDED = True
