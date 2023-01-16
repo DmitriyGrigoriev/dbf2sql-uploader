@@ -1,0 +1,29 @@
+{% load i18n %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <title></title>
+</head>
+
+<body id="dq-exception">
+    {% block content %}
+        <span style="color:#009900; font-size:large; font-weight:bold;">
+            Message {{ message_id|safe }} failed
+        </span>
+        <h4>Message data:</h4>
+        <pre>{{ message_data|safe }}</pre>
+        <h4>Traceback:</h4>
+        <table>
+            {% for item in traceback %}
+                <tr>
+                    <td>{{ item|safe }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endblock %}
+</body>
+
+</html>

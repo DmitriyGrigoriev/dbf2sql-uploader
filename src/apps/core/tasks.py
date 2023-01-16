@@ -1,3 +1,4 @@
+import json
 import logging
 from typing import Any
 from typing import Dict
@@ -7,6 +8,8 @@ import dramatiq
 from dramatiq.rate_limits import ConcurrentRateLimiter
 from dramatiq.rate_limits.backends import RedisBackend
 
+from django.template import loader
+from django.core.mail import mail_admins
 from src.apps.common.dataclasses import ETL
 from src.apps.common.dataclasses import ImportInfo
 from src.apps.common.functions import get_redis_client
@@ -93,6 +96,24 @@ def print_error(
         )
     else:
         update_message_id(message_data)
+        if not settings.DEBUG:
+            traceback: dict = message_data['options'].pop('traceback')
+            ctx = {
+                'message_id': message_data['message_id'],
+                'message_data': json.dumps(message_data, indent=4),
+                'traceback': traceback.split('\n')
+            }
+            mail_admins(
+                subject=f" message {message_data['message_id']} failed",
+                message=f"############ Message {message_data['message_id']} failed #########",
+                html_message=loader.get_template("tasks/core/dramatiq_exception.html").render(ctx),
+                            # f"################################################################################"
+                            #  f"  * exception_data: {exception_data}<\b>"
+                            #  f"################################################################################"
+                            #  f"  * message_data: {message_data}<\b>"
+                            #  f"  * type: {exception_data['type']}<\b>"
+                            #  f"  * message: {exception_data['message']!r}",
+            )
 
     # print_error.logger.info("################################################################################")
     # print_error.logger.info(f"  * exception_data: {exception_data}")

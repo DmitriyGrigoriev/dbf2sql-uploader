@@ -7,13 +7,13 @@ ADMINS = [x.split(':') for x in env.list('DJANGO_ADMINS')]
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = env('EMAIL_HOST', default='mx1.ntbroker.ru')
 EMAIL_HOST_USER = env('EMAIL_HOST_USER', default='exchange')
+SERVER_EMAIL = env('SERVER_EMAIL', default='exchange@ntbroker.ru')
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default=None)
-EMAIL_USE_TLS = True
+EMAIL_USE_TLS = False
 EMAIL_PORT = 25
-# Custom setting. To email
-# RECIPIENT_ADDRESS = env('RECIPIENT_ADDRESS')
+EMAIL_SUBJECT_PREFIX = env('EMAIL_SUBJECT_PREFIX', default='Dbf2MSSql')
 
-from django.core.mail import send_mail
+# from django.core.mail import send_mail
 # send_mail(
 #     subject='A cool subject',
 #     message='A stunning message',

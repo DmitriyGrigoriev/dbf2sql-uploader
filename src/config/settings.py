@@ -19,7 +19,6 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     'django_dramatiq',
     'import_export',
-    # 'debug_toolbar',
 ]
 
 LOCAL_APPS = [
@@ -42,7 +41,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'debug_toolbar.middleware.DebugToolbarMiddleware'
 ]
 ################################################################################
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#debug
@@ -310,3 +308,7 @@ from src.config.dramatiq import *
 # Import django-jazzmin settings
 ################################################################################
 from src.config.jazzmin import JAZZMIN_SETTINGS
+################################################################################
+# Import EMAIL settings
+################################################################################
+from src.config.email import *
