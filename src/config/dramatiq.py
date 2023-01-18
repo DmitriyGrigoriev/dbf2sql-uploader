@@ -1,13 +1,7 @@
 import os
 import redis
-from src.config.env import env
+from src.config.settings import REDIS_HOST, REDIS_PORT
 from src.apps.common.dataclasses import ETL
-
-################################################################################
-# REDIS
-################################################################################
-REDIS_HOST = env.str('REDIS_HOST')
-REDIS_PORT = env.int('REDIS_PORT')
 
 ################################################################################
 # DRAMATIQ

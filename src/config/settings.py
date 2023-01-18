@@ -235,7 +235,25 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
-
+################################################################################
+# REDIS
+################################################################################
+REDIS_HOST = env.str('REDIS_HOST')
+REDIS_PORT = env.int('REDIS_PORT')
+################################################################################
+# CACHE settings
+################################################################################
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': f"redis://{REDIS_HOST}:{REDIS_PORT}/1",
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        }
+    }
+}
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+SESSION_CACHE_ALIAS = "default"
 ################################################################################
 # LOGGING settings
 ################################################################################
