@@ -97,6 +97,11 @@ def print_error(
     else:
         update_message_id(message_data)
         if not settings.DEBUG:
+            # >> > from django.template import Context, Template
+            # >> > template = Template("Hello {{ name }}!")
+            # >> > context = Context({'name': "world"})
+            # >> > template.render(context)
+            # 'Hello world!'
             traceback: dict = message_data['options'].pop('traceback')
             ctx = {
                 'message_id': message_data['message_id'],
@@ -107,12 +112,6 @@ def print_error(
                 subject=f" message {message_data['message_id']} failed",
                 message=f"############ Message {message_data['message_id']} failed #########",
                 html_message=loader.get_template("tasks/core/dramatiq_exception.html").render(ctx),
-                            # f"################################################################################"
-                            #  f"  * exception_data: {exception_data}<\b>"
-                            #  f"################################################################################"
-                            #  f"  * message_data: {message_data}<\b>"
-                            #  f"  * type: {exception_data['type']}<\b>"
-                            #  f"  * message: {exception_data['message']!r}",
             )
 
     # print_error.logger.info("################################################################################")

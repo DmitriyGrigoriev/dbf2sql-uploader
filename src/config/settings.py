@@ -236,36 +236,10 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'console': {
-            'format': '%(name)-12s %(levelname)-8s %(message)s'
-        },
-        'file': {
-            'format': '%(asctime)s %(name)-12s %(levelname)-8s %(message)s'
-        }
-    },
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-            'formatter': 'console'
-        },
-        'file': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'formatter': 'file',
-            'filename': 'debug.log'
-        }
-    },
-    'loggers': {
-        '': {
-            'level': 'DEBUG',
-            'handlers': ['console', 'file']
-        }
-    }
-}
+################################################################################
+# LOGGING settings
+################################################################################
+from src.config.loggers import *
 ################################################################################
 # Django show Toolbar
 ################################################################################
@@ -294,14 +268,12 @@ if not DEBUG:
 # DEBUG_TOOLBAR_CONFIG = {
 #     'SHOW_TOOLBAR_CALLBACK': 'src.config.settings.show_toolbar'
 # }
-
 ################################################################################
 # UPDATE DATABASES dict from connects table !
 ################################################################################
 # See also: Update database script added to WSGI.py !
-
 ################################################################################
-# DRAMATIQ
+# DRAMATIQ settings
 ################################################################################
 from src.config.dramatiq import *
 ################################################################################

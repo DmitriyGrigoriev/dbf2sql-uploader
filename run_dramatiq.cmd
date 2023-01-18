@@ -1,1 +1,1 @@
-poetry run dramatiq --path . --processes 4 --threads 4  --pid-file ./logs/pid.log src.config.setup django_dramatiq.tasks src.apps.core.tasks src.apps.task_scheduler.tasks
+poetry run dramatiq --path . --processes 4 --threads 4  --pid-file ./logs/pid.log --log-file dramatiq.log src.config.setup django_dramatiq.tasks src.apps.core.tasks src.apps.task_scheduler.tasks
