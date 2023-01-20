@@ -799,3 +799,37 @@ class PzkRsn(ExtBase, PzkRsn):
     class Meta:
         managed = False
         db_table = 'Pzk_rsn'
+
+
+# c = (
+#     'DclHead', 'AktsHead', 'AktsMess', 'AktsPath', 'CntOto',
+#     'Cvc', 'Dclamnum', 'Dclavtmb', 'Dclcont', 'Dclcrdts',
+#     'Dcldinf2', 'Dcldinfo', 'Dcldog', 'Dcldoga', 'Dcldogt',
+#     'Dclkmp', 'Dclkmpk', 'Dclkmpk', 'Dcllistd', 'Dcllisth',
+#     'Dcllistl', 'Dclpasp', 'Dclpk', 'Dclplat2', 'Dclplatr',
+#     'Dclplatv', 'Dclpredd', 'Dclquerd', 'Dclquerh', 'Dclquern',
+#     'Dclrinfo', 'Dclriska', 'Dclriskb', 'Dclriskc', 'Dclriskd',
+#     'Dclriskm', 'Dclriskp', 'Dclrsinf', 'Dclrsk93', 'Dclrsmpr',
+#     'Dclrsnfi', 'Dclslotm', 'Dclsltov', 'Dclsumpp', 'Dcltcim',
+#     'Dcltechd', 'Dclterms', 'Dcltois', 'Dcltov2', 'Dcltovar',
+#     'Dcltovg', 'Dcltovg2', 'Dcltovs', 'Dcltovs2', 'Dcltrans',
+#     'Dclusl', 'Dcluslt', 'Dclvrsk', 'Dk1', 'Dk2', 'DkPp', 'Dkisch',
+#     'Dkkupl', 'Dkoprp', 'Dkpeni', 'Dtcddtc', 'Dtcdinfo', 'Dtchead',
+#     'Dtcslotm', 'Dtcsscv', 'Dtcsstc', 'Ktcavtmb', 'Ktcdinfo',
+#     'Ktcdokiz', 'Ktchead', 'Ktcpk', 'Ktcplbiz', 'Ktcpltiz',
+#     'Ktcslotm', 'Ktcsltov', 'Ktcsumpp', 'Ktcterms', 'Ktctovg',
+#     'Ktctoviz', 'Ktctovs', 'Ktdamnum', 'Ktdavtmb', 'Ktdcont',
+#     'Ktddinf2', 'Ktddinfo', 'Ktdhead', 'Ktdpasp', 'Ktdpk',
+#     'Ktdplbiz', 'Ktdpltiz', 'Ktdpredd', 'Ktdslotm', 'Ktdsltov',
+#     'Ktdsumpp', 'Ktdtcim', 'Ktdtechd', 'Ktdterms', 'Ktdtois',
+#     'Ktdtov2', 'Ktdtovar', 'Ktdtovg', 'Ktdtovg2', 'Ktdtovs',
+#     'Ktdtovs2', 'Ktdtrans', 'Ktduslt', 'Oupavtmb', 'Oupdinfo',
+#     'Oupdokiz', 'Ouphead', 'Ouppk', 'Oupplbiz', 'Ouppltiz',
+#     'Oupslotm', 'Oupsltov', 'Oupsumpp', 'Oupterms', 'Ouptovg',
+#     'Ouptoviz', 'Ouptovs', 'Proterr', 'Protprim', 'PzkHead',
+# )
+#
+# for k in c:
+#     out = \
+#     f"""DELETE FROM LocalFts.dbo.t{k} WHERE [database] = '*'"""
+#     print(out)

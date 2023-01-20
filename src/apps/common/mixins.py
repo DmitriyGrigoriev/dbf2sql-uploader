@@ -26,6 +26,15 @@ class ExtModelDeclarativeMetaclass(resources.ModelDeclarativeMetaclass):
 
         return new_class
 
+    def get_database(cls):
+        # Meta property
+        # self.database = get_databases_item_value(alias=self.params.source_connection_name).lower()
+        pass
+        # cls.opts._meta.poll_pk = cls.params.poll_pk
+        # cls.opts._meta.using_db = cls.params.dest_connection_name
+        # resource_model._meta.database = get_databases_item_value(alias=resource_model._meta.using_db)
+
+
 
 ################################################################
 # Mixin extend resource model and add some additional fields
@@ -62,16 +71,17 @@ class ExtResource(resources.ModelResource, metaclass=ExtModelDeclarativeMetaclas
                     pass
                 else:
                     # database = get_databases_item_value(alias=self._meta.using_db)
-                    self._meta.model.objects.using_db = ConnectSet.consets.record(pk=self._meta.poll_pk).dest_conection.slug_name
-                    self._meta.database = get_databases_item_value(alias=self._meta.model.objects.using_db)
+                    self._meta.model.objects.using_db = self._meta.using_db
+                    self._meta.model.objects._db = self._meta.using_db
+                    # self._meta.model.objects.using_db = ConnectSet.consets.record(pk=self._meta.poll_pk).dest_conection.slug_name
+                    # self._meta.database = get_databases_item_value(alias=self._meta.model.objects.using_db)
                     logger.info(
-                        f'###### BULK INSERT INTO: {self._meta.database}.{self._meta.model._meta.db_table} '
+                        f'###### BULK INSERT INTO: {get_databases_item_value(alias=self._meta.model.objects.using_db)}.{self._meta.model._meta.db_table} '
                         f'## Redis message id: {self._meta.redis_message_id} ##'
                     )
                     # logger.info(
                     #     f'###### DATABASES.NAME: {self._meta.database} ######'
                     # )
-                    self._meta.model.objects._db = self._meta.using_db
                     self._meta.model.objects.bulk_create(self.create_instances, batch_size=batch_size)
                     # self._meta.model.objects.using(self._meta.using_db)\
                     #     .bulk_create(self.create_instances, batch_size=batch_size)
