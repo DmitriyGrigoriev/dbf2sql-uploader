@@ -59,6 +59,7 @@ class Field:
     G142: str = "g142"
     G147: str = "g147"
     G011: str = "g011"
+    GD0: str = "gd0"
     EXPTYPE: str = "sourcetype"
     DATABASE: str = "database"
 

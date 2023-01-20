@@ -111,6 +111,10 @@ class ExtResource(resources.ModelResource, metaclass=ExtModelDeclarativeMetaclas
 
         row[ETL.FIELD.HASH] = self.calculate_hash(row)
 
+        # Replace value in field GD0 if NULL to ''
+        if ETL.FIELD.GD0 in row and row[ETL.FIELD.GD0] is None:
+            row[ETL.FIELD.GD0] = ''
+
     def calculate_hash(self, row):
         # Calculate row hash
         return (

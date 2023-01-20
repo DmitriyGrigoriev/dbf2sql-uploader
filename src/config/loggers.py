@@ -47,14 +47,19 @@ LOGGING = {
         # }
     },
     'loggers': {
-        # '': {
-        #     'level': 'DEBUG',
-        #     'handlers': ['console', 'file']
-        # },
         '': {
-            'handlers': ['console','default'],
+            'level': 'DEBUG',
+            'handlers': ['console']
+        },
+        'dramatiq': {
+            'handlers': ['default'],
             'level': 'DEBUG',
             'propagate': True,
         },
+        # '': {
+        #     'handlers': ['console','default'],
+        #     'level': 'DEBUG',
+        #     'propagate': True,
+        # },
     }
 }
