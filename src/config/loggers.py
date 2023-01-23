@@ -20,18 +20,19 @@ LOGGING = {
         },
     },
     'handlers': {
+        'default': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'when': 'midnight',
+            'interval': 1,
+            'filename': os.path.join(PROJECT_ROOT, 'debug.log'),
+            'formatter': 'verbose',
+            # 'backupCount': '30',
+        },
         'console': {
             'class': 'rich.logging.RichHandler',
             # 'class': 'logging.StreamHandler',
             'formatter': 'console'
-        },
-        'default': {
-            'level': 'DEBUG',
-            'class': 'logging.handlers.TimedRotatingFileHandler',
-            'filename': os.path.join(PROJECT_ROOT, 'debug.log'),
-            'formatter': 'verbose',
-            'when': 'midnight',
-            'backupCount': '30',
         },
         # 'file': {
         #     'level': 'DEBUG',
@@ -48,14 +49,14 @@ LOGGING = {
     },
     'loggers': {
         '': {
+            'handlers': ['default', 'console'],
             'level': 'DEBUG',
-            'handlers': ['console']
+            'propagate': False,
         },
-        'dramatiq': {
-            'handlers': ['default'],
-            'level': 'DEBUG',
-            'propagate': True,
-        },
+        # '': {
+        #     'level': 'DEBUG',
+        #     'handlers': ['console']
+        # },
         # '': {
         #     'handlers': ['console','default'],
         #     'level': 'DEBUG',
