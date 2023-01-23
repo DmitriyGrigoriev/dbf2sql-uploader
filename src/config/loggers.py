@@ -23,8 +23,8 @@ LOGGING = {
         'default': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'when': 'midnight',
-            'interval': 1,
+            # 'when': 'midnight',
+            # 'interval': 1,
             'filename': os.path.join(PROJECT_ROOT, 'debug.log'),
             'formatter': 'verbose',
             # 'backupCount': '30',
