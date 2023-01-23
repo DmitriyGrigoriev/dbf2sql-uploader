@@ -19,6 +19,7 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     'django_dramatiq',
     'import_export',
+    'extra_settings'
 ]
 
 LOCAL_APPS = [
@@ -103,6 +104,17 @@ DATABASES: dict = {
         "PASSWORD": None,
         "HOST": "localhost",
         # "HOST": f"{DOMAIN}",
+        "PORT": "1433",
+        "OPTIONS": {"driver": "SQL Server Native Client 11.0",
+                    "extra_params": "TrustServerCertificate=Yes; Trusted_Connection=Yes",
+                    },
+    },
+    "nav": {
+        "ENGINE": "mssql",
+        "NAME": "nav",
+        "USER": None,
+        "PASSWORD": None,
+        "HOST": "ntb1c.ntbroker.ru\\navision",
         "PORT": "1433",
         "OPTIONS": {"driver": "SQL Server Native Client 11.0",
                     "extra_params": "TrustServerCertificate=Yes; Trusted_Connection=Yes",
@@ -305,3 +317,7 @@ from src.config.jazzmin import JAZZMIN_SETTINGS
 # Import EMAIL settings
 ################################################################################
 from src.config.email import *
+################################################################################
+# Import EXTRA settings
+################################################################################
+from src.config.extra_settings import *
