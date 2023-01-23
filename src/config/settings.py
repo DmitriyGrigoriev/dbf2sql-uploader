@@ -19,7 +19,7 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     'django_dramatiq',
     'import_export',
-    'extra_settings'
+    # 'extra_settings'
 ]
 
 LOCAL_APPS = [
