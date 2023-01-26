@@ -186,7 +186,7 @@ class ExtResource(resources.ModelResource, metaclass=ExtModelDeclarativeMetaclas
                f" 				FROM [NLC$GTD Ledger Entry]"
                f" 		  ) GTDNo"
                f" 	JOIN [NLC$Customer] CustomerNo ON CustomerNo.No_=GTDNo.DTNo"
-               f"WHERE GTDNo.G07X='{dt_no}'"
+               f" WHERE GTDNo.G07X='{dt_no}'"
                )
         inn_no = self.execute_custom_sql(connection_name=ETL.CONNECT.NAVISION, sql=sql)
 
