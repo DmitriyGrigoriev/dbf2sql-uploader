@@ -7,7 +7,9 @@ from import_export.instance_loaders import CachedInstanceLoader
 
 from import_export import resources
 from src.apps.common.dataclasses import ETL
-from src.apps.core.models import ConnectSet
+# from src.apps.core.models import ConnectSet
+from django.db import connections
+# from src.apps.navision.models import NlcCustomer
 from src.services.base.baseimport import get_databases_item_value
 
 logger = logging.getLogger(__name__)
@@ -23,6 +25,7 @@ class ExtModelDeclarativeMetaclass(resources.ModelDeclarativeMetaclass):
         setattr(opts, 'redis_message_id', None)
         setattr(opts, 'poll_pk', -1)
         setattr(opts, 'database', '*')
+        setattr(opts, 'params', None)
 
         return new_class
 
@@ -93,6 +96,10 @@ class ExtResource(resources.ModelResource, metaclass=ExtModelDeclarativeMetaclas
             self.create_instances.clear()
 
     def before_import_row(self, row, row_number=None, **kwargs):
+
+        # params: ImportInfo = self._meta.params
+        g07x: str = None
+
         if (
             ETL.FIELD.G071 in row
             and ETL.FIELD.G072 in row
@@ -101,13 +108,28 @@ class ExtResource(resources.ModelResource, metaclass=ExtModelDeclarativeMetaclas
             g07x = f"{row[ETL.FIELD.G071]}/{row[ETL.FIELD.G072].strftime('%d%m%y')}/{row[ETL.FIELD.G073]}"
             row[ETL.FIELD.G07X] = g07x
 
-        self.update_field(row, ETL.FIELD.G081, ETL.FIELD.G141, "ИМ")
-        self.update_field(row, ETL.FIELD.G082, ETL.FIELD.G142, "ИМ")
-        self.update_field(row, ETL.FIELD.G087, ETL.FIELD.G147, "ИМ")
+        # Implement logic from pDCLHeadAdded
+        # UPDATE [LocalFTS].[dbo].[tDCLHEAD] Set G081=G141, G082=G142, G087=G147
+        # 		WHERE g081 is null AND g082 is null AND G011='ИМ';
+        if ETL.MAINTABLES.DCLHEAD.lower() in self._meta.model._meta.db_table.lower():
+            if row[ETL.FIELD.G081] is None and row[ETL.FIELD.G082] is None and row[ETL.FIELD.G011] == "ИМ":
+                self.update_field(row, ETL.FIELD.G081, ETL.FIELD.G141, "ИМ")
+                self.update_field(row, ETL.FIELD.G082, ETL.FIELD.G142, "ИМ")
+                self.update_field(row, ETL.FIELD.G087, ETL.FIELD.G147, "ИМ")
 
-        self.update_field(row, ETL.FIELD.G021, ETL.FIELD.G141, "ЭК")
-        self.update_field(row, ETL.FIELD.G022, ETL.FIELD.G142, "ЭК")
-        self.update_field(row, ETL.FIELD.G027, ETL.FIELD.G147, "ЭК")
+            # if there isn't value trying to get it from the NAVISION database
+            if row[ETL.FIELD.G081] is None and row[ETL.FIELD.G011] == "ИМ" and g07x:
+                inn_no = self.get_nav_inn(g07x) or None
+                row[ETL.FIELD.G081] = inn_no
+
+            if row[ETL.FIELD.G081] is None and row[ETL.FIELD.G082] is None and row[ETL.FIELD.G011] == "ЭК":
+                self.update_field(row, ETL.FIELD.G021, ETL.FIELD.G141, "ЭК")
+                self.update_field(row, ETL.FIELD.G022, ETL.FIELD.G142, "ЭК")
+                self.update_field(row, ETL.FIELD.G027, ETL.FIELD.G147, "ЭК")
+
+            if row[ETL.FIELD.G021] is None and row[ETL.FIELD.G011] == "ЭК" and g07x:
+                inn_no = self.get_nav_inn(g07x) or None
+                row[ETL.FIELD.G021] = inn_no
 
         if self.type:
             row[ETL.FIELD.EXPTYPE] = self.type
@@ -152,6 +174,31 @@ class ExtResource(resources.ModelResource, metaclass=ExtModelDeclarativeMetaclas
     #     return bool(skip)
     # return super(ExtResource, self).skip_row(instance, original)
 
+
+    def get_nav_inn(self, dt_no: str):
+        ######################################################################
+        # Return INN from NAVISION database
+        #######################################################################
+        sql = (f"\n"
+               f"SELECT CustomerNo.[VAT Registration No_] i"
+               f" 	FROM ("
+               f" 			SELECT DISTINCT [GTDNo_] G07X, [Customer No_] DTNo"
+               f" 				FROM [NLC$GTD Ledger Entry]"
+               f" 		  ) GTDNo"
+               f" 	JOIN [NLC$Customer] CustomerNo ON CustomerNo.No_=GTDNo.DTNo"
+               f"WHERE GTDNo.G07X='{dt_no}'"
+               )
+        inn_no = self.execute_custom_sql(connection_name=ETL.CONNECT.NAVISION, sql=sql)
+
+        return inn_no
+
+
+    def execute_custom_sql(self, connection_name: str, sql: str):
+        # self.print(f"\n################## Execute select statement: {sql}  ##################")
+        with connections[connection_name].cursor() as cursor:
+            cursor.execute(sql)
+            row = cursor.fetchone()
+        return row
 
 class ArmResource(ExtResource):
     """Generate unique hash for each record from Doc2SQL"""

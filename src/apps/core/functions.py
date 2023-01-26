@@ -9,7 +9,7 @@ from src.apps.common.functions import get_last_dbf_file_modify_date, get_redis_c
 
 logger = logging.getLogger(__name__)
 
-def need_to_upload(record: ImportInfo) -> bool:
+def need_to_upload(record: ImportInfo, mode: str) -> bool:
     """
     If we have export from DB compare data from DBF with the time of the file which
     was saved in a table, another way compare records count in table with destination
@@ -28,18 +28,22 @@ def need_to_upload(record: ImportInfo) -> bool:
     else:
         already_in_queue = False
 
-    # Task is not in Redis queue
-    if not already_in_queue:
-        # Compare uploaded records from source table and LocalFts destination table
-        result = (
-                record.upload_record != record.table_record or record.status.title() != ETL.TASKSTATUS.DONE
-        )
+    # Run force export/import
+    if mode == ETL.MODE.FULL:
+        result = True if not already_in_queue else False
     else:
-        result = False
+        # Task is not in Redis queue
+        if not already_in_queue:
+            # Compare uploaded records from source table and LocalFts destination table
+            result = (
+                    record.upload_record != record.table_record or record.status.title() != ETL.TASKSTATUS.DONE
+            )
+        else:
+            result = False
 
     return result
 
-def tables_import_info_list(poll_pk: int) -> List[ImportInfo]:
+def tables_import_info_list(poll_pk: int, mode: str = '') -> List[ImportInfo]:
     """
     Return list of tables which have file last write time different from imported last time
 
@@ -65,8 +69,9 @@ def tables_import_info_list(poll_pk: int) -> List[ImportInfo]:
             t.status,
             t.redis_message_id
         )
-        for t in t_rec_list if need_to_upload(t)
+        for t in t_rec_list if need_to_upload(record=t, mode=mode)
     ]
+    # for t in t_rec_list if mode == ETL.MODE.FULL if mode != ETL.MODE.FULL and need_to_upload(t)
     return t_list
 
 def get_upload_record_value(poll_pk: int) -> List[ImportInfo]:

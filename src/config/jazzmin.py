@@ -13,19 +13,19 @@ JAZZMIN_SETTINGS: Dict[str, Any] = {
     "site_brand": "Dbf2SQL",
 
     # Logo to use for your site, must be present in static files, used for brand on top left
-    "site_logo": "images/dbf2sql-uploader-low-resolution-logo-black-on-white-background.png",
+    # "site_logo": "images/dbf2sql-uploader-low-resolution-logo-black-on-white-background.png",
 
     # Logo to use for your site, must be present in static files, used for login form logo (defaults to site_logo)
-    "login_logo": "images/png/logo-color_400.png",
+    # "login_logo": "images/png/logo-color_400.png",
 
     # Logo to use for login form in dark themes (defaults to login_logo)
     "login_logo_dark": None,
 
     # CSS classes that are applied to the logo above
-    "site_logo_classes": "img-circle",
+    # "site_logo_classes": "img-circle",
 
     # Relative path to a favicon for your site, will default to site_logo if absent (ideally 32x32 px)
-    "site_icon": "images/favicon-black.png",
+    # "site_icon": "images/favicon-black.png",
 
     # Welcome text on the login screen
     "welcome_sign": _("Welcome to DBF2MSSQL Uploader"),
@@ -109,6 +109,7 @@ JAZZMIN_SETTINGS: Dict[str, Any] = {
         "core.ConnectWrapper": "fas fa-book",
         "core.ImportTables": "fas fa-table",
         "core.ConnectSet": "fas fa-database",
+        "extra_settings.extra_settings": "fas fa-database", #fas fa-cog
         "django_dramatiq.Task": "fas fa-tasks",
     },
     # Icons that are used when one is not manually specified

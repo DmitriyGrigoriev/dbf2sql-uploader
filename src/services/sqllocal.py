@@ -86,7 +86,15 @@ class SQLLocalFts(BaseImport):
                f"    SELECT {fields} FROM [{database_name}].[dbo].[{table_name}]\n"
                f"        WHERE [{ETL.FIELD.HASH}] NOT IN (\n"
                f"            SELECT [{ETL.FIELD.HASH}] FROM [{local_fts}].[dbo].[{table_name}]\n"
-               f"        )\n")
+               f"        )\n"
+               f"    AND g07x NOT IN (\n"
+               f"    	SELECT l.[{ETL.FIELD.G07X}] \n"
+               f"    		FROM [{local_fts}].[dbo].[{table_name}] l \n"
+               f"		    INNER JOIN [{database_name}].[dbo].[{table_name}] t \n"
+               f"			ON l.[{ETL.FIELD.G07X}] = t.[{ETL.FIELD.G07X}] \n"
+               f"		WHERE l.[{ETL.FIELD.DATABASE}] NOT IN ('{self.export_database_name.lower()}') \n"
+               f"		GROUP BY l.[{ETL.FIELD.G07X}], l.[{ETL.FIELD.DATABASE}] \n"
+               f"    )\n")
 
         self.print(f"\n################## Insert statement for {table_name.upper()}  "
                    f"##################: {sql}")

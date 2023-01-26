@@ -28,6 +28,7 @@ LOCAL_APPS = [
     'src.apps.dbfexport.apps.DbfexportConfig',
     'src.apps.armimport.apps.ArmimportConfig',
     'src.apps.armexport.apps.ArmexportConfig',
+    'src.apps.navision.apps.NavisionConfig',
     'src.apps.task_scheduler.apps.TaskSchedulerConfig',
 ]
 
@@ -115,7 +116,7 @@ DATABASES: dict = {
         "USER": None,
         "PASSWORD": None,
         "HOST": "ntb1c.ntbroker.ru\\navision",
-        "PORT": "1433",
+        # "PORT": "1433",
         "OPTIONS": {"driver": "SQL Server Native Client 11.0",
                     "extra_params": "TrustServerCertificate=Yes; Trusted_Connection=Yes",
                     },

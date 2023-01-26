@@ -63,6 +63,11 @@ class Field:
     EXPTYPE: str = "sourcetype"
     DATABASE: str = "database"
 
+@dataclass(frozen=True)
+class MainTables:
+    DCLHEAD: str = "dclhead"
+    DCLTOVAR: str = "dcltovar"
+    DCLTECHD: str = "dcltechd"
 
 @dataclass(frozen=True)
 class UrlName:
@@ -96,6 +101,7 @@ class TimeLimit:
 @dataclass(frozen=True)
 class Connect:
     LOCALFTS: str = "localfts"
+    NAVISION: str = "nav"
 
 
 @dataclass
@@ -123,7 +129,6 @@ class RedisClient:
     DRAMATIQ_MSGS: str = "dramatiq:default.msgs"
     DRAMATIQ_DQ_MSGS: str = "dramatiq:default.DQ.msgs"  # delay queue
 
-
 @dataclass
 class Etl:
     EXPORT: Export = Export()
@@ -135,6 +140,7 @@ class Etl:
     BULK: Bulk = Bulk()
     PIPE_MODULES: PipeModules = PipeModules()
     DRAMATIQ: RedisClient = RedisClient()
+    MAINTABLES: MainTables = MainTables()
     TASKSTATUS: TaskStatus = TaskStatus()
 
 

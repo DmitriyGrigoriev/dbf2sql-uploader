@@ -315,9 +315,10 @@ class BaseImport:
         resource_model.type = self.type
         # Meta property
         # self.database = get_databases_item_value(alias=self.params.source_connection_name).lower()
-        resource_model._meta.poll_pk = self.params.poll_pk
+        resource_model._meta.params: ImportInfo = self.params
+        # resource_model._meta.poll_pk = self.params.poll_pk
         resource_model._meta.using_db = self.params.dest_connection_name
-        resource_model._meta.database = resource_model._meta.using_db
+        resource_model._meta.database = resource_model._meta.using_db # database = connection_name
         resource_model._meta.redis_message_id = self._redis_message_id
 
         return resource_model

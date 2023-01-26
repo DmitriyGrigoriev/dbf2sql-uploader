@@ -239,6 +239,17 @@ python-versions = ">=3.6"
 Django = ">=3.2"
 
 [[package]]
+name = "django-extra-settings"
+version = "0.8.1"
+description = "easily manage typed extra settings using the django admin."
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+jsonfield = ">=3.0.0"
+
+[[package]]
 name = "django-import-export"
 version = "2.9.0"
 description = "Django application and library for importing and exporting data with included admin integration."
@@ -415,6 +426,17 @@ description = "brain-dead simple config-ini parsing"
 category = "dev"
 optional = false
 python-versions = ">=3.7"
+
+[[package]]
+name = "jsonfield"
+version = "3.1.0"
+description = "A reusable Django field that allows you to store validated JSON in your model."
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+Django = ">=2.2"
 
 [[package]]
 name = "mako"
@@ -964,7 +986,7 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "1.1"
 python-versions = "3.7.5"
-content-hash = "8cbf03c6938d27c9c7d23aaf3024e6984e1501fb402dae16b4b2a47608203e57"
+content-hash = "e7c9d73b7a3de24817e2287af6be4da6b692141acc2eb54e9f61976c0774eb7d"
 
 [metadata.files]
 apscheduler = []
@@ -1090,6 +1112,7 @@ django-environ = [
     {file = "django_environ-0.9.0-py2.py3-none-any.whl", hash = "sha256:f21a5ef8cc603da1870bbf9a09b7e5577ab5f6da451b843dbcc721a7bca6b3d9"},
 ]
 django-extensions = []
+django-extra-settings = []
 django-import-export = []
 django-jazzmin = []
 django-redis = []
@@ -1140,6 +1163,7 @@ greenlet = []
 identify = []
 importlib-metadata = []
 iniconfig = []
+jsonfield = []
 mako = []
 markdown = []
 markuppy = [

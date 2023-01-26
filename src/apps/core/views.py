@@ -73,7 +73,7 @@ def run_import_for_database(
     """
     from .models import ConnectSet
 
-    t_list: List[ImportInfo] = tables_import_info_list(poll_pk)
+    t_list: List[ImportInfo] = tables_import_info_list(poll_pk, mode)
     poll_name: str = ConnectSet.consets.record(pk=poll_pk).name
 
     if len(t_list) > 0:

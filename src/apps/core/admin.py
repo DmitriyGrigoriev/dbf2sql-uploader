@@ -6,6 +6,7 @@ from django.contrib import admin
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.db import connections
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 
@@ -24,7 +25,13 @@ from .validators import SQLConnectValidator
 from src.apps.common.dataclasses import ETL, ImportInfo
 from src.services.base.baseimport import BaseImport
 
-# Register your models here.
+# from extra_settings.admin import register_extra_settings_admin
+#
+# register_extra_settings_admin(
+#     app='src.apps.core.apps.CoreConfig',
+#     queryset_processor=lambda qs: qs.filter(name__istartswith="CORE_"),
+#     unregister_default=True,
+# )
 
 register = template.Library()
 
@@ -186,7 +193,7 @@ class ConnectSetAdmin(admin.ModelAdmin):
                 f"{ETL.URLNAME.PIPELINE_EXPORT_IMPORT}",
                 kwargs={"poll_pk": obj.pk, "mode": mode},
             )
-            link = mark_safe(f'<a href="{url}" class="historylink">Run</a>')
+            link = mark_safe(f'<a href="{url}" class="historylink">Run force</a>')
         else:
             # link = mark_safe(f'<a href="#" class="historylink">Disable</a>')
             link = ""
