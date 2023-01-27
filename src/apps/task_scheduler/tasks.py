@@ -1,6 +1,7 @@
 import logging
 import dramatiq
 from src.apps.task_scheduler.cron import cron
+from django_dramatiq.tasks import delete_old_tasks
 from src.apps.core.tasks import process_database_import
 from src.apps.core.functions import tables_import_info_list
 
@@ -26,5 +27,11 @@ def select_tables_for_imports():
             process_database_import(params=params)
         else:
             logging.info(f'%%%%%%% No selected tables for import %%%%%%%%')
+
+
+@cron("*/20 * * * *")  # Run once 20 minutes
+@dramatiq.actor()
+def delete_journal_tasks():
+    delete_old_tasks()
 
 # python manage.py run_scheduler
