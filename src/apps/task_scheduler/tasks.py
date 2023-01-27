@@ -29,9 +29,10 @@ def select_tables_for_imports():
             logging.info(f'%%%%%%% No selected tables for import %%%%%%%%')
 
 
-@cron("* * * 3 *")  # Run once 20 minutes
+# @cron("* * * 3 *")  # Run once 20 minutes
+@cron("*/20 * * * *")
 @dramatiq.actor()
 def delete_journal_tasks():
-    delete_old_tasks()
+    delete_old_tasks(max_task_age=864000)
 
 # python manage.py run_scheduler
