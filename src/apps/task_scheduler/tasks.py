@@ -29,7 +29,7 @@ def select_tables_for_imports():
             logging.info(f'%%%%%%% No selected tables for import %%%%%%%%')
 
 
-@cron("*/20 * * * *")  # Run once 20 minutes
+@cron("* * * 3 *")  # Run once 20 minutes
 @dramatiq.actor()
 def delete_journal_tasks():
     delete_old_tasks()
