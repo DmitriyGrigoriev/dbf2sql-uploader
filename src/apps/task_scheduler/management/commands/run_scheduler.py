@@ -8,7 +8,8 @@ from apscheduler.schedulers.background import BlockingScheduler
 
 from src.apps.task_scheduler import cron
 # from src.apps.task_scheduler.tasks import print_current_datetime
-# from src.apps.task_scheduler.tasks import select_tables_for_imports
+# Do not comment next tasks it needs to create schedule jobs list
+from src.apps.task_scheduler.tasks import select_tables_for_imports, delete_journal_tasks
 
 
 logging.basicConfig(
