@@ -4,7 +4,7 @@ from dataclasses_json import dataclass_json, config
 from django.utils.translation import gettext_lazy as _
 from marshmallow import fields
 
-from src.config.settings import env
+from src.config.env import env
 
 @dataclass_json
 @dataclass

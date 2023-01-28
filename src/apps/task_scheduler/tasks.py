@@ -13,7 +13,7 @@ from src.apps.core.functions import tables_import_info_list
 logger = logging.getLogger(__name__)
 
 @cron("*/20 * * * *")  # Run once 20 minutes
-@dramatiq.actor(actor_name='select_tables_for_imports')
+@dramatiq.actor(actor_name='select-tables-for-imports')
 def select_tables_for_imports():
     """Just do reimport it data from DBF tables if they have  changed last write date time"""
     # https://linuxize.com/post/cron-jobs-every-5-10-15-minutes/
@@ -31,7 +31,7 @@ def select_tables_for_imports():
 
 # @cron("* * * 3 *")  # Run once 20 minutes
 @cron("*/20 * * * *")
-@dramatiq.actor(actor_name='delete_journal_tasks')
+@dramatiq.actor(actor_name='delete_journal_tasks', queue_name='journal')
 def delete_journal_tasks():
     delete_old_tasks(max_task_age=864000)
 
