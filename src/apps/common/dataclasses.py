@@ -34,6 +34,7 @@ class ImportInfo:
 class Export:
     DBF: str = "DBF"
     DOC2SQL: str = "ARM"
+    NSI: str = "NSI"
 
 @dataclass(frozen=True)
 class Mode:
@@ -122,6 +123,10 @@ class PipeModules:
     DOC2SQL_IMPORT: str = "src.apps.armimport"
     DOC2SQL_RESOURCE: str = "resources"
     DOC2SQL_TABLE_PREFIX: str = ""
+    NSI_EXPORT: str = "src.apps.nsiexport"
+    NSI_IMPORT: str = "src.apps.nsimport"
+    NSI_RESOURCE: str = "resources"
+    NSI_TABLE_PREFIX: str = ""
 
 
 @dataclass(frozen=True)

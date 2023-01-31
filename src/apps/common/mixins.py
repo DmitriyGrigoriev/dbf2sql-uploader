@@ -217,6 +217,15 @@ class ArmResource(ExtResource):
 ##################################################################################
 # SECTION: DBF export mixins
 ##################################################################################
+class NsiBase(models.Model):
+    """Extending base model table by additional fields"""
+
+    g071 = models.CharField(max_length=8, primary_key=True)
+
+    class Meta:
+        abstract = True
+        managed = False
+
 class ExtBase(models.Model):
     """Extending base model table by additional fields"""
 
@@ -253,12 +262,10 @@ class ExtBaseK32(models.Model):
 ##################################################################################
 # SECTION: DBF import mixins
 ##################################################################################
-class ExtSourceFields(models.Model):
-    """Extending sql import table by additional fields"""
+class BaseSourceFields(models.Model):
     unique_hash = True
 
     uid = models.AutoField(primary_key=True)
-    g071 = models.CharField(max_length=8, blank=True, null=True)
     # uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     sourcetype = models.CharField(
         max_length=3,
@@ -272,6 +279,15 @@ class ExtSourceFields(models.Model):
         null=True,
         db_index=True,
     )
+
+    class Meta:
+        abstract = True
+
+class ExtSourceFields(BaseSourceFields):
+    """Extending sql import table by additional fields"""
+
+    g071 = models.CharField(max_length=8, blank=True, null=True)
+    # uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     g07x = models.CharField(
         max_length=23,
         blank=True,

@@ -1,4 +1,4 @@
-from import_export.resources import ModelResource
+# from import_export.resources import ModelResource
 from src.apps.common import mixins
 #####################################################################################
 # import models for DBF
