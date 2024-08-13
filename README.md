@@ -41,6 +41,7 @@ EMAIL_SUBJECT_PREFIX='[DBF to MSSQL Service] '
 3. Установить на сервер Redis
 
 4. Прописать подключения для Advantage Database Driver (подключение формируется для каждого таможенного поста)
+
 4.1 Прописываем путь до каталога с файлами формата обмена DBF
 ![Список подключений](static/images/Snapshot-06.jpg?raw=true "connection_list")
 
