@@ -45,7 +45,7 @@ EMAIL_SUBJECT_PREFIX='[DBF to MSSQL Service] '
 ![Список подключений](static/images/Snapshot-06.jpg?raw=true "connection_list")
 
 4.2 Прописываем строку соединения для Advantage Database Driver
-![Строка подключения](static/images/Snapshot-06.jpg?raw=true "connection_edit")
+![Строка подключения](static/images/Snapshot-07.jpg?raw=true "connection_edit")
 
 
 5. Прописать подключения для MSSQL Driver
