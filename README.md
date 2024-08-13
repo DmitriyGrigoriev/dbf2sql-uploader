@@ -20,7 +20,9 @@ SHIFT_MONTHS=-1
 DJANGO_ADMINS=admin:admin@localhost.ru
 
 EMAIL_HOST=mx1.localhost.ru
+
 SERVER_EMAIL=exchange@localhost.ru
+
 DEFAULT_FROM_EMAIL=exchange@localhost.ru
 
 EMAIL_HOST_USER=exchange
@@ -69,3 +71,8 @@ EMAIL_SUBJECT_PREFIX='[DBF to MSSQL Service] '
 
 2. Запустить принудительную загрузку всех файлов из каталога формата обмена 
 ![Running](static/images/Snapshot-10.jpg?raw=true "running_all")
+
+# Логгирование 
+
+Просмотр лога доступен на сервере 
+![Logging](static/images/Snapshot-05.jpg?raw=true "logs")
