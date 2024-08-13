@@ -4,9 +4,6 @@
 
 
 ## Environment Variables
-
-To run this project, you will need to add the following environment variables to your .env file
-
 #### Django
 DEBUG=False
 SECRET_KEY=pw+*a^45y7s_f(im2923ot2222m1h7zed4w+$03_trf4)0)!l!
@@ -15,16 +12,23 @@ ALLOWED_HOSTS=192.168.89.168
 SHOW_DEBUG_TOOLBAR=False
 #### REDIS
 REDIS_HOST=127.0.0.1
+
 REDIS_PORT=6379
 #### ETL
 SHIFT_MONTHS=-1
 #### EMAIL
 DJANGO_ADMINS=admin:admin@localhost.ru
+
 EMAIL_HOST=mx1.localhost.ru
+
 SERVER_EMAIL=exchange@localhost.ru
+
 DEFAULT_FROM_EMAIL=exchange@localhost.ru
+
 EMAIL_HOST_USER=exchange
+
 EMAIL_HOST_PASSWORD=ExHfusse!er
+
 EMAIL_SUBJECT_PREFIX='[DBF to MSSQL Service] '
 
 
