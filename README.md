@@ -42,15 +42,15 @@ EMAIL_SUBJECT_PREFIX='[DBF to MSSQL Service] '
 
 4. Прописать подключения для Advantage Database Driver (подключение формируется для каждого таможенного поста)
 4.1 Прописываем путь до каталога с файлами формата обмена DBF
-[Список подключений](static/images/Snapshot-06.jpg?raw=true "connection_list")
+![Список подключений](static/images/Snapshot-06.jpg?raw=true "connection_list")
 
 4.2 Прописываем строку соединения для Advantage Database Driver
-[Строка подключения](static/images/Snapshot-06.jpg?raw=true "connection_edit")
+![Строка подключения](static/images/Snapshot-06.jpg?raw=true "connection_edit")
 
 
 5. Прописать подключения для MSSQL Driver
 
 6. Прописать на сервере запуск Dramatiq для выполнения Tasks (run_dramatiq.ps1)
-[Task Sheduler](static/images/Snapshot-08.jpg?raw=true "task_sheduler")
+![Task Sheduler](static/images/Snapshot-08.jpg?raw=true "task_sheduler")
 
 7. Прописать запуск Sheduler для загрузки данных Dramatiq по расписанию (run_sheduler.ps1)
