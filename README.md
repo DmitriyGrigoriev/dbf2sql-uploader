@@ -20,9 +20,7 @@ SHIFT_MONTHS=-1
 DJANGO_ADMINS=admin:admin@localhost.ru
 
 EMAIL_HOST=mx1.localhost.ru
-
 SERVER_EMAIL=exchange@localhost.ru
-
 DEFAULT_FROM_EMAIL=exchange@localhost.ru
 
 EMAIL_HOST_USER=exchange
